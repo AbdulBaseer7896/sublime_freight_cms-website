@@ -4,3 +4,4 @@ mysql.connector
 pymysql
 gunicorn
 flask_login
+pytz
