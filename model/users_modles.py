@@ -17,7 +17,6 @@ class UserModel():
                     "ssl_ca": "/etc/ssl/cert.pem"
                 }
             })
-            pymysql.err.OperationalError: (1045, "Access denied for user 'nsescdh3nzt27p54y5sy'")
 
             print("connection build successfully user ")
         except:
