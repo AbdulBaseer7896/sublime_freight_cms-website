@@ -11,7 +11,6 @@ class Sale_Man_Modle():
         try:
             
             db_connection = os.environ.get('subline_db_connection')
-            print(f"db_connection: {db_connection}")
             self.engine = create_engine(db_connection, connect_args={
                 "ssl": {
                     "ssl_ca": "/etc/ssl/cert.pem"
