@@ -26,12 +26,14 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{data['password']}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , '{data['salary']}' );")
             conn.execute(query1)
+            print("This is check 1")
             return True
     
     def add_new_dispatcher(self , data):
         with self.engine.connect() as conn:
             query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{data['password']}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , '{data['salary']}' );")
             conn.execute(query1)
+            print("This is check 2")
             return True 
         
 
@@ -39,12 +41,14 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             query = text(f"SELECT * from new_sales_first_time;")
             result = conn.execute(query).fetchall()
+            print("This is check 3")
             return result
         
     def get_first_form_sales_for_db(self):
         with self.engine.connect() as conn:
             query = text(f"SELECT * from sales_second_time;")
             result = conn.execute(query).fetchall()
+            print("This is check 4")
             return result
         
         
@@ -53,6 +57,7 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             query = text(f"SELECT * from untransfer_sales;")
             result = conn.execute(query).fetchall()
+            print("This is check 5")
             return result
         
     def get_all_dispater_name_and_pin(self):
@@ -65,6 +70,7 @@ class Admin_Modle():
 
             # Fetch all rows as dictionaries
             result_dict = [dict(zip(column_names, row)) for row in result]
+            print("This is check 6")
             return result_dict
         
         
@@ -77,6 +83,7 @@ class Admin_Modle():
             querry_to_delete_unfransfer_sales_from_db = text(f"DELETE FROM untransfer_sales WHERE carear_id = {info['carears_id']};")
             conn.execute(querry_to_delete_unfransfer_sales_from_db)
             conn.execute(query1)
+            print("This is check 6")
             return True 
         
     def get_load_info_from_db_for_admin(self):
@@ -90,6 +97,7 @@ class Admin_Modle():
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
             print("This is re = " , result_dict)
+            print("This is check 7")
             return result_dict
         
 
@@ -108,6 +116,7 @@ class Admin_Modle():
 
 
             print("This is re = " , result_dict)
+            print("This is check 8")
             return result_dict
         
 # obj = Admin_Modle()

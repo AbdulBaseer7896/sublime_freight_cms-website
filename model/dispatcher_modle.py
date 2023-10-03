@@ -23,33 +23,13 @@ class Dispatcher():
         except:
             print("not work")
             
-    def user_data(self , pin):
-        with self.engine.connect() as conn:
-            query = text(f"SELECT * from users where user_pin = {pin};")
-            result = conn.execute(query).fetchall()
-            print("user data is 4 == " , result)
-            return result
-        
-    def all_user_pin(self):
-        with self.engine.connect() as conn:
-            query = text(f"SELECT user_pin from users;")
-            result = conn.execute(query).fetchall()
-            print("user data is  5 == " , result)
-            return result
-        
-    def check_pin_for_login(self , pin):
-        pin_data = self.all_user_pin()
-        for i in pin_data:
-            if int(i[0]) == pin:
-                print("This pin match")
-                return True
-        return False
         
     def user_role(self , pin):
         with self.engine.connect() as conn:
             query = text(f"SELECT user_type from users where user_pin = {pin};")
             result = conn.execute(query).fetchall()
             result = result[0][0]
+            print("This is check 12")
             return result
         
     from sqlalchemy import text
@@ -72,6 +52,7 @@ class Dispatcher():
 
             # Fetch all rows as dictionaries
             result_dict = [dict(zip(column_names, row)) for row in result]
+            print("This is check 13")
             return result_dict
         
     def get_carear_info_from_db_by_carear_id(self , carear_id):
@@ -80,6 +61,7 @@ class Dispatcher():
             result = conn.execute(query)
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
+            print("This is check 14")
             return result_dict
         
         
@@ -98,7 +80,7 @@ class Dispatcher():
             # query = text(f"INSERT INTO load_details VALUES ( '{int(result[0][0]) + 1}' , '{load_info['load_date']}' , '{load_info['load_rate']}' , '{load_info['load_location']}' , '{load_info['distance']}' , '{load_info['weight']}'  , '{load_info['pick_up_time']}'   , '{load_info['delivery_time']}' , '{load_info['carrier_name']}' , '{load_info['agent_name']}' , '{load_info['agent_email_number']}' , '{load_info['carrier_email_number']}' , '{load_info['load_description']}') , {pin};")
             query = text(f"INSERT INTO load_details VALUES ( '{result + 1}' , '{load_info['load_date']}' , '{load_info['load_rate']}' , '{load_info['load_location']}' , '{load_info['distance']}' , '{load_info['weight']}'  , '{load_info['pick_up_time']}'   , '{load_info['delivery_time']}' , '{load_info['carrier_name']}' , '{load_info['agent_name']}' , '{load_info['agent_email_number']}' , '{load_info['carrier_email_number']}' , '{load_info['load_description']}' , {pin});")
             conn.execute(query)
-                        
+            print("This is check 15")
             return True
 
 
@@ -124,6 +106,7 @@ class Dispatcher():
 
             # Fetch all rows as dictionaries
             result_dict = [dict(zip(column_names, row)) for row in result]
+            print("This is check 16")
             return result_dict
         
     def get_local_time_ampm(self):
@@ -135,7 +118,7 @@ class Dispatcher():
 
         # Format the local time in AM/PM format
         local_time_ampm = lahore_time.strftime('%Y-%m-%d %I:%M:%S %p')
-
+        print("This is check 16")
         return local_time_ampm
         
         
@@ -161,7 +144,7 @@ class Dispatcher():
             conn.execute(query4)
             
             print("Row is delete and row in inserted")
-            
+            print("This is check 17")
             return True
         
         
@@ -179,6 +162,7 @@ class Dispatcher():
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
             print("This is re = " , result_dict)
+            print("This is check 18")
             return result_dict
         
     
@@ -193,6 +177,7 @@ class Dispatcher():
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
             print("This is re = " , result_dict)
+            print("This is check 19")
             return result_dict
     
                         

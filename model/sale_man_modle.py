@@ -75,6 +75,7 @@ class Sale_Man_Modle():
 
                 conn.execute(query1)
                 conn.execute(query2)
+                print("This is check 20")
                 return True
     
         
@@ -89,7 +90,7 @@ class Sale_Man_Modle():
             # Fetch all rows as dictionaries
             result_dict = [dict(zip(column_names, row)) for row in result]
             print("user data is 5 == ", result_dict)
-
+            print("This is check 21")
             return result_dict
 
 
@@ -103,6 +104,7 @@ class Sale_Man_Modle():
 
             # Fetch all rows as dictionaries
             result_dict = [dict(zip(column_names, row)) for row in result]
+            print("This is check 22")
             return result_dict[0]
 
 
