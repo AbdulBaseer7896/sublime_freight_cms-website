@@ -90,6 +90,11 @@
             </li>
 
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_card_records', filename='') }}">
+                    <span>Card Records</span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -234,7 +239,10 @@
 
                             <thead>
                                 <tr>
+
                                     <th>Carear ID</th>
+
+                        
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
@@ -271,7 +279,15 @@
                             <tbody>
                                 {% for carear, load in zipped_data %}
                                     <tr>
-                                        <td>{{ carear['carear_id'] }}</td>
+                                        <!-- <td>{{ carear['carear_id'] }}</td> -->
+
+                                        <td>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#form_view">
+                                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                {{ carear['carear_id'] }}
+                                            </a>
+                                        </td>
+    
                                         <td>{{ carear['d_name'] }}</td>
                                         <td>{{ carear['email'] }}</td>
                                         <td>{{ carear['phone_number'] }}</td>
@@ -335,6 +351,26 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <a class="btn btn-primary" href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="form_view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "data" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

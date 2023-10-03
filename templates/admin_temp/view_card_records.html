@@ -96,8 +96,6 @@
                     <span>Card Records</span>
                 </a>
             </li>
-
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -230,7 +228,7 @@
             <!-- Page Heading -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">All Sales Records</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">All ATM CARD Records</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -239,96 +237,42 @@
                             <thead>
                                 <tr>
                                     <th>Carear ID</th>
-                                    <th>Name</th>
+                                    <th>Driver Name</th>
                                     <th>Email</th>
-                                    <th>Driver</th>
                                     <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
-                                    <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
-                                    <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
-                                    <th>Factoring Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Dispatcher</th>
+                                    <th>Care Number</th>
+                                    <th>Card Expiry</th>
+                                    <th>Card CVC</th>
+                                    <th>Card Type</th>
+                                    <th>Holder Name</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Carear ID</th>
-                                    <th>Name</th>
+                                    <th>Driver Name</th>
                                     <th>Email</th>
-                                    <th>Driver</th>
                                     <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
-                                    <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
-                                    <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
-                                    <th>Factoring Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Dispatcher</th>
+                                    <th>Care Number</th>
+                                    <th>Card Expiry</th>
+                                    <th>Card CVC</th>
+                                    <th>Card Type</th>
+                                    <th>Holder Name</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {% for item in all_sales_data %}
+                                {% for item in card_info %}
 
                                 <tr>
-
-
-                                    <td>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_id'] }}
-                                        </a>
-                                    </td>
-
-                                    
-                                    
+                                    <td>{{ item['carear_id'] }}</td>
                                     <td>{{item['d_name']}}</td>
                                     <td>{{item['email']}}</td>
-                                    <td>{{item['driver']}}</td>
                                     <td>{{item['phone_number']}}</td>
-                                    <td>{{item['mc_usdot']}}</td>
-                                    <td>{{item['charges']}}</td>
-                                    <td>{{item['company_name']}}</td>
-                                    <td>{{item['t_number']}}</td>
-                                    <td>{{item['date']}}</td>
-                                    <td>{{item['factoring_num_email']}}</td>
-                                    <td>{{item['ein']}}</td>
-                                    <td>{{item['bank_name']}}</td>
-                                    <td>{{item['physical_address']}}</td>
-                                    <td>{{item['factoring_address']}}</td>
-                                    <td>{{item['account_number']}}</td>
-                                    <td>{{item['routing_number']}}</td>
-                                    <td>{{item['refrence']}}</td>
-                                    <td>{{item['insurance_details']}}</td>
-                                    <td>{{item['comments']}}</td>
-                                    <td>{{item['equipments']}}</td>
-                                    <td>{{item['factoring_name']}}</td>
-                                    <td>{{item['sale_man_pin']}}</td>
+                                    <td>{{item['care_number']}}</td>
+                                    <td>{{item['card_expiry']}}</td>
+                                    <td>{{item['card_cvc']}}</td>
+                                    <td>{{item['card_type']}}</td>
+                                    <td>{{item['card_holder_name']}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -379,42 +323,6 @@
             </div>
         </div>
 
-<!-- Your modal content -->
-<div class="modal fade" id="card_url_info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Card Information</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                     <p>Career ID: <a href="">http://127.0.0.1:5000//gernater_url_to_store_card_info//<span id="careerIdPlaceholder"></span></a></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- Add other modal buttons here -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        // Handle the click event on the link
-        $('.dropdown-item').on('click', function() {
-            // Get the career ID from the data attribute
-            var careerId = $(this).data('career-id');
-            
-            // Set the career ID in the modal
-            $('#careerIdPlaceholder').text(careerId);
-        });
-    });
-</script>
-
-
-        
 
     
 

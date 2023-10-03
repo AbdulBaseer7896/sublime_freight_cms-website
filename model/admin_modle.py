@@ -119,5 +119,29 @@ class Admin_Modle():
             print("This is check 8")
             return result_dict
         
+        
+        
+    def stored_card_info_in_db(self , card_info):
+        with self.engine.connect() as conn:
+            query = text(f"SELECT d_name , email , phone_number   from new_sales_first_time where carear_id = '{card_info['carear_id']}';")
+            result = conn.execute(query)
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            result_dict = result_dict[0]
+            
+            query1 = text(f"INSERT INTO atm_card_info VALUES ('{card_info['carear_id']}' , '{result_dict['d_name']}', '{result_dict['email']}',  '{result_dict['phone_number']}',  '{card_info['care_number']}', '{card_info['card_expiry']}' , '{card_info['card_cvc']}' , '{card_info['card_type']}' , '{card_info['card_holder_name']}' );")
+            conn.execute(query1)
+            
+        
+    def get_card_data_from_db_to_display(self):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT * from atm_card_info;")
+            result = conn.execute(query1)
+            
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            return result_dict
+            
+    
 # obj = Admin_Modle()
 # obj.get_all_dispater_name_and_pin()

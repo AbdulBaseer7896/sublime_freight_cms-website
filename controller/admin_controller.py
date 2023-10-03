@@ -62,14 +62,15 @@ def add_employee():
     
     
     
-
+def test_fun():
+    return "This is jsut for fun"
 
 @app.route('/view_all_sales_of_all_sales_man', methods=["GET", "POST"])
 @login_required('admin')  
 def view_all_sales_of_all_sales_man():
     if request.method == "GET":
         all_sales_data = obj.get_all_sales_for_db()
-        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data)
+        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data , test_fun = test_fun )
     
     
 @app.route('/view_first_from_sales', methods=["GET", "POST"])
@@ -120,3 +121,47 @@ def view_load_and_carear():
         zipped_data = zip(carear_info, load_info)
         return render_template("//admin_temp//view_load_and_carear_to_admin.html" , zipped_data = zipped_data)
             
+            
+# @app.route('/gernater_url_to_store_card_info', methods=["GET", "POST"])
+# @login_required('admin')         
+# def gernater_url_to_store_card_info():
+#     if request.method == 'GET':
+#         print("This card info ")
+#         info = obj.get_carear_info_from_db_for_admin()
+#         return render_template("//admin_temp//admin_dashboard.html"  , info = info)
+
+from flask import render_template_string
+
+
+
+
+@app.route('/gernater_url_to_store_card_info/<carear_id>', methods=["GET", "POST"])
+def gernater_url_to_store_card_info(carear_id):
+    if request.method == "GET":
+        print("This is carear_id =  " , carear_id)
+        return render_template("//admin_temp//add_new_card_info.html" , carear_id = carear_id)
+    
+    
+@app.route('/stored_data', methods=["GET", "POST"]) 
+def stored_card_info_in_db():
+    if request.method == "POST":
+        card_info = request.form.to_dict()
+        obj.stored_card_info_in_db(card_info)
+        print("card_info =", card_info)
+        flash(("You uploaded the CARD Information Successfully!!!" , 'card_upload_success'))
+        return render_template("//admin_temp//add_new_card_info.html")
+
+
+
+@app.route('/view_card_records', methods=["GET", "POST"])
+@login_required('admin')     
+def view_card_records():
+    if request.method == "GET":
+        card_info = obj.get_card_data_from_db_to_display()
+        return render_template("//admin_temp//view_card_records.html" , card_info = card_info)
+            
+        
+
+
+
+# def get_url_for_card_info(self , carear_id):

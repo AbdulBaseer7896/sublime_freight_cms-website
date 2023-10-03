@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+    <title>Card Information Page</title>
+
+    <style>
+        .padding {
+            padding: 5rem !important;
+        }
+
+        .form-control:focus {
+            box-shadow: 10px 0px 0px 0px #ffffff !important;
+            border-color: #4ca746;
+        }
+    </style>
+</head>
+<body>  
+    <div class="padding">
+        <div class="row">
+            <div class="container-fluid d-flex justify-content-center">
+                <div class="col-sm-8 col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                {% for message, category in messages %}
+                                {% if category == 'card_upload_success' %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <h4 class="alert-heading text-center">{{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </h4>
+                                </div>
+                                {% elif category == 'new_employee_add_success' %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <h4 class="alert-heading text-center">{{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </h4>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                                <div class="col-md-6">
+                                    <span>CREDIT/DEBIT CARD PAYMENT</span>
+                                </div>
+                                <div class="col-md-6 text-right" style="margin-top: -5px;">
+                                    <img src="https://img.icons8.com/color/36/000000/visa.png">
+                                    <img src="https://img.icons8.com/color/36/000000/mastercard.png">
+                                    <img src="https://img.icons8.com/color/36/000000/amex.png">
+                                </div>      
+                            </div>    
+                        </div>
+                        <form action="{{ url_for('stored_card_info_in_db') }}" method="post" enctype="multipart/form-data">
+                            <div class="card-body" style="height: 350px">
+
+                                <input type="text" class="d-none" name="carear_id" value="{{carear_id}}">
+
+                            <div class="form-group">
+                                <label for="cc-number" class="control-label">CARD NUMBER</label>
+                                <input id="cc-number" name="care_number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder="&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull;" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cc-exp" class="control-label">CARD EXPIRY</label>
+                                        <input id="cc-exp" name="card_expiry" type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp" placeholder="MM / YYYY" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cc-cvc" class="control-label">CARD CVC</label>
+                                        <input id="cc-cvc" name="card_cvc" type="tel" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="&bull;&bull;&bull;&bull;" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cc-cvc" class="control-label">CARD Type</label>
+                                                <select name="card_type" class="form-select input-lg form-control" aria-label="Default select example" required>
+                                                    <option value="" disabled selected hidden>Select Type</option>
+                                                    <option value="Visa">Visa</option>
+                                                    <option value="Mastercard">Mastercard</option>
+                                                    <option value="American Express">American Express</option>
+                                                    <option value="UnionPay">UnionPay</option>
+                                                    <option value="PayPal">PayPal</option>
+                                                </select>
+                                                
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-holder" class="control-label">CARD HOLDER NAME</label>
+                                <input id="card-holder" name="card_holder_name" type="text" class="input-lg form-control">
+                            </div>
+                            <div class="form-group">
+                                <input value="MAKE PAYMENT" type="submit" class="btn btn-success btn-lg form-control" style="font-size: .8rem;">
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        $(function($) {
+            $('[data-numeric]').payment('restrictNumeric');
+            $('.cc-number').payment('formatCardNumber');
+            $('.cc-exp').payment('formatCardExpiry');
+            $('.cc-cvc').payment('formatCardCVC');
+            $('#cc-number').payment('restrictNumeric').formatCardNumber();
+            $('#cc-exp').payment('restrictNumeric').formatCardExpiry();
+            $('#cc-cvc').payment('restrictNumeric').formatCardCVC();
+        });
+    </script>
+</body>
+</html>
