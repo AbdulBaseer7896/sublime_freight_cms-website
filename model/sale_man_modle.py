@@ -16,7 +16,7 @@ class Sale_Man_Modle():
                     "ssl_ca": "/etc/ssl/cert.pem"
                 }
             })
-            print("connection build successfully sale man")
+            print("connection build successfully sale man ")
         except:
             print("not work")
 
