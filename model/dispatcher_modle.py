@@ -8,21 +8,18 @@ import pytz
 class Dispatcher():
     engine = None
     
-    # mysql+pymysql://nsescdh3nzt27p54y5sy:pscale_pw_mag9h24liZdIJpcLCFWmXYa9u7Wrx4AtKWAPuv41Ule@aws.connect.psdb.cloud/sublime_freight_data_base?charset=utf8mb4
 
     def __init__(self):
         try:
             
             db_connection = os.environ.get('subline_db_connection')
-            # print("This is connection  = " , db_connection)
-            # db_connection = "mysql+pymysql://nsescdh3nzt27p54y5sy:pscale_pw_mag9h24liZdIJpcLCFWmXYa9u7Wrx4AtKWAPuv41Ule@aws.connect.psdb.cloud/sublime_freight_data_base?charset=utf8mb4"
-            print(f"db_connection: {db_connection}")
+
             self.engine = create_engine(db_connection, connect_args={
                 "ssl": {
                     "ssl_ca": "/etc/ssl/cert.pem"
                 }
             })
-            print("connection build successfully")
+            print("connection build successfully dispatcher")
         except:
             print("not work")
             

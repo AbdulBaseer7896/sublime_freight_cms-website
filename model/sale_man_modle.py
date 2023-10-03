@@ -17,11 +17,10 @@ class Sale_Man_Modle():
                     "ssl_ca": "/etc/ssl/cert.pem"
                 }
             })
-            print("connection build successfully")
+            print("connection build successfully sale man")
         except:
             print("not work")
 
-    # {'d_name': '', 'driver': '', 'mc_usdot': '', 'company_name': '', 'email': '', 'phone_number': '', 'charges': '', 't_number': '', 'date': '', 'ein': '', 'physical_address': '', 'factoring_address': '', 'factoring_num_email': '', 'bank_name': '', 'account_number': '', 'routing_number': '', 'refrence': '', 'comments': '', 'factoring_name': '', 'insurance_details': '', 'equipments': ''}
 
     def new_sales_first_time(self , data , sale_man_pin):
         with self.engine.connect() as conn:

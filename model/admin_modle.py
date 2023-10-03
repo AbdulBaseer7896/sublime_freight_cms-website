@@ -11,16 +11,17 @@ class Admin_Modle():
         try:
             
             db_connection = os.environ.get('subline_db_connection')
-            print(f"db_connection: {db_connection}")
             self.engine = create_engine(db_connection, connect_args={
                 "ssl": {
                     "ssl_ca": "/etc/ssl/cert.pem"
                 }
             })
-            print("connection build successfully")
+            print("connection build successfully admin")
         except:
             print("not work")
-            {'f_name': 'Abdul Baseer', 'cnic': '3710471513137', 'password': '5678', 'gender': 'male', 'email': 'abdulbasirqazi@gmail.com', 'phone_number': '3155849052', 'user_type': 'Sale Man', 'salary': '678'}
+
+
+
     def add_new_sale_man(self , data):
         with self.engine.connect() as conn:
             query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{data['password']}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , '{data['salary']}' );")

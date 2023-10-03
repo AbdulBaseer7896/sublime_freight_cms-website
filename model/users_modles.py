@@ -21,7 +21,7 @@ class UserModel():
                     "ssl_ca": "/etc/ssl/cert.pem"
                 }
             })
-            print("connection build successfully")
+            print("connection build successfully user ")
         except:
             print("not work")
             
