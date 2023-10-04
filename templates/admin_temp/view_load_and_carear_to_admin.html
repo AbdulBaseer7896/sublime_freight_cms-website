@@ -280,13 +280,14 @@
                                 {% for carear, load in zipped_data %}
                                     <tr>
                                         <!-- <td>{{ carear['carear_id'] }}</td> -->
-
                                         <td>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#form_view">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#display_form_view" data-career-id="{{ carear['carear_id'] }}">
                                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 {{ carear['carear_id'] }}
                                             </a>
+                                            
                                         </td>
+    
     
                                         <td>{{ carear['d_name'] }}</td>
                                         <td>{{ carear['email'] }}</td>
@@ -339,7 +340,7 @@
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
@@ -360,7 +361,7 @@
 
 <div class="modal fade" id="form_view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
@@ -375,6 +376,70 @@
         </div>
     </div>
 </div>
+
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button> -->
+
+<!-- <div class="modal fade bd-example-modal-xl" id="display_form_view" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div modal-dialog modal-xl modal-xl">
+    <div class="modal-content">
+        <div class="container">
+      <h5 class="modal-content" >Ready to Leave?</h5>
+      <button class="close modal-content" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+      </button>
+    </div>
+          <div modal-dialog modal-xl" role="document">
+            <h1>This is nicke</h1>  
+            <p><span id="careerIdPlaceholder"></span></p>
+            <span id="careerIdPlaceholder"></span>
+
+    </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- Your modal content -->
+<div class="modal fade bd-example-modal-xl" id="display_form_view" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myExtraLargeModalLabel">Card Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                     <p>Career ID:<span id="careerIdPlaceholder"></span></p>
+                     <h1>{{myfun()}}</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- Add other modal buttons here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="static\vendor\jquery\jquery.min.js"></script>
+<script src="static\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
+
+
+<script>
+$('#display_form_view').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var careerId = button.data('career-id');
+    console.log('Career ID:', careerId);
+    var modal = $(this);
+    modal.find('.modal-body #careerIdPlaceholder').text(careerId);
+});
+
+
+</script>
+
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="static\vendor\jquery\jquery.min.js"></script>
@@ -392,6 +457,8 @@
 <!-- Page level custom scripts -->
 <script src="static\JS\js/demo/chart-area-demo.js"></script>
 <script src="static\JS\js/demo/chart-pie-demo.js"></script>
+
+
 
 </body>
 

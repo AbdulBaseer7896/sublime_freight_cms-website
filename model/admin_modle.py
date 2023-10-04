@@ -44,6 +44,13 @@ class Admin_Modle():
             print("This is check 3")
             return result
         
+    def get_carear_data_from_db(self , carears_id):
+        with self.engine.connect() as conn:
+            query = text(f"SELECT * from new_sales_first_time where carears_id = {carears_id};")
+            result = conn.execute(query).fetchall()
+            print("This is check 3")
+            return result
+        
     def get_first_form_sales_for_db(self):
         with self.engine.connect() as conn:
             query = text(f"SELECT * from sales_second_time;")

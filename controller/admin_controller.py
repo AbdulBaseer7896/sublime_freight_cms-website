@@ -62,16 +62,19 @@ def add_employee():
     
     
     
-def test_fun():
-    return "This is jsut for fun"
+def display_one_sale_in_form_view(carear_id):
+    carear_data = obj.get_carear_data_from_db(carear_id)
+    print("This i s data = " , carear_data )
+    return carear_data
 
 @app.route('/view_all_sales_of_all_sales_man', methods=["GET", "POST"])
 @login_required('admin')  
 def view_all_sales_of_all_sales_man():
     if request.method == "GET":
         all_sales_data = obj.get_all_sales_for_db()
-        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data , test_fun = test_fun )
+        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data  , display_one_sale_in_form_view = display_one_sale_in_form_view)
     
+
     
 @app.route('/view_first_from_sales', methods=["GET", "POST"])
 @login_required('admin')      
@@ -109,6 +112,7 @@ def transfer_carears_to_dispatcher():
         return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length)
         
     
+
 
     
 @app.route('/view_load_and_carear', methods=["GET", "POST"])
