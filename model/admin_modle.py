@@ -46,10 +46,14 @@ class Admin_Modle():
         
     def get_carear_data_from_db(self , carears_id):
         with self.engine.connect() as conn:
-            query = text(f"SELECT * from new_sales_first_time where carears_id = {carears_id};")
-            result = conn.execute(query).fetchall()
-            print("This is check 3")
-            return result
+            query = text(f"SELECT * from new_sales_first_time where carear_id = {carears_id};")
+            result = conn.execute(query)
+            column_names = result.keys()
+
+            # Fetch all rows as dictionaries
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            print("This check " , result_dict)
+            return result_dict[0]
         
     def get_first_form_sales_for_db(self):
         with self.engine.connect() as conn:

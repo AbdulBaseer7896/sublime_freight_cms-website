@@ -1,7 +1,7 @@
 from app import app
 from functools import wraps
 from flask import session
-from flask import redirect , url_for , render_template , request , flash
+from flask import redirect , url_for , render_template , request , flash ,jsonify
 from model.admin_modle import Admin_Modle
 
 import ast
@@ -62,18 +62,28 @@ def add_employee():
     
     
     
-def display_one_sale_in_form_view(carear_id):
-    carear_data = obj.get_carear_data_from_db(carear_id)
-    print("This i s data = " , carear_data )
-    return carear_data
+@app.route('/popup_content')
+def popup_content():
+    # You can perform any processing here to generate the content and variable you want to display in the popup
+    content = "This is the content of the popup returned from Flask."
+    variable_to_return = "This is a variable returned from Flask."
+    career_id = request.args.get('careerId')
+    career_info = obj.get_carear_data_from_db(career_id)
+    print("This is info = " , career_info)
+    print("This si carear inf = " , career_info['d_name'])
+    # Returning a JSON response
+    return jsonify(content=content, variable = variable_to_return ,career_info = career_info)
+
+
 
 @app.route('/view_all_sales_of_all_sales_man', methods=["GET", "POST"])
 @login_required('admin')  
 def view_all_sales_of_all_sales_man():
     if request.method == "GET":
         all_sales_data = obj.get_all_sales_for_db()
-        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data  , display_one_sale_in_form_view = display_one_sale_in_form_view)
-    
+        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data)
+
+
 
     
 @app.route('/view_first_from_sales', methods=["GET", "POST"])
@@ -124,6 +134,9 @@ def view_load_and_carear():
         # carear_info = carear_info.reverse()
         zipped_data = zip(carear_info, load_info)
         return render_template("//admin_temp//view_load_and_carear_to_admin.html" , zipped_data = zipped_data)
+    
+    
+
             
             
 # @app.route('/gernater_url_to_store_card_info', methods=["GET", "POST"])
