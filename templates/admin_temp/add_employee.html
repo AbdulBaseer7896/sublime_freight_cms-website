@@ -231,6 +231,13 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_pin_of_all_user', filename='') }}">
+                    <span>View Password</span>
+                </a>
+            </li>
+
+            
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -403,7 +410,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input name="password" type="password" class="form-control"
-                                            placeholder="Pin Code *" value="" />
+                                            placeholder="Pin Code *" value=""  disabled/>
                                     </div>
                                     <div class="form-group">
                                         <input name="photo" type="file" class="form-control" placeholder="Photo "
@@ -432,9 +439,14 @@
                                         <input name="phone_number" type="text" minlength="10" maxlength="10"
                                             class="form-control" placeholder="Enter Phone *" value="" />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group d-none">
                                         <input name="user_type" type="text" class="form-control" placeholder="User Type *"
-                                            value="sale man" />
+                                            value="sale_man" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input name="user" type="text" class="form-control" placeholder="User Type *"
+                                            value="Sale Man" disabled />
                                     </div>
                                     <div class="form-group">
                                         <input  name="salary" type="number" class="form-control" placeholder="Salary *" value="" />
@@ -459,7 +471,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input name="password" type="password" class="form-control" placeholder="Pin Code *"
-                                            value="" />
+                                            value="" disabled/>
                                     </div>
                                     <div class="form-group">
                                         <input name="photo" type="file" class="form-control" placeholder="Photo " value="" />
@@ -488,9 +500,13 @@
                                         <input name="phone_number" type="text" minlength="10" maxlength="10" name="txtEmpPhone"
                                             class="form-control" placeholder="Enter Phone *" value="" />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group d-none">
                                         <input name="user_type" type="text" class="form-control" placeholder="User Type *"
-                                            value="dispatcher" />
+                                            value="dispatcher"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="user" type="text" class="form-control" placeholder="User Type *"
+                                            value="Dispatcher" disabled/>
                                     </div>
                                     <div class="form-group">
                                         <input name="salary" type="number" class="form-control" placeholder="Salary *" value="" />

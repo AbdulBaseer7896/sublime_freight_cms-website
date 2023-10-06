@@ -52,10 +52,16 @@ def add_employee():
         return render_template('//admin_temp//add_employee.html')
     if request.method == 'POST':
         data = request.form.to_dict()
-        if data['user_type'] == "sale man":
+        if data['user_type'] == "sale_man":
             obj.add_new_sale_man(data)
-        if data['user_type'] == "dispatcher":
+            obj.stored_new_user_in_users_table(data)
+        elif data['user_type'] == "dispatcher":
             obj.add_new_dispatcher(data)
+            obj.stored_new_user_in_users_table(data)
+        else:
+            flash(("Sorry the joining of new Employee Fails !!! " , 'new_employee_add_fails'))
+            return render_template('//admin_temp//admin_dashboard.html')
+            
         flash(("You Add the new Employee SuccessFully !!! " , 'new_employee_add_success'))
         return render_template('//admin_temp//admin_dashboard.html')
     
@@ -178,7 +184,13 @@ def view_card_records():
         return render_template("//admin_temp//view_card_records.html" , card_info = card_info)
             
         
-
-
-
+@app.route('/view_pin_of_all_user', methods=["GET", "POST"])
+@login_required('admin')     
+def view_pin_of_all_user():
+    if request.method == "GET":
+        user_pins = obj.get_all_user_pin_from_db()
+        print("this is user pin = " , user_pins)
+        return render_template("//admin_temp//view_user_pin.html" , user_pins = user_pins)
+            
+        
 # def get_url_for_card_info(self , carear_id):

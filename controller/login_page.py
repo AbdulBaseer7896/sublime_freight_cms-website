@@ -39,9 +39,10 @@ def login_page():
         return render_template("login_page.html")
     if request.method == "POST":
 
-        pin = int(request.form.get('user_pin'))
-        
+        pin = request.form.get('user_pin')
+        print("this is pin" , pin)
         if obj.check_pin_for_login(pin):
+            print("its is check pin")
             user_data_list = obj.user_data(pin)
             if user_data_list:
                 user_data = [item._asdict() for item in user_data_list]

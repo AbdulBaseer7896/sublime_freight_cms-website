@@ -95,6 +95,12 @@
                     <span>Card Records</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_pin_of_all_user', filename='') }}">
+                    <span>View Password</span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -412,7 +418,7 @@
             </div>
             <div class="modal-body">
                      <p>Career ID:<span id="careerIdPlaceholder"></span></p>
-                     <h1>{{myfun()}}</h1>
+                     <h1></h1>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -421,6 +427,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="static\vendor\jquery\jquery.min.js"></script>

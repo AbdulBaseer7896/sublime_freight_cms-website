@@ -255,92 +255,23 @@
 
                             <thead>
                                 <tr>
-                                    <th>Carear ID</th>
+                                    
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Driver</th>
+                                    <th>PIN</th>
+                                    <th>User Type</th>
                                     <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
-                                    <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
-                                    <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
-                                    <th>Factoring Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Dispatcher</th>
-                                    <th>Update (changes)</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Carear ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Driver</th>
-                                    <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
-                                    <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
-                                    <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
-                                    <th>Factoring Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Dispatcher</th>
-                                    <th>Update (changes)</th>
-                                </tr>
-                            </tfoot>
                             <tbody>
-                                {% for item in all_sales_data %}
+                                {% for item in user_pins %}
 
                                 <tr>
-                                    <td>{{item['carear_id']}}</td>
-                                    <td>{{item['d_name']}}</td>
-                                    <td>{{item['email']}}</td>
-                                    <td>{{item['driver']}}</td>
-                                    <td>{{item['phone_number']}}</td>
-                                    <td>{{item['mc_usdot']}}</td>
-                                    <td>{{item['charges']}}</td>
-                                    <td>{{item['company_name']}}</td>
-                                    <td>{{item['t_number']}}</td>
-                                    <td>{{item['date']}}</td>
-                                    <td>{{item['factoring_num_email']}}</td>
-                                    <td>{{item['ein']}}</td>
-                                    <td>{{item['bank_name']}}</td>
-                                    <td>{{item['physical_address']}}</td>
-                                    <td>{{item['factoring_address']}}</td>
-                                    <td>{{item['account_number']}}</td>
-                                    <td>{{item['routing_number']}}</td>
-                                    <td>{{item['refrence']}}</td>
-                                    <td>{{item['insurance_details']}}</td>
-                                    <td>{{item['comments']}}</td>
-                                    <td>{{item['equipments']}}</td>
-                                    <td>{{item['factoring_name']}}</td>
-                                    <td>{{item['sale_man_pin']}}</td>
-                                    <td>{{item['dispatcher_pin']}}</td>
-                                    <!-- <td><a href="{{ url_for('update_carear_info', carear_id=item['carear_id']) }}" type="submit" class="btn">Update</a></td> -->
-
+                                    <td>{{item['user_name']}}</td>
+                                    <td>{{item['user_email']}}</td>
+                                    <td>{{item['user_pin']}}</td>
+                                    <td>{{item['user_type']}}</td>
+                                    <td>{{item['user_phone_number']}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

@@ -97,6 +97,12 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_pin_of_all_user', filename='') }}">
+                    <span>View Password</span>
+                </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -243,6 +249,15 @@
     </div>
     {% elif category == 'new_employee_add_success' %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading text-center">{{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </h4>
+    </div>
+
+    {% elif category == 'new_employee_add_fails' %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <h4 class="alert-heading text-center">{{ message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

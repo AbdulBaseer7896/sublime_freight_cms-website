@@ -1,7 +1,7 @@
 from app import app
 from functools import wraps
 from flask import session
-from flask import redirect , url_for , render_template , request , flash
+from flask import redirect , url_for , render_template , request , flash , jsonify
 from model.sale_man_modle import Sale_Man_Modle
 import json
 
@@ -51,6 +51,21 @@ def new_sale():
     
     
     
+
+@app.route('/popup_content_for_sale_man')
+def popup_content_for_sale_man():
+    # You can perform any processing here to generate the content and variable you want to display in the popup
+    content = "This is the content of the popup returned from Flask."
+    variable_to_return = "This is a variable returned from Flask."
+    career_id = request.args.get('careerId')
+    
+    career_info = obj.carear_info_for_carear_id(career_id)
+    print("This is info = " , career_info)
+    print("This si carear inf = " , career_info['d_name'])
+    # Returning a JSON response
+    return jsonify(content=content, variable = variable_to_return ,career_info = career_info)
+
+
 
 @app.route('/view_all_sales' , methods=["GET", "POST"])
 @login_required('sale_man')

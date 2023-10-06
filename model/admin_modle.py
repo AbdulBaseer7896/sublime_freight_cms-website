@@ -1,7 +1,7 @@
 import mysql.connector
 from sqlalchemy import create_engine, text
 import os
-
+import random
 
 
 class Admin_Modle():
@@ -24,18 +24,40 @@ class Admin_Modle():
 
     def add_new_sale_man(self , data):
         with self.engine.connect() as conn:
-            query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{data['password']}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , '{data['salary']}' );")
+            six_digit_pin = self.gernate_password_for_users()
+            query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{six_digit_pin}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , '{data['salary']}' );")
             conn.execute(query1)
             print("This is check 1")
             return True
     
     def add_new_dispatcher(self , data):
         with self.engine.connect() as conn:
-            query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{data['password']}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , '{data['salary']}' );")
+            six_digit_pin = self.gernate_password_for_users()
+            query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{six_digit_pin}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , '{data['salary']}' );")
             conn.execute(query1)
             print("This is check 2")
             return True 
         
+    def stored_new_user_in_users_table(self , data):
+        with self.engine.connect() as conn:
+            six_digit_pin = self.gernate_password_for_users()
+            query1 = text(f"INSERT INTO users VALUES ('{six_digit_pin}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}');")
+            conn.execute(query1)
+            print("This is check 2")
+            return True 
+        
+    def gernate_password_for_users(self):
+        with self.engine.connect() as conn:
+            
+            query1 = text(f"SELECT user_pin from users;")
+            passwords = conn.execute(query1).fetchall()
+            six_digit_pin = random.randint(100000, 999999)
+            print(six_digit_pin)
+            for i in passwords[0]:
+                if i == six_digit_pin:
+                    print("its match")
+                    self.gernate_password_for_users()
+            return six_digit_pin
 
     def get_all_sales_for_db(self):
         with self.engine.connect() as conn:
@@ -152,7 +174,18 @@ class Admin_Modle():
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
             return result_dict
+        
+        
+    def get_all_user_pin_from_db(self):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT * from users;")
+            result = conn.execute(query1)
+            
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            return result_dict
+        
             
     
-# obj = Admin_Modle()
-# obj.get_all_dispater_name_and_pin()
+obj = Admin_Modle()
+obj.gernate_password_for_users()

@@ -39,9 +39,11 @@ class UserModel():
             return result
         
     def check_pin_for_login(self , pin):
+        pin = str(pin)
         pin_data = self.all_user_pin()
         for i in pin_data:
-            if int(i[0]) == pin:
+            print(type(i[0]))
+            if i[0] == pin:
                 print("This pin match")
                 print("This is check 25")
                 return True
@@ -58,5 +60,5 @@ class UserModel():
 
 
 
-# obj = UserModel()
-# obj.check_pin_for_login(1234)
+obj = UserModel()
+obj.check_pin_for_login(982578)
