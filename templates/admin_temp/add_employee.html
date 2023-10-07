@@ -7,7 +7,18 @@
     <title>Snippet - GoSNippets</title>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href="static\vendor\fontawesome-free\css\all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="static\CSS\css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="static\vendor\fontawesome-free\css\all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <!-- <link href="css/sb-admin-2.min.css" rel="stylesheet"> -->
     <link href="static\CSS\css/sb-admin-2.min.css" rel="stylesheet">
 
     <style>
@@ -165,9 +176,8 @@
     {% endif %}
     {% endfor %}
     {% endif %}
-    {% endwith %}
-
-
+    {% endwith %}    
+        <!-- Sidebar -->
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
@@ -177,28 +187,28 @@
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 <!-- <img src="/static/images/img/Truck_img_1.jpeg" alt="Logo Icon" class="img-profile rounded-circle"> -->
-
+    
                 <div class="sidebar-brand-text mx-3">Admin</div>
             </a>
-
+    
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+    
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-
+    
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+    
             <!-- Heading -->
             <div class="sidebar-heading">
                 Interface
             </div>
-
+    
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('add_employee', filename='') }}">
                     <span>Add Employee</span>
@@ -219,33 +229,33 @@
                     <span>View LoadBoard</span>
                 </a>
             </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('transfer_carears_to_dispatcher', filename='') }}">
                     <span>Transfer carears</span>
                 </a>
             </li>
-
+    
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('view_card_records', filename='') }}">
                     <span>Card Records</span>
                 </a>
             </li>
-
+    
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('view_pin_of_all_user', filename='') }}">
                     <span>View Password</span>
                 </a>
             </li>
-
-            
+    
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+    
             <!-- Heading -->
             <div class="sidebar-heading">
                 Addons
             </div>
-
+    
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -266,29 +276,29 @@
                     </div>
                 </div>
             </li>
-
+    
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
-
+    
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/templates/admin_temp/tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
-
+    
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
+    
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
+    
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="static\images/img/undraw_rocket.svg" alt="...">
@@ -297,24 +307,24 @@
                 <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
                     Pro!</a>
             </div>
-
+    
         </ul>
         <!-- End of Sidebar -->
-
+    
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
+    
             <!-- Main Content -->
             <div id="content">
-
+    
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+    
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
+    
                     <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -328,26 +338,26 @@
                             </div>
                         </div>
                     </form>
-
+    
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
+    
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
-
+    
                         </li>
-
+    
                         <div class="topbar-divider d-none d-sm-block"></div>
-
+    
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{admin_info}}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Huzair Malik</span>
                                 <img class="img-profile rounded-circle" src="static\images/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -372,215 +382,229 @@
                                 </a>
                             </div>
                         </li>
-
+    
                     </ul>
-
+    
                 </nav>
 
-    <div class="container register">
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="">
-                <h3>Welcome</h3>
-                <p>To Sublime Freight Family</p>
-            </div>
-            <div class="col-md-9 register-right">
-                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Sale Man</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dispatcher</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Add New Sale Man</h3>
-                        <form action="{{ url_for('add_employee') }}" method="post" enctype="multipart/form-data">
-                            <div class="row register-form">
-                                <div class="col-md-6">
-                                    <!-- Sale Man form inputs -->
-                                    <div class="form-group">
-                                        <input name="f_name" type="text" class="form-control" placeholder="Full Name *"
-                                            value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="cnic" type="number" class="form-control"
-                                            placeholder="CNIC Number *" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="password" type="password" class="form-control"
-                                            placeholder="Pin Code *" value=""  disabled/>
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="photo" type="file" class="form-control" placeholder="Photo "
-                                            value="" />
-                                        <p>Employee Photo</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="maxl">
-                                            <label class="radio inline">
-                                                <input name="gender" type="radio" name="gender" value="male" checked>
-                                                <span> Male </span>
-                                            </label>
-                                            <label class="radio inline">
-                                                <input name="gender" type="radio" name="gender" value="female">
-                                                <span>Female </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- Sale Man form inputs -->
-                                    <div class="form-group">
-                                        <input  name="email" type="email" class="form-control" placeholder="Enter Email *" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="phone_number" type="text" minlength="10" maxlength="10"
-                                            class="form-control" placeholder="Enter Phone *" value="" />
-                                    </div>
-                                    <div class="form-group d-none">
-                                        <input name="user_type" type="text" class="form-control" placeholder="User Type *"
-                                            value="sale_man" />
-                                    </div>
+                <div class="container register">
+                    <div class="row">
+                        <div class="col-md-3 register-left">
+                            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="">
+                            <h3>Welcome</h3>
+                            <p>To Sublime Freight Family</p>
+                        </div>
+                        <div class="col-md-9 register-right">
+                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                        aria-controls="home" aria-selected="true">Sale Man</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                        aria-controls="profile" aria-selected="false">Dispatcher</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                    aria-labelledby="home-tab">
+                                    <h3 class="register-heading">Add New Sale Man</h3>
+                                    <form action="{{ url_for('add_employee') }}" method="post"
+                                        enctype="multipart/form-data">
+                                        <div class="row register-form">
+                                            <div class="col-md-6">
+                                                <!-- Sale Man form inputs -->
+                                                <div class="form-group">
+                                                    <input name="f_name" type="text" class="form-control"
+                                                        placeholder="Full Name *" value="" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="cnic" type="number" class="form-control"
+                                                        placeholder="CNIC Number *" value="" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="password" type="password" class="form-control"
+                                                        placeholder="Pin Code *" value="" disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="photo" type="file" class="form-control"
+                                                        placeholder="Photo " value="" />
+                                                    <p>Employee Photo</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="maxl">
+                                                        <label class="radio inline">
+                                                            <input name="gender" type="radio" name="gender" value="male"
+                                                                checked>
+                                                            <span> Male </span>
+                                                        </label>
+                                                        <label class="radio inline">
+                                                            <input name="gender" type="radio" name="gender"
+                                                                value="female">
+                                                            <span>Female </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- Sale Man form inputs -->
+                                                <div class="form-group">
+                                                    <input name="email" type="email" class="form-control"
+                                                        placeholder="Enter Email *" value="" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="phone_number" type="text" minlength="10" maxlength="10"
+                                                        class="form-control" placeholder="Enter Phone *" value="" />
+                                                </div>
+                                                <div class="form-group d-none">
+                                                    <input name="user_type" type="text" class="form-control"
+                                                        placeholder="User Type *" value="sale_man" />
+                                                </div>
 
-                                    <div class="form-group">
-                                        <input name="user" type="text" class="form-control" placeholder="User Type *"
-                                            value="Sale Man" disabled />
-                                    </div>
-                                    <div class="form-group">
-                                        <input  name="salary" type="number" class="form-control" placeholder="Salary *" value="" />
-                                    </div>
-                                    <input type="submit" class="btnRegister" value="Register" />
-                        </form>
+                                                <div class="form-group">
+                                                    <input name="user" type="text" class="form-control"
+                                                        placeholder="User Type *" value="Sale Man" disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="salary" type="number" class="form-control"
+                                                        placeholder="Salary *" value="" />
+                                                </div>
+                                                <input type="submit" class="btnRegister" value="Register" />
+                                    </form>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <h3 class="register-heading">Add New Dispatcher</h3>
-                        <form action="{{ url_for('add_employee') }}" method="post" enctype="multipart/form-data">
-                            <div class="row register-form">
-                                <div class="col-md-6">
-                                    <!-- Dispatcher form inputs -->
-                                    <div class="form-group">
-                                        <input name="f_name" type="text" class="form-control" placeholder="Full Name *" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="cnic" type="text" class="form-control" placeholder="CNIC Number *" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="password" type="password" class="form-control" placeholder="Pin Code *"
-                                            value="" disabled/>
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="photo" type="file" class="form-control" placeholder="Photo " value="" />
-                                        <p>Employee Photo</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="maxl">
-                                            <label class="radio inline">
-                                                <input name="gender" type="radio" name="gender" value="male" checked>
-                                                <span> Male </span>
-                                            </label>
-                                            <label class="radio inline">
-                                                <input name="gender" type="radio" name="gender" value="female">
-                                                <span>Female </span>
-                                            </label>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <h3 class="register-heading">Add New Dispatcher</h3>
+                            <form action="{{ url_for('add_employee') }}" method="post" enctype="multipart/form-data">
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <!-- Dispatcher form inputs -->
+                                        <div class="form-group">
+                                            <input name="f_name" type="text" class="form-control"
+                                                placeholder="Full Name *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="cnic" type="text" class="form-control"
+                                                placeholder="CNIC Number *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="password" type="password" class="form-control"
+                                                placeholder="Pin Code *" value="" disabled />
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="photo" type="file" class="form-control" placeholder="Photo "
+                                                value="" />
+                                            <p>Employee Photo</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label class="radio inline">
+                                                    <input name="gender" type="radio" name="gender" value="male"
+                                                        checked>
+                                                    <span> Male </span>
+                                                </label>
+                                                <label class="radio inline">
+                                                    <input name="gender" type="radio" name="gender" value="female">
+                                                    <span>Female </span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- Dispatcher form inputs -->
-                                    <div class="form-group">
-                                        <input name="email" type="email" class="form-control" placeholder="Enter Email *"
-                                            value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="phone_number" type="text" minlength="10" maxlength="10" name="txtEmpPhone"
-                                            class="form-control" placeholder="Enter Phone *" value="" />
-                                    </div>
-                                    <div class="form-group d-none">
-                                        <input name="user_type" type="text" class="form-control" placeholder="User Type *"
-                                            value="dispatch_man"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="user" type="text" class="form-control" placeholder="User Type *"
-                                            value="Dispatcher" disabled/>
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="salary" type="number" class="form-control" placeholder="Salary *" value="" />
-                                    </div>
-                                    <input type="submit" class="btnRegister" value="Register" />
-                                </form>
-                                </div>
-                            </div>
-                        </form>
+                                    <div class="col-md-6">
+                                        <!-- Dispatcher form inputs -->
+                                        <div class="form-group">
+                                            <input name="email" type="email" class="form-control"
+                                                placeholder="Enter Email *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="phone_number" type="text" minlength="10" maxlength="10"
+                                                name="txtEmpPhone" class="form-control" placeholder="Enter Phone *"
+                                                value="" />
+                                        </div>
+                                        <div class="form-group d-none">
+                                            <input name="user_type" type="text" class="form-control"
+                                                placeholder="User Type *" value="dispatch_man" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="user" type="text" class="form-control"
+                                                placeholder="User Type *" value="Dispatcher" disabled />
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="salary" type="number" class="form-control"
+                                                placeholder="Salary *" value="" />
+                                        </div>
+                                        <input type="submit" class="btnRegister" value="Register" />
+                            </form>
+                        </div>
                     </div>
+                    </form>
                 </div>
-                <!-- Move the Register button outside the tab-content
-                <input type="submit" class="btnRegister" value="Register" /> -->
             </div>
+            <!-- Move the Register button outside the tab-content
+                <input type="submit" class="btnRegister" value="Register" /> -->
         </div>
     </div>
+    </div>
 
-     <!-- Footer -->
-     <footer class="sticky-footer bg-white">
+    <!-- Footer -->
+    <!-- <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
                 <span>Copyright &copy; Your Website 2021</span>
             </div>
         </div>
-    </footer>
+    </footer> -->
     <!-- End of Footer -->
 
-</div>
-<!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Content Wrapper -->
 
-</div>
-<!-- End of Page Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-<i class="fas fa-angle-up"></i>
-</a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="{{ url_for('logout', filename='') }}">Logout</a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{{ url_for('logout', filename='') }}">Logout</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="static\vendor\jquery\jquery.min.js"></script>
-<script src="static\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="static\vendor\jquery\jquery.min.js"></script>
+    <script src="static\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="static\vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="static\vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="static\JS\js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="static\JS\js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="static\vendor\chart.js\Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="static\vendor\chart.js\Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="static\JS\js/demo/chart-area-demo.js"></script>
-<script src="static\JS\js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="static\JS\js/demo/chart-area-demo.js"></script>
+    <script src="static\JS\js/demo/chart-pie-demo.js"></script>
 
 </body>
 

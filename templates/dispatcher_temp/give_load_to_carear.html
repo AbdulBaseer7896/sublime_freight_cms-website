@@ -216,15 +216,9 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Before Update all sales details </h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                </div>
-
-                <div>
-                    <h1>Select the load For the Carear </h1>
-
+                    <h6 class="m-0 font-weight-bold text-primary">Kindly Select the Load For This Carear</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -297,11 +291,13 @@
                     </div>
                 </div>
 
-                <h1>Select The Load</h1>
+
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Which load you like to select for that carear</h6>
+                            </div>
                             <thead>
                                 <tr>
                                     <th>Select</th>
@@ -348,7 +344,21 @@
                                         <form action="{{ url_for('display_give_load_to_carear', filename='') }}" method="POST">
                                             <input type="text" , name="carear_id" value="{{carear_info[0]['carear_id']}}" class="d-none">
                                             <input type="text" , name="load_number" value="{{item['load_number']}}" class="d-none">
-                                            <td>  <input type="submit" class="btnRegister" value="Selected" /> </td>
+                                            <!-- <td>  
+                                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                <input type="submit" class="dropdown-item" value="Selected" /> 
+                                            </td> -->
+
+                                            <td>
+                                                <button class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                                    
+                                                    <span style="display: flex;">
+                                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                        <input class="dropdown-item" type="submit" value="Select">
+                                                      </span>
+                                                    
+                                                </button>
+                                            </td>
                                     </form>
                                     <td>{{item['load_number']}}</td>
                                     <td>{{item['load_date']}}</td>

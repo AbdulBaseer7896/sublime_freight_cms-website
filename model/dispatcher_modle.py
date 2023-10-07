@@ -154,9 +154,12 @@ class Dispatcher():
             result = conn.execute(query1)
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
-            print("This is re = " , result_dict)
-            print("This is re = " , result_dict[0]['load_number'])
-            return result_dict[0]
+            if result_dict != []:
+                print("This is re = " , result_dict)
+                print("This is re = " , result_dict[0]['load_number'])
+                return result_dict[0]
+            result_dict = ''
+            return result_dict
         
     def get_load_info_from_db(self , dispatcher_pin):
         with self.engine.connect() as conn:
@@ -197,8 +200,8 @@ class Dispatcher():
     
 
                         
-obj = Dispatcher()
-obj.get_just_load_from_db_from_form_view(9)
+# obj = Dispatcher()
+# obj.get_just_load_from_db_from_form_view(9)
 
 
             

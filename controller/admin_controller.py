@@ -25,22 +25,9 @@ def login_required(role):
 @app.route('/admin_dashboard' , methods=["GET", "POST"])
 @login_required('admin')
 def admin_dashboard():
-    print("This is check 3")
     if request.method == 'GET':
-        # admin_info = session.get('data')
-        admin_info = "Huzair Malik"
         flash(("Dear Admin you succesfully Login !!!" , 'admim_login_pass'))
-        return render_template('//admin_temp//admin_dashboard.html' , admin_info = admin_info)
-    # elif request.method == 'POST':
-    #     dataa = request.form.to_dict()
-    #     print("This is teacher name = " , dataa['teacher_name'])
-    #     print("The data is equal to " , dataa)
-    #     obj.stored_teacher_period_data(dataa)
-        
-    #     obj.make_class_teacher(dataa)
-    #     flash(('Periods are Assigned to Teacher  Successfully !!!' , 'principal_periods'))
-    #     return render_template('principal_URLs/principal_dashboard.html' , data = name)
-    
+        return render_template('//admin_temp//admin_dashboard.html')
     
     
     
