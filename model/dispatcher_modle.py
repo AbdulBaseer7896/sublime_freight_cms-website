@@ -43,8 +43,7 @@ class Dispatcher():
 
             # Use the IN clause in the second query
             # Create a tuple from the list for SQL IN clause
-            query2 = text(f"SELECT * from new_sales_first_time where carear_id IN {tuple(int_result)};")
-            # result = conn.execute(query2).fetchall()
+            query2 = text(f"SELECT * from new_sales_first_time where carear_id IN  {tuple(int_result) if len(int_result) > 1 else (int_result[0],)};")
             result = conn.execute(query2)
 
             # Get the column names from the ResultProxy object
@@ -149,42 +148,57 @@ class Dispatcher():
         
         
         
-        
+    def get_just_load_from_db_from_form_view(self , load_id):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT * from load_details where load_number = {load_id};")
+            result = conn.execute(query1)
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            print("This is re = " , result_dict)
+            print("This is re = " , result_dict[0]['load_number'])
+            return result_dict[0]
         
     def get_load_info_from_db(self , dispatcher_pin):
         with self.engine.connect() as conn:
             query1 = text(f"SELECT load_number from disptcher_give_load_to_carear where dispatcher_pin = {dispatcher_pin};")
             result = conn.execute(query1).fetchall()
             result = [item[0] for item in result]
-            
-            query2 = text(f"SELECT * from transfer_load_to_carears where load_number in {tuple(result)};")
-            result = conn.execute(query2)
-            column_names = result.keys()
-            result_dict = [dict(zip(column_names, row)) for row in result]
-            print("This is re = " , result_dict)
-            print("This is check 18")
+            print("this the resutl" , result)
+            if result != []:
+                query2 = text(f"SELECT * from transfer_load_to_carears where load_number in {tuple(result) if len(result) > 1 else (result[0],)};")
+                result = conn.execute(query2)
+                column_names = result.keys()
+                result_dict = [dict(zip(column_names, row)) for row in result]
+                print("This is re = " , result_dict)
+                print("This is check 18")
+                return result_dict
+            result_dict = ""
             return result_dict
         
     
     def get_carear_info_from_db(self , dispatcher_pin):
         with self.engine.connect() as conn:
+            print("This is carear pin = " , dispatcher_pin)
             query1 = text(f"SELECT carear_id from disptcher_give_load_to_carear where dispatcher_pin = {dispatcher_pin};")
             result = conn.execute(query1).fetchall()
             result = [item[0] for item in result]
-            
-            query2 = text(f"SELECT * from new_sales_first_time where carear_id in {tuple(result)};")
-            result = conn.execute(query2)
-            column_names = result.keys()
-            result_dict = [dict(zip(column_names, row)) for row in result]
-            print("This is re = " , result_dict)
-            print("This is check 19")
+            print("this result = " , result)
+            if result != []:
+                query2 = text(f"SELECT * from new_sales_first_time where carear_id in {tuple(result)};")
+                result = conn.execute(query2)
+                column_names = result.keys()
+                result_dict = [dict(zip(column_names, row)) for row in result]
+                print("This is re = " , result_dict)
+                print("This is check 19")
+                return result_dict
+            result_dict = ""
             return result_dict
     
     
 
                         
-# obj = Dispatcher()
-# obj.get_load_info_from_db(12345)
+obj = Dispatcher()
+obj.get_just_load_from_db_from_form_view(9)
 
 
             

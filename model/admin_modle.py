@@ -27,6 +27,9 @@ class Admin_Modle():
             six_digit_pin = self.gernate_password_for_users()
             query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{six_digit_pin}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , '{data['salary']}' );")
             conn.execute(query1)
+            
+            query2 = text(f"INSERT INTO users VALUES ('{six_digit_pin}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}');")
+            conn.execute(query2)
             print("This is check 1")
             return True
     
@@ -35,16 +38,14 @@ class Admin_Modle():
             six_digit_pin = self.gernate_password_for_users()
             query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{six_digit_pin}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , '{data['salary']}' );")
             conn.execute(query1)
+            
+            query2 = text(f"INSERT INTO users VALUES ('{six_digit_pin}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}');")
+            conn.execute(query2)
+            
             print("This is check 2")
             return True 
         
-    def stored_new_user_in_users_table(self , data):
-        with self.engine.connect() as conn:
-            six_digit_pin = self.gernate_password_for_users()
-            query1 = text(f"INSERT INTO users VALUES ('{six_digit_pin}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}');")
-            conn.execute(query1)
-            print("This is check 2")
-            return True 
+
         
     def gernate_password_for_users(self):
         with self.engine.connect() as conn:
@@ -187,5 +188,5 @@ class Admin_Modle():
         
             
     
-obj = Admin_Modle()
-obj.gernate_password_for_users()
+# obj = Admin_Modle()
+# obj.gernate_password_for_users()

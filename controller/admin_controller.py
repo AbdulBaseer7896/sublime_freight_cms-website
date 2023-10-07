@@ -54,10 +54,8 @@ def add_employee():
         data = request.form.to_dict()
         if data['user_type'] == "sale_man":
             obj.add_new_sale_man(data)
-            obj.stored_new_user_in_users_table(data)
         elif data['user_type'] == "dispatcher":
             obj.add_new_dispatcher(data)
-            obj.stored_new_user_in_users_table(data)
         else:
             flash(("Sorry the joining of new Employee Fails !!! " , 'new_employee_add_fails'))
             return render_template('//admin_temp//admin_dashboard.html')

@@ -1,7 +1,7 @@
 from app import app
 from functools import wraps
 from flask import session
-from flask import redirect , url_for , render_template , request , flash
+from flask import redirect , url_for , render_template , request , flash , jsonify
 from model.dispatcher_modle import Dispatcher
 import json
 
@@ -43,6 +43,20 @@ def view_all_carear():
         print("This pin = " , dispatch_info)
         carear_info = obj.get_carear_info(dispatch_info[0]['user_pin'])
         return render_template('//dispatcher_temp//view_all_carear.html' , carear_info = carear_info , dispatch_info = dispatch_info)
+
+
+
+@app.route('/popup_content_for_dispatcher')
+def popup_content_for_dispatcher():
+    # You can perform any processing here to generate the content and variable you want to display in the popup
+    content = "This is the content of the popup returned from Flask."
+    variable_to_return = "This is a variable returned from Flask."
+    load_number = request.args.get('load_number')
+    load_info = obj.get_just_load_from_db_from_form_view(load_number)
+    print("This is info = " , load_info)
+    # print("This si carear inf = " , load_info['d_name'])
+    # Returning a JSON response
+    return jsonify(content=content, variable = variable_to_return ,load_info = load_info)
     
     
 @app.route('/save_load_info' , methods=["GET", "POST"])
