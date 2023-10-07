@@ -40,9 +40,7 @@ def login_page():
     if request.method == "POST":
 
         pin = request.form.get('user_pin')
-        print("this is pin" , pin)
         if obj.check_pin_for_login(pin):
-            print("its is check pin")
             user_data_list = obj.user_data(pin)
             if user_data_list:
                 user_data = [item._asdict() for item in user_data_list]
@@ -57,7 +55,7 @@ def login_page():
                 return redirect(url_for('admin_dashboard'))
             elif session['role'] == 'sale_man':
                 return redirect(url_for('sale_dashboard'))
-            elif session['role'] == 'dispatch_man':
+            elif session['role'] == 'dispatcher':
                 return redirect(url_for('dispatcher_dashboard'))
         
                 # return render_template('index.html')

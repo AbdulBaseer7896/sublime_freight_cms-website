@@ -23,8 +23,6 @@ class Sale_Man_Modle():
 
     def new_sales_first_time(self , data , sale_man_pin):
         with self.engine.connect() as conn:
-            
-            print("this is data = " , data)
             carear_id = data['carear_id']
             result = ""
             if carear_id != "":
@@ -35,7 +33,6 @@ class Sale_Man_Modle():
                 else:
                     query_check = text(f"SELECT * FROM new_sales_first_time where carear_id = {carear_id};")
                     result = conn.execute(query_check)
-                    print("This is = = " , result)
                     column_names = result.keys()
                     change_data = [dict(zip(column_names, row)) for row in result]
                     change_data = change_data[0]
@@ -52,17 +49,14 @@ class Sale_Man_Modle():
                         
                         # Remove the extra closing parenthesis
                         query_for_delete_sale_from_first_time = text(f"DELETE FROM new_sales_first_time WHERE carear_id = {change_data['carear_id']};")
-                        print("This is important = " ,change_data['carear_id'] )
                         check = int(change_data['carear_id']) 
                         query_for_delete_sale_untransfer_sales = text(f"DELETE FROM untransfer_sales WHERE carear_id = {check};")
                         
                         conn.execute(query_for_delete_sale_untransfer_sales)
                         conn.execute(query_for_delete_sale_from_first_time)
-                        print("The row is deleated")
                         conn.execute(query_insert_update_data)
                         conn.execute(update_in_to_sales_man_first_time_table)
                         conn.execute(insert_in_untransfer_sales)
-                        print("This row in inserted update")
             else:
                 query = text(f"SELECT MAX(carear_id) FROM new_sales_first_time;")
                 result = conn.execute(query).fetchall()
@@ -75,7 +69,6 @@ class Sale_Man_Modle():
 
                 conn.execute(query1)
                 conn.execute(query2)
-                print("This is check 20")
                 return True
     
         
@@ -89,8 +82,6 @@ class Sale_Man_Modle():
 
             # Fetch all rows as dictionaries
             result_dict = [dict(zip(column_names, row)) for row in result]
-            print("user data is 5 == ", result_dict)
-            print("This is check 21")
             return result_dict
 
 
@@ -104,7 +95,6 @@ class Sale_Man_Modle():
 
             # Fetch all rows as dictionaries
             result_dict = [dict(zip(column_names, row)) for row in result]
-            print("This is check 22")
             return result_dict[0]
 
 

@@ -24,23 +24,20 @@ def login_required(role):
 obj = Dispatcher()
 
 @app.route('/dispatcher_dashboard' , methods=["GET", "POST"])
-@login_required('dispatch_man')
+@login_required('dispatcher')
 def dispatcher_dashboard():
     if request.method == 'GET':
         dispatch_info = session.get('data')
-        print("This is dis infor = " , dispatch_info)
         flash(("Dear Dispatcher you succesfully Login !!!" , 'dispatcher_login_pass'))
         return render_template('//dispatcher_temp//dispatcher_dashboard.html' , dispatch_info = dispatch_info)
 
 
 
 @app.route('/view_all_carear' , methods=["GET", "POST"])
-@login_required('dispatch_man')
+@login_required('dispatcher')
 def view_all_carear():
     if request.method == 'GET':
         dispatch_info = session.get('data')
-        print("This pin = " , type(dispatch_info))
-        print("This pin = " , dispatch_info)
         carear_info = obj.get_carear_info(dispatch_info[0]['user_pin'])
         return render_template('//dispatcher_temp//view_all_carear.html' , carear_info = carear_info , dispatch_info = dispatch_info)
 
@@ -53,14 +50,11 @@ def popup_content_for_dispatcher():
     variable_to_return = "This is a variable returned from Flask."
     load_number = request.args.get('load_number')
     load_info = obj.get_just_load_from_db_from_form_view(load_number)
-    print("This is info = " , load_info)
-    # print("This si carear inf = " , load_info['d_name'])
-    # Returning a JSON response
     return jsonify(content=content, variable = variable_to_return ,load_info = load_info)
     
     
 @app.route('/save_load_info' , methods=["GET", "POST"])
-@login_required('dispatch_man')  
+@login_required('dispatcher')  
 def save_load_info():
     if request.method == 'GET':
         dispatch_info = session.get('data')
@@ -77,7 +71,7 @@ def save_load_info():
         
         
 @app.route('/view_save_load_info' , methods=["GET", "POST"])
-@login_required('dispatch_man')  
+@login_required('dispatcher')  
 def view_save_load_info():
     if request.method == 'GET':
         dispatch_info = session.get('data')
@@ -87,31 +81,27 @@ def view_save_load_info():
  
  
 @app.route('/give_load_to_carear' , methods=["GET", "POST"])
-@login_required('dispatch_man')     
+@login_required('dispatcher')     
 def display_give_load_to_carear():
     if request.method == 'GET':
-        print("This is get")
         dispatch_info = session.get('data')
         carear_id = request.args.get('carear_id')
         carear_info = obj.get_carear_info_from_db_by_carear_id(carear_id)
         load_info = obj.get_save_load_info_from_db(dispatch_info[0]['user_pin'])
         return render_template("//dispatcher_temp//give_load_to_carear.html" , carear_info = carear_info , load_info = load_info , dispatch_info = dispatch_info)
     
-    
     if request.method == "POST":
-        print("This is post")
         dispatch_info = session.get('data')
         form_info = request.form.to_dict()
         carear_id = form_info['carear_id']
         load_number = form_info['load_number']
-        print("This is ",  carear_id , load_number)
         carear_info = obj.store_load_and_carear_info_in_db(load_number ,carear_id, dispatch_info[0]['user_pin'] )
         flash(("You Deliver the Load Succesfully !!!" , 'load_deliver_success'))
         return render_template("//dispatcher_temp//dispatcher_dashboard.html" ,dispatch_info = dispatch_info)
             
             
 @app.route('/view_already_given_load_to_carear' , methods=["GET", "POST"])
-@login_required('dispatch_man')        
+@login_required('dispatcher')        
 def view_already_given_load_to_carear():
     if request.method == 'GET':
         dispatch_info = session.get('data')

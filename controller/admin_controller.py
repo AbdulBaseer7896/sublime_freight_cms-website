@@ -60,8 +60,6 @@ def popup_content():
     variable_to_return = "This is a variable returned from Flask."
     career_id = request.args.get('careerId')
     career_info = obj.get_carear_data_from_db(career_id)
-    print("This is info = " , career_info)
-    print("This si carear inf = " , career_info['d_name'])
     # Returning a JSON response
     return jsonify(content=content, variable = variable_to_return ,career_info = career_info)
 
@@ -93,18 +91,16 @@ def transfer_carears_to_dispatcher():
         untransfer_sales_data = obj.get_untransfer_sales_data()
         dispatcher_info = obj.get_all_dispater_name_and_pin()
         info_length = len(dispatcher_info)
-        print("This is no work")
         return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length)
     
     if request.method == "POST":
         
         dispater_carear_info = request.form.to_dict()
-
-        print("This is check = " , dispater_carear_info)
         check = obj.insert_carear_id_and_dispatcher_pin_in_db(dispater_carear_info)
         untransfer_sales_data = obj.get_untransfer_sales_data()
         dispatcher_info = obj.get_all_dispater_name_and_pin()
         info_length = len(dispatcher_info)
+        
         if check:
             flash(("This Carear is Forward Successfull !!!" , 'career_forward_success'))
             return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length)
@@ -128,25 +124,10 @@ def view_load_and_carear():
     
     
 
-            
-            
-# @app.route('/gernater_url_to_store_card_info', methods=["GET", "POST"])
-# @login_required('admin')         
-# def gernater_url_to_store_card_info():
-#     if request.method == 'GET':
-#         print("This card info ")
-#         info = obj.get_carear_info_from_db_for_admin()
-#         return render_template("//admin_temp//admin_dashboard.html"  , info = info)
-
-from flask import render_template_string
-
-
-
 
 @app.route('/gernater_url_to_store_card_info/<carear_id>', methods=["GET", "POST"])
 def gernater_url_to_store_card_info(carear_id):
     if request.method == "GET":
-        print("This is carear_id =  " , carear_id)
         return render_template("//admin_temp//add_new_card_info.html" , carear_id = carear_id)
     
     
@@ -155,7 +136,6 @@ def stored_card_info_in_db():
     if request.method == "POST":
         card_info = request.form.to_dict()
         obj.stored_card_info_in_db(card_info)
-        print("card_info =", card_info)
         flash(("You uploaded the CARD Information Successfully!!!" , 'card_upload_success'))
         return render_template("//admin_temp//add_new_card_info.html")
 
@@ -174,8 +154,5 @@ def view_card_records():
 def view_pin_of_all_user():
     if request.method == "GET":
         user_pins = obj.get_all_user_pin_from_db()
-        print("this is user pin = " , user_pins)
         return render_template("//admin_temp//view_user_pin.html" , user_pins = user_pins)
             
-        
-# def get_url_for_card_info(self , carear_id):

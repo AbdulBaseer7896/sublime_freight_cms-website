@@ -26,10 +26,8 @@ obj = Sale_Man_Modle()
 @app.route('/sale_dashboard' , methods=["GET", "POST"])
 @login_required('sale_man')
 def sale_dashboard():
-    print("This is check 3")
     if request.method == 'GET':
         sale_man_info = session.get('data')
-        
         flash(("Dear Sale Man you succesfully Login !!!" , 'sale_login_pass'))
         return render_template('//sale_temp//sale_dashboard.html' ,sale_man_info = sale_man_info)
 
@@ -38,7 +36,6 @@ def sale_dashboard():
 @app.route('/new_sale' , methods=["GET", "POST"])
 @login_required('sale_man')
 def new_sale():
-    print("This is new_sale")
     if request.method == 'GET':
         sale_man_info = session.get('data')
         return render_template("//sale_temp//new_sale.html" , carear_info = "" , sale_man_info = sale_man_info)
@@ -58,10 +55,7 @@ def popup_content_for_sale_man():
     content = "This is the content of the popup returned from Flask."
     variable_to_return = "This is a variable returned from Flask."
     career_id = request.args.get('careerId')
-    
     career_info = obj.carear_info_for_carear_id(career_id)
-    print("This is info = " , career_info)
-    print("This si carear inf = " , career_info['d_name'])
     # Returning a JSON response
     return jsonify(content=content, variable = variable_to_return ,career_info = career_info)
 
@@ -83,8 +77,6 @@ def update_carear_info():
         carear_id = request.args.get('carear_id')
         sale_man_info = session.get('data')
         carear_info = obj.carear_info_for_carear_id(carear_id)
-        print("this is type = " , type(carear_info))
-        print("this is important = = " , carear_info)
         return render_template("//sale_temp//new_sale.html", carear_info=carear_info , sale_man_info = sale_man_info)
     
     
