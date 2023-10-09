@@ -315,7 +315,34 @@
                                 {% for item in all_sales_data %}
 
                                 <tr>
-                                    <td>{{item['carear_id']}}</td>
+                                    {% if item['sale_type'] == 'active_sale'%}
+                                                <td>
+                                                    <button style="background-color: green;"
+                                                        class="dropdown-item openPopupBtn">
+                                                        {{ item['carear_id'] }}
+                                                    </button>
+                                                </td>
+                                                {% endif %}
+
+                                                {% if item['sale_type'] == 'inactive_sale'%}
+                                                <td>
+                                                    <button style="background-color: red;"
+                                                        class="dropdown-item openPopupBtn">
+                                                        {{ item['carear_id'] }}
+                                                    </button>
+                                                </td>
+                                                {% endif %}
+
+                                                {% if item['sale_type'] == 'good_appoinment'%}
+                                                <td>
+                                                    <button style="background-color: yellow;"
+                                                        class="dropdown-item openPopupBtn">
+                                                        {{ item['carear_id'] }}
+                                                    </button>
+                                                </td>
+                                    {% endif %}
+
+                                    
                                     <td>{{item['d_name']}}</td>
                                     <td>{{item['email']}}</td>
                                     <td>{{item['driver']}}</td>

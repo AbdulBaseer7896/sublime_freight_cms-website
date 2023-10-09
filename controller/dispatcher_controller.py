@@ -110,4 +110,11 @@ def view_already_given_load_to_carear():
         zipped_data = zip(carear_info, load_info)
         return render_template("//dispatcher_temp//view_already_given_load_to_carear.html" , zipped_data = zipped_data , dispatch_info = dispatch_info)
             
-            
+      
+      
+@app.route('/display_sides' , methods=["GET", "POST"])
+@login_required('dispatcher')              
+def display_sides():
+    if request.method == "GET":
+        dispatch_info = session.get('data')
+        return render_template("//dispatcher_temp//display_slides_in_web.html" , dispatch_info = dispatch_info)

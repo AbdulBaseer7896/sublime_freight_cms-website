@@ -275,18 +275,34 @@
                                 {% for item in sales_data %}
 
                                 <tr>
+         
 
-
-
-                                                                    
+                                    {% if item['sale_type'] == 'active_sale'%}                                 
                                     <td>
-                                        <button class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                        <button style="background-color: green;" class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['carear_id'] }}
                                         </button>
                                     </td>
+                                    {% endif %}
 
+                                    {% if item['sale_type'] == 'inactive_sale'%}                                 
+                                    <td>
+                                        <button style="background-color: red;" class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            {{ item['carear_id'] }}
+                                        </button>
+                                    </td>
+                                    {% endif %}
 
+                                    {% if item['sale_type'] == 'good_appoinment'%}                                 
+                                    <td>
+                                        <button style="background-color: yellow;" class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            {{ item['carear_id'] }}
+                                        </button>
+                                    </td>
+                                    {% endif %}
 
                                     <td>{{item['d_name']}}</td>
 

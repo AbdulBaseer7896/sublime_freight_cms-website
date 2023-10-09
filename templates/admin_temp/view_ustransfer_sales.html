@@ -27,6 +27,20 @@
             overflow: auto;
             white-space: nowrap;
         }
+
+        .form-select {
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
     </style>
 
 </head>
@@ -236,214 +250,248 @@
 
                 </nav>
 
-        <div id="wrapper">
-            <div class="container-fluid">
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                {% for message, category in messages %}
-                {% if category == 'career_forward_success' %}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <h4 class="alert-heading text-center">{{ message }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </h4>
-                </div>
-                {% elif category == 'career_forward_fail' %}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <h4 class="alert-heading text-center">{{ message }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </h4>
-                </div>
-                {% endif %}
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">UnTransfer sales Records</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <div id="wrapper">
+                    <div class="container-fluid">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message, category in messages %}
+                        {% if category == 'career_forward_success' %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <h4 class="alert-heading text-center">{{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </h4>
+                        </div>
+                        {% elif category == 'career_forward_fail' %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <h4 class="alert-heading text-center">{{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </h4>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">UnTransfer sales Records</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                            <thead>
-                                <tr>
-                                    <th>Carear ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Driver</th>
-                                    <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
-                                    <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
-                                    <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
-                                    <th>Factoring Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Select Carear</th>
-                                    <th>Transfer To Carear</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Carear ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Driver</th>
-                                    <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
-                                    <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
-                                    <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
-                                    <th>Factoring Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Select Carear</th>
-                                    <th>Transfer To Carear</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                {% for item in untransfer_sales_data %}
+                                        <thead>
+                                            <tr>
+                                                <th>Carear ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Driver</th>
+                                                <th>Phone Number</th>
+                                                <th>MC & USDOT</th>
+                                                <th>Chargers</th>
+                                                <th>Company Name</th>
+                                                <th>Truck & Truck Number</th>
+                                                <th>Date</th>
+                                                <th>Factoring Numumber & Email</th>
+                                                <th>EIN</th>
+                                                <th>Bank Name</th>
+                                                <th>Physical Address</th>
+                                                <th>Factoring Address</th>
+                                                <th>Account Number</th>
+                                                <th>Routing Number</th>
+                                                <th>Refrence</th>
+                                                <th>Insurance Details</th>
+                                                <th>Comments</th>
+                                                <th>Equipments</th>
+                                                <th>Factoring Name</th>
+                                                <th>Sale Man</th>
+                                                <th>Select Carear Name & ID</th>
+                                                <th>Transfer To Carear</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Carear ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Driver</th>
+                                                <th>Phone Number</th>
+                                                <th>MC & USDOT</th>
+                                                <th>Chargers</th>
+                                                <th>Company Name</th>
+                                                <th>Truck & Truck Number</th>
+                                                <th>Date</th>
+                                                <th>Factoring Numumber & Email</th>
+                                                <th>EIN</th>
+                                                <th>Bank Name</th>
+                                                <th>Physical Address</th>
+                                                <th>Factoring Address</th>
+                                                <th>Account Number</th>
+                                                <th>Routing Number</th>
+                                                <th>Refrence</th>
+                                                <th>Insurance Details</th>
+                                                <th>Comments</th>
+                                                <th>Equipments</th>
+                                                <th>Factoring Name</th>
+                                                <th>Sale Man</th>
+                                                <th>Select Carear Name & ID</th>
+                                                <th>Transfer To Carear</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            {% for item in untransfer_sales_data %}
 
-                                <tr>
-                                    <td>{{item['carear_id']}}</td>
-                                    <td>{{item['d_name']}}</td>
-                                    <td>{{item['email']}}</td>
-                                    <td>{{item['driver']}}</td>
-                                    <td>{{item['phone_number']}}</td>
-                                    <td>{{item['mc_usdot']}}</td>
-                                    <td>{{item['charges']}}</td>
-                                    <td>{{item['company_name']}}</td>
-                                    <td>{{item['t_number']}}</td>
-                                    <td>{{item['date']}}</td>
-                                    <td>{{item['factoring_num_email']}}</td>
-                                    <td>{{item['ein']}}</td>
-                                    <td>{{item['bank_name']}}</td>
-                                    <td>{{item['physical_address']}}</td>
-                                    <td>{{item['factoring_address']}}</td>
-                                    <td>{{item['account_number']}}</td>
-                                    <td>{{item['routing_number']}}</td>
-                                    <td>{{item['refrence']}}</td>
-                                    <td>{{item['insurance_details']}}</td>
-                                    <td>{{item['comments']}}</td>
-                                    <td>{{item['equipments']}}</td>
-                                    <td>{{item['factoring_name']}}</td>
-                                    <td>{{item['sale_man_pin']}}</td>
-                                    <td>
-                                        <form action="{{ url_for('transfer_carears_to_dispatcher') }}" method="post"> 
-                                        <select name="dispatcher_id" 
-                                                    class="form-select" aria-label="Default select example" required>
-                                                    <option value='' disabled selected hidden> Select your Dispatcher Name
-                                                    </option>
-                                                        {% for i in dispatcher_info %}
-                                                    <option value="{{i['password']}}" name="dispatcher_id">{{i['f_name']}}&nbsp; &nbsp; &nbsp;ID: {{i['password']}}</option>
+                                            <tr>
+                                                {% if item['sale_type'] == 'active_sale'%}
+                                                <td>
+                                                    <button style="background-color: green;"
+                                                        class="dropdown-item openPopupBtn">
+                                                        {{ item['carear_id'] }}
+                                                    </button>
+                                                </td>
+                                                {% endif %}
 
-                                                    {% if loop.index == (info_length) %}
-                                                        <h1>This work</h1>
-                                                </select>
-                                                
-                                            </td>
-                                            <!-- <td><a href="{{ url_for('transfer_carears_to_dispatcher', dispatcher_info = i , carear_id=item['carear_id']) }}" method = 'post' type="submit" class="btn">Forward</a></td> -->
-                                            {% endif %}
+                                                {% if item['sale_type'] == 'inactive_sale'%}
+                                                <td>
+                                                    <button style="background-color: red;"
+                                                        class="dropdown-item openPopupBtn">
+                                                        {{ item['carear_id'] }}
+                                                    </button>
+                                                </td>
+                                                {% endif %}
+
+                                                {% if item['sale_type'] == 'good_appoinment'%}
+                                                <td>
+                                                    <button style="background-color: yellow;"
+                                                        class="dropdown-item openPopupBtn">
+                                                        {{ item['carear_id'] }}
+                                                    </button>
+                                                </td>
+                                                {% endif %}
+
+
+                                                <td>{{item['d_name']}}</td>
+                                                <td>{{item['email']}}</td>
+                                                <td>{{item['driver']}}</td>
+                                                <td>{{item['phone_number']}}</td>
+                                                <td>{{item['mc_usdot']}}</td>
+                                                <td>{{item['charges']}}</td>
+                                                <td>{{item['company_name']}}</td>
+                                                <td>{{item['t_number']}}</td>
+                                                <td>{{item['date']}}</td>
+                                                <td>{{item['factoring_num_email']}}</td>
+                                                <td>{{item['ein']}}</td>
+                                                <td>{{item['bank_name']}}</td>
+                                                <td>{{item['physical_address']}}</td>
+                                                <td>{{item['factoring_address']}}</td>
+                                                <td>{{item['account_number']}}</td>
+                                                <td>{{item['routing_number']}}</td>
+                                                <td>{{item['refrence']}}</td>
+                                                <td>{{item['insurance_details']}}</td>
+                                                <td>{{item['comments']}}</td>
+                                                <td>{{item['equipments']}}</td>
+                                                <td>{{item['factoring_name']}}</td>
+                                                <td>{{item['sale_man_pin']}}</td>
+                                                <td>
+                                                    <form action="{{ url_for('transfer_carears_to_dispatcher') }}"
+                                                        method="post">
+                                                        
+                                                        <div class="form-group">
+                                                        <select name="dispatcher_id" class="form-select"
+                                                            aria-label="Default select example" required>
+                                                            <option value='' disabled selected hidden> Select
+                                                                Dispatcher
+                                                            </option>
+                                                            {% for i in dispatcher_info %}
+                                                            <option value="{{i['password']}}" name="dispatcher_id">
+                                                                {{i['f_name']}}&nbsp; &nbsp; &nbsp;ID: {{i['password']}}
+                                                            </option>
+
+                                                            {% if loop.index == (info_length) %}
+                                                        </select>
+                                                    </div>
+
+                                                </td>
+                                                <!-- <td><a href="{{ url_for('transfer_carears_to_dispatcher', dispatcher_info = i , carear_id=item['carear_id']) }}" method = 'post' type="submit" class="btn">Forward</a></td> -->
+                                                {% endif %}
+                                                {% endfor %}
+                                                <input name="carears_id" value="{{item['carear_id']}}" type="text"
+                                                    class="d-none">
+                                                <td><button class="form-select" type="submit" class="_btn_04">Forward</button></td>
+                                                </form>
+                                            </tr>
                                             {% endfor %}
-                                            <input name="carears_id" value= "{{item['carear_id']}}" type="text" class="d-none">
-                                            <td><button type="submit" class="_btn_04">Forward</button></td>
-                                        </form>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2021</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="{{ url_for('logout') }}">Logout</a>
                     </div>
                 </div>
             </div>
-
         </div>
-        <!-- /.container-fluid -->
 
-    </div>
-    <!-- End of Main Content -->
-       <!-- Footer -->
-         <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
+        <!-- Bootstrap core JavaScript-->
+        <script src="static\vendor\jquery\jquery.min.js"></script>
+        <script src="static\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
 
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- Core plugin JavaScript-->
+        <script src="static\vendor/jquery-easing/jquery.easing.min.js"></script>
 
-</div>
-<!-- End of Page Wrapper -->
+        <!-- Custom scripts for all pages-->
+        <script src="static\JS\js/sb-admin-2.min.js"></script>
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+        <!-- Page level plugins -->
+        <script src="static\vendor\chart.js\Chart.min.js"></script>
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="{{ url_for('logout') }}">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Bootstrap core JavaScript-->
-<script src="static\vendor\jquery\jquery.min.js"></script>
-<script src="static\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="static\vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="static\JS\js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="static\vendor\chart.js\Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="static\JS\js/demo/chart-area-demo.js"></script>
-<script src="static\JS\js/demo/chart-pie-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="static\JS\js/demo/chart-area-demo.js"></script>
+        <script src="static\JS\js/demo/chart-pie-demo.js"></script>
 
 </body>
 

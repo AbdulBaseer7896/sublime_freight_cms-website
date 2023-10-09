@@ -38,13 +38,19 @@ class Dispatcher():
             result = conn.execute(query1).fetchall()
             int_result = [item[0] for item in result]
             if int_result != []:
-                query2 = text(f"SELECT * from new_sales_first_time where carear_id IN  {tuple(int_result) if len(int_result) > 1 else (int_result[0],)};")
+                print("This is 1 = " , int_result)
+                query2 = text(f"SELECT * from new_sales_first_time where carear_id IN ({', '.join(map(str, int_result))});")
+
+                print("Query2:", str(query2))
+                result = conn.execute(query2)
                 result = conn.execute(query2)
                 column_names = result.keys()
                 result_dict = [dict(zip(column_names, row)) for row in result]
+                print("this result - " , result_dict)
                 return result_dict
             return ""
         
+
     def get_carear_info_from_db_by_carear_id(self , carear_id):
         with self.engine.connect() as conn:
             query = text(f"SELECT * from new_sales_first_time where carear_id = {carear_id};")
@@ -138,7 +144,8 @@ class Dispatcher():
             result = conn.execute(query1).fetchall()
             result = [item[0] for item in result]
             if result != []:
-                query2 = text(f"SELECT * from transfer_load_to_carears where load_number in {tuple(result) if len(result) > 1 else (result[0],)};")
+                # query2 = text(f"SELECT * from transfer_load_to_carears where load_number in {tuple(result) if len(result) > 1 else (result[0],)};")
+                query2 = text(f"SELECT * from new_sales_first_time where carear_id IN ({', '.join(map(str, result))});")
                 result = conn.execute(query2)
                 column_names = result.keys()
                 result_dict = [dict(zip(column_names, row)) for row in result]
@@ -153,7 +160,8 @@ class Dispatcher():
             result = conn.execute(query1).fetchall()
             result = [item[0] for item in result]
             if result != []:
-                query2 = text(f"SELECT * from new_sales_first_time where carear_id in {tuple(result)};")
+                # query2 = text(f"SELECT * from new_sales_first_time where carear_id in {tuple(result) if len(result) > 1 else (result[0],)};")
+                query2 = text(f"SELECT * from new_sales_first_time where carear_id IN ({', '.join(map(str, result))});")
                 result = conn.execute(query2)
                 column_names = result.keys()
                 result_dict = [dict(zip(column_names, row)) for row in result]
@@ -161,19 +169,3 @@ class Dispatcher():
             result_dict = ""
             return result_dict
     
-    
-            
-            
-            
-            
-
-
-
-
-
-
-
-
-
-
-
