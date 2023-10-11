@@ -73,9 +73,21 @@
                     <span>New Sale</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('new_appointment', filename='') }}">
+                    <span>New Appointment</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('view_all_sales', filename='') }}">
                     <span>View All Sales</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_all_appointments', filename='') }}">
+                    <span>View All Appointment</span>
                 </a>
             </li>
 
@@ -220,54 +232,56 @@
                             <thead>
                                 <tr>
                                     <th>Carear ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Driver</th>
-                                    <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
                                     <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
+                                    <th>Carear Name</th>
+                                    <th>US DOT</th>
+                                    <th>MC</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Truck Type & Number</th>
                                     <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
+                                    <th>INC Name</th>
+                                    <th>Inc Number</th>
+                                    <th>INC Address</th>
+                                    <th>INC Email</th>
+                                    <th>INC Fax Number</th>
+                                    <th>INC Converges</th>
                                     <th>Factoring Name</th>
+                                    <th>Factoring phone Number</th>
+                                    <th>Factoring Email</th>
+                                    <th>Factoring Address</th>
+                                    <th>Bank Name</th>
+                                    <th>Routing Number</th>
+                                    <th>Account Name</th>
+                                    <th>Bank Phone Number</th>
                                     <th>Update (Chargers)</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Carear ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Driver</th>
-                                    <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
                                     <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
+                                    <th>Carear Name</th>
+                                    <th>US DOT</th>
+                                    <th>MC</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Truck Type & Number</th>
                                     <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
+                                    <th>INC Name</th>
+                                    <th>Inc Number</th>
+                                    <th>INC Address</th>
+                                    <th>INC Email</th>
+                                    <th>INC Fax Number</th>
+                                    <th>INC Converges</th>
                                     <th>Factoring Name</th>
+                                    <th>Factoring phone Number</th>
+                                    <th>Factoring Email</th>
+                                    <th>Factoring Address</th>
+                                    <th>Bank Name</th>
+                                    <th>Routing Number</th>
+                                    <th>Account Name</th>
+                                    <th>Bank Phone Number</th>
                                     <th>Update (Chargers)</th>
                                 </tr>
                             </tfoot>
@@ -304,31 +318,28 @@
                                     </td>
                                     {% endif %}
 
-                                    <td>{{item['d_name']}}</td>
-
-
-                                    
-                                    
+                                    <td>{{item['company_name']}}</td>                    
+                                    <td>{{item['carear_name']}}</td>
+                                    <td>{{item['usdot']}}</td>
+                                    <td>{{item['mc']}}</td>
                                     <td>{{item['email']}}</td>
-                                    <td>{{item['driver']}}</td>
                                     <td>{{item['phone_number']}}</td>
-                                    <td>{{item['mc_usdot']}}</td>
-                                    <td>{{item['charges']}}</td>
-                                    <td>{{item['company_name']}}</td>
-                                    <td>{{item['t_number']}}</td>
-                                    <td>{{item['date']}}</td>
-                                    <td>{{item['factoring_num_email']}}</td>
+                                    <td>{{item['truck_type_and_number']}}</td>
                                     <td>{{item['ein']}}</td>
+                                    <td>{{item['inc_name']}}</td>
+                                    <td>{{item['inc_number']}}</td>
+                                    <td>{{item['inc_address']}}</td>
+                                    <td>{{item['inc_email']}}</td>
+                                    <td>{{item['inc_fax_number']}}</td>
+                                    <td>{{item['inc_coverges']}}</td>
+                                    <td>{{item['fac_name']}}</td>
+                                    <td>{{item['fac_phone_number']}}</td>
+                                    <td>{{item['fac_email']}}</td>
+                                    <td>{{item['fac_address']}}</td>
                                     <td>{{item['bank_name']}}</td>
-                                    <td>{{item['physical_address']}}</td>
-                                    <td>{{item['factoring_address']}}</td>
-                                    <td>{{item['account_number']}}</td>
                                     <td>{{item['routing_number']}}</td>
-                                    <td>{{item['refrence']}}</td>
-                                    <td>{{item['insurance_details']}}</td>
-                                    <td>{{item['comments']}}</td>
-                                    <td>{{item['equipments']}}</td>
-                                    <td>{{item['factoring_name']}}</td>
+                                    <td>{{item['account_number']}}</td>
+                                    <td>{{item['bank_phone_number']}}</td>
                                     <td>
                                         
                                         <a href="{{ url_for('update_carear_info', carear_id=item['carear_id']) }}" type="submit" class="btn">Update</a>
@@ -483,85 +494,85 @@ $(document).ready(function() {
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Full Name</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.d_name}
-                            </h5>
-                            <!-- </div>
-                            <hr>
-                            <div class="row"> -->
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">MC USDOT</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.mc_usdot}
-                            </h5>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Email
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.email}    
-                            </h5>
-                            <!-- </div>
-                            <hr>
-                            <div class="row"> -->
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Phone Number</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.phone_number}
-                            </h5>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Chargers</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.charges}                                             
-                            </h5>
-                            <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Company Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.company_name}                                    
-                            </h5>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Truck Number</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.t_number}                          
-                            </h5>
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Date</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.date}                                                
-                            </h5>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Factoring Number & Email</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.factoring_num_email}
+                                ${response.career_info.company_name}
                             </h5>
                             <!-- </div>
                             <hr>
                             <div class="row"> -->
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Carear Name</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.carear_name}
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">US DOT
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.usdot}    
+                            </h5>
+                            <!-- </div>
+                            <hr>
+                            <div class="row"> -->
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">MC</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.mc}
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Crear Email</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.email}                                             
+                            </h5>
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Carear Phone</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.phone_number}                                    
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Truck type & Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.truck_type_and_number}                          
+                            </h5>
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">EIN</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                <p>${response.career_info.ein}</p>
+                                ${response.career_info.ein}                                                
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">INC Name</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.inc_name}
+                            </h5>
+                            <!-- </div>
+                            <hr>
+                            <div class="row"> -->
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">INC Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                <p>${response.career_info.inc_number}</p>
                             </h5>
                         </div>
 
@@ -569,91 +580,108 @@ $(document).ready(function() {
                         <hr>
                         <div class="row">
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Bank Name</h6>
+                                <h6 class="mb-0">INC Address</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.bank_name}                                       
+                                ${response.career_info.inc_address}                                       
                             </h5>
                             <!-- </div>
                             <hr>
                             <div class="row"> -->
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Account Number</h6>
+                                <h6 class="mb-0">INC Email</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.account_number}
+                                ${response.career_info.inc_email}
                             </h5>
                         </div>
                         <hr>
                         
                         <div class="row">
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Routing Number</h6>
+                                <h6 class="mb-0">INC Fax Number</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.routing_number}
+                                ${response.career_info.inc_fax_number}
                             </h5>
                             <!-- </div>
                             <hr>
                             <div class="row"> -->
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Refrence</h6>
+                                <h6 class="mb-0">INC Coverges</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.refrence}
+                                ${response.career_info.inc_coverges}
                             </h5>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Insurance Details</h6>
+                                <h6 class="mb-0">Fac Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.insurance_details}
+                                ${response.career_info.fac_name}
                             </h5>
 
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Factoring Name</h6>
+                                <h6 class="mb-0">Fac Phone Number</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.factoring_name}
-                            </h5>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3 text-secondary">
-                                <h6 class="mb-0">Equipments</h6>
-                            </div>
-                            <h5 class="col-sm-9 ">
-                                ${response.career_info.equipments}
+                                ${response.career_info.fac_phone_number}
                             </h5>
                         </div>
                         <hr>
 
                         <div class="row">
-                            <div class="col-sm-3 text-secondary">
-                                <h6 class="mb-0">Comments</h6>
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Fac Email</h6>
                             </div>
-                            <h5 class="col-sm-9 ">
-                                ${response.career_info.comments}
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.fac_email}
                             </h5>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3 text-secondary">
-                                <h6 class="mb-0">Physical Address</h6>
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Fac Address</h6>
                             </div>
-                            <h5 class="col-sm-9 ">
-                                ${response.career_info.physical_address}
+                            <h5 class="col-sm-2 ">
+                                ${response.career_info.fac_address}
                             </h5>
                         </div>
                         <hr>
+                        
+
+                        
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Bank Name</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.bank_name}
+                            </h5>
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Routing Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.routing_number}
+                            </h5>
+                        </div>
+
+                        <hr>
 
                         <div class="row">
-                            <div class="col-sm-3 text-secondary">
-                                <h6 class="mb-0">Factoring Address</h6>
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Account Number</h6>
                             </div>
-                            <h5 class="col-sm-9 ">
-                                ${response.career_info.physical_address}
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.account_number}
+                            </h5>
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Bank Phone</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.bank_phone_number}
                             </h5>
                         </div>
                     </div>

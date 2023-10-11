@@ -62,9 +62,21 @@
                     <span>New Sale</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('new_appointment', filename='') }}">
+                    <span>New Appointment</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('view_all_sales', filename='') }}">
                     <span>View All Sales</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_all_appointments', filename='') }}">
+                    <span>View All Appointment</span>
                 </a>
             </li>
 
@@ -217,6 +229,14 @@
                         </h4>
                     </div>
                     {% elif category == 'new_sale_success' %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading text-center">{{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h4>
+                    </div>
+                    {% elif category == 'new_appointment_success' %}
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <h4 class="alert-heading text-center">{{ message }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

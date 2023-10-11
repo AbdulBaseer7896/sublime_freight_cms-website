@@ -371,7 +371,7 @@
                                     aria-labelledby="home-tab">
                                     <h3 class="register-heading">Add New Sale</h3>
 
-                                    <form action="{{ url_for('new_sale') }}" method="post"
+                                    <form action="{{ url_for('new_appointment') }}" method="post"
                                         enctype="multipart/form-data">
                                         <div class="row register-form">
                                             <div class="col-md-6">
@@ -380,9 +380,9 @@
                                                 <!-- This is important . Its go for carear Id But its not -->
 
                                                 <div class="form-group d-none">
-                                                    <input name="carear_id" type="text" class="form-control"
-                                                        placeholder="Carear ID"
-                                                        value="{{carear_info['carear_id']}}" />
+                                                    <input name="appointment_id" type="text" class="form-control"
+                                                        placeholder="Appointment ID"
+                                                        value="{{carear_info['appointment_id']}}" />
                                                 </div>
 
                                                 <div class="form-group">
@@ -399,9 +399,34 @@
                                                         placeholder="Carear Email" value="{{carear_info['email']}}" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <input name="truck_type_and_number" type="text" class="form-control"
-                                                        placeholder="Truck type & Truck Number"
+                                                    <input name="truck_or_traler" type="text" class="form-control"
+                                                        placeholder="Truck / Trailer"
                                                         value="{{carear_info['truck_type_and_number']}}" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input name="comments" type="text" class="form-control"
+                                                        placeholder="Comments" value="{{carear_info['comments']}}" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <select name="appointment_type" class="form-select"
+                                                        aria-label="Default select example" required>
+                                                        <option value="{{carear_info['appointment_type']}}" disabled selected
+                                                            hidden>Select Appoinment type</option>
+                                                        <option value="good_appointment" name="appointment_type"
+                                                            style="background-color: green;">Good Appointment</option>
+
+                                                        <option value="bad_appointment" name="appointment_type"
+                                                            style="background-color: red;">Bad Appointment</option>
+
+                                                        <option value="fellow_up_appoinment" name="appointment_type"
+                                                            style="background-color: yellow;">Follow Up</option>
+                                                        <option value="" name="appointment_type"
+                                                            style="background-color: pink;" disabled>ABC Appointment</option>
+                                                        <option value="" name="appointment_type"
+                                                            style="background-color: black;" disabled>XYZ Appointment</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -426,133 +451,19 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <input name="ein" type="text" class="form-control" placeholder="EIN"
-                                                        value="{{carear_info['ein']}}" />
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <!-- Sale Man form inputs -->
-                                                <div class="form-group">
-                                                    <input name="inc_name" type="text" class="form-control"
-                                                        placeholder="Inc Name" value="{{carear_info['inc_name']}}" />
+                                                    <input name="conversations" type="text" class="form-control"
+                                                        placeholder="Conversations" value="{{carear_info['conversations']}}" />
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <input name="inc_address" type="text" class="form-control"
-                                                        placeholder="Inc Address" value="{{carear_info['inc_address']}}" />
+                                                    <input name="date" type="date" class="form-control"
+                                                        placeholder="Date" value="{{carear_info['date']}}" />
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <input name="inc_fax_number" type="text" class="form-control"
-                                                        placeholder="Inc Fax Number" value="{{carear_info['inc_fax_number']}}" />
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="col-md-6">
-                                                <!-- Sale Man form inputs -->
-
-                                                <div class="form-group">
-                                                    <input name="inc_number" type="text" class="form-control"
-                                                        placeholder="Inc Number" value="{{carear_info['inc_number']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="inc_email" type="text" class="form-control"
-                                                        placeholder="Inc Email" value="{{carear_info['inc_email']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="inc_coverges" type="text" class="form-control"
-                                                        placeholder="Inc Coverages" value="{{carear_info['inc_coverges']}}" />
+                                                    <input type="submit" class="btnRegister" value="Submit" />
                                                 </div>
                                             </div>
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input name="fac_name" type="text" class="form-control"
-                                                        placeholder="Fac Company Name"
-                                                        value="{{carear_info['fac_name']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="fac_email" type="text" class="form-control"
-                                                        placeholder="Fac Email" value="{{carear_info['fac_email']}}" />
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <input name="fac_phone_number" type="text" class="form-control"
-                                                        placeholder="Fac Phone Number"
-                                                        value="{{carear_info['fac_phone_number']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="fac_address" type="text" class="form-control"
-                                                        placeholder="Fac Address"
-                                                        value="{{carear_info['fac_address']}}" />
-                                                </div>
-
-
-                                            </div>
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input name="bank_name" type="text" class="form-control"
-                                                        placeholder="Bank Name" value="{{carear_info['bank_name']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="account_number" type="text" class="form-control"
-                                                        placeholder="Account Number"
-                                                        value="{{carear_info['account_number']}}" />
-                                                </div>
-
-
-                                                <div class="form-group">
-                                                    <select name="sale_type" class="form-select"
-                                                        aria-label="Default select example" required>
-                                                        <option value="{{carear_info['sale_type']}}" disabled selected
-                                                            hidden>Select Sale type</option>
-                                                        <option value="active_sale" name="sale_type"
-                                                            style="background-color: green;">Active Sale</option>
-                                                        <option value="inactive_sale" name="sale_type"
-                                                            style="background-color: red;">Inactive Sale</option>
-                                                        <option value="good_appoinment" name="sale_type"
-                                                            style="background-color: yellow;">Good Appoinment</option>
-                                                        <option value="" name="sale_type"
-                                                            style="background-color: pink;" disabled>ABC Sale</option>
-                                                        <option value="" name="sale_type"
-                                                            style="background-color: black;" disabled>XYZ Sale</option>
-                                                    </select>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <input name="routing_number" type="text" class="form-control"
-                                                        placeholder="Routing Number"
-                                                        value="{{carear_info['routing_number']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="bank_phone_number" type="text" class="form-control"
-                                                        placeholder="Bank Phone Number"
-                                                        value="{{carear_info['bank_phone_number']}}" />
-                                                </div>
-                                                <input type="submit" class="btnRegister" value="Submit" />
-
-                                            </div>
-
                                     </form>
                                 </div>
                             </div>

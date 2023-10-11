@@ -42,13 +42,14 @@ def new_sale():
     if request.method == 'POST':
         form_data = request.form.to_dict()
         sale_man_info = session.get('data')
+        print("This is form_data = " , form_data)
+        print("This is id = " , sale_man_info[0]['user_pin'])
         obj.new_sales_first_time(form_data , sale_man_info[0]['user_pin'])
         flash(("congratulations you Done new Sale!!!" , 'new_sale_success'))
         return render_template("//sale_temp//sale_dashboard.html" , sale_man_info= sale_man_info)
     
     
     
-
 @app.route('/popup_content_for_sale_man')
 def popup_content_for_sale_man():
     # You can perform any processing here to generate the content and variable you want to display in the popup
@@ -58,8 +59,6 @@ def popup_content_for_sale_man():
     career_info = obj.carear_info_for_carear_id(career_id)
     # Returning a JSON response
     return jsonify(content=content, variable = variable_to_return ,career_info = career_info)
-
-
 
 @app.route('/view_all_sales' , methods=["GET", "POST"])
 @login_required('sale_man')
@@ -84,3 +83,45 @@ def update_carear_info():
 
 
 
+
+
+@app.route('/new_appointment' , methods=["GET", "POST"])
+@login_required('sale_man')
+def new_appointment():
+    if request.method == 'GET':
+        sale_man_info = session.get('data')
+        return render_template("//sale_temp//new_appointment.html" , carear_info = "" , sale_man_info = sale_man_info)
+    if request.method == 'POST':
+        form_data = request.form.to_dict()
+        sale_man_info = session.get('data')
+        print("This is form_data = " , form_data)
+        obj.add_new_appointment_in_db(form_data , sale_man_info[0]['user_pin'])
+        flash(("congratulations your new appointment Added!!!" , 'new_appointment_success'))
+        return render_template("//sale_temp//sale_dashboard.html" , sale_man_info= sale_man_info)
+    
+    
+    
+@app.route('/view_all_appointments' , methods=["GET", "POST"])
+@login_required('sale_man')
+def view_all_appointments():
+    if request.method == "GET":
+        sale_man_info = session.get('data')
+        appointment_data = obj.get_sales_man_appointment_from_db(sale_man_info[0]['user_pin'])
+        print("this data = " , appointment_data)
+        return render_template("//sale_temp//view_all_appointment.html" , appointment_data = appointment_data , sale_man_info = sale_man_info)
+    
+
+@app.route('/popup_content_for_sale_man_to_display_appointments')
+def popup_content_for_sale_man_to_display_appointments():
+    # You can perform any processing here to generate the content and variable you want to display in the popup
+    content = "This is the content of the popup returned from Flask."
+    variable_to_return = "This is a variable returned from Flask."
+    career_id = request.args.get('careerId')
+    appointment_info = obj.appointment_info_for_appointment_id(career_id)
+    # Returning a JSON response
+    return jsonify(content=content, variable = variable_to_return ,appointment_info = appointment_info)
+
+
+
+
+    
