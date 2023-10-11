@@ -74,19 +74,10 @@
                     <span>Carear Details</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('view_save_load_info', filename='') }}">
-                    <span>View Load</span>
-                </a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('save_load_info', filename='') }}">
                     <span>Save load deatles</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('view_already_given_load_to_carear', filename='') }}">
-                    <span>Carear Load Pay</span>
                 </a>
             </li>
 
@@ -259,8 +250,6 @@
                                     <th>Comments</th>
                                     <th>Equipments</th>
                                     <th>Factoring Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Dispatcher</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -287,8 +276,6 @@
                                     <th>Comments</th>
                                     <th>Equipments</th>
                                     <th>Factoring Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Dispatcher</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -307,7 +294,7 @@
                                     <td>
                                         <button class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['d_name'] }}
+                                            {{ item['carear_name'] }}
                                         </button>
                                     </td>
 
@@ -333,7 +320,6 @@
                                     <td>{{item['comments']}}</td>
                                     <td>{{item['equipments']}}</td>
                                     <td>{{item['factoring_name']}}</td>
-                                    <td>{{item['sale_man_pin']}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

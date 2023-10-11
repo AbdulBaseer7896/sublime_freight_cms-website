@@ -26,7 +26,7 @@ def login_required(role):
 @login_required('admin')
 def admin_dashboard():
     if request.method == 'GET':
-        flash(("Dear Admin you succesfully Login !!!" , 'admim_login_pass'))
+        # flash(("Dear Admin you succesfully Login !!!" , 'admim_login_pass'))
         return render_template('//admin_temp//admin_dashboard.html')
     
     
@@ -35,7 +35,6 @@ def admin_dashboard():
 @login_required('admin')
 def add_employee():
     if request.method == 'GET':
-        # flash(("Dear Admin you succesfully Login !!!" , 'admim_login_pass'))
         return render_template('//admin_temp//add_employee.html')
     if request.method == 'POST':
         data = request.form.to_dict()

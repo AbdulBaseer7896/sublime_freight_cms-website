@@ -28,7 +28,7 @@ obj = Sale_Man_Modle()
 def sale_dashboard():
     if request.method == 'GET':
         sale_man_info = session.get('data')
-        flash(("Dear Sale Man you succesfully Login !!!" , 'sale_login_pass'))
+        # flash(("Dear Sale Man you succesfully Login !!!" , 'sale_login_pass'))
         return render_template('//sale_temp//sale_dashboard.html' ,sale_man_info = sale_man_info)
 
 

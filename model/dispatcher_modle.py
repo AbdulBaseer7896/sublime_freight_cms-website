@@ -23,14 +23,7 @@ class Dispatcher():
         except:
             print("not work")
             
-        
-    def user_role(self , pin):
-        with self.engine.connect() as conn:
-            query = text(f"SELECT user_type from users where user_pin = {pin};")
-            result = conn.execute(query).fetchall()
-            return result[0][0]
-        
-    from sqlalchemy import text
+
 
     def get_carear_info(self, pin):
         with self.engine.connect() as conn:
@@ -62,26 +55,24 @@ class Dispatcher():
         
     def store_load_info_in_db(self , load_info , pin):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT COALESCE(MAX(load_number) , 0) FROM load_details;")
+            query1 = text(f"SELECT COALESCE(MAX(load_id) , 0) FROM load_details;")
             result1 = conn.execute(query1).fetchall()
-            
-            query2 = text(f"SELECT COALESCE(MAX(load_number) , 0) FROM transfer_load_to_carears;")
-            result2 = conn.execute(query2).fetchall()
-            result = 0
-            if result1[0][0] > result2[0][0]:
-                result = int(result1[0][0])
+
+            load_id = 0
+            if result1[0][0] == 0:
+                load_id = 1
             else:
-                result =int(result2[0][0])
-            # query = text(f"INSERT INTO load_details VALUES ( '{int(result[0][0]) + 1}' , '{load_info['load_date']}' , '{load_info['load_rate']}' , '{load_info['load_location']}' , '{load_info['distance']}' , '{load_info['weight']}'  , '{load_info['pick_up_time']}'   , '{load_info['delivery_time']}' , '{load_info['carrier_name']}' , '{load_info['agent_name']}' , '{load_info['agent_email_number']}' , '{load_info['carrier_email_number']}' , '{load_info['load_description']}') , {pin};")
-            query = text(f"INSERT INTO load_details VALUES ( '{result + 1}' , '{load_info['load_date']}' , '{load_info['load_rate']}' , '{load_info['load_location']}' , '{load_info['distance']}' , '{load_info['weight']}'  , '{load_info['pick_up_time']}'   , '{load_info['delivery_time']}' , '{load_info['carrier_name']}' , '{load_info['agent_name']}' , '{load_info['agent_email_number']}' , '{load_info['carrier_email_number']}' , '{load_info['load_description']}' , {pin});")
+                load_id = int(result1[0][0]) + 1
+                
+            print("This restul = " , load_id)
+            query = text(f"INSERT INTO load_details VALUES ( '{load_id}' , '{load_info['carear_id']}' , '{load_info['pick_up_location']}' , '{load_info['miles']}' , '{load_info['load_number']}' , '{load_info['load_date']}'  , '{load_info['drop_location']}'   , '{load_info['load_rate']}' , '{load_info['load_description']}' , '{pin}' );")
             conn.execute(query)
             return True
 
 
-    
-    def get_save_load_info_from_db(self , pin):
+    def get_given_load_to_the_carear(self , pin , carear_id):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT * from load_details where dispatcher_pin = {pin};")
+            query1 = text(f"SELECT * from load_details where dispatcher_pin = {pin} and carear_id = {carear_id};")
             result = conn.execute(query1).fetchall()
             int_result = [item[0] for item in result]
             query2 = text(f"SELECT * from load_details where dispatcher_pin = {pin};")
@@ -137,21 +128,7 @@ class Dispatcher():
                 return result_dict[0]
             result_dict = ''
             return result_dict
-        
-    def get_load_info_from_db(self , dispatcher_pin):
-        with self.engine.connect() as conn:
-            query1 = text(f"SELECT load_number from disptcher_give_load_to_carear where dispatcher_pin = {dispatcher_pin};")
-            result = conn.execute(query1).fetchall()
-            result = [item[0] for item in result]
-            if result != []:
-                # query2 = text(f"SELECT * from transfer_load_to_carears where load_number in {tuple(result) if len(result) > 1 else (result[0],)};")
-                query2 = text(f"SELECT * from new_sales_first_time where carear_id IN ({', '.join(map(str, result))});")
-                result = conn.execute(query2)
-                column_names = result.keys()
-                result_dict = [dict(zip(column_names, row)) for row in result]
-                return result_dict
-            result_dict = ""
-            return result_dict
+
         
     
     def get_carear_info_from_db(self , dispatcher_pin):
