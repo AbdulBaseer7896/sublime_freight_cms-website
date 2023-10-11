@@ -50,6 +50,7 @@ class Dispatcher():
             result = conn.execute(query)
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
+            print("This is carer info == = = " , result_dict)
             return result_dict
         
         
@@ -72,11 +73,15 @@ class Dispatcher():
 
     def get_given_load_to_the_carear(self , pin , carear_id):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT * from load_details where dispatcher_pin = {pin} and carear_id = {carear_id};")
-            result = conn.execute(query1).fetchall()
-            int_result = [item[0] for item in result]
-            query2 = text(f"SELECT * from load_details where dispatcher_pin = {pin};")
-            result = conn.execute(query2)
+            print(type(pin))
+            print(type(carear_id))
+            query1 = text(f"SELECT * from load_details where (dispatcher_pin = {pin} and carear_id = {carear_id});")
+
+            result = conn.execute(query1)
+            # print()
+            # int_result = [item[0] for item in result]
+            # query2 = text(f"SELECT * from load_details where dispatcher_pin = {pin};")
+            # result = conn.execute(query2)
             column_names = result.keys()
 
             # Fetch all rows as dictionaries

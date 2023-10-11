@@ -79,6 +79,7 @@ def display_give_load_to_carear():
     if request.method == 'GET':
         dispatch_info = session.get('data')
         carear_id = request.args.get('carear_id')
+        print("Thhis is carear id = " , carear_id)
         carear_info = obj.get_carear_info_from_db_by_carear_id(carear_id)
         load_info = obj.get_given_load_to_the_carear(dispatch_info[0]['user_pin'] , carear_id )
         print("This is load info = " , load_info)
@@ -87,7 +88,9 @@ def display_give_load_to_carear():
     if request.method == "POST":
         dispatch_info = session.get('data')
         form_info = request.form.to_dict()
+        print("This is = " , form_info)
         carear_id = form_info['carear_id']
+        print("THis is = " , carear_id)
         load_number = form_info['load_number']
         carear_info = obj.store_load_and_carear_info_in_db(load_number ,carear_id, dispatch_info[0]['user_pin'] )
         flash(("You Deliver the Load Succesfully !!!" , 'load_deliver_success'))
