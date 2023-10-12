@@ -142,13 +142,13 @@ class Admin_Modle():
         
     def stored_card_info_in_db(self , card_info):
         with self.engine.connect() as conn:
-            query = text(f"SELECT d_name , email , phone_number   from new_sales_first_time where carear_id = '{card_info['carear_id']}';")
+            query = text(f"SELECT carear_name , email , phone_number   from new_sales_first_time where carear_id = '{card_info['carear_id']}';")
             result = conn.execute(query)
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
             result_dict = result_dict[0]
             
-            query1 = text(f"INSERT INTO atm_card_info VALUES ('{card_info['carear_id']}' , '{result_dict['d_name']}', '{result_dict['email']}',  '{result_dict['phone_number']}',  '{card_info['care_number']}', '{card_info['card_expiry']}' , '{card_info['card_cvc']}' , '{card_info['card_type']}' , '{card_info['card_holder_name']}' );")
+            query1 = text(f"INSERT INTO atm_card_info VALUES ('{card_info['carear_id']}' , '{result_dict['carear_name']}', '{result_dict['email']}',  '{result_dict['phone_number']}',  '{card_info['care_number']}', '{card_info['card_expiry']}' , '{card_info['card_cvc']}' , '{card_info['card_type']}' , '{card_info['card_holder_name']}' );")
             conn.execute(query1)
             
         
