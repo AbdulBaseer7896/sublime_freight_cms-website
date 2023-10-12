@@ -160,13 +160,13 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <form action="{{ url_for('view_all_appointments_for_search') }}" method="post"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -223,7 +223,7 @@
             <!-- Page Heading -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">All Sales Records</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">All Appoinment Records</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -236,13 +236,13 @@
                                     <th>Carear Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
+                                    <th>State</th>
                                     <th>Date</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Truck / Traler</th>
                                     <th>Conversations</th>
                                     <th>Comments</th>
-                                    <th>Update (Chargers)</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -252,13 +252,13 @@
                                     <th>Carear Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
+                                    <th>State</th>
                                     <th>Date</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Truck / Traler</th>
                                     <th>Conversations</th>
                                     <th>Comments</th>
-                                    <th>Update (Chargers)</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -283,7 +283,7 @@
                                     </td>
                                     {% endif %}
 
-                                    {% if item['appointment_type'] == 'good_appointment'%}                                 
+                                    {% if item['appointment_type'] == 'fellow_up_appoinment'%}                                 
                                     <td>
                                         <button style="background-color: yellow;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -296,6 +296,7 @@
                                     <td>{{item['carear_name']}}</td>
                                     <td>{{item['usdot']}}</td>
                                     <td>{{item['mc']}}</td>
+                                    <td>{{item['state']}}</td>
                                     <td>{{item['date']}}</td>
                                     <td>{{item['email']}}</td>
                                     <td>{{item['phone_number']}}</td>

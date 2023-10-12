@@ -155,3 +155,16 @@ def view_pin_of_all_user():
         user_pins = obj.get_all_user_pin_from_db()
         return render_template("//admin_temp//view_user_pin.html" , user_pins = user_pins)
             
+
+
+
+
+@app.route('/search_carear_for_admin_for_seach' , methods=["GET", "POST"])
+@login_required('admin')
+def search_carear_for_admin_for_seach():
+    if request.method == 'POST':
+        search_text = request.form.get("search_text")
+        print("This is search = " , search_text)
+        all_sales_data_for_search = obj.get_first_form_sales_for_db_for_admin_search(search_text)
+        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data_for_search)
+    

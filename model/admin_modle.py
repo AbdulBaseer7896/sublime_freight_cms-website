@@ -171,4 +171,16 @@ class Admin_Modle():
             result_dict = [dict(zip(column_names, row)) for row in result]
             return result_dict
         
+        
+        
+    def get_first_form_sales_for_db_for_admin_search(self , search_text):
+        with self.engine.connect() as conn:
+            print("This search data  in fun = " , search_text)
+            query = text(f"SELECT * from new_sales_first_time;")
             
+            
+            query = text(f"SELECT * FROM new_sales_first_time WHERE ('{search_text}' IN (carear_id, company_name, usdot, mc,  email , phone_number , carear_name , state ,sale_man_pin , dispatcher_pin));")
+            
+            result = conn.execute(query).fetchall()
+            print("This is result = " , result)
+            return result

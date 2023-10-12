@@ -124,4 +124,27 @@ def popup_content_for_sale_man_to_display_appointments():
 
 
 
+@app.route('/search_carear_for_sales_man' , methods=["GET", "POST"])
+@login_required('sale_man')
+def search_carear_for_sales_man():
+    if request.method == 'POST':
+        sale_man_info = session.get('data')
+        search_text = request.form.get("search_text")
+        print("This is search = " , search_text)
+        sales_data = obj.get_sale_man_sales_for_search_text(sale_man_info[0]['user_pin'] , search_text)
+        return render_template("//sale_temp//view_all_sales.html" , sales_data = sales_data , sale_man_info = sale_man_info)
+    
+    
+    
+    
+@app.route('/view_all_appointments_for_search' , methods=["GET", "POST"])
+@login_required('sale_man')
+def view_all_appointments_for_search():
+    if request.method == "POST":
+        sale_man_info = session.get('data')
+        search_text = request.form.get("search_text")
+        print("This is search text = " , search_text)
+        appointment_data = obj.get_sales_man_appointment_from_db_for_search(sale_man_info[0]['user_pin'] , search_text)
+        print("this data = " , appointment_data)
+        return render_template("//sale_temp//view_all_appointment.html" , appointment_data = appointment_data , sale_man_info = sale_man_info)
     

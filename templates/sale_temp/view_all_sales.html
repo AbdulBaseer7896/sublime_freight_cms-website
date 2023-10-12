@@ -160,13 +160,14 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <form action="{{ url_for('search_carear_for_sales_man') }}" method="post"
+                    enctype="multipart/form-data"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -236,6 +237,7 @@
                                     <th>Carear Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
+                                    <th>State</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Truck Type & Number</th>
@@ -264,6 +266,7 @@
                                     <th>Carear Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
+                                    <th>State</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Truck Type & Number</th>
@@ -322,6 +325,7 @@
                                     <td>{{item['carear_name']}}</td>
                                     <td>{{item['usdot']}}</td>
                                     <td>{{item['mc']}}</td>
+                                    <td>{{item['state']}}</td>
                                     <td>{{item['email']}}</td>
                                     <td>{{item['phone_number']}}</td>
                                     <td>{{item['truck_type_and_number']}}</td>
@@ -514,17 +518,24 @@ $(document).ready(function() {
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">US DOT
                             </div>
-                            <h5 class="col-sm-4 ">
+                            <h5 class="col-sm-3 ">
                                 ${response.career_info.usdot}    
                             </h5>
                             <!-- </div>
                             <hr>
                             <div class="row"> -->
-                            <div class="col-sm-2 text-secondary">
+                            <div class="col-sm-1 text-secondary">
                                 <h6 class="mb-0">MC</h6>
                             </div>
-                            <h5 class="col-sm-4 ">
+                            <h5 class="col-sm-3 ">
                                 ${response.career_info.mc}
+                            </h5>
+
+                            <div class="col-sm-1 text-secondary">
+                                <h6 class="mb-0">State</h6>
+                            </div>
+                            <h5 class="col-sm-2 ">
+                                ${response.career_info.state}
                             </h5>
                         </div>
                         <hr>
@@ -633,6 +644,15 @@ $(document).ready(function() {
                         <hr>
 
                         <div class="row">
+
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Fac Address</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${response.career_info.fac_address}
+                            </h5>
+
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Fac Email</h6>
                             </div>
@@ -640,12 +660,7 @@ $(document).ready(function() {
                                 ${response.career_info.fac_email}
                             </h5>
 
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Fac Address</h6>
-                            </div>
-                            <h5 class="col-sm-2 ">
-                                ${response.career_info.fac_address}
-                            </h5>
+
                         </div>
                         <hr>
                         

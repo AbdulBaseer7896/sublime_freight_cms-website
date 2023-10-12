@@ -534,6 +534,65 @@
                                                     </select>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <select  name="state" class="form-select"
+                                                        aria-label="Default select example" required>
+                                                        <option value="{{carear_info['sale_type']}}" disabled selected
+                                                            hidden>Select state</option>
+                                                            <option value="AL" name="sale_type">Alabama (AL)</option>
+                                                            <option value="AK" name="sale_type">Alaska (AK)</option>
+                                                            <option value="AZ" name="sale_type">Arizona (AZ)</option>
+                                                            <option value="AR" name="sale_type">Arkansas (AR)</option>
+                                                            <option value="CA" name="sale_type">California (CA)</option>
+                                                            <option value="CO" name="sale_type">Colorado (CO)</option>
+                                                            <option value="CT" name="sale_type">Connecticut (CT)</option>
+                                                            <option value="DE" name="sale_type">Delaware (DE)</option>
+                                                            <option value="FL" name="sale_type">Florida (FL)</option>
+                                                            <option value="GA" name="sale_type">Georgia (GA)</option>
+                                                            <option value="HI" name="sale_type">Hawaii (HI)</option>
+                                                            <option value="ID" name="sale_type">Idaho (ID)</option>
+                                                            <option value="IL" name="sale_type">Illinois (IL)</option>
+                                                            <option value="IN" name="sale_type">Indiana (IN)</option>
+                                                            <option value="IA" name="sale_type">Iowa (IA)</option>
+                                                            <option value="KS" name="sale_type">Kansas (KS)</option>
+                                                            <option value="KY" name="sale_type">Kentucky (KY)</option>
+                                                            <option value="LA" name="sale_type">Louisiana (LA)</option>
+                                                            <option value="ME" name="sale_type">Maine (ME)</option>
+                                                            <option value="MD" name="sale_type">Maryland (MD)</option>
+                                                            <option value="MA" name="sale_type">Massachusetts (MA)</option>
+                                                            <option value="MI" name="sale_type">Michigan (MI)</option>
+                                                            <option value="MN" name="sale_type">Minnesota (MN)</option>
+                                                            <option value="MS" name="sale_type">Mississippi (MS)</option>
+                                                            <option value="MO" name="sale_type">Missouri (MO)</option>
+                                                            <option value="MT" name="sale_type">Montana (MT)</option>
+                                                            <option value="NE" name="sale_type">Nebraska (NE)</option>
+                                                            <option value="NV" name="sale_type">Nevada (NV)</option>
+                                                            <option value="NH" name="sale_type">New Hampshire (NH)</option>
+                                                            <option value="NJ" name="sale_type">New Jersey (NJ)</option>
+                                                            <option value="NM" name="sale_type">New Mexico (NM)</option>
+                                                            <option value="NY" name="sale_type">New York (NY)</option>
+                                                            <option value="NC" name="sale_type">North Carolina (NC)</option>
+                                                            <option value="ND" name="sale_type">North Dakota (ND)</option>
+                                                            <option value="OH" name="sale_type">Ohio (OH)</option>
+                                                            <option value="OK" name="sale_type">Oklahoma (OK)</option>
+                                                            <option value="OR" name="sale_type">Oregon (OR)</option>
+                                                            <option value="PA" name="sale_type">Pennsylvania (PA)</option>
+                                                            <option value="RI" name="sale_type">Rhode Island (RI)</option>
+                                                            <option value="SC" name="sale_type">South Carolina (SC)</option>
+                                                            <option value="SD" name="sale_type">South Dakota (SD)</option>
+                                                            <option value="TN" name="sale_type">Tennessee (TN)</option>
+                                                            <option value="TX" name="sale_type">Texas (TX)</option>
+                                                            <option value="UT" name="sale_type">Utah (UT)</option>
+                                                            <option value="VT" name="sale_type">Vermont (VT)</option>
+                                                            <option value="VA" name="sale_type">Virginia (VA)</option>
+                                                            <option value="WA" name="sale_type">Washington (WA)</option>
+                                                            <option value="WV" name="sale_type">West Virginia (WV)</option>
+                                                            <option value="WI" name="sale_type">Wisconsin (WI)</option>
+                                                            <option value="WY" name="sale_type">Wyoming (WY)</option>
+                                                            
+                                                    </select>
+                                                </div>
+
                                             </div>
 
                                             <div class="col-md-6">
@@ -548,6 +607,12 @@
                                                     <input name="bank_phone_number" type="text" class="form-control"
                                                         placeholder="Bank Phone Number"
                                                         value="{{carear_info['bank_phone_number']}}" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input required name="date" type="date" class="form-control"
+                                                        placeholder="Date"
+                                                        value="{{carear_info['date']}}" />
                                                 </div>
                                                 <input type="submit" class="btnRegister" value="Submit" />
 
