@@ -24,21 +24,23 @@ class Admin_Modle():
 
     def add_new_sale_man(self , data):
         with self.engine.connect() as conn:
+            user_id = self.get_user_id_from_db()
             six_digit_pin = self.gernate_password_for_users()
-            query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{six_digit_pin}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , '{data['salary']}' );")
+            query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' ,'{user_id}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , 0 , '{six_digit_pin}');")
             conn.execute(query1)
             
-            query2 = text(f"INSERT INTO users VALUES ('{six_digit_pin}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}');")
+            query2 = text(f"INSERT INTO users VALUES ('{user_id}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}' , 'active' , '{six_digit_pin}');")
             conn.execute(query2)
             return True
     
     def add_new_dispatcher(self , data):
         with self.engine.connect() as conn:
+            user_id = self.get_user_id_from_db()
             six_digit_pin = self.gernate_password_for_users()
-            query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{six_digit_pin}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , '{data['salary']}' );")
+            query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{user_id}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , 0 , '{six_digit_pin}' );")
             conn.execute(query1)
             
-            query2 = text(f"INSERT INTO users VALUES ('{six_digit_pin}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}');")
+            query2 = text(f"INSERT INTO users VALUES ('{user_id}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}' , 'active' , '{six_digit_pin}');")
             conn.execute(query2)
             return True 
         
@@ -54,6 +56,18 @@ class Admin_Modle():
                 if i == six_digit_pin:
                     self.gernate_password_for_users()
             return six_digit_pin
+        
+    def get_user_id_from_db(self):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT COALESCE(MAX(user_pin) , 0) FROM users;")
+            result = conn.execute(query1).fetchall()
+            result = int(result[0][0]) + 1
+            print("This = = " , result)
+            return result
+        
+            
+
+        
 
     def get_all_sales_for_db(self):
         with self.engine.connect() as conn:
@@ -164,7 +178,16 @@ class Admin_Modle():
         
     def get_all_user_pin_from_db(self):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT * from users;")
+            query1 = text(f"SELECT * from users where user_states = 'active';")
+            result = conn.execute(query1)
+            
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            return result_dict
+        
+    def get_all_disable_user_pin_from_db(self):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT * from users where user_states = 'unactive';")
             result = conn.execute(query1)
             
             column_names = result.keys()
@@ -184,3 +207,25 @@ class Admin_Modle():
             result = conn.execute(query).fetchall()
             print("This is result = " , result)
             return result
+        
+        
+        
+    def disable_the_user_from_db(self , user_pin):
+        with self.engine.connect() as conn:
+            query = text(f"UPDATE users SET user_states = 'unactive' WHERE user_pin = {user_pin};")
+            conn.execute(query)
+            print("The user is disable")
+            return True
+            
+            
+            
+    def enable_the_user_from_db(self , user_pin):
+        with self.engine.connect() as conn:
+            query = text(f"UPDATE users SET user_states = 'active' WHERE user_pin = {user_pin};")
+            conn.execute(query)
+            print("The user is disable")
+            return True
+            
+            
+# obj = Admin_Modle()
+# obj.get_user_id_from_db()

@@ -39,9 +39,12 @@ def login_page():
         return render_template("login_page.html")
     if request.method == "POST":
 
-        pin = request.form.get('user_pin')
-        if obj.check_pin_for_login(pin):
+        password = request.form.get('user_pin')
+        if obj.check_pin_for_login(password):
+            pin = obj.get_user_pin_by_user_id(password)
+            print("This is user pin == = = " , pin)
             user_data_list = obj.user_data(pin)
+            user_data = ''
             if user_data_list:
                 user_data = [item._asdict() for item in user_data_list]
                 # Now user_data is a list of dictionaries
@@ -79,4 +82,33 @@ def logout():
 
     # Redirect to the login page
     return redirect(url_for('login_page'))
+
+
+
+# @app.route('/changed_password' , methods=["GET", "POST"])
+# def changed_password():
+#     if request.method == "post":
+#         changed_password_data = request.form.to_dict()
+#         if obj.change_password_from_db(changed_password_data):
+#             flash(("You successfully Changed the password !!!" , 'changed_password_success'))
+#             return redirect(url_for('login_page'))
+        
+#     flash(("Sorry your pasword will not change. Kindly try Again !!!" , 'changed_password_fail'))
+#     return render_template('changed_password.html')
+
+
+@app.route('/changed_password', methods=["GET", "POST"])
+def changed_password():
+    if request. method == "GET":
+        return render_template('changed_password.html')
+    
+    if request.method == "POST":
+        changed_password_data = request.form.to_dict()
+        if obj.change_password_from_db(changed_password_data):
+            flash(("You successfully Changed the password !!!", 'changed_password_success'))
+            return redirect(url_for('login_page'))
+        else:
+            flash(("Sorry your password will not change. Kindly Enter Strong PIn !!!", 'changed_password_fail'))
+            return render_template('changed_password.html')
+
 

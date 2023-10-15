@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,104 +38,104 @@
     <!-- Page Wrapper -->
 
     <!-- Sidebar -->
-<div id="wrapper">
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center"
-            href="{{ url_for('admin_dashboard') }}">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+    <div id="wrapper">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="{{ url_for('admin_dashboard') }}">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <!-- <img src="/static/images/img/Truck_img_1.jpeg" alt="Logo Icon" class="img-profile rounded-circle"> -->
+
+                <div class="sidebar-brand-text mx-3">Admin</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
             </div>
-            <!-- <img src="/static/images/img/Truck_img_1.jpeg" alt="Logo Icon" class="img-profile rounded-circle"> -->
 
-            <div class="sidebar-brand-text mx-3">Admin</div>
-        </a>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('add_employee', filename='') }}">
+                    <span>Add Employee</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_all_sales_of_all_sales_man', filename='') }}">
+                    <span>View Sales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_first_from_sales', filename='') }}">
+                    <span>Before Update Sales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_load_and_carear', filename='') }}">
+                    <span>View LoadBoard</span>
+                </a>
+            </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('transfer_carears_to_dispatcher', filename='') }}">
+                    <span>Transfer carears</span>
+                </a>
+            </li>
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_card_records', filename='') }}">
+                    <span>Card Records</span>
+                </a>
+            </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_pin_of_all_user', filename='') }}">
+                    <span>View Password</span>
+                </a>
+            </li>
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('add_employee', filename='') }}">
-                <span>Add Employee</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('view_all_sales_of_all_sales_man', filename='') }}">
-                <span>View Sales</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('view_first_from_sales', filename='') }}">
-                <span>Before Update Sales</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('view_load_and_carear', filename='') }}">
-                <span>View LoadBoard</span>
-            </a>
-        </li>
-        
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('transfer_carears_to_dispatcher', filename='') }}">
-                <span>Transfer carears</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('view_card_records', filename='') }}">
-                <span>Card Records</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('view_pin_of_all_user', filename='') }}">
-                <span>View Password</span>
-            </a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
 
 
-    </ul>
-    <!-- End of Sidebar -->
+        </ul>
+        <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
-                <!-- Topbar Search -->
-                <!-- <form
+                    <!-- Topbar Search -->
+                    <!-- <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -149,124 +148,225 @@
                     </div>
                 </form> -->
 
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
 
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-
-                    </li>
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Huzair Malik</span>
-                            <img class="img-profile rounded-circle" src="static\images/img/undraw_profile.svg">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
                             </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
+
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Huzair Malik</span>
+                                <img class="img-profile rounded-circle" src="static\images/img/undraw_profile.svg">
                             </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url_for('logout', filename='') }}" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ url_for('logout', filename='') }}" data-toggle="modal"
+                                    data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
 
-                </ul>
+                    </ul>
 
-            </nav>
-            
-        <div class="container-fluid">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">All Employees PIN Records</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                </nav>
 
-                            <thead>
-                                <tr>
-                                    
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>PIN</th>
-                                    <th>User Type</th>
-                                    <th>Phone Number</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in user_pins %}
+                <div class="container-fluid">
 
-                                <tr>
-                                    <td>{{item['user_name']}}</td>
-                                    <td>{{item['user_email']}}</td>
-                                    <!-- <td>{{item['user_pin']}}</td> -->
-                                    <td class="pin-cell" onclick="revealPassword('{{ item['user_pin'] }}', this)">
-                                        ••••••••
-                                    </td>
-                                    <td>{{item['user_type']}}</td>
-                                    <td>{{item['user_phone_number']}}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message, category in messages %}
+                    {% if category == 'disable_success' %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading text-center">{{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h4>
                     </div>
+
+                    {% elif category == 'disable_fail' %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading text-center">{{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h4>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">All Employees PIN Records</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                    <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>PIN</th>
+                                            <th>User Type</th>
+                                            <th>Phone Number</th>
+                                            <th>Disable</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in user_pins %}
+
+                                        <tr>
+                                            <th>{{item['user_pin']}}</th>
+                                            <td>{{item['user_name']}}</td>
+                                            <td>{{item['user_email']}}</td>
+                                            <!-- <td>{{item['user_pin']}}</td> -->
+                                            <td class="pin-cell"
+                                                onclick="revealPassword('{{ item['user_id'] }}', this)">
+                                                ••••••••
+                                            </td>
+                                            <td>{{item['user_type']}}</td>
+                                            <td>{{item['user_phone_number']}}</td>
+
+                                            <td>
+                                                {% if item['user_type'] != 'admin' %}
+                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                    data-target="#user_disable_model"
+                                                    onclick="setDisableUser('{{ item['user_pin'] }}')">
+                                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    Disable
+                                                </a>
+                                                {% endif %}
+                                            </td>
+
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    {% if disable_user_pins != [] %}
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">UnActive Employees Records</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                    <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>PIN</th>
+                                            <th>User Type</th>
+                                            <th>Phone Number</th>
+                                            <th>Enable</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for item in disable_user_pins %}
+
+                                        <tr>
+                                            <td>{{item['user_pin']}}</td>
+                                            <td>{{item['user_name']}}</td>
+                                            <td>{{item['user_email']}}</td>
+                                            <!-- <td>{{item['user_pin']}}</td> -->
+                                            <td class="pin-cell"
+                                                onclick="revealPassword('{{ item['user_id'] }}', this)">
+                                                ••••••••
+                                            </td>
+                                            <td>{{item['user_type']}}</td>
+                                            <td>{{item['user_phone_number']}}</td>
+
+                                            <td>
+                                                {% if item['user_type'] != 'admin' %}
+                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                    data-target="#user_enable_model"
+                                                    onclick="setenableUser('{{ item['user_pin'] }}')">
+                                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    Enable
+                                                </a>
+                                                {% endif %}
+                                            </td>
+
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
-    </div>
+            {% endif %}
 
 
-    <script>
-        function revealPassword(pin, element) {
-            element.textContent = pin;
-            // You may want to add additional logic to hide the password after a certain period
-            setTimeout(function() {
-                element.textContent = "••••••••";
-            }, 2000); // Example: hide the password after 3 seconds
-        }
-    </script>
-    
-    
-    <!-- End of Main Content -->
+            <script>
+                function revealPassword(pin, element) {
+                    element.textContent = pin;
+                    // You may want to add additional logic to hide the password after a certain period
+                    setTimeout(function () {
+                        element.textContent = "••••••••";
+                    }, 2000); // Example: hide the password after 3 seconds
+                }
+            </script>
 
-    <!-- Footer -->
-    <!-- <footer class="sticky-footer bg-white">
+
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <!-- <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
                 <span>Copyright &copy; Your Website 2021</span>
             </div>
         </div>
     </footer> -->
-    <!-- End of Footer -->
+            <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -290,11 +390,67 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{ url_for('logout', filename='') }}">Logout</a>
+                    <a class="btn btn-primary" href="{{ url_for('logout') }}">Logout</a>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="user_disable_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Disable?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Disable" below if you are ready to Disable current User.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" id="disableUserButton" href="#">Disable</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function setDisableUser(userPin) {
+            var disableButton = document.getElementById('disableUserButton');
+            disableButton.href = "{{ url_for('disable_the_user', user_pin='') }}" + userPin;
+        }
+    </script>
+
+    <div class="modal fade" id="user_enable_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Enable?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Enable" below if you are ready to Enable current User.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" id="enableUserButton" href="#">Enable</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function setenableUser(userPin) {
+            var disableButton = document.getElementById('enableUserButton');
+            disableButton.href = "{{ url_for('enable_the_user', user_pin='') }}" + userPin;
+        }
+    </script>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="static\vendor\jquery\jquery.min.js"></script>

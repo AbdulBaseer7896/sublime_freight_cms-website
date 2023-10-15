@@ -153,7 +153,8 @@ def view_card_records():
 def view_pin_of_all_user():
     if request.method == "GET":
         user_pins = obj.get_all_user_pin_from_db()
-        return render_template("//admin_temp//view_user_pin.html" , user_pins = user_pins)
+        disable_user_pins = obj.get_all_disable_user_pin_from_db()
+        return render_template("//admin_temp//view_user_pin.html" , user_pins = user_pins , disable_user_pins = disable_user_pins)
             
 
 
@@ -168,3 +169,35 @@ def search_carear_for_admin_for_seach():
         all_sales_data_for_search = obj.get_first_form_sales_for_db_for_admin_search(search_text)
         return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data_for_search)
     
+    
+    
+    
+
+@app.route('/disable_the_user' , methods=["GET", "POST"])
+@login_required('admin')
+def disable_the_user():
+    print("This is able")
+    if request.method == 'GET':
+        user_pin = request.args.get('user_pin')
+        if obj.disable_the_user_from_db(user_pin):
+            flash(('You Succesfully Disabe The User !!!' , 'disable_success'))
+            return redirect(url_for('view_pin_of_all_user'))
+        else:
+            flash(('Sorry The User Will Not Disable Try Again !!!' , 'disable_fail'))
+            return redirect(url_for('view_pin_of_all_user'))
+        
+        
+        
+
+@app.route('/enable_the_user' , methods=["GET", "POST"])
+@login_required('admin')
+def enable_the_user():
+    print("This is able")
+    if request.method == 'GET':
+        user_pin = request.args.get('user_pin')
+        if obj.enable_the_user_from_db(user_pin):
+            flash(('You Succesfully Enable The User !!!' , 'enable_success'))
+            return redirect(url_for('view_pin_of_all_user'))
+        else:
+            flash(('Sorry The User Will Not enable Try Again !!!' , 'enable_fail'))
+            return redirect(url_for('view_pin_of_all_user'))
