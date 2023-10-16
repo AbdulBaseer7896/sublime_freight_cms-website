@@ -66,6 +66,7 @@
                                     <th>Truck / Traler</th>
                                     <th>Conversations</th>
                                     <th>Comments</th>
+                                    <th>Update</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -82,11 +83,12 @@
                                     <th>Truck / Traler</th>
                                     <th>Conversations</th>
                                     <th>Comments</th>
+                                    <th>Update</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 {% for item in appointment_data %}
-
+                                
                                 <tr>
                                     {% if item['appointment_type'] == 'active_sale'%}                                 
                                     <td>
@@ -126,9 +128,9 @@
                                     <td>{{item['truck_or_traler']}}</td>
                                     <td>{{item['conversations']}}</td>
                                     <td>{{item['comments']}}</td>
-                                    <!-- <td>
-                                        <a href="{{ url_for('update_carear_info', appointment_id = item['appointment_id']) }}" type="submit" class="btn">Update</a>
-                                    </td> -->
+                                    <td>
+                                        <a href="{{ url_for('update_the_appoinment', appointment_id = item['appointment_id']) }}" type="submit" class="btn">Update</a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

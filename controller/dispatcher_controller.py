@@ -59,17 +59,19 @@ def save_load_info():
     if request.method == 'GET':
         dispatch_info = session.get('data')
         carear_info = obj.get_carear_info(dispatch_info[0]['user_pin'])
-        return render_template('//dispatcher_temp//save_load_info.html' , dispatch_info = dispatch_info , carear_info = carear_info)
+        load_info  = ""
+        carear_info_for_display = ""
+        return render_template('//dispatcher_temp//save_load_info.html' , dispatch_info = dispatch_info , carear_info = carear_info , load_info = load_info , carear_info_for_display  = carear_info_for_display)
     if request.method == "POST":
         dispatch_info = session.get('data')
         load_info = request.form.to_dict()
-        print("This is load_info = = " , load_info)
+        print("This is load_info = = ==== 0 = " , load_info)
         if obj.store_load_info_in_db( load_info, dispatch_info[0]['user_pin']):
             flash(("your Load Information Saved succesfully !!!" , 'load_save_success'))
             return render_template('//dispatcher_temp//dispatcher_dashboard.html' , dispatch_info = dispatch_info)
         else:
             flash(("your Load Information could not Saved succesfully ERROR Try again !!!" , 'load_save_fail'))
-            return render_template('//dispatcher_temp//dispatcher_dashboard.html' , dispatch_info = dispatch_info)
+        return render_template('//dispatcher_temp//dispatcher_dashboard.html' , dispatch_info = dispatch_info)
         
 
  
@@ -104,3 +106,20 @@ def display_sides():
     if request.method == "GET":
         dispatch_info = session.get('data')
         return render_template("//dispatcher_temp//display_slides_in_web.html" , dispatch_info = dispatch_info)
+    
+    
+    
+    
+@app.route('/update_the_load_info' , methods=["GET", "POST"])
+@login_required('dispatcher')              
+def update_the_load_info():
+    if request.method == "GET":
+        dispatch_info = session.get('data')
+        load_id = request.args.get('load_id')
+        carear_id = request.args.get('carear_id')
+        carear_info_for_display = obj.get_carear_info_from_db_by_carear_id(carear_id)
+        load_info = obj.get_load_info_from_db_by_load_id(load_id)
+
+        return render_template('//dispatcher_temp//save_load_info.html' , dispatch_info = dispatch_info , carear_info_for_display = carear_info_for_display[0],  carear_info = "",  load_info = load_info)
+
+        

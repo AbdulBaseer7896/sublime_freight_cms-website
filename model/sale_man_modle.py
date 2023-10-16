@@ -178,3 +178,15 @@ class Sale_Man_Modle():
             result_dict = [dict(zip(column_names, row)) for row in result]
             return result_dict
         
+        
+    def get_appointment_data_from_db_by_appointment_id(self , appointment_id):
+        with self.engine.connect() as conn:
+            query = text(f"SELECT * FROM new_appointment WHERE appointment_id = '{appointment_id}';")
+
+            result = conn.execute(query)
+            column_names = result.keys()
+
+            # Fetch all rows as dictionaries
+            result_dict = [dict(zip(column_names, row)) for row in result]
+          
+            return result_dict[0]

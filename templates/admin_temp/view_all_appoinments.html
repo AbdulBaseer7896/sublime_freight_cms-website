@@ -47,137 +47,91 @@
 
                             <thead>
                                 <tr>
-                                    <th>Carear ID</th>
+                                    <th>Appointment ID</th>
                                     <th>Company Name</th>
                                     <th>Carear Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
                                     <th>State</th>
+                                    <th>Date</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Truck Type & Number</th>
-                                    <th>EIN</th>
-                                    <th>INC Name</th>
-                                    <th>Inc Number</th>
-                                    <th>INC Address</th>
-                                    <th>INC Email</th>
-                                    <th>INC Fax Number</th>
-                                    <th>INC Converges</th>
-                                    <th>Factoring Name</th>
-                                    <th>Factoring phone Number</th>
-                                    <th>Factoring Email</th>
-                                    <th>Factoring Address</th>
-                                    <th>Bank Name</th>
-                                    <th>Routing Number</th>
-                                    <th>Account Name</th>
-                                    <th>Bank Phone Number</th>
-                                    <th>Sale Man</th>
-                                    <th>Dispatcher</th>
+                                    <th>Truck / Traler</th>
+                                    <th>Conversations</th>
+                                    <th>Comments</th>
+                                    <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Carear ID</th>
+                                    <th>Appointment ID</th>
                                     <th>Company Name</th>
                                     <th>Carear Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
                                     <th>State</th>
+                                    <th>Date</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Truck Type & Number</th>
-                                    <th>EIN</th>
-                                    <th>INC Name</th>
-                                    <th>Inc Number</th>
-                                    <th>INC Address</th>
-                                    <th>INC Email</th>
-                                    <th>INC Fax Number</th>
-                                    <th>INC Converges</th>
-                                    <th>Factoring Name</th>
-                                    <th>Factoring phone Number</th>
-                                    <th>Factoring Email</th>
-                                    <th>Factoring Address</th>
-                                    <th>Bank Name</th>
-                                    <th>Routing Number</th>
-                                    <th>Account Name</th>
-                                    <th>Bank Phone Number</th>
-                                    <th>Sale Man</th>
-                                    <th>Dispatcher</th>
+                                    <th>Truck / Traler</th>
+                                    <th>Conversations</th>
+                                    <th>Comments</th>
+                                    <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {% for item in all_sales_data %}
-                                <tr>
-
-
-                                    {% if item['sale_type'] == 'active_sale'%}                                 
-                                    <td>
-                                        <a style="background-color: green;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_id'] }}
-                                        </a>
-                                    </td>
-                                    {% endif %}
-
-                                    {% if item['sale_type'] == 'inactive_sale'%}                                 
-                                    <td>
-                                        <a style="background-color: red;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_id'] }}
-                                        </a>
-                                    </td>
-                                    {% endif %}
-
-                                    {% if item['sale_type'] == 'good_appoinment'%}                                 
-                                    <td>
-                                        <a style="background-color: yellow;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_id'] }}
-                                        </a>
-                                    </td>
-                                    {% endif %}
-
+                                {% for item in appointment_data %}
                                 
+                                <tr>
+                                    {% if item['appointment_type'] == 'good_appointment'%}                                 
                                     <td>
-                                        <button class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                        <button style="background-color: green;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_name'] }}
+                                            {{ item['appointment_id'] }}
                                         </button>
                                     </td>
+                                    {% endif %}
 
-                                    
-                                    
+                                    {% if item['appointment_type'] == 'bad_appointment'%}                                 
+                                    <td>
+                                        <button style="background-color: red;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            {{ item['appointment_id'] }}
+                                        </button>
+                                    </td>
+                                    {% endif %}
+
+                                    {% if item['appointment_type'] == 'fellow_up_appoinment'%}                                 
+                                    <td>
+                                        <button style="background-color: yellow;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            {{ item['appointment_id'] }}
+                                        </button>
+                                    </td>
+                                    {% endif %}
+
                                     <td>{{item['company_name']}}</td>                    
+                                    <td>{{item['carear_name']}}</td>
                                     <td>{{item['usdot']}}</td>
                                     <td>{{item['mc']}}</td>
                                     <td>{{item['state']}}</td>
+                                    <td>{{item['date']}}</td>
                                     <td>{{item['email']}}</td>
                                     <td>{{item['phone_number']}}</td>
-                                    <td>{{item['truck_type_and_number']}}</td>
-                                    <td>{{item['ein']}}</td>
-                                    <td>{{item['inc_name']}}</td>
-                                    <td>{{item['inc_number']}}</td>
-                                    <td>{{item['inc_address']}}</td>
-                                    <td>{{item['inc_email']}}</td>
-                                    <td>{{item['inc_fax_number']}}</td>
-                                    <td>{{item['inc_coverges']}}</td>
-                                    <td>{{item['fac_name']}}</td>
-                                    <td>{{item['fac_phone_number']}}</td>
-                                    <td>{{item['fac_email']}}</td>
-                                    <td>{{item['fac_address']}}</td>
-                                    <td>{{item['bank_name']}}</td>
-                                    <td>{{item['routing_number']}}</td>
-                                    <td>{{item['account_number']}}</td>
-                                    <td>{{item['bank_phone_number']}}</td>
-                                    <td>{{item['sale_man_pin']}}</td>
-                                    <td>{{item['dispatcher_pin']}}</td>
+                                    <td>{{item['truck_or_traler']}}</td>
+                                    <td>{{item['conversations']}}</td>
+                                    <td>{{item['comments']}}</td>
+                                    <td>
+                                        <a href="{{ url_for('update_the_appoinments_by_admin', appointment_id = item['appointment_id']) }}" type="submit" class="btn">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Update</a>
+                                    </td>
                                     <td>
 
                                         <a class="dropdown-item" href="#" data-toggle="modal"
                                             data-target="#delete_appoinments"
-                                            onclick="set_delete_sales('{{ item['carear_id'] }}')">
+                                            onclick="set_delete_appointment('{{ item['appointment_id'] }}')">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             Delete
                                         </a>
@@ -210,7 +164,6 @@
 
 
 
-
         <div class="modal fade" id="delete_appoinments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -224,7 +177,7 @@
                 <div class="modal-body">Select "Delete" below if you are ready to Delete current Appoinment.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" id="delete_sales_button" href="#">Delete</a>
+                    <a class="btn btn-primary" id="delete_appoinment_button" href="#">Delete</a>
                 </div>
             </div>
         </div>
@@ -232,9 +185,9 @@
 
 
     <script>
-        function set_delete_sales(carear_id) {
-            var disableButton = document.getElementById('delete_sales_button');
-            disableButton.href = "{{ url_for('delete_the_sales_by_admin', carear_id='') }}" + carear_id;
+        function set_delete_appointment(appointment_id) {
+            var disableButton = document.getElementById('delete_appoinment_button');
+            disableButton.href = "{{ url_for('delete_the_appoinments_by_admin', appointment_id='') }}" + appointment_id;
         }
     </script>
 
@@ -313,7 +266,6 @@ $(document).ready(function() {
                 var popupContent = `
                 
 
-
                 <section class="form-02-main student-page">
     <div class="container">
         <div class="row">
@@ -340,7 +292,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Company Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.company_name}
+                                ${response.appointment_info.company_name}
                             </h5>
                             <!-- </div>
                             <hr>
@@ -349,7 +301,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Carear Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.carear_name}
+                                ${response.appointment_info.carear_name}
                             </h5>
                         </div>
                         <hr>
@@ -357,24 +309,17 @@ $(document).ready(function() {
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">US DOT
                             </div>
-                            <h5 class="col-sm-3 ">
-                                ${response.career_info.usdot}    
+                            <h5 class="col-sm-4 ">
+                                ${response.appointment_info.usdot}    
                             </h5>
                             <!-- </div>
                             <hr>
                             <div class="row"> -->
-                            <div class="col-sm-1 text-secondary">
+                            <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">MC</h6>
                             </div>
-                            <h5 class="col-sm-3 ">
-                                ${response.career_info.mc}
-                            </h5>
-
-                            <div class="col-sm-1 text-secondary">
-                                <h6 class="mb-0">State</h6>
-                            </div>
-                            <h5 class="col-sm-2 ">
-                                ${response.career_info.state}
+                            <h5 class="col-sm-4 ">
+                                ${response.appointment_info.mc}
                             </h5>
                         </div>
                         <hr>
@@ -383,159 +328,46 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Crear Email</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.email}                                             
+                                ${response.appointment_info.email}                                             
                             </h5>
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Carear Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.phone_number}                                    
+                                ${response.appointment_info.phone_number}                                    
                             </h5>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Truck type & Number</h6>
+                                <h6 class="mb-0">Truck / Traller</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.truck_type_and_number}                          
+                                ${response.appointment_info.truck_or_traler}                          
                             </h5>
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">EIN</h6>
+                                <h6 class="mb-0">Date</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.ein}                                                
+                                ${response.appointment_info.date}                                                
                             </h5>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">INC Name</h6>
+                                <h6 class="mb-0">Conversations</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_name}
+                                ${response.appointment_info.conversations}
                             </h5>
                             <!-- </div>
                             <hr>
                             <div class="row"> -->
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">INC Number</h6>
+                                <h6 class="mb-0">Comments</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                <p>${response.career_info.inc_number}</p>
-                            </h5>
-                        </div>
-
-
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">INC Address</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_address}                                       
-                            </h5>
-                            <!-- </div>
-                            <hr>
-                            <div class="row"> -->
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">INC Email</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_email}
-                            </h5>
-                        </div>
-                        <hr>
-                        
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">INC Fax Number</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_fax_number}
-                            </h5>
-                            <!-- </div>
-                            <hr>
-                            <div class="row"> -->
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">INC Coverges</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_coverges}
-                            </h5>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Fac Name</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.fac_name}
-                            </h5>
-
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Fac Phone Number</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.fac_phone_number}
-                            </h5>
-                        </div>
-                        <hr>
-
-                        <div class="row">
-
-
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Fac Address</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.fac_address}
-                            </h5>
-
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Fac Email</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.fac_email}
-                            </h5>
-
-
-                        </div>
-                        <hr>
-                        
-
-                        
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Bank Name</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.bank_name}
-                            </h5>
-
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Routing Number</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.routing_number}
-                            </h5>
-                        </div>
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Account Number</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.account_number}
-                            </h5>
-
-                            <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Bank Phone</h6>
-                            </div>
-                            <h5 class="col-sm-4 ">
-                                ${response.career_info.bank_phone_number}
+                                <p>${response.appointment_info.comments}</p>
                             </h5>
                         </div>
                     </div>
@@ -551,6 +383,7 @@ $(document).ready(function() {
 </div>
 </div>
 </section>
+
                 `;
                 $('#popupContent').html(popupContent);
                 

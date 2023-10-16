@@ -90,7 +90,7 @@ def update_carear_info():
 def new_appointment():
     if request.method == 'GET':
         sale_man_info = session.get('data')
-        return render_template("//sale_temp//new_appointment.html" , carear_info = "" , sale_man_info = sale_man_info)
+        return render_template("//sale_temp//new_appointment.html" , appointment_info = "" , sale_man_info = sale_man_info)
     if request.method == 'POST':
         form_data = request.form.to_dict()
         sale_man_info = session.get('data')
@@ -147,4 +147,25 @@ def view_all_appointments_for_search():
         appointment_data = obj.get_sales_man_appointment_from_db_for_search(sale_man_info[0]['user_pin'] , search_text)
         print("this data = " , appointment_data)
         return render_template("//sale_temp//view_all_appointment.html" , appointment_data = appointment_data , sale_man_info = sale_man_info)
+    
+    
+    
+    
+    
+@app.route('/update_the_appoinment' , methods=["GET", "POST"])
+@login_required('sale_man')              
+def update_the_appoinment():
+    if request.method == "GET":
+        appointment_id = request.args.get('appointment_id')
+        sale_man_info = session.get('data')
+        appointment_info = obj.get_appointment_data_from_db_by_appointment_id(appointment_id)
+        print("This is appo id = " , appointment_info)
+        return render_template("//sale_temp//new_appointment.html" , appointment_info = appointment_info , sale_man_info = sale_man_info)
+    if request.method == "POST":
+        form_data = request.form.to_dict()
+        print("This is form data = " , form_data)
+        sale_man_info = session.get('data')
+        flash(("you Successfully Update The Appointment!!!" , 'appointment_update_success'))
+        return render_template("//sale_temp//sale_dashboard.html" , sale_man_info= sale_man_info)
+    
     

@@ -56,6 +56,14 @@ class Dispatcher():
         
     def store_load_info_in_db(self , load_info , pin):
         with self.engine.connect() as conn:
+            query  = text(f"select * from load_details where load_id = '{load_info['load_id']}'  and carear_id = '{load_info['carear_id']}'   and dispatcher_pin = '{pin}'; ")
+            result1 = conn.execute(query).fetchall()
+            if result1 != []:
+                query = text(f" UPDATE load_details SET pick_up_location = '{load_info['pick_up_location']}', miles = '{load_info['miles']}', load_number = '{load_info['load_number']}', load_date = '{load_info['load_date']}', drop_location = '{load_info['drop_location']}', load_rate = '{load_info['load_rate']}', load_description = '{load_info['load_description']}' WHERE (load_id = '{load_info['load_id']}'  and carear_id  = '{load_info['carear_id']}'  and dispatcher_pin = '{pin}' );")
+                conn.execute(query)
+                print("THe appoiment update")
+                return True
+            
             query1 = text(f"SELECT COALESCE(MAX(load_id) , 0) FROM load_details;")
             result1 = conn.execute(query1).fetchall()
 
@@ -68,6 +76,7 @@ class Dispatcher():
             print("This restul = " , load_id)
             query = text(f"INSERT INTO load_details VALUES ( '{load_id}' , '{load_info['carear_id']}' , '{load_info['pick_up_location']}' , '{load_info['miles']}' , '{load_info['load_number']}' , '{load_info['load_date']}'  , '{load_info['drop_location']}'   , '{load_info['load_rate']}' , '{load_info['load_description']}' , '{pin}' );")
             conn.execute(query)
+            print("The appoiment inserted ")
             return True
 
 
@@ -151,3 +160,14 @@ class Dispatcher():
             result_dict = ""
             return result_dict
     
+
+    def get_load_info_from_db_by_load_id(self , load_id):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT * from load_details where load_id = {load_id};")
+            result = conn.execute(query1)
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            if result_dict != []:
+                return result_dict[0]
+            result_dict = ''
+            return result_dict

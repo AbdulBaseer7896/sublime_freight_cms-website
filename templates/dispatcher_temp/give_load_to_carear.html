@@ -134,7 +134,6 @@
                             <thead>
                                 <tr>
                                     <th>Load ID</th>
-                                    <th>Carear ID</th>
                                     <th>Load Number</th>
                                     <th>Pick Up Location</th>
                                     <th>Drop Location</th>
@@ -142,12 +141,12 @@
                                     <th>Load Date</th>
                                     <th>Load Rate</th>
                                     <th>Load Description</th>
+                                    <th>Update</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Load ID</th>
-                                    <th>Carear ID</th>
                                     <th>Load Number</th>
                                     <th>Pick Up Location</th>
                                     <th>Drop Location</th>
@@ -155,6 +154,7 @@
                                     <th>Load Date</th>
                                     <th>Load Rate</th>
                                     <th>Load Description</th>
+                                    <th>Update</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -163,7 +163,6 @@
                                     <!-- <td>Selected</td> -->
 
                                     <td>{{load['load_id']}}</td>
-                                    <td>{{load['carear_id']}}</td>
                                     <td>{{load['load_number']}}</td>
                                     <td>{{load['pick_up_location']}}</td>
                                     <td>{{load['drop_location']}}</td>
@@ -171,6 +170,9 @@
                                     <td>{{load['load_date']}}</td>
                                     <td>{{load['load_rate']}} $</td>
                                     <td>{{load['load_description']}}</td>
+                                    <td>
+                                        <a href="{{ url_for('update_the_load_info', load_id = load['load_id']   , carear_id = load['carear_id']) }}" type="submit" class="btn">Update</a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

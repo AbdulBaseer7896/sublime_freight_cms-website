@@ -225,6 +225,51 @@ class Admin_Modle():
             conn.execute(query)
             print("The user is disable")
             return True
+        
+    def get_appointment_data_from_db(self):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT * from new_appointment;")
+            result = conn.execute(query1)
+            
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            return result_dict
+        
+        
+    def get_appointment_info_from_db(self , appointment_id):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT * from new_appointment where appointment_id = '{appointment_id}';")
+            result = conn.execute(query1)
+            
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            return result_dict[0]
+        
+        
+    def update_the_appoinments_from_db(self , update_data):
+        with self.engine.connect() as conn:
+            query1 = text(f"UPDATE new_appointment SET company_name = '{update_data['company_name']}', usdot = '{update_data['usdot']}', email = '{update_data['email']}', truck_or_traler = '{update_data['truck_or_traler']}', comments = '{update_data['comments']}', carear_name = '{update_data['carear_name']}', mc = '{update_data['mc']}', phone_number = '{update_data['phone_number']}', conversations = '{update_data['conversations']}', appointment_type = '{update_data['appointment_type']}', sales_man_pin = '{update_data['company_name']}', state = '{update_data['state']}', date = '{update_data['date']}'  WHERE appointment_id = '{update_data['appointment_id']}';")
+            conn.execute(query1)
+            print("The appoinment update")
+            return True
+            
+    def delete_the_appointment_from_db(self , appointment_id):
+        with self.engine.connect() as conn:
+            query = text(f"DELETE FROM new_appointment WHERE appointment_id = '{appointment_id}';")
+            conn.execute(query)
+            print("The appoinment deleted")
+            return True
+        
+    def delete_the_sales_from_db(self , carear_id):
+        with self.engine.connect() as conn:
+            query1 = text(f"DELETE FROM new_sales_first_time WHERE carear_id = '{carear_id}';")
+            query2 = text(f"DELETE FROM sales_second_time WHERE carear_id = '{carear_id}';")
+            query3 = text(f"DELETE FROM untransfer_sales WHERE carear_id = '{carear_id}';")
+            conn.execute(query1)
+            conn.execute(query2)
+            conn.execute(query3)
+            print("The appoinment deleted")
+            return True
             
             
 # obj = Admin_Modle()

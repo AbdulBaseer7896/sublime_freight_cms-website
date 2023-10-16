@@ -201,3 +201,49 @@ def enable_the_user():
         else:
             flash(('Sorry The User Will Not enable Try Again !!!' , 'enable_fail'))
             return redirect(url_for('view_pin_of_all_user'))
+        
+        
+
+@app.route('/view_all_appoinments_of_all_sales_man' , methods=["GET", "POST"])
+@login_required('admin')
+def view_all_appoinments_of_all_sales_man():
+    if request.method == 'GET':
+        appointment_data = obj.get_appointment_data_from_db()
+        return render_template("admin_temp/view_all_appoinments.html" ,appointment_data = appointment_data )
+    
+@app.route('/update_the_appoinments_by_admin' , methods=["GET", "POST"])
+@login_required('admin')
+def update_the_appoinments_by_admin():
+    if request.method == "GET":
+        appointment_id = request.args.get('appointment_id')
+        appointment_info = obj.get_appointment_info_from_db(appointment_id)
+        return render_template("admin_temp/up_date_appoiment.html" , appointment_info = appointment_info)
+    
+    if request.method == "POST":
+        update_data = request.form.to_dict()
+        obj.update_the_appoinments_from_db(update_data)
+        return redirect(url_for('view_all_appoinments_of_all_sales_man'))
+        
+    
+@app.route('/delete_the_appoinments_by_admin' , methods=["GET", "POST"])
+@login_required('admin')  
+def delete_the_appoinments_by_admin():
+    print("This is delet function")
+    if request.method == "GET":
+        appointment_id = request.args.get("appointment_id")
+        obj.delete_the_appointment_from_db(appointment_id)
+        print("This is appointment id = " ,appointment_id)
+        return redirect(url_for("view_all_appoinments_of_all_sales_man"))
+    
+    
+    
+    
+@app.route('/delete_the_sales_by_admin' , methods=["GET", "POST"])
+@login_required('admin')  
+def delete_the_sales_by_admin():
+    print("This is delet function")
+    if request.method == "GET":
+        carear_id = request.args.get("carear_id")
+        obj.delete_the_sales_from_db(carear_id)
+        print("This is appointment id = " ,carear_id)
+        return redirect(url_for("view_all_sales_of_all_sales_man"))

@@ -1,20 +1,8 @@
-
-
-
-
-{% extends 'sale_temp/sales_man_temp.html' %}
-
-
-
-
-
-
+{% extends 'admin_temp/admin_temp.html' %}
 
 
 
 {% block header_sytyle %}
-        
-
 
     <style>
         .register {
@@ -172,9 +160,9 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel"
                                     aria-labelledby="home-tab">
-                                    <h3 class="register-heading">Add New Appointment</h3>
+                                    <h3 class="register-heading">Update Appointment</h3>
 
-                                    <form action="{{ url_for('new_appointment') }}" method="post"
+                                    <form action="{{ url_for('update_the_appoinments_by_admin') }}" method="post"
                                         enctype="multipart/form-data">
                                         <div class="row register-form">
                                             <div class="col-md-6">

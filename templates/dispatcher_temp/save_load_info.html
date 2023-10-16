@@ -4,7 +4,7 @@
 
 
 {% block header_sytyle %}
-        
+
 <style>
     .register {
         background: -webkit-linear-gradient(left, #3931af, #00c6ff);
@@ -134,130 +134,144 @@
 
 
 {% block main_body_contant %}
-                        
 
 
 
-                <div class="container register">
-                    <div class="row">
-                        <div class="col-md-3 register-left">
-                            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="">
-                            <h3>Welcome</h3>
-                            <p>To Sublime Freight Family</p>
-                        </div>
 
-                        {% if carear_info != [] %}
-                            
-                        <div class="col-md-9 register-right">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                    aria-labelledby="home-tab">
-                                    <h3 class="register-heading">Add New Load Details</h3>
-                                    <form action="{{ url_for('save_load_info') }}" method="post"
-                                        enctype="multipart/form-data">
-                                        <div class="row register-form">
-                                            <div class="col-md-6">
-                                                <!-- Sale Man form inputs -->
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="">
+            <h3>Welcome</h3>
+            <p>To Sublime Freight Family</p>
+        </div>
+
+        {% if carear_info != [] %}
+
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Add New Load Details</h3>
+                    <form action="{{ url_for('save_load_info') }}" method="post" enctype="multipart/form-data">
 
 
-                                                <div class="form-group d-none">
-                                                    <input name="load_id" type="text" class="form-control"
-                                                        placeholder="load Id " value="" />
-                                                </div>
-                                                
-
-                                                <div class="form-group">
-                                                    <select name="carear_id" class="form-select form-control"
-                                                        aria-label="Default select example" required>
-                                                        <option value='' disabled selected hidden> Select
-                                                            Carear
-                                                        </option>
-
-                                                        {% for i in carear_info %}
-                                                        <option value="{{i['carear_id']}}" name="carear_id">
-                                                            {{i['carear_name']}}&nbsp; &nbsp; &nbsp;ID: {{i['carear_id']}}
-                                                        </option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </div>
-                                                
-                                                </td>
-
-                                                
-                                                <div class="form-group">
-                                                    <input name="pick_up_location" type="text" class="form-control"
-                                                        placeholder="Pick Up Location" value="" />
-                                                    </div>
-
-                                                <div class="form-group">
-                                                    <input name="miles" type="text" class="form-control"
-                                                        placeholder="Miles" value="" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="load_number" type="text" class="form-control"
-                                                        placeholder="Load Number" value="" />
-                                                </div>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <!-- Sale Man form inputs -->
 
 
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <!-- Sale Man form inputs -->
-
+                                <div class="form-group d-none">
+                                    <input name="load_id" type="text" class="form-control" placeholder="load Id "
+                                        value="{{load_info['load_id']}}" />
 
 
-                                                <div class="form-group">
-                                                    <input name="load_date" type="date" class="form-control"
-                                                        placeholder="Load Date" value="" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="drop_location" type="text" class="form-control"
-                                                        placeholder="Drop Location " value="" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="load_rate" type="text" class="form-control"
-                                                        placeholder="Load Rate" value="" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="load_description" type="text" class="form-control"
-                                                        placeholder="Load Description" value="" />
-                                                    </div>
-                                                    
-                                                <input type="submit" class="btnRegister" value="Submit" />
-                                            </div>
-                                        </div>
-                                    </form>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                        
-                    {% else %}
-                        
-                    <h1>Sorry you do not have any carear</h1>
-                    {% endif %}
 
-                    </div>
+
+                                <div class="form-group">
+                                    {% if carear_info != "" %}
+                                    <select name="carear_id" class="form-select form-control"
+                                        aria-label="Default select example" required>
+                                        <option value='' disabled selected hidden> Select
+                                            Carear
+                                        </option>
+
+                                        {% for i in carear_info %}
+                                        <option value="{{i['carear_id']}}" name="carear_id">
+                                            {{i['carear_name']}}&nbsp; &nbsp; &nbsp;ID: {{i['carear_id']}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    {% else %}
+
+                                    <div class="form-group">
+                                        <input disabled type="text" class="form-control" placeholder="Carear & ID "
+                                            value="{{carear_info_for_display['carear_name']}}" />
+                                    </div>
+                                    <div class="d-none">
+                                        <input type="text" name="carear_id"
+                                            value="{{carear_info_for_display['carear_id']}}">
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                </td>
+
+
+                                <div class="form-group">
+                                    <input name="pick_up_location" type="text" class="form-control"
+                                        placeholder="Pick Up Location" value="{{load_info['pick_up_location']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="miles" type="text" class="form-control" placeholder="Miles"
+                                        value="{{load_info['miles']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="load_number" type="text" class="form-control" placeholder="Load Number"
+                                        value="{{load_info['load_number']}}" />
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <!-- Sale Man form inputs -->
+
+
+
+                                <div class="form-group">
+                                    <input name="load_date" type="date" class="form-control" placeholder="Load Date"
+                                        value="{{load_info['load_date']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="drop_location" type="text" class="form-control"
+                                        placeholder="Drop Location " value="{{load_info['drop_location']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="load_rate" type="text" class="form-control" placeholder="Load Rate"
+                                        value="{{load_info['load_rate']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="load_description" type="text" class="form-control"
+                                        placeholder="Load Description" value="{{load_info['load_description']}}" />
+                                </div>
+
+                                <input type="submit" class="btnRegister" value="Submit" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
+            </form>
+        </div>
+
+        {% else %}
+
+        <h1>Sorry you do not have any carear</h1>
+        {% endif %}
+
+    </div>
+</div>
+</div>
+<!-- Footer -->
+<!-- <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
             </footer> -->
-            <!-- End of Footer -->
+<!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
+</div>
+<!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
 
-    {% endblock main_body_contant %}
+{% endblock main_body_contant %}
