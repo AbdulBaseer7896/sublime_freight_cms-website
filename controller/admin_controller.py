@@ -31,14 +31,14 @@ def admin_dashboard():
         admin_info = session.get('data')
         print("This admin info = " , admin_info)
         return render_template('//admin_temp//admin_dashboard.html' , notification_data = notification_data , admin_info = admin_info)
-    
-    
+
     
 @app.route('/add_employee' , methods=["GET", "POST"])
 @login_required('admin')
 def add_employee():
     if request.method == 'GET':
-        return render_template('//admin_temp//add_employee.html')
+        admin_info = session.get('data')
+        return render_template('//admin_temp//add_employee.html'  , admin_info = admin_info)
     if request.method == 'POST':
         data = request.form.to_dict()
         image_file = request.files['employee_photo']
@@ -58,10 +58,10 @@ def add_employee():
             print("dispatch")
         else:
             flash(("Sorry the joining of new Employee Fails !!! " , 'new_employee_add_fails'))
-            return render_template('//admin_temp//admin_dashboard.html')
+            return redirect(url_for('admin_dashboard'))
             
         flash(("You Add the new Employee SuccessFully !!! " , 'new_employee_add_success'))
-        return render_template('//admin_temp//admin_dashboard.html')
+        return redirect(url_for('admin_dashboard'))
     
     
     
@@ -86,7 +86,8 @@ def view_all_sales_of_all_sales_man():
         head_light = request.args.get('head_light')
         print("This is head_light = " , head_light)
         obj.remore_the_nofiticatin_form_db_for_sales(head_light)
-        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data , head_light = head_light)
+        admin_info = session.get('data')
+        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data , head_light = head_light , admin_info = admin_info)
 
 
 
@@ -96,7 +97,8 @@ def view_all_sales_of_all_sales_man():
 def view_first_from_sales():
     if request.method == "GET":
         all_sales_data = obj.get_first_form_sales_for_db()
-        return render_template("//admin_temp//view_first_from_sales.html" , all_sales_data = all_sales_data)
+        admin_info = session.get('data')
+        return render_template("//admin_temp//view_first_from_sales.html" , all_sales_data = all_sales_data , admin_info = admin_info) 
     
     
     
@@ -104,25 +106,26 @@ def view_first_from_sales():
 @login_required('admin')     
 def transfer_carears_to_dispatcher():
     if request.method == "GET":
+        admin_info = session.get('data')
         untransfer_sales_data = obj.get_untransfer_sales_data()
         dispatcher_info = obj.get_all_dispater_name_and_pin()
         info_length = len(dispatcher_info)
-        return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length)
+        return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length , admin_info = admin_info)
     
     if request.method == "POST":
+        admin_info = session.get('data')
         
         dispater_carear_info = request.form.to_dict()
         check = obj.insert_carear_id_and_dispatcher_pin_in_db(dispater_carear_info)
         untransfer_sales_data = obj.get_untransfer_sales_data()
         dispatcher_info = obj.get_all_dispater_name_and_pin()
         info_length = len(dispatcher_info)
-        
         if check:
             flash(("This Carear is Forward Successfull !!!" , 'career_forward_success'))
-            return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length)
+            return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length , admin_info = admin_info)
 
         flash(("This Carear is Forward Fail !!!" , 'career_forward_fail'))
-        return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length)
+        return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length , admin_info = admin_info)
         
     
 
@@ -132,11 +135,12 @@ def transfer_carears_to_dispatcher():
 @login_required('admin')     
 def view_load_and_carear():
     if request.method == 'GET':
+        admin_info = session.get('data')
         load_info = obj.get_load_info_from_db_for_admin()
         carear_info = obj.get_carear_info_from_db_for_admin()
         # carear_info = carear_info.reverse()
         zipped_data = zip(carear_info, load_info)
-        return render_template("//admin_temp//view_load_and_carear_to_admin.html" , zipped_data = zipped_data)
+        return render_template("//admin_temp//view_load_and_carear_to_admin.html" , zipped_data = zipped_data , admin_info = admin_info)
     
     
 
@@ -144,34 +148,38 @@ def view_load_and_carear():
 @app.route('/gernater_url_to_store_card_info/<carear_id>', methods=["GET", "POST"])
 def gernater_url_to_store_card_info(carear_id):
     if request.method == "GET":
-        return render_template("//admin_temp//add_new_card_info.html" , carear_id = carear_id)
+        admin_info = session.get('data')
+        return render_template("//admin_temp//add_new_card_info.html" , carear_id = carear_id , admin_info = admin_info)
     
     
 @app.route('/stored_data', methods=["GET", "POST"]) 
 def stored_card_info_in_db():
     if request.method == "POST":
+        admin_info = session.get('data')
         card_info = request.form.to_dict()
         obj.stored_card_info_in_db(card_info)
         flash(("You uploaded the CARD Information Successfully!!!" , 'card_upload_success'))
-        return render_template("//admin_temp//add_new_card_info.html")
+        return render_template("//admin_temp//add_new_card_info.html" , admin_info = admin_info)
 
 
 
 @app.route('/view_card_records', methods=["GET", "POST"])
 @login_required('admin')     
 def view_card_records():
+    admin_info = session.get('data')
     if request.method == "GET":
         card_info = obj.get_card_data_from_db_to_display()
-        return render_template("//admin_temp//view_card_records.html" , card_info = card_info)
+        return render_template("//admin_temp//view_card_records.html" , card_info = card_info , admin_info = admin_info)
             
         
 @app.route('/view_pin_of_all_user', methods=["GET", "POST"])
 @login_required('admin')     
 def view_pin_of_all_user():
+    admin_info = session.get('data')
     if request.method == "GET":
         user_pins = obj.get_all_user_pin_from_db()
         disable_user_pins = obj.get_all_disable_user_pin_from_db()
-        return render_template("//admin_temp//view_user_pin.html" , user_pins = user_pins , disable_user_pins = disable_user_pins)
+        return render_template("//admin_temp//view_user_pin.html" , user_pins = user_pins , disable_user_pins = disable_user_pins , admin_info = admin_info)
             
 
 
@@ -181,10 +189,11 @@ def view_pin_of_all_user():
 @login_required('admin')
 def search_carear_for_admin_for_seach():
     if request.method == 'POST':
+        admin_info = session.get('data')
         search_text = request.form.get("search_text")
         print("This is search = " , search_text)
         all_sales_data_for_search = obj.get_first_form_sales_for_db_for_admin_search(search_text)
-        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data_for_search)
+        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data_for_search , admin_info = admin_info)
     
     
     
@@ -225,19 +234,23 @@ def enable_the_user():
 @login_required('admin')
 def view_all_appoinments_of_all_sales_man():
     if request.method == 'GET':
+        admin_info = session.get('data')
         appointment_data = obj.get_appointment_data_from_db()
         head_light = request.args.get('head_light')
         print("This is head_light = " , head_light)
         obj.remore_the_nofiticatin_form_db_for_appointment(head_light)
-        return render_template("admin_temp/view_all_appoinments.html" ,appointment_data = appointment_data  , head_light = head_light)
+        return render_template("admin_temp/view_all_appoinments.html" ,appointment_data = appointment_data  , head_light = head_light , admin_info = admin_info)
+    
+    
     
 @app.route('/update_the_appoinments_by_admin' , methods=["GET", "POST"])
 @login_required('admin')
 def update_the_appoinments_by_admin():
     if request.method == "GET":
+        admin_info = session.get('data')
         appointment_id = request.args.get('appointment_id')
         appointment_info = obj.get_appointment_info_from_db(appointment_id)
-        return render_template("admin_temp/up_date_appoiment.html" , appointment_info = appointment_info)
+        return render_template("admin_temp/up_date_appoiment.html" , appointment_info = appointment_info , admin_info = admin_info)
     
     if request.method == "POST":
         update_data = request.form.to_dict()

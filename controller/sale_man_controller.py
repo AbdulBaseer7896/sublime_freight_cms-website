@@ -46,7 +46,7 @@ def new_sale():
         print("This is id = " , sale_man_info[0]['user_pin'])
         obj.new_sales_first_time(form_data , sale_man_info[0]['user_pin'])
         flash(("congratulations you Done new Sale!!!" , 'new_sale_success'))
-        return render_template("//sale_temp//sale_dashboard.html" , sale_man_info= sale_man_info)
+        return redirect(url_for("sale_dashboard"))
     
     
     
@@ -94,7 +94,7 @@ def new_appointment():
         print("This is form_data = " , form_data)
         obj.add_new_appointment_in_db(form_data , sale_man_info[0]['user_pin'])
         flash(("congratulations your new appointment Added!!!" , 'new_appointment_success'))
-        return render_template("//sale_temp//sale_dashboard.html" , sale_man_info= sale_man_info)
+        return redirect(url_for("sale_dashboard"))
     
     
     
@@ -163,6 +163,6 @@ def update_the_appoinment():
         print("This is form data = " , form_data)
         sale_man_info = session.get('data')
         flash(("you Successfully Update The Appointment!!!" , 'appointment_update_success'))
-        return render_template("//sale_temp//sale_dashboard.html" , sale_man_info= sale_man_info)
+        return redirect(url_for("sale_dashboard"))
     
     

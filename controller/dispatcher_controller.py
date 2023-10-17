@@ -31,7 +31,7 @@ def dispatcher_dashboard():
         # flash(("Dear Dispatcher you succesfully Login !!!" , 'dispatcher_login_pass'))
         return render_template('//dispatcher_temp//dispatcher_dashboard.html' , dispatch_info = dispatch_info)
 
-
+        
 
 @app.route('/view_all_carear' , methods=["GET", "POST"])
 @login_required('dispatcher')
@@ -68,10 +68,10 @@ def save_load_info():
         print("This is load_info = = ==== 0 = " , load_info)
         if obj.store_load_info_in_db( load_info, dispatch_info[0]['user_pin']):
             flash(("your Load Information Saved succesfully !!!" , 'load_save_success'))
-            return render_template('//dispatcher_temp//dispatcher_dashboard.html' , dispatch_info = dispatch_info)
+            return redirect(url_for("dispatcher_dashboard"))
         else:
             flash(("your Load Information could not Saved succesfully ERROR Try again !!!" , 'load_save_fail'))
-        return render_template('//dispatcher_temp//dispatcher_dashboard.html' , dispatch_info = dispatch_info)
+        return redirect(url_for("dispatcher_dashboard"))
         
 
  
@@ -96,10 +96,9 @@ def display_give_load_to_carear():
         load_number = form_info['load_number']
         carear_info = obj.store_load_and_carear_info_in_db(load_number ,carear_id, dispatch_info[0]['user_pin'] )
         flash(("You Deliver the Load Succesfully !!!" , 'load_deliver_success'))
-        return render_template("//dispatcher_temp//dispatcher_dashboard.html" ,dispatch_info = dispatch_info)
+        return redirect(url_for("dispatcher_dashboard"))
             
 
-      
 @app.route('/display_sides' , methods=["GET", "POST"])
 @login_required('dispatcher')              
 def display_sides():
