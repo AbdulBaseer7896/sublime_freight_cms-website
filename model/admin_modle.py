@@ -61,9 +61,7 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             query1 = text(f"SELECT COALESCE(MAX(CAST(user_pin AS SIGNED)) , 0) FROM users;")
             result = conn.execute(query1).fetchall()
-            result = int(result[0][0]) + 1
-            print("This = = " , result)
-            return result
+            return int(result[0][0]) + 1
         
             
 
@@ -198,14 +196,12 @@ class Admin_Modle():
         
     def get_first_form_sales_for_db_for_admin_search(self , search_text):
         with self.engine.connect() as conn:
-            print("This search data  in fun = " , search_text)
             query = text(f"SELECT * from new_sales_first_time;")
             
             
             query = text(f"SELECT * FROM new_sales_first_time WHERE ('{search_text}' IN (carear_id, company_name, usdot, mc,  email , phone_number , carear_name , state ,sale_man_pin , dispatcher_pin));")
             
             result = conn.execute(query).fetchall()
-            print("This is result = " , result)
             return result
         
         
@@ -214,7 +210,6 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             query = text(f"UPDATE users SET user_states = 'unactive' WHERE user_pin = {user_pin};")
             conn.execute(query)
-            print("The user is disable")
             return True
             
             
@@ -223,7 +218,6 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             query = text(f"UPDATE users SET user_states = 'active' WHERE user_pin = {user_pin};")
             conn.execute(query)
-            print("The user is disable")
             return True
         
     def get_appointment_data_from_db(self):
@@ -250,14 +244,12 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             query1 = text(f"UPDATE new_appointment SET company_name = '{update_data['company_name']}', usdot = '{update_data['usdot']}', email = '{update_data['email']}', truck_or_traler = '{update_data['truck_or_traler']}', comments = '{update_data['comments']}', carear_name = '{update_data['carear_name']}', mc = '{update_data['mc']}', phone_number = '{update_data['phone_number']}', conversations = '{update_data['conversations']}', appointment_type = '{update_data['appointment_type']}', sales_man_pin = '{update_data['company_name']}', state = '{update_data['state']}', date = '{update_data['date']}'  WHERE appointment_id = '{update_data['appointment_id']}';")
             conn.execute(query1)
-            print("The appoinment update")
             return True
             
     def delete_the_appointment_from_db(self , appointment_id):
         with self.engine.connect() as conn:
             query = text(f"DELETE FROM new_appointment WHERE appointment_id = '{appointment_id}';")
             conn.execute(query)
-            print("The appoinment deleted")
             return True
         
     def delete_the_sales_from_db(self , carear_id):
@@ -268,7 +260,6 @@ class Admin_Modle():
             conn.execute(query1)
             conn.execute(query2)
             conn.execute(query3)
-            print("The appoinment deleted")
             return True
         
         
@@ -294,7 +285,6 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             querry2  = text(f"UPDATE notifications_table SET nofi_states = 'seen' WHERE (sale_carear_id = '{head_light_id}');")
             conn.execute(querry2)
-            print("this id become seen")
             return True
         
         
@@ -309,9 +299,7 @@ class Admin_Modle():
             # Using last index to get the file extension
             ext = split_filename[ext_pos]
             img_db_path = str(f"images/{folder_name}/{new_filename}.{ext}")
-            print("The type of path  = ", type(img_db_path))
             file.save(f"static/images/img/{folder_name}/{new_filename}.{ext}")
-            print("File uploaded successfully")
             return img_db_path
         
         

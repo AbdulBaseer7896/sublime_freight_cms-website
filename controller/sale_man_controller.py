@@ -42,8 +42,6 @@ def new_sale():
     if request.method == 'POST':
         form_data = request.form.to_dict()
         sale_man_info = session.get('data')
-        print("This is form_data = " , form_data)
-        print("This is id = " , sale_man_info[0]['user_pin'])
         obj.new_sales_first_time(form_data , sale_man_info[0]['user_pin'])
         flash(("congratulations you Done new Sale!!!" , 'new_sale_success'))
         return redirect(url_for("sale_dashboard"))
@@ -91,7 +89,6 @@ def new_appointment():
     if request.method == 'POST':
         form_data = request.form.to_dict()
         sale_man_info = session.get('data')
-        print("This is form_data = " , form_data)
         obj.add_new_appointment_in_db(form_data , sale_man_info[0]['user_pin'])
         flash(("congratulations your new appointment Added!!!" , 'new_appointment_success'))
         return redirect(url_for("sale_dashboard"))
@@ -104,7 +101,6 @@ def view_all_appointments():
     if request.method == "GET":
         sale_man_info = session.get('data')
         appointment_data = obj.get_sales_man_appointment_from_db(sale_man_info[0]['user_pin'])
-        print("this data = " , appointment_data)
         return render_template("//sale_temp//view_all_appointment.html" , appointment_data = appointment_data , sale_man_info = sale_man_info)
     
 
@@ -127,7 +123,6 @@ def search_carear_for_sales_man():
     if request.method == 'POST':
         sale_man_info = session.get('data')
         search_text = request.form.get("search_text")
-        print("This is search = " , search_text)
         sales_data = obj.get_sale_man_sales_for_search_text(sale_man_info[0]['user_pin'] , search_text)
         return render_template("//sale_temp//view_all_sales.html" , sales_data = sales_data , sale_man_info = sale_man_info)
     
@@ -140,9 +135,7 @@ def view_all_appointments_for_search():
     if request.method == "POST":
         sale_man_info = session.get('data')
         search_text = request.form.get("search_text")
-        print("This is search text = " , search_text)
         appointment_data = obj.get_sales_man_appointment_from_db_for_search(sale_man_info[0]['user_pin'] , search_text)
-        print("this data = " , appointment_data)
         return render_template("//sale_temp//view_all_appointment.html" , appointment_data = appointment_data , sale_man_info = sale_man_info)
     
     
@@ -156,11 +149,9 @@ def update_the_appoinment():
         appointment_id = request.args.get('appointment_id')
         sale_man_info = session.get('data')
         appointment_info = obj.get_appointment_data_from_db_by_appointment_id(appointment_id)
-        print("This is appo id = " , appointment_info)
         return render_template("//sale_temp//new_appointment.html" , appointment_info = appointment_info , sale_man_info = sale_man_info)
     if request.method == "POST":
         form_data = request.form.to_dict()
-        print("This is form data = " , form_data)
         sale_man_info = session.get('data')
         flash(("you Successfully Update The Appointment!!!" , 'appointment_update_success'))
         return redirect(url_for("sale_dashboard"))

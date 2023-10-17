@@ -31,15 +31,12 @@ class Dispatcher():
             result = conn.execute(query1).fetchall()
             int_result = [item[0] for item in result]
             if int_result != []:
-                print("This is 1 = " , int_result)
                 query2 = text(f"SELECT * from new_sales_first_time where carear_id IN ({', '.join(map(str, int_result))});")
 
-                print("Query2:", str(query2))
                 result = conn.execute(query2)
                 result = conn.execute(query2)
                 column_names = result.keys()
                 result_dict = [dict(zip(column_names, row)) for row in result]
-                print("this result - " , result_dict)
                 return result_dict
             return ""
         
@@ -50,7 +47,6 @@ class Dispatcher():
             result = conn.execute(query)
             column_names = result.keys()
             result_dict = [dict(zip(column_names, row)) for row in result]
-            print("This is carer info == = = " , result_dict)
             return result_dict
         
         
@@ -61,7 +57,6 @@ class Dispatcher():
             if result1 != []:
                 query = text(f" UPDATE load_details SET pick_up_location = '{load_info['pick_up_location']}', miles = '{load_info['miles']}', load_number = '{load_info['load_number']}', load_date = '{load_info['load_date']}', drop_location = '{load_info['drop_location']}', load_rate = '{load_info['load_rate']}', load_description = '{load_info['load_description']}' WHERE (load_id = '{load_info['load_id']}'  and carear_id  = '{load_info['carear_id']}'  and dispatcher_pin = '{pin}' );")
                 conn.execute(query)
-                print("THe appoiment update")
                 return True
             
             query1 = text(f"SELECT COALESCE(MAX(CAST(load_id AS SIGNED)) , 0) FROM load_details;")
@@ -73,27 +68,17 @@ class Dispatcher():
             else:
                 load_id = int(result1[0][0]) + 1
                 
-            print("This restul = " , load_id)
             query = text(f"INSERT INTO load_details VALUES ( '{load_id}' , '{load_info['carear_id']}' , '{load_info['pick_up_location']}' , '{load_info['miles']}' , '{load_info['load_number']}' , '{load_info['load_date']}'  , '{load_info['drop_location']}'   , '{load_info['load_rate']}' , '{load_info['load_description']}' , '{pin}' );")
             conn.execute(query)
-            print("The appoiment inserted ")
             return True
 
 
     def get_given_load_to_the_carear(self , pin , carear_id):
         with self.engine.connect() as conn:
-            print(type(pin))
-            print(type(carear_id))
             query1 = text(f"SELECT * from load_details where (dispatcher_pin = {pin} and carear_id = {carear_id});")
 
             result = conn.execute(query1)
-            # print()
-            # int_result = [item[0] for item in result]
-            # query2 = text(f"SELECT * from load_details where dispatcher_pin = {pin};")
-            # result = conn.execute(query2)
             column_names = result.keys()
-
-            # Fetch all rows as dictionaries
             result_dict = [dict(zip(column_names, row)) for row in result]
             return result_dict
         

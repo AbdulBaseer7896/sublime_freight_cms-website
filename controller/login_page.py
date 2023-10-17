@@ -42,7 +42,6 @@ def login_page():
         password = request.form.get('user_pin')
         if obj.check_pin_for_login(password):
             pin = obj.get_user_pin_by_user_id(password)
-            print("This is user pin == = = " , pin)
             user_data_list = obj.user_data(pin)
             user_data = ''
             if user_data_list:

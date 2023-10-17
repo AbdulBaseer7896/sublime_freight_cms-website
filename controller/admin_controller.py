@@ -26,10 +26,8 @@ def login_required(role):
 @login_required('admin')
 def admin_dashboard():
     if request.method == 'GET':
-        # flash(("Dear Admin you succesfully Login !!!" , 'admim_login_pass'))
         notification_data = obj.get_notification_data_from_db()
         admin_info = session.get('data')
-        print("This admin info = " , admin_info)
         return render_template('//admin_temp//admin_dashboard.html' , notification_data = notification_data , admin_info = admin_info)
 
     
@@ -45,17 +43,13 @@ def add_employee():
         folder_name = 'employee_photo_folder'
         image_path = ""
         if image_file and image_file.filename:
-            print("Thisj ijfid if image _ file = = " , image_file)
             image_path = obj.stored_image_in_file_and_send_path_in_db(image_file , folder_name)
         else:
-            print("There is not image at alll ija ")
             image_path = ""
         if data['user_type'] == "sale_man":
             obj.add_new_sale_man(data , image_path)
-            print('sale')
         elif data['user_type'] == "dispatcher":
             obj.add_new_dispatcher(data  , image_path)
-            print("dispatch")
         else:
             flash(("Sorry the joining of new Employee Fails !!! " , 'new_employee_add_fails'))
             return redirect(url_for('admin_dashboard'))
@@ -84,7 +78,6 @@ def view_all_sales_of_all_sales_man():
     if request.method == "GET":
         all_sales_data = obj.get_all_sales_for_db()
         head_light = request.args.get('head_light')
-        print("This is head_light = " , head_light)
         obj.remore_the_nofiticatin_form_db_for_sales(head_light)
         admin_info = session.get('data')
         return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data , head_light = head_light , admin_info = admin_info)
@@ -191,7 +184,6 @@ def search_carear_for_admin_for_seach():
     if request.method == 'POST':
         admin_info = session.get('data')
         search_text = request.form.get("search_text")
-        print("This is search = " , search_text)
         all_sales_data_for_search = obj.get_first_form_sales_for_db_for_admin_search(search_text)
         return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data_for_search , admin_info = admin_info)
     
@@ -202,7 +194,6 @@ def search_carear_for_admin_for_seach():
 @app.route('/disable_the_user' , methods=["GET", "POST"])
 @login_required('admin')
 def disable_the_user():
-    print("This is able")
     if request.method == 'GET':
         user_pin = request.args.get('user_pin')
         if obj.disable_the_user_from_db(user_pin):
@@ -218,7 +209,6 @@ def disable_the_user():
 @app.route('/enable_the_user' , methods=["GET", "POST"])
 @login_required('admin')
 def enable_the_user():
-    print("This is able")
     if request.method == 'GET':
         user_pin = request.args.get('user_pin')
         if obj.enable_the_user_from_db(user_pin):
@@ -237,7 +227,6 @@ def view_all_appoinments_of_all_sales_man():
         admin_info = session.get('data')
         appointment_data = obj.get_appointment_data_from_db()
         head_light = request.args.get('head_light')
-        print("This is head_light = " , head_light)
         obj.remore_the_nofiticatin_form_db_for_appointment(head_light)
         return render_template("admin_temp/view_all_appoinments.html" ,appointment_data = appointment_data  , head_light = head_light , admin_info = admin_info)
     
@@ -261,11 +250,9 @@ def update_the_appoinments_by_admin():
 @app.route('/delete_the_appoinments_by_admin' , methods=["GET", "POST"])
 @login_required('admin')  
 def delete_the_appoinments_by_admin():
-    print("This is delet function")
     if request.method == "GET":
         appointment_id = request.args.get("appointment_id")
         obj.delete_the_appointment_from_db(appointment_id)
-        print("This is appointment id = " ,appointment_id)
         return redirect(url_for("view_all_appoinments_of_all_sales_man"))
     
     
@@ -274,9 +261,7 @@ def delete_the_appoinments_by_admin():
 @app.route('/delete_the_sales_by_admin' , methods=["GET", "POST"])
 @login_required('admin')  
 def delete_the_sales_by_admin():
-    print("This is delet function")
     if request.method == "GET":
         carear_id = request.args.get("carear_id")
         obj.delete_the_sales_from_db(carear_id)
-        print("This is appointment id = " ,carear_id)
         return redirect(url_for("view_all_sales_of_all_sales_man"))
