@@ -39,7 +39,7 @@
             <!-- Page Heading -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">All Sales Records</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">All Appoinments Record</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -83,8 +83,18 @@
                             </tfoot>
                             <tbody>
                                 {% for item in appointment_data %}
-                                
-                                <tr>
+
+                                 {% if head_light == item['appointment_id'] %}
+                                    
+                                 <tr style="background-color: #36b9cc; color: white;">
+
+
+                                    {% else %}
+                                        <tr>
+
+                                    {% endif %}
+
+                                    
                                     {% if item['appointment_type'] == 'good_appointment'%}                                 
                                     <td>
                                         <button style="background-color: green;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">

@@ -82,9 +82,6 @@ def update_carear_info():
     
 
 
-
-
-
 @app.route('/new_appointment' , methods=["GET", "POST"])
 @login_required('sale_man')
 def new_appointment():

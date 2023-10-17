@@ -2,7 +2,7 @@ import mysql.connector
 from sqlalchemy import create_engine, text
 import os
 import random
-
+from datetime import datetime
 
 class Admin_Modle():
     engine = None
@@ -22,25 +22,25 @@ class Admin_Modle():
 
 
 
-    def add_new_sale_man(self , data):
+    def add_new_sale_man(self , data , image_path):
         with self.engine.connect() as conn:
             user_id = self.get_user_id_from_db()
             six_digit_pin = self.gernate_password_for_users()
-            query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' ,'{user_id}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , 0 , '{six_digit_pin}');")
+            query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' ,'{user_id}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , 0 , '{six_digit_pin}' , '{image_path}');")
             conn.execute(query1)
             
-            query2 = text(f"INSERT INTO users VALUES ('{user_id}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}' , 'active' , '{six_digit_pin}');")
+            query2 = text(f"INSERT INTO users VALUES ('{user_id}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}' , 'active' , '{six_digit_pin}' , '{image_path}');")
             conn.execute(query2)
             return True
     
-    def add_new_dispatcher(self , data):
+    def add_new_dispatcher(self , data , image_path):
         with self.engine.connect() as conn:
             user_id = self.get_user_id_from_db()
             six_digit_pin = self.gernate_password_for_users()
-            query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{user_id}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , 0 , '{six_digit_pin}' );")
+            query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{user_id}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , 0 , '{six_digit_pin}' , '{image_path}');")
             conn.execute(query1)
             
-            query2 = text(f"INSERT INTO users VALUES ('{user_id}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}' , 'active' , '{six_digit_pin}');")
+            query2 = text(f"INSERT INTO users VALUES ('{user_id}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}' , 'active' , '{six_digit_pin}' , '{image_path}');")
             conn.execute(query2)
             return True 
         
@@ -59,7 +59,7 @@ class Admin_Modle():
         
     def get_user_id_from_db(self):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT COALESCE(MAX(user_pin) , 0) FROM users;")
+            query1 = text(f"SELECT COALESCE(MAX(CAST(user_pin AS SIGNED)) , 0) FROM users;")
             result = conn.execute(query1).fetchall()
             result = int(result[0][0]) + 1
             print("This = = " , result)
@@ -270,7 +270,51 @@ class Admin_Modle():
             conn.execute(query3)
             print("The appoinment deleted")
             return True
+        
+        
+    def get_notification_data_from_db(self):
+        with self.engine.connect() as conn:
+            query1 = text(f"SELECT * from notifications_table where nofi_states = 'unseen' ;")
+            result = conn.execute(query1)
+            
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            return result_dict
+
             
             
+    def remore_the_nofiticatin_form_db_for_appointment(self , head_light_id ):
+        with self.engine.connect() as conn:
+            
+            querry1  = text(f"UPDATE notifications_table SET nofi_states = 'seen' WHERE (appointment_id = '{head_light_id}') ;")
+            conn.execute(querry1)
+            
+
+    def remore_the_nofiticatin_form_db_for_sales(self , head_light_id ):
+        with self.engine.connect() as conn:
+            querry2  = text(f"UPDATE notifications_table SET nofi_states = 'seen' WHERE (sale_carear_id = '{head_light_id}');")
+            conn.execute(querry2)
+            print("this id become seen")
+            return True
+        
+        
+        
+    def stored_image_in_file_and_send_path_in_db(self , file , folder_name):
+        if file is not None:
+            new_filename = str(datetime.now().timestamp()).replace(".", "")  # Generating unique name for the file
+            # Spliting ORIGINAL filename to seperate extenstion
+            split_filename = file.filename.split(".")
+            # Canlculating last index of the list got by splitting the filname
+            ext_pos = len(split_filename)-1
+            # Using last index to get the file extension
+            ext = split_filename[ext_pos]
+            img_db_path = str(f"images/{folder_name}/{new_filename}.{ext}")
+            print("The type of path  = ", type(img_db_path))
+            file.save(f"static/images/img/{folder_name}/{new_filename}.{ext}")
+            print("File uploaded successfully")
+            return img_db_path
+        
+        
+        
 # obj = Admin_Modle()
 # obj.get_user_id_from_db()

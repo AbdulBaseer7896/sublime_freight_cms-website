@@ -64,7 +64,7 @@ class Dispatcher():
                 print("THe appoiment update")
                 return True
             
-            query1 = text(f"SELECT COALESCE(MAX(load_id) , 0) FROM load_details;")
+            query1 = text(f"SELECT COALESCE(MAX(CAST(load_id AS SIGNED)) , 0) FROM load_details;")
             result1 = conn.execute(query1).fetchall()
 
             load_id = 0

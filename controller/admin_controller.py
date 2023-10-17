@@ -27,7 +27,10 @@ def login_required(role):
 def admin_dashboard():
     if request.method == 'GET':
         # flash(("Dear Admin you succesfully Login !!!" , 'admim_login_pass'))
-        return render_template('//admin_temp//admin_dashboard.html')
+        notification_data = obj.get_notification_data_from_db()
+        admin_info = session.get('data')
+        print("This admin info = " , admin_info)
+        return render_template('//admin_temp//admin_dashboard.html' , notification_data = notification_data , admin_info = admin_info)
     
     
     
@@ -38,10 +41,21 @@ def add_employee():
         return render_template('//admin_temp//add_employee.html')
     if request.method == 'POST':
         data = request.form.to_dict()
+        image_file = request.files['employee_photo']
+        folder_name = 'employee_photo_folder'
+        image_path = ""
+        if image_file and image_file.filename:
+            print("Thisj ijfid if image _ file = = " , image_file)
+            image_path = obj.stored_image_in_file_and_send_path_in_db(image_file , folder_name)
+        else:
+            print("There is not image at alll ija ")
+            image_path = ""
         if data['user_type'] == "sale_man":
-            obj.add_new_sale_man(data)
+            obj.add_new_sale_man(data , image_path)
+            print('sale')
         elif data['user_type'] == "dispatcher":
-            obj.add_new_dispatcher(data)
+            obj.add_new_dispatcher(data  , image_path)
+            print("dispatch")
         else:
             flash(("Sorry the joining of new Employee Fails !!! " , 'new_employee_add_fails'))
             return render_template('//admin_temp//admin_dashboard.html')
@@ -69,7 +83,10 @@ def popup_content():
 def view_all_sales_of_all_sales_man():
     if request.method == "GET":
         all_sales_data = obj.get_all_sales_for_db()
-        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data)
+        head_light = request.args.get('head_light')
+        print("This is head_light = " , head_light)
+        obj.remore_the_nofiticatin_form_db_for_sales(head_light)
+        return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data , head_light = head_light)
 
 
 
@@ -209,7 +226,10 @@ def enable_the_user():
 def view_all_appoinments_of_all_sales_man():
     if request.method == 'GET':
         appointment_data = obj.get_appointment_data_from_db()
-        return render_template("admin_temp/view_all_appoinments.html" ,appointment_data = appointment_data )
+        head_light = request.args.get('head_light')
+        print("This is head_light = " , head_light)
+        obj.remore_the_nofiticatin_form_db_for_appointment(head_light)
+        return render_template("admin_temp/view_all_appoinments.html" ,appointment_data = appointment_data  , head_light = head_light)
     
 @app.route('/update_the_appoinments_by_admin' , methods=["GET", "POST"])
 @login_required('admin')

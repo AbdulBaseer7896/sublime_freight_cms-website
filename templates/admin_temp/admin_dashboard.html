@@ -1,7 +1,69 @@
 {% extends 'admin_temp/admin_temp.html' %}
 
 
+
+{% block for_notifications %}
+                            
+
+
+<li class="nav-item dropdown no-arrow mx-1">
+    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bell fa-fw"></i>
+        <!-- Counter - Alerts -->
+        <span class="badge badge-danger badge-counter">{{ notification_data|length }}+</span>
+    </a>
+    <!-- Dropdown - Alerts -->
+    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        aria-labelledby="alertsDropdown" style="max-height: 300px; overflow-y: auto;">
+        <h6 class="dropdown-header">
+            Alerts Center
+        </h6>
+
+        {% for item in notification_data %}
+            
+        <div class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+                {% if item['appointment_id']  != '' %}
+                <div class="icon-circle bg-primary">
+                    <a href="{{ url_for('view_all_appoinments_of_all_sales_man', head_light=item['appointment_id']) }}"><i class="fas fa-file-alt text-white"></i></a>
+
+                </div>
+            </div>
+            <div>
+                <div class="small text-gray-500">{{item['date']}}</div>
+                    <span><b>{{item['sales_man_pin']}}</b></span>
+                    Has been add new Appoinment. Carear Name({{item['carear_name']}})
+                </div>
+
+
+                {% endif %}
+
+                {% if item['sale_carear_id'] != "" %}
+                <div class="icon-circle bg-success">
+                    <a href="{{ url_for('view_all_sales_of_all_sales_man', head_light=item['sale_carear_id']) }}"><i class="fas fa-donate text-white"></i></a>
+                </div>
+            </div>
+            <div>
+            <div class="small text-gray-500">{{item['date']}}</div>
+                <span><b>{{item['sales_man_pin']}}</b></span>
+                Has been add new Sales. Carear Name({{item['carear_name']}})
+            </div>
+                {% endif %}
+        </div>
+        {% endfor %} 
+
+    </div>
+</li>
+
+
+{% endblock for_notifications %}
+
+
+
 {% block main_body_contant %}
+
+
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

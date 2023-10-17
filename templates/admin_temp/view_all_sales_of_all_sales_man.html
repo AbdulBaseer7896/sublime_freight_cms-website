@@ -109,8 +109,15 @@
                             </tfoot>
                             <tbody>
                                 {% for item in all_sales_data %}
-                                <tr>
+                                 {% if head_light == item['carear_id'] %}
+                                    
+                                 <tr style="background-color: #36b9cc; color: white;">
 
+
+                                    {% else %}
+                                        <tr>
+
+                                    {% endif %}
 
                                     {% if item['sale_type'] == 'active_sale'%}                                 
                                     <td>

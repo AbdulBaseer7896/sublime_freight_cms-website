@@ -17,6 +17,9 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <!-- Custom styles for this template-->
     <!-- <link href="css/sb-admin-2.min.css" rel="stylesheet"> -->
     <link href="static\CSS\css/sb-admin-2.min.css" rel="stylesheet">
@@ -172,14 +175,20 @@
 
                         </li>
 
+
+                        {% block for_notifications %}
+                            
+                        {% endblock for_notifications %}
+
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Huzair Malik</span>
-                                <img class="img-profile rounded-circle" src="static\images/img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{admin_info[0]['user_name']}}</span>
+                                <img class="img-profile rounded-circle" src="static/{{admin_info[0]['user_pic']}}"  alt="Profile Image" onerror="this.src='static/images/img/undraw_profile.svg'">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -1,7 +1,8 @@
 import mysql.connector
 from sqlalchemy import create_engine, text
 import os
-
+from datetime import datetime
+import pytz
 
 
 class Sale_Man_Modle():
@@ -37,8 +38,8 @@ class Sale_Man_Modle():
                     print("This is 3")
                     carear_id = 0
                 else:
-                    query_check = text(f"SELECT * FROM new_sales_first_time where carear_id = {carear_id};")
-                    result = conn.execute(query_check)
+                    query_check1 = text(f"SELECT * FROM new_sales_first_time where carear_id = {carear_id};")
+                    result = conn.execute(query_check1)
                     column_names = result.keys()
                     change_data = [dict(zip(column_names, row)) for row in result]
                     change_data = change_data[0]
@@ -63,21 +64,45 @@ class Sale_Man_Modle():
                         conn.execute(insert_in_untransfer_sales)
                         print("This is 6")
             else:
-                query = text(f"SELECT MAX(carear_id) FROM new_sales_first_time;")
+                carear_id = 0
+                query = text(f"SELECT MAX(CAST(carear_id AS SIGNED)) FROM new_sales_first_time ;")
                 result = conn.execute(query).fetchall()
                 if result[0][0] == None:
                     print("This is 8")
                     carear_id = 1
                 else:
                     print("This is 7")
+                    print("This is type - " , type(int(result[0][0])))
+                    print("This is value = " , result[0][0])
                     carear_id = int(result[0][0]) + 1
+                    print("This is caraer id = = == "  , carear_id)
+                print("This is imaportat i p p = = =" , carear_id)
                     
-                query1 =  text(f"INSERT INTO new_sales_first_time VALUES ( {carear_id} , '{data['company_name']}' ,'{data['usdot']}' , '{data['email']}' , '{data['truck_type_and_number']}' , '{data['carear_name']}' , '{data['mc']}'  , '{data['phone_number']}'   , '{data['ein']}' , '{data['inc_name']}' , '{data['inc_address']}' , '{data['inc_fax_number']}' , '{data['inc_number']}' , '{data['inc_email']}'  , '{data['inc_coverges']}'  , '{data['fac_name']}' , '{data['fac_email']}' , '{data['fac_phone_number']}' , '{data['fac_address']}' , '{data['bank_name']}' , '{data['account_number']}'  , '{data['sale_type']}'  , '{data['routing_number']}' , '{data['bank_phone_number']}'  , '{data['date']}' , '{data['state']}' ,  {sale_man_pin}, '' );")
-                query2 =  text(f"INSERT INTO untransfer_sales VALUES ( {carear_id} , '{data['company_name']}' ,'{data['usdot']}' , '{data['email']}' , '{data['truck_type_and_number']}' , '{data['carear_name']}' , '{data['mc']}'  , '{data['phone_number']}'   , '{data['ein']}' , '{data['inc_name']}' , '{data['inc_address']}' , '{data['inc_fax_number']}' , '{data['inc_number']}' , '{data['inc_email']}'  , '{data['inc_coverges']}'  , '{data['fac_name']}' , '{data['fac_email']}' , '{data['fac_phone_number']}' , '{data['fac_address']}' , '{data['bank_name']}' , '{data['account_number']}'  , '{data['sale_type']}'  , '{data['routing_number']}' , '{data['bank_phone_number']}' , '{data['date']}' , '{data['state']}' ,   {sale_man_pin}, '' );")
+                    
+                query1 =  text(f"INSERT INTO new_sales_first_time VALUES ( '{carear_id}' , '{data['company_name']}' ,'{data['usdot']}' , '{data['email']}' , '{data['truck_type_and_number']}' , '{data['carear_name']}' , '{data['mc']}'  , '{data['phone_number']}'   , '{data['ein']}' , '{data['inc_name']}' , '{data['inc_address']}' , '{data['inc_fax_number']}' , '{data['inc_number']}' , '{data['inc_email']}'  , '{data['inc_coverges']}'  , '{data['fac_name']}' , '{data['fac_email']}' , '{data['fac_phone_number']}' , '{data['fac_address']}' , '{data['bank_name']}' , '{data['account_number']}'  , '{data['sale_type']}'  , '{data['routing_number']}' , '{data['bank_phone_number']}'  , '{data['date']}' , '{data['state']}' ,  {sale_man_pin}, '' );")
+                query2 =  text(f"INSERT INTO untransfer_sales VALUES ( '{carear_id}' , '{data['company_name']}' ,'{data['usdot']}' , '{data['email']}' , '{data['truck_type_and_number']}' , '{data['carear_name']}' , '{data['mc']}'  , '{data['phone_number']}'   , '{data['ein']}' , '{data['inc_name']}' , '{data['inc_address']}' , '{data['inc_fax_number']}' , '{data['inc_number']}' , '{data['inc_email']}'  , '{data['inc_coverges']}'  , '{data['fac_name']}' , '{data['fac_email']}' , '{data['fac_phone_number']}' , '{data['fac_address']}' , '{data['bank_name']}' , '{data['account_number']}'  , '{data['sale_type']}'  , '{data['routing_number']}' , '{data['bank_phone_number']}' , '{data['date']}' , '{data['state']}' ,   {sale_man_pin}, '' );")
                 print("This is 6")
                 conn.execute(query1)
                 conn.execute(query2)
                 print("this is one")
+                
+                
+
+                querry1 = text(f"SELECT MAX(CAST(noti_id AS SIGNED)) FROM notifications_table;")
+                result = conn.execute(querry1).fetchall()
+                noti_id = 0
+                if result[0][0] == None:
+                    print("This is 8")
+                    noti_id = 1
+                else:
+                    print("This is 7")
+                    noti_id = int(result[0][0]) + 1
+                    
+                crunt_date = self.get_local_time_ampm()
+                querry = text(f"INSERT INTO notifications_table VALUES ('{noti_id}', '{crunt_date}', '', '{carear_id}', '{data['carear_name']}', '{sale_man_pin}' , 'new_sales' , 'unseen');")
+
+                conn.execute(querry)
+                
                 return True
     
         
@@ -109,19 +134,48 @@ class Sale_Man_Modle():
 
 
 
+
+    def get_local_time_ampm(self):
+        lahore_timezone = pytz.timezone('Asia/Karachi')
+
+        # Get the current time in Lahore
+        lahore_time = datetime.now(lahore_timezone)
+
+        # Format the local time in AM/PM format
+        local_time_ampm = lahore_time.strftime('%Y-%m-%d %I:%M:%S %p')
+        return local_time_ampm
+    
+    
+    
     def add_new_appointment_in_db(self , data , sale_man_pin):
         with self.engine.connect() as conn:
-            query = text(f"SELECT MAX(appointment_id) FROM new_appointment;")
+                            
+            query = text(f"SELECT MAX(CAST(appointment_id AS SIGNED)) FROM new_appointment;")
             result = conn.execute(query).fetchall()
             if result[0][0] == None:
                 print("This is 8")
-                carear_id = 1
+                appointment_id = 1
             else:
                 print("This is 7")
-                carear_id = int(result[0][0]) + 1
-            query1 =  text(f"INSERT INTO new_appointment VALUES ( {carear_id} , '{data['company_name']}' ,'{data['usdot']}' , '{data['email']}' , '{data['truck_or_traler']}' , '{data['comments']}' , '{data['carear_name']}'  , '{data['mc']}'   , '{data['phone_number']}' , '{data['conversations']}' , '{data['appointment_type']}', {sale_man_pin} ,  '{data['state']}' , '{data['date']}' );")
+                appointment_id = int(result[0][0]) + 1
+            query1 =  text(f"INSERT INTO new_appointment VALUES ( {appointment_id} , '{data['company_name']}' ,'{data['usdot']}' , '{data['email']}' , '{data['truck_or_traler']}' , '{data['comments']}' , '{data['carear_name']}'  , '{data['mc']}'   , '{data['phone_number']}' , '{data['conversations']}' , '{data['appointment_type']}', {sale_man_pin} ,  '{data['state']}' , '{data['date']}' );")
             conn.execute(query1)
             print("new appointment display")
+            crunt_date = self.get_local_time_ampm()
+            
+            
+            querry1 = text(f"SELECT MAX(CAST(noti_id AS SIGNED)) FROM notifications_table;")
+            result = conn.execute(querry1).fetchall()
+            if result[0][0] == None:
+                print("This is 8")
+                noti_id = 1
+            else:
+                print("This is 7")
+                noti_id = int(result[0][0]) + 1
+            querry = text(f"INSERT INTO notifications_table VALUES ('{noti_id}', '{crunt_date}', '{appointment_id}', '', '{data['carear_name']}', '{sale_man_pin}' , 'new_appointment'  , 'unseen');")
+
+            conn.execute(querry)
+            
             return True
 
 
