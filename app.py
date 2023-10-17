@@ -1,9 +1,8 @@
 from flask import Flask , render_template , request
 from sqlalchemy.exc import OperationalError
-from flask_socketio import SocketIO, emit
+
 app = Flask(__name__)
 
-socketio = SocketIO(app)
 app.debug = True
 app.secret_key = "your_secret_key"
 
@@ -22,4 +21,4 @@ from controller import *
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    app.run(debug=True) 
