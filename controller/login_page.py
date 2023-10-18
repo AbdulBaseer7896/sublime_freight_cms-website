@@ -38,8 +38,11 @@ def login_page():
     if request.method == "GET":
         return render_template("login_page.html")
     if request.method == "POST":
+        
 
         password = request.form.get('user_pin')
+        
+        print("This is passwor = " , password)
         if obj.check_pin_for_login(password):
             pin = obj.get_user_pin_by_user_id(password)
             user_data_list = obj.user_data(pin)

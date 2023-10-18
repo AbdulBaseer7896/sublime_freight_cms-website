@@ -36,17 +36,13 @@
 {% endblock search_bar_contant %}
 
 
-
-
-
-
 {% block main_body_contant %}
-                    
+
 
             <!-- Page Heading -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">All Appoinment Records</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">All Appoinments Record</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -88,11 +84,23 @@
                             </tfoot>
                             <tbody>
                                 {% for item in appointment_data %}
-                                
-                                <tr>
+
+                                 {% if head_light == item['appointment_id'] %}
+                                    
+                                 <tr style="background-color: #36b9cc; color: white;">
+
+
+                                    {% else %}
+                                        <tr>
+
+                                    {% endif %}
+
+                                    
                                     {% if item['appointment_type'] == 'good_appointment'%}                                 
                                     <td>
-                                        <button style="background-color: green;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
+                                        <button 
+                                        onclick="showDetails('{{ item.appointment_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.date }}' , '{{ item.email }}', '{{ item.phone_number }}', '{{ item.truck_or_traler }}' , '{{ item.conversations }}', '{{ item.comments }}')"
+                                        style="background-color: green;" class="dropdown-item openPopupBtn">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['appointment_id'] }}
                                         </button>
@@ -101,7 +109,9 @@
 
                                     {% if item['appointment_type'] == 'bad_appointment'%}                                 
                                     <td>
-                                        <button style="background-color: red;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
+                                        <button 
+                                        onclick="showDetails('{{ item.appointment_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.date }}' , '{{ item.email }}', '{{ item.phone_number }}', '{{ item.truck_or_traler }}' , '{{ item.conversations }}', '{{ item.comments }}')"
+                                        style="background-color: red;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['appointment_id'] }}
                                         </button>
@@ -110,7 +120,9 @@
 
                                     {% if item['appointment_type'] == 'fellow_up_appoinment'%}                                 
                                     <td>
-                                        <button style="background-color: yellow;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
+                                        <button 
+                                        onclick="showDetails('{{ item.appointment_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.date }}' , '{{ item.email }}', '{{ item.phone_number }}', '{{ item.truck_or_traler }}' , '{{ item.conversations }}', '{{ item.comments }}')"
+                                        style="background-color: yellow;" class="dropdown-item openPopupBtn" data-career-id="{{ item['appointment_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['appointment_id'] }}
                                         </button>
@@ -138,16 +150,6 @@
                     </div>
                 </div>
             </div>
- <!-- End of Main Content -->
-
-                <!-- Footer -->
-                <!-- <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2021</span>
-                        </div>
-                    </div>
-                </footer> -->
                 <!-- End of Footer -->
 
             </div>
@@ -158,48 +160,67 @@
 
 
 
-<div class="modal fade bd-example-modal-xl" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+
+
+
+
+<div class="modal fade bd-example-modal-xl" tabindex="-2" role="dialog" id="myModal">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="popupModalLabel">Career Details</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title">Appointment Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            
-            <!-- Content of your popup goes here -->
-            <div class="modal-body" id="popupContent"></div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div class="modal-body" id="modal-body">
+                <!-- Row details will be displayed here -->
             </div>
+
         </div>
     </div>
 </div>
 
 
+<div class="modal fade" id="delete_appoinments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Disable?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Select "Delete" below if you are ready to Delete current Appoinment.</div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" id="delete_appoinment_button" href="#">Delete</a>
+        </div>
+    </div>
+</div>
+</div>
+
 
 <script>
-$(document).ready(function() {
-    // Add click event listener to the buttons
-    $('.openPopupBtn').on('click', function() {
-        // Get the career ID from the data attribute
-        var careerId = $(this).data('career-id');
+function set_delete_appointment(appointment_id) {
+    var disableButton = document.getElementById('delete_appoinment_button');
+    disableButton.href = "{{ url_for('delete_the_appoinments_by_admin', appointment_id='') }}" + appointment_id;
+}
+</script>
 
-        // Make an AJAX request to get the content and variable for the popup
-        $.ajax({
-            url: '/popup_content_for_sale_man_to_display_appointments?careerId=' + encodeURIComponent(careerId),
-            method: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                // Update the modal content with the received content and variable
-                var popupContent = `
+
+
+
+<script>
+    function showDetails(appointment_id, company_name, carear_name , usdot , mc , state ,date  , email , phone_number , truck_or_traler , conversations , comments ) {
+        // Set the modal body content
+        var modalBody = document.getElementById("modal-body");
+
+        modalBody.innerHTML = `
                 
 
-
-
-<section class="form-02-main student-page">
+                <section class="form-02-main student-page">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -209,7 +230,7 @@ $(document).ready(function() {
                         <!-- <div class="logo">
                             <img src="/static/images/public_images/user.png">
                         </div> -->
-                        <h1 class="text-center">Carear Detailes</h1>
+                        <h1 class="text-center">Appointment # ${appointment_id}</h1>
 
                         <div class="form-group">
 <div class="container">
@@ -225,7 +246,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Company Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.company_name}
+                                ${company_name}
                             </h5>
                             <!-- </div>
                             <hr>
@@ -234,7 +255,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Carear Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.carear_name}
+                                ${carear_name}
                             </h5>
                         </div>
                         <hr>
@@ -243,7 +264,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">US DOT
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.usdot}    
+                                ${usdot}    
                             </h5>
                             <!-- </div>
                             <hr>
@@ -252,7 +273,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">MC</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.mc}
+                                ${mc}
                             </h5>
                         </div>
                         <hr>
@@ -261,13 +282,13 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Crear Email</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.email}                                             
+                                ${email}                                             
                             </h5>
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Carear Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.phone_number}                                    
+                                ${phone_number}                                    
                             </h5>
                         </div>
                         <hr>
@@ -276,13 +297,13 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Truck / Traller</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.truck_or_traler}                          
+                                ${truck_or_traler}                          
                             </h5>
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Date</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.date}                                                
+                                ${date}                                                
                             </h5>
                         </div>
                         <hr>
@@ -291,7 +312,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Conversations</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.appointment_info.conversations}
+                                ${conversations}
                             </h5>
                             <!-- </div>
                             <hr>
@@ -300,7 +321,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Comments</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                <p>${response.appointment_info.comments}</p>
+                                <p>${comments}</p>
                             </h5>
                         </div>
                     </div>
@@ -316,21 +337,38 @@ $(document).ready(function() {
 </div>
 </div>
 </section>
-                `;
-                $('#popupContent').html(popupContent);
-                
-                // Show the modal
-                $('#popupModal').modal('show');
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            }
-        });
-    });
-});
 
+<div class="modal-footer">
+    <div class="mr-auto">
+        <!-- "Update" and "Delete" buttons on the left side -->
+
+
+<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="update_Appointment('${appointment_id}')">Update</button>
+
+
+    </div>
+    <div class="ml-auto">
+        <!-- "Close" button on the right side -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+</div>
+
+                `;
+    
+            // Show the modal
+            $('#myModal').modal('show');
+        }
+    </script>
+
+
+<script>
+    function update_Appointment(appointment_id) {
+        var deleteButton = document.getElementById('delete_appoinment_button');
+        deleteButton.href = "{{ url_for('update_the_appoinment', appointment_id='') }}" + appointment_id;
+        // Trigger the click event on the delete button to execute the delete action
+        deleteButton.click();
+    }
 </script>
 
 
 {% endblock main_body_contant %}
-        

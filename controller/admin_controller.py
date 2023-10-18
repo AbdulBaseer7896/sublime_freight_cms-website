@@ -77,6 +77,11 @@ def popup_content():
 def view_all_sales_of_all_sales_man():
     if request.method == "GET":
         all_sales_data = obj.get_all_sales_for_db()
+
+        
+        print("This is all sales data  = " , all_sales_data)
+
+        
         head_light = request.args.get('head_light')
         obj.remore_the_nofiticatin_form_db_for_sales(head_light)
         admin_info = session.get('data')
@@ -238,6 +243,7 @@ def update_the_appoinments_by_admin():
     if request.method == "GET":
         admin_info = session.get('data')
         appointment_id = request.args.get('appointment_id')
+        print("This is important = " , appointment_id)
         appointment_info = obj.get_appointment_info_from_db(appointment_id)
         return render_template("admin_temp/up_date_appoiment.html" , appointment_info = appointment_info , admin_info = admin_info)
     

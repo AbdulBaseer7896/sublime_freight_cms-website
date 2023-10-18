@@ -69,9 +69,19 @@ class Admin_Modle():
 
     def get_all_sales_for_db(self):
         with self.engine.connect() as conn:
-            query = text(f"SELECT * from new_sales_first_time;")
+            # query = text(f"SELECT * from new_sales_first_time;")
+            query = text(f"SELECT new_sales_first_time.*, users.user_name FROM new_sales_first_time LEFT JOIN users ON new_sales_first_time.sale_man_pin = users.user_id;")
+            result = conn.execute(query).fetchall()
+            print("This is result = " , result)
+            return result
+    
+    def get_sales_man_name(self):
+        with self.engine.connect() as conn:
+            query = text(f"SELECT * from users where user_type = 'sale_man';")
             result = conn.execute(query).fetchall()
             return result
+        
+        
         
     def get_carear_data_from_db(self , carears_id):
         with self.engine.connect() as conn:

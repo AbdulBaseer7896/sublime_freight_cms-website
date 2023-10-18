@@ -10,40 +10,41 @@
         }
 </style>
 
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 {% endblock header_sytyle %}
 
 
 {% block search_bar_contant %}
-
-                <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-
-                <!-- Topbar Search -->
-                <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                            aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
+                              <!-- Sidebar Toggle (Topbar) -->
+                              <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                <i class="fa fa-bars"></i>
                             </button>
-                        </div>
-                    </div>
-                </form>
+        
+                            <!-- Topbar Search -->
+                            <form action="{{ url_for('search_carear_for_admin_for_seach') }}" method="post"
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>     
+                             </form>        
+{% endblock search_bar_contant %}
 
-                {% endblock search_bar_contant %}
 
-
-                {% block main_body_contant %}
-
-            
-        <div class="container-fluid">
+{% block main_body_contant %}
+            <!-- Page Heading -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Before Update Sales Records </h6>
+                    <h6 class="m-0 font-weight-bold text-primary">All Sales Records</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -52,118 +53,135 @@
                             <thead>
                                 <tr>
                                     <th>Carear ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Driver</th>
-                                    <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
                                     <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
+                                    <th>Carear Name</th>
+                                    <th>US DOT</th>
+                                    <th>MC</th>
+                                    <th>State</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Truck Type & Number</th>
                                     <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
+                                    <th>INC Name</th>
+                                    <th>Inc Number</th>
+                                    <th>INC Address</th>
+                                    <th>INC Email</th>
+                                    <th>INC Fax Number</th>
+                                    <th>INC Converges</th>
                                     <th>Factoring Name</th>
+                                    <th>Factoring phone Number</th>
+                                    <th>Factoring Email</th>
+                                    <th>Factoring Address</th>
+                                    <th>Bank Name</th>
+                                    <th>Routing Number</th>
+                                    <th>Account Name</th>
+                                    <th>Bank Phone Number</th>
                                     <th>Sale Man</th>
-                                    <th>Dispatcher</th>
-                                    <th>Update (changes)</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Carear ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Driver</th>
-                                    <th>Phone Number</th>
-                                    <th>MC & USDOT</th>
-                                    <th>Chargers</th>
                                     <th>Company Name</th>
-                                    <th>Truck & Truck Number</th>
-                                    <th>Date</th>
-                                    <th>Factoring Numumber & Email</th>
+                                    <th>Carear Name</th>
+                                    <th>US DOT</th>
+                                    <th>MC</th>
+                                    <th>State</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Truck Type & Number</th>
                                     <th>EIN</th>
-                                    <th>Bank Name</th>
-                                    <th>Physical Address</th>
-                                    <th>Factoring Address</th>
-                                    <th>Account Number</th>
-                                    <th>Routing Number</th>
-                                    <th>Refrence</th>
-                                    <th>Insurance Details</th>
-                                    <th>Comments</th>
-                                    <th>Equipments</th>
+                                    <th>INC Name</th>
+                                    <th>Inc Number</th>
+                                    <th>INC Address</th>
+                                    <th>INC Email</th>
+                                    <th>INC Fax Number</th>
+                                    <th>INC Converges</th>
                                     <th>Factoring Name</th>
+                                    <th>Factoring phone Number</th>
+                                    <th>Factoring Email</th>
+                                    <th>Factoring Address</th>
+                                    <th>Bank Name</th>
+                                    <th>Routing Number</th>
+                                    <th>Account Name</th>
+                                    <th>Bank Phone Number</th>
                                     <th>Sale Man</th>
-                                    <th>Dispatcher</th>
-                                    <th>Update (changes)</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 {% for item in all_sales_data %}
+                                 {% if head_light == item['carear_id'] %}
+                                    
+                                 <tr style="background-color: #36b9cc; color: white;">
 
-                                <tr>
-                                    {% if item['sale_type'] == 'active_sale'%}
-                                                <td>
-                                                    <button style="background-color: green;"
-                                                        class="dropdown-item openPopupBtn">
-                                                        {{ item['carear_id'] }}
-                                                    </button>
-                                                </td>
-                                                {% endif %}
 
-                                                {% if item['sale_type'] == 'inactive_sale'%}
-                                                <td>
-                                                    <button style="background-color: red;"
-                                                        class="dropdown-item openPopupBtn">
-                                                        {{ item['carear_id'] }}
-                                                    </button>
-                                                </td>
-                                                {% endif %}
+                                    {% else %}
+                                        <tr>
 
-                                                {% if item['sale_type'] == 'good_appoinment'%}
-                                                <td>
-                                                    <button style="background-color: yellow;"
-                                                        class="dropdown-item openPopupBtn">
-                                                        {{ item['carear_id'] }}
-                                                    </button>
-                                                </td>
                                     {% endif %}
 
-                                    
-                                    <td>{{item['d_name']}}</td>
-                                    <td>{{item['email']}}</td>
-                                    <td>{{item['driver']}}</td>
-                                    <td>{{item['phone_number']}}</td>
-                                    <td>{{item['mc_usdot']}}</td>
-                                    <td>{{item['charges']}}</td>
-                                    <td>{{item['company_name']}}</td>
-                                    <td>{{item['t_number']}}</td>
-                                    <td>{{item['date']}}</td>
-                                    <td>{{item['factoring_num_email']}}</td>
-                                    <td>{{item['ein']}}</td>
-                                    <td>{{item['bank_name']}}</td>
-                                    <td>{{item['physical_address']}}</td>
-                                    <td>{{item['factoring_address']}}</td>
-                                    <td>{{item['account_number']}}</td>
-                                    <td>{{item['routing_number']}}</td>
-                                    <td>{{item['refrence']}}</td>
-                                    <td>{{item['insurance_details']}}</td>
-                                    <td>{{item['comments']}}</td>
-                                    <td>{{item['equipments']}}</td>
-                                    <td>{{item['factoring_name']}}</td>
-                                    <td>{{item['sale_man_pin']}}</td>
-                                    <td>{{item['dispatcher_pin']}}</td>
-                                    <!-- <td><a href="{{ url_for('update_carear_info', carear_id=item['carear_id']) }}" type="submit" class="btn">Update</a></td> -->
+                                    {% if item['sale_type'] == 'active_sale'%}                                 
+                                    <td>
+                                        <button style="background-color: green; color: white;"
+                                        onclick="showDetails('{{ item.carear_id }}', '{{ item.carear_name }}' , '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}')"
+                                        class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            {{ item['carear_id'] }}
+                                        </button>
+                                    </td>
+                                    {% endif %}
 
+                                    {% if item['sale_type'] == 'inactive_sale'%}                                 
+                                    <td>
+                                        <button style="background-color: red;  color: white;"
+                                        onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
+                                        class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            {{ item['carear_id'] }}
+                                        </button>
+                                    </td>
+                                    {% endif %}
+
+                                    {% if item['sale_type'] == 'good_appoinment'%}                                 
+                                    <td>
+                                        <button style="background-color: yellow;  color: white;"
+                                        onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
+                                        class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            {{ item['carear_id'] }}
+                                        </button>
+                                    </td>
+                                    {% endif %}
+
+                                
+                                    <td>
+                                            {{ item['carear_name'] }}
+                                    </td>
+
+                                    
+                                    
+                                    <td>{{item['company_name']}}</td>                    
+                                    <td>{{item['usdot']}}</td>
+                                    <td>{{item['mc']}}</td>
+                                    <td>{{item['state']}}</td>
+                                    <td>{{item['email']}}</td>
+                                    <td>{{item['phone_number']}}</td>
+                                    <td>{{item['truck_type_and_number']}}</td>
+                                    <td>{{item['ein']}}</td>
+                                    <td>{{item['inc_name']}}</td>
+                                    <td>{{item['inc_number']}}</td>
+                                    <td>{{item['inc_address']}}</td>
+                                    <td>{{item['inc_email']}}</td>
+                                    <td>{{item['inc_fax_number']}}</td>
+                                    <td>{{item['inc_coverges']}}</td>
+                                    <td>{{item['fac_name']}}</td>
+                                    <td>{{item['fac_phone_number']}}</td>
+                                    <td>{{item['fac_email']}}</td>
+                                    <td>{{item['fac_address']}}</td>
+                                    <td>{{item['bank_name']}}</td>
+                                    <td>{{item['routing_number']}}</td>
+                                    <td>{{item['account_number']}}</td>
+                                    <td>{{item['bank_phone_number']}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -172,26 +190,297 @@
                 </div>
             </div>
 
+            </div>
+            <!-- End of Content Wrapper -->
+
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Main Content -->
 
-    <!-- Footer -->
-    <!-- <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2021</span>
+        <div class="modal fade bd-example-modal-xl" tabindex="-2" role="dialog" id="myModal">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">After Update Sales Detailes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <!-- Row details will be displayed here -->
+                    </div>
+        
+                </div>
             </div>
         </div>
-    </footer> -->
-    <!-- End of Footer -->
 
+
+
+
+
+
+
+
+
+<script>
+    function showDetails(carear_id, company_name, carear_name, usdot, mc, state, email, phone_number, truck_type_and_number, ein, inc_name, inc_number, inc_address, inc_email, inc_fax_number, inc_coverges, fac_name, fac_phone_number, fac_email, fac_address, bank_name, routing_number, account_number, bank_phone_number) {
+        // Set the modal body content
+        var modalBody = document.getElementById("modal-body");
+
+        modalBody.innerHTML = `
+
+                <section class="form-02-main student-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="_lk_de">
+
+                    <div class="form-04-main">
+                        <!-- <div class="logo">
+                            <img src="/static/images/public_images/user.png">
+                        </div> -->
+                        <h1 class="text-center">Sales # ${carear_id}</h1>
+
+                        <div class="form-group">
+<div class="container">
+    <div class="main-body ">
+
+        <div class="row gutters-sm">
+
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Company Name</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${company_name}
+                            </h5>
+                            <!-- </div>
+                            <hr>
+                            <div class="row"> -->
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Carear Name</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${carear_name}
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">US DOT
+                            </div>
+                            <h5 class="col-sm-3 ">
+                                ${usdot}    
+                            </h5>
+                            <!-- </div>
+                            <hr>
+                            <div class="row"> -->
+                            <div class="col-sm-1 text-secondary">
+                                <h6 class="mb-0">MC</h6>
+                            </div>
+                            <h5 class="col-sm-3 ">
+                                ${mc}
+                            </h5>
+
+                            <div class="col-sm-1 text-secondary">
+                                <h6 class="mb-0">State</h6>
+                            </div>
+                            <h5 class="col-sm-2 ">
+                                ${state}
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Crear Email</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${email}                                             
+                            </h5>
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Carear Phone</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${phone_number}                                    
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Truck type & Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${truck_type_and_number}                          
+                            </h5>
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">EIN</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${ein}                                                
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">INC Name</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${inc_name}
+                            </h5>
+                            <!-- </div>
+                            <hr>
+                            <div class="row"> -->
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">INC Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                <p>${inc_number}</p>
+                            </h5>
+                        </div>
+
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">INC Address</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${inc_address}                                       
+                            </h5>
+                            <!-- </div>
+                            <hr>
+                            <div class="row"> -->
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">INC Email</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${inc_email}
+                            </h5>
+                        </div>
+                        <hr>
+                        
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">INC Fax Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${inc_fax_number}
+                            </h5>
+                            <!-- </div>
+                            <hr>
+                            <div class="row"> -->
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">INC Coverges</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${inc_coverges}
+                            </h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Fac Name</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${fac_name}
+                            </h5>
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Fac Phone Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${fac_phone_number}
+                            </h5>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Fac Address</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${fac_address}
+                            </h5>
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Fac Email</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${fac_email}
+                            </h5>
+
+
+                        </div>
+                        <hr>
+                        
+
+                        
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Bank Name</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${bank_name}
+                            </h5>
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Routing Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${routing_number}
+                            </h5>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Account Number</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${account_number}
+                            </h5>
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">Bank Phone</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${bank_phone_number}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- End of Content Wrapper -->
+</div>
 
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+                <div class="modal-footer">
+
+    <div class="ml-auto">
+        <!-- "Close" button on the right side -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     </div>
-    <!-- End of Page Wrapper -->
+</div>
+`;
 
-    {% endblock main_body_contant %}
+// Show the modal
+$('#myModal').modal('show');
+}
+
+
+</script>
+
+{% endblock main_body_contant %}

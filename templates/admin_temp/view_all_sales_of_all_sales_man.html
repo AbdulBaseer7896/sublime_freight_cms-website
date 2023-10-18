@@ -10,6 +10,11 @@
         }
 </style>
 
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 {% endblock header_sytyle %}
 
 
@@ -121,7 +126,8 @@
 
                                     {% if item['sale_type'] == 'active_sale'%}                                 
                                     <td>
-                                        <a style="background-color: green;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
+                                        <a 
+                                        style="background-color: green;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['carear_id'] }}
                                         </a>
@@ -130,7 +136,8 @@
 
                                     {% if item['sale_type'] == 'inactive_sale'%}                                 
                                     <td>
-                                        <a style="background-color: red;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
+                                        <a 
+                                       style="background-color: red;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['carear_id'] }}
                                         </a>
@@ -139,7 +146,8 @@
 
                                     {% if item['sale_type'] == 'good_appoinment'%}                                 
                                     <td>
-                                        <a style="background-color: yellow;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
+                                        <a 
+                                        style="background-color: yellow;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['carear_id'] }}
                                         </a>
@@ -148,7 +156,9 @@
 
                                 
                                     <td>
-                                        <button class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                        <button 
+                                        onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' , '{{ item.sale_man_pin }}', '{{ item.dispatcher_pin }}')"
+                                        class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['carear_name'] }}
                                         </button>
@@ -178,7 +188,7 @@
                                     <td>{{item['routing_number']}}</td>
                                     <td>{{item['account_number']}}</td>
                                     <td>{{item['bank_phone_number']}}</td>
-                                    <td>{{item['sale_man_pin']}}</td>
+                                    <td>{{item['user_name']}}</td>
                                     <td>{{item['dispatcher_pin']}}</td>
                                     <td>
 
@@ -216,6 +226,25 @@
         <!-- End of Page Wrapper -->
 
 
+        <div class="modal fade bd-example-modal-xl" tabindex="-2" role="dialog" id="myModal">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Appointment Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <!-- Row details will be displayed here -->
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+
+
+
 
 
         <div class="modal fade" id="delete_appoinments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -236,6 +265,8 @@
             </div>
         </div>
     </div>
+
+
 
 
     <script>
@@ -281,45 +312,15 @@
 </script>
 
 
-<div class="modal fade bd-example-modal-xl" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="popupModalLabel">Career Details</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            
-            <!-- Content of your popup goes here -->
-            <div class="modal-body" id="popupContent"></div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
 <script>
-$(document).ready(function() {
-    // Add click event listener to the buttons
-    $('.openPopupBtn').on('click', function() {
-        // Get the career ID from the data attribute
-        var careerId = $(this).data('career-id');
+    function showDetails(carear_id, company_name, carear_name, usdot, mc, state, email, phone_number, truck_type_and_number, ein, inc_name, inc_number, inc_address, inc_email, inc_fax_number, inc_coverges, fac_name, fac_phone_number, fac_email, fac_address, bank_name, routing_number, account_number, bank_phone_number, sale_man_pin, dispatcher_pin) {
+        // Set the modal body content
+        var modalBody = document.getElementById("modal-body");
 
-        // Make an AJAX request to get the content and variable for the popup
-        $.ajax({
-            url: '/popup_content?careerId=' + encodeURIComponent(careerId),
-            method: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                // Update the modal content with the received content and variable
-                var popupContent = `
-                
-
+        modalBody.innerHTML = `
 
                 <section class="form-02-main student-page">
     <div class="container">
@@ -347,7 +348,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Company Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.company_name}
+                                ${company_name}
                             </h5>
                             <!-- </div>
                             <hr>
@@ -356,7 +357,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Carear Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.carear_name}
+                                ${carear_name}
                             </h5>
                         </div>
                         <hr>
@@ -365,7 +366,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">US DOT
                             </div>
                             <h5 class="col-sm-3 ">
-                                ${response.career_info.usdot}    
+                                ${usdot}    
                             </h5>
                             <!-- </div>
                             <hr>
@@ -374,14 +375,14 @@ $(document).ready(function() {
                                 <h6 class="mb-0">MC</h6>
                             </div>
                             <h5 class="col-sm-3 ">
-                                ${response.career_info.mc}
+                                ${mc}
                             </h5>
 
                             <div class="col-sm-1 text-secondary">
                                 <h6 class="mb-0">State</h6>
                             </div>
                             <h5 class="col-sm-2 ">
-                                ${response.career_info.state}
+                                ${state}
                             </h5>
                         </div>
                         <hr>
@@ -390,13 +391,13 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Crear Email</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.email}                                             
+                                ${email}                                             
                             </h5>
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Carear Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.phone_number}                                    
+                                ${phone_number}                                    
                             </h5>
                         </div>
                         <hr>
@@ -405,13 +406,13 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Truck type & Number</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.truck_type_and_number}                          
+                                ${truck_type_and_number}                          
                             </h5>
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">EIN</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.ein}                                                
+                                ${ein}                                                
                             </h5>
                         </div>
                         <hr>
@@ -420,7 +421,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">INC Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_name}
+                                ${inc_name}
                             </h5>
                             <!-- </div>
                             <hr>
@@ -429,7 +430,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">INC Number</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                <p>${response.career_info.inc_number}</p>
+                                <p>${inc_number}</p>
                             </h5>
                         </div>
 
@@ -440,7 +441,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">INC Address</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_address}                                       
+                                ${inc_address}                                       
                             </h5>
                             <!-- </div>
                             <hr>
@@ -449,7 +450,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">INC Email</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_email}
+                                ${inc_email}
                             </h5>
                         </div>
                         <hr>
@@ -459,7 +460,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">INC Fax Number</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_fax_number}
+                                ${inc_fax_number}
                             </h5>
                             <!-- </div>
                             <hr>
@@ -468,7 +469,7 @@ $(document).ready(function() {
                                 <h6 class="mb-0">INC Coverges</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.inc_coverges}
+                                ${inc_coverges}
                             </h5>
                         </div>
                         <hr>
@@ -477,14 +478,14 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Fac Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.fac_name}
+                                ${fac_name}
                             </h5>
 
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Fac Phone Number</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.fac_phone_number}
+                                ${fac_phone_number}
                             </h5>
                         </div>
                         <hr>
@@ -496,14 +497,14 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Fac Address</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.fac_address}
+                                ${fac_address}
                             </h5>
 
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Fac Email</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.fac_email}
+                                ${fac_email}
                             </h5>
 
 
@@ -517,14 +518,14 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Bank Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.bank_name}
+                                ${bank_name}
                             </h5>
 
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Routing Number</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.routing_number}
+                                ${routing_number}
                             </h5>
                         </div>
 
@@ -535,14 +536,14 @@ $(document).ready(function() {
                                 <h6 class="mb-0">Account Number</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.account_number}
+                                ${account_number}
                             </h5>
 
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Bank Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
-                                ${response.career_info.bank_phone_number}
+                                ${bank_phone_number}
                             </h5>
                         </div>
                     </div>
@@ -558,19 +559,45 @@ $(document).ready(function() {
 </div>
 </div>
 </section>
-                `;
-                $('#popupContent').html(popupContent);
-                
-                // Show the modal
-                $('#popupModal').modal('show');
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            }
-        });
-    });
-});
+
+                <div class="modal-footer">
+
+                    <div class="mr-auto">
+        <!-- "Update" and "Delete" buttons on the left side -->
+
+
+        <button type="button" class="btn btn-primary" id="updateButton">Update</button>
+
+
+
+
+<button type="button" class="btn btn-primary">
+    <a style="color: white;" href="#" data-toggle="modal"
+                                            data-target="#delete_appoinments"
+                                            onclick="set_delete_sales('${carear_id}')">
+                                            Delete
+                                        </a>
+                                        </button>
+
+    </div>
+    <div class="ml-auto">
+        <!-- "Close" button on the right side -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+</div>
+`;
+
+// Show the modal
+$('#myModal').modal('show');
+}
+
 
 </script>
+
+<script>
+    // Disable the button
+    document.getElementById('updateButton').disabled = true;
+</script>
+
 
 {% endblock main_body_contant %}

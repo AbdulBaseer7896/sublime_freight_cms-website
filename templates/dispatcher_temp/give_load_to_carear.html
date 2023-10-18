@@ -4,7 +4,7 @@
 
 
 {% block header_sytyle %}
-        
+
 <style>
     .table tr {
         overflow: auto;
@@ -15,207 +15,210 @@
 
 
 {% block search_bar_contant %}
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+<!-- Sidebar Toggle (Topbar) -->
+<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+    <i class="fa fa-bars"></i>
+</button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-
-
-                    {% endblock search_bar_contant %}
-
-
-
-
-                    {% block main_body_contant %}
-        <div class="container-fluid">
-
-            <!-- Page Heading -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Kindly Select the Load For This Carear</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                            <thead>
-                                <tr>
-                                    <th>Carear ID</th>
-                                    <th>Company Name</th>
-                                    <th>Carear Name</th>
-                                    <th>US DOT</th>
-                                    <th>MC</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Truck Type & Number</th>
-                                    <th>EIN</th>
-                                    <th>INC Name</th>
-                                    <th>Inc Number</th>
-                                    <th>INC Address</th>
-                                    <th>INC Email</th>
-                                    <th>INC Fax Number</th>
-                                    <th>INC Converges</th>
-                                    <th>Factoring Name</th>
-                                    <th>Factoring phone Number</th>
-                                    <th>Factoring Email</th>
-                                    <th>Factoring Address</th>
-                                    <th>Bank Name</th>
-                                    <th>Routing Number</th>
-                                    <th>Account Name</th>
-                                    <th>Bank Phone Number</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                         
-                                
-                                <tr>
-                                    {% for item in carear_info %}
-
-                                    <!-- <td>{{item['carear_id']}}</td>          -->
-                                                                    
-                                    <td>
-                                        <button class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_id'] }}
-                                        </button>
-                                    </td>           
-                                    <td>{{item['company_name']}}</td>                    
-                                    <td>{{item['carear_name']}}</td>
-                                    <td>{{item['usdot']}}</td>
-                                    <td>{{item['mc']}}</td>
-                                    <td>{{item['email']}}</td>
-                                    <td>{{item['phone_number']}}</td>
-                                    <td>{{item['truck_type_and_number']}}</td>
-                                    <td>{{item['ein']}}</td>
-                                    <td>{{item['inc_name']}}</td>
-                                    <td>{{item['inc_number']}}</td>
-                                    <td>{{item['inc_address']}}</td>
-                                    <td>{{item['inc_email']}}</td>
-                                    <td>{{item['inc_fax_number']}}</td>
-                                    <td>{{item['inc_coverges']}}</td>
-                                    <td>{{item['fac_name']}}</td>
-                                    <td>{{item['fac_phone_number']}}</td>
-                                    <td>{{item['fac_email']}}</td>
-                                    <td>{{item['fac_address']}}</td>
-                                    <td>{{item['bank_name']}}</td>
-                                    <td>{{item['routing_number']}}</td>
-                                    <td>{{item['account_number']}}</td>
-                                    <td>{{item['bank_phone_number']}}</td>
-                                    {% endfor %}
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Record of all the loads that you give to this Carear</h6>
-                            </div>
-                            <thead>
-                                <tr>
-                                    <th>Load ID</th>
-                                    <th>Load Number</th>
-                                    <th>Pick Up Location</th>
-                                    <th>Drop Location</th>
-                                    <th>Miles</th>
-                                    <th>Load Date</th>
-                                    <th>Load Rate</th>
-                                    <th>Load Description</th>
-                                    <th>Update</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Load ID</th>
-                                    <th>Load Number</th>
-                                    <th>Pick Up Location</th>
-                                    <th>Drop Location</th>
-                                    <th>Miles</th>
-                                    <th>Load Date</th>
-                                    <th>Load Rate</th>
-                                    <th>Load Description</th>
-                                    <th>Update</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                {% for load in load_info %}
-                                <tr>
-                                    <!-- <td>Selected</td> -->
-
-                                    <td>{{load['load_id']}}</td>
-                                    <td>{{load['load_number']}}</td>
-                                    <td>{{load['pick_up_location']}}</td>
-                                    <td>{{load['drop_location']}}</td>
-                                    <td>{{load['miles']}}</td>
-                                    <td>{{load['load_date']}}</td>
-                                    <td>{{load['load_rate']}} $</td>
-                                    <td>{{load['load_description']}}</td>
-                                    <td>
-                                        <a href="{{ url_for('update_the_load_info', load_id = load['load_id']   , carear_id = load['carear_id']) }}" type="submit" class="btn">Update</a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
+<!-- Topbar Search -->
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search"
+            aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
         </div>
-        <!-- /.container-fluid -->
-
     </div>
-    <!-- End of Main Content -->
-            <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
+</form>
+
+
+
+{% endblock search_bar_contant %}
+
+
+
+
+{% block main_body_contant %}
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Kindly Select the Load For This Carear</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <thead>
+                        <tr>
+                            <th>Carear ID</th>
+                            <th>Company Name</th>
+                            <th>Carear Name</th>
+                            <th>US DOT</th>
+                            <th>MC</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Truck Type & Number</th>
+                            <th>EIN</th>
+                            <th>INC Name</th>
+                            <th>Inc Number</th>
+                            <th>INC Address</th>
+                            <th>INC Email</th>
+                            <th>INC Fax Number</th>
+                            <th>INC Converges</th>
+                            <th>Factoring Name</th>
+                            <th>Factoring phone Number</th>
+                            <th>Factoring Email</th>
+                            <th>Factoring Address</th>
+                            <th>Bank Name</th>
+                            <th>Routing Number</th>
+                            <th>Account Name</th>
+                            <th>Bank Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr>
+                            {% for item in carear_info %}
+
+                            <!-- <td>{{item['carear_id']}}</td>          -->
+
+                            <td>
+                                <a href="{{ url_for('view_all_carear') }}">
+                                    <button class="dropdown-item openPopupBtn">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        {{ item['carear_id'] }}
+                                    </button>
+                                </a>
+                            </td>
+                            <td>{{item['company_name']}}</td>
+                            <td>{{item['carear_name']}}</td>
+                            <td>{{item['usdot']}}</td>
+                            <td>{{item['mc']}}</td>
+                            <td>{{item['email']}}</td>
+                            <td>{{item['phone_number']}}</td>
+                            <td>{{item['truck_type_and_number']}}</td>
+                            <td>{{item['ein']}}</td>
+                            <td>{{item['inc_name']}}</td>
+                            <td>{{item['inc_number']}}</td>
+                            <td>{{item['inc_address']}}</td>
+                            <td>{{item['inc_email']}}</td>
+                            <td>{{item['inc_fax_number']}}</td>
+                            <td>{{item['inc_coverges']}}</td>
+                            <td>{{item['fac_name']}}</td>
+                            <td>{{item['fac_phone_number']}}</td>
+                            <td>{{item['fac_email']}}</td>
+                            <td>{{item['fac_address']}}</td>
+                            <td>{{item['bank_name']}}</td>
+                            <td>{{item['routing_number']}}</td>
+                            <td>{{item['account_number']}}</td>
+                            <td>{{item['bank_phone_number']}}</td>
+                            {% endfor %}
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Record of all the loads that you give to this
+                            Carear</h6>
+                    </>
+                    <thead>
+                        <tr>
+                            <th>Load ID</th>
+                            <th>Load Number</th>
+                            <th>Pick Up Location</th>
+                            <th>Drop Location</th>
+                            <th>Miles</th>
+                            <th>Load Date</th>
+                            <th>Load Rate</th>
+                            <th>Load Description</th>
+                            <th>Update</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Load ID</th>
+                            <th>Load Number</th>
+                            <th>Pick Up Location</th>
+                            <th>Drop Location</th>
+                            <th>Miles</th>
+                            <th>Load Date</th>
+                            <th>Load Rate</th>
+                            <th>Load Description</th>
+                            <th>Update</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for load in load_info %}
+                        <tr>
+                            <!-- <td>Selected</td> -->
+
+                            <td>{{load['load_id']}}</td>
+                            <td>{{load['load_number']}}</td>
+                            <td>{{load['pick_up_location']}}</td>
+                            <td>{{load['drop_location']}}</td>
+                            <td>{{load['miles']}}</td>
+                            <td>{{load['load_date']}}</td>
+                            <td>{{load['load_rate']}} $</td>
+                            <td>{{load['load_description']}}</td>
+                            <td>
+                                <a href="{{ url_for('update_the_load_info', load_id = load['load_id']   , carear_id = load['carear_id']) }}"
+                                    type="submit" class="btn">Update</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+<!-- Footer -->
+<!-- <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
             </footer> -->
-            <!-- End of Footer -->
+<!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
+</div>
+<!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
-
-
+</div>
+<!-- End of Page Wrapper -->
 
 
 
-    
+
+
+
 
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Add click event listener to the buttons
-        $('.openPopupBtn').on('click', function() {
+        $('.openPopupBtn').on('click', function () {
             // Get the career ID from the data attribute
             var careerId = $(this).data('career-id');
-    
+
             // Make an AJAX request to get the content and variable for the popup
             $.ajax({
                 url: '/popup_content?careerId=' + encodeURIComponent(careerId),
@@ -455,7 +458,7 @@
     </div>
     </section>                `;
                     $('#popupContent').html(popupContent);
-                    
+
                     // Show the modal
                     $('#popupModal').modal('show');
                 },
@@ -465,8 +468,8 @@
             });
         });
     });
-    
-    </script>
-    
 
-    {% endblock main_body_contant %}
+</script>
+
+
+{% endblock main_body_contant %}

@@ -8,6 +8,8 @@
         overflow: auto;
         white-space: nowrap;
     }
+
+ 
 </style>
 
 
@@ -78,11 +80,12 @@
                     {% for item in card_info %}
                     <tr>
                         <td>
-                            <!-- Updated this line to have the carear_id instead of Enable button -->
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#display_card_in_form"
-                                onclick="set_display_card_in_form({{ item|tojson|safe }})">
+                            <button
+                                onclick="showDetails('{{ item.carear_id }}', '{{ item.d_name }}', '{{ item.email }}' , '{{ item.phone_number }}', '{{ item.care_number }}', '{{ item.card_expiry }}' , '{{ item.card_cvc }}', '{{ item.card_type }}', '{{ item.card_holder_name }}')"
+                                class="dropdown-item openPopupBtn">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ item['carear_id'] }}
-                            </a>
+                            </button>
                         </td>
                         <td>{{ item['d_name'] }}</td>
                         <td>{{ item['email'] }}</td>
@@ -103,50 +106,108 @@
 </div>
 </div>
 
-
-<!-- ... (rest of your code) ... -->
-
-<div class="modal fade" id="display_card_in_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Card Information</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body" id="cardInfoModalBody">
-                <!-- Content will be dynamically populated here -->
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-            </div>
+
+        <div class="" id="modal-body">
+            <!-- Row details will be displayed here -->
         </div>
+
     </div>
 </div>
+
 <script>
-function set_display_card_in_form(item) {
-    // Create an HTML string with the content of the selected item
-    var modalBodyContent = `
-        <p><strong>Career ID:</strong> ${item['carear_id']}</p>
-        <p><strong>Driver Name:</strong> ${item['d_name']}</p>
-        <p><strong>Email:</strong> ${item['email']}</p>
-        <p><strong>Phone Number:</strong> ${item['phone_number']}</p>
-        <p><strong>Care Number:</strong> ${item['care_number']}</p>
-        <p><strong>Card Expiry:</strong> ${item['card_expiry']}</p>
-        <p><strong>Card CVC:</strong> ${item['card_cvc']}</p>
-        <p><strong>Card Type:</strong> ${item['card_type']}</p>
-        <p><strong>Holder Name:</strong> ${item['card_holder_name']}</p>
-    `;
+    function showDetails(carear_id, d_name, email, phone_number, care_number, card_expiry, card_cvc, card_type, card_holder_name) {
+        var modalBody = document.getElementById("modal-body");
 
-    // Set the generated content in the modal body
-    $('#display_card_in_form .modal-body').html(modalBodyContent);
+        // Function to split the card number into groups of four digits
+        function splitCardNumber(cardNumber) {
+            var groups = [];
+            for (var i = 0; i < cardNumber.length; i += 4) {
+                groups.push(cardNumber.slice(i, i + 4));
+            }
+            return groups;
+        }
 
-    // Show the modal
-    $('#display_card_in_form').modal('show');
-}
+        // Get the card number groups
+        var cardNumberGroups = splitCardNumber(care_number);
 
+        modalBody.innerHTML = `
+
+        <style>
+            /* Your existing styles here */
+
+            .modal-card {
+                border: none;
+                width: 400px;
+                border-radius: 12px;
+                color: #fff;
+                background-image: linear-gradient(to right top, #280537, #56034c, #890058, #bc005b, #eb1254);
+                margin: 0;
+            }
+
+            .modal-card .number span {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .modal-card .cardholder,
+            .modal-card .expires {
+                font-weight: 600;
+                font-size: 17px;
+            }
+
+            .modal-card .name,
+            .modal-card .date {
+                font-size: 15px;
+            }
+
+            .modal-card .card-border {
+                border-top-left-radius: 30px !important;
+                border-top-right-radius: 30px !important;
+                border: none;
+                border-radius: 6px;
+                background-color: blue;
+                color: #fff;
+                background-image: linear-gradient(to right top, #0c0537, #440b51, #7f005d, #b9005b, #eb124b);
+            }
+        </style>
+
+        <div class="modal-card p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <img src="static/images/img/atm_card_pic.png" width="50" />
+                <h3>${card_type}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="px-2 number mt-3 d-flex justify-content-between align-items-center">
+                <span>${cardNumberGroups[0]}</span>
+                <span>${cardNumberGroups[1]}</span>
+                <span>${cardNumberGroups[2]}</span>
+                <span>${cardNumberGroups[3]}</span>
+            </div>
+
+            <div class="p-4 card-border mt-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="cardholder">Card Holder</span>
+                    <span class="expires">Expires</span>
+                    <span class="expires">CSV</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="name">${card_holder_name}</span>
+                    <span class="date">${card_expiry}</span>
+                    <span class="date">${card_cvc}</span>
+                </div>
+            </div>
+        </div>
+        `;
+
+        // Show the modal
+        $('#myModal').modal('show');
+    }
 </script>
+
 
 {% endblock main_body_contant %}
