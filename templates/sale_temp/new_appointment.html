@@ -230,6 +230,15 @@
                                                         <option value="" name="appointment_type"
                                                             style="background-color: black;" disabled>XYZ Appointment</option>
                                                     </select>
+
+                                                    {% if appointment_info != '' %}
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <input  type="text" class="form-control" disabled value="{{appointment_info['appointment_type']}}" />
+                                                        </div>
+                                                    </div>
+                                                       
+                                                    {% endif %}
                                                 </div>
                                             </div>
 
@@ -266,7 +275,7 @@
                                                 <div class="form-group">
                                                     <select  name="state" class="form-select"
                                                         aria-label="Default select example" required>
-                                                        <option value="{{appointment_info['sale_type']}}" disabled selected
+                                                        <option disabled selected
                                                             hidden>Select state</option>
                                                             <option value="AL" >Alabama (AL)</option>
                                                             <option value="AK" >Alaska (AK)</option>
@@ -320,6 +329,13 @@
                                                             <option value="WY" >Wyoming (WY)</option>
                                                             
                                                     </select>
+
+                                                    {% if appointment_info != '' %}
+                                                    <div class="form-group">
+                                                        <input  type="text" class="form-control" disabled value="{{appointment_info['state']}}" />
+                                                    </div>
+                                                       
+                                                    {% endif %}
                                                 </div>
 
                                                 <div class="form-group">

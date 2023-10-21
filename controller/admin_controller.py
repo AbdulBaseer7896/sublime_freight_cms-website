@@ -77,11 +77,6 @@ def popup_content():
 def view_all_sales_of_all_sales_man():
     if request.method == "GET":
         all_sales_data = obj.get_all_sales_for_db()
-
-        
-        print("This is all sales data  = " , all_sales_data)
-
-        
         head_light = request.args.get('head_light')
         obj.remore_the_nofiticatin_form_db_for_sales(head_light)
         admin_info = session.get('data')
@@ -120,11 +115,13 @@ def transfer_carears_to_dispatcher():
         info_length = len(dispatcher_info)
         if check:
             flash(("This Carear is Forward Successfull !!!" , 'career_forward_success'))
-            return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length , admin_info = admin_info)
-
+            return redirect(url_for('transfer_carears_to_dispatcher'))
         flash(("This Carear is Forward Fail !!!" , 'career_forward_fail'))
-        return render_template("//admin_temp//view_ustransfer_sales.html" , dispatcher_info = dispatcher_info , untransfer_sales_data = untransfer_sales_data , info_length = info_length , admin_info = admin_info)
-        
+        return redirect(url_for('transfer_carears_to_dispatcher'))
+    
+    
+
+    
     
 
 
@@ -135,10 +132,7 @@ def view_load_and_carear():
     if request.method == 'GET':
         admin_info = session.get('data')
         load_info = obj.get_load_info_from_db_for_admin()
-        carear_info = obj.get_carear_info_from_db_for_admin()
-        # carear_info = carear_info.reverse()
-        zipped_data = zip(carear_info, load_info)
-        return render_template("//admin_temp//view_load_and_carear_to_admin.html" , zipped_data = zipped_data , admin_info = admin_info)
+        return render_template("//admin_temp//view_load_and_carear_to_admin.html" , load_info = load_info , admin_info = admin_info)
     
     
 
@@ -183,16 +177,34 @@ def view_pin_of_all_user():
 
 
 
+
+
+
+    
+@app.route('/search_appoimtment_for_admin_for_seach' , methods=["GET", "POST"])
+@login_required('admin')
+def search_appoimtment_for_admin_for_seach():
+    if request.method == 'POST':
+        admin_info = session.get('data')
+        search_text = request.form.get("search_text")
+        if search_text == '':
+            return redirect(url_for('view_all_appoinments_of_all_sales_man'))
+        appointment_data = obj.get_appoiments_for_db_for_admin_search(search_text)
+        head_light = ""
+        return render_template("admin_temp/view_all_appoinments.html" ,appointment_data = appointment_data  , head_light = head_light , admin_info = admin_info)
+    
+    
+    
 @app.route('/search_carear_for_admin_for_seach' , methods=["GET", "POST"])
 @login_required('admin')
 def search_carear_for_admin_for_seach():
     if request.method == 'POST':
         admin_info = session.get('data')
         search_text = request.form.get("search_text")
+        if search_text == '':
+            return redirect(url_for('view_all_sales_of_all_sales_man'))
         all_sales_data_for_search = obj.get_first_form_sales_for_db_for_admin_search(search_text)
         return render_template("//admin_temp//view_all_sales_of_all_sales_man.html" , all_sales_data = all_sales_data_for_search , admin_info = admin_info)
-    
-    
     
     
 
@@ -243,7 +255,6 @@ def update_the_appoinments_by_admin():
     if request.method == "GET":
         admin_info = session.get('data')
         appointment_id = request.args.get('appointment_id')
-        print("This is important = " , appointment_id)
         appointment_info = obj.get_appointment_info_from_db(appointment_id)
         return render_template("admin_temp/up_date_appoiment.html" , appointment_info = appointment_info , admin_info = admin_info)
     

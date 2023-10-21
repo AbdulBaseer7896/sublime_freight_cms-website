@@ -335,12 +335,21 @@
                                                         <option value="" name="sale_type"
                                                             style="background-color: black;" disabled>XYZ Sale</option>
                                                     </select>
+
+                                                    {% if carear_info != '' %}
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <input  type="text" class="form-control" disabled value="{{carear_info['sale_type']}}" />
+                                                        </div>
+                                                    </div>
+                                                       
+                                                    {% endif %}
                                                 </div>
 
                                                 <div class="form-group">
                                                     <select  name="state" class="form-select"
                                                         aria-label="Default select example" required>
-                                                        <option value="{{carear_info['sale_type']}}" disabled selected
+                                                        <option  disabled selected
                                                             hidden>Select state</option>
                                                             <option value="AL" name="sale_type">Alabama (AL)</option>
                                                             <option value="AK" name="sale_type">Alaska (AK)</option>
@@ -392,8 +401,15 @@
                                                             <option value="WV" name="sale_type">West Virginia (WV)</option>
                                                             <option value="WI" name="sale_type">Wisconsin (WI)</option>
                                                             <option value="WY" name="sale_type">Wyoming (WY)</option>
-                                                            
                                                     </select>
+                                                    {% if carear_info != '' %}
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <input  type="text" class="form-control" disabled value="{{carear_info['state']}}" />
+                                                        </div>
+                                                    </div>
+                                                       
+                                                    {% endif %}
                                                 </div>
 
                                             </div>

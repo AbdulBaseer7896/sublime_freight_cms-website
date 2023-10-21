@@ -77,7 +77,6 @@
                                     <th>Account Name</th>
                                     <th>Bank Phone Number</th>
                                     <th>Sale Man</th>
-                                    <th>Dispatcher</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
@@ -108,7 +107,6 @@
                                     <th>Account Name</th>
                                     <th>Bank Phone Number</th>
                                     <th>Sale Man</th>
-                                    <th>Dispatcher</th>
                                     <th>Delete</th>
                                 </tr>
                             </tfoot>
@@ -157,7 +155,7 @@
                                 
                                     <td>
                                         <button 
-                                        onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' , '{{ item.sale_man_pin }}', '{{ item.dispatcher_pin }}')"
+                                        onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.carear_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' , '{{ item.sale_man_pin }}', '{{ item.dispatcher_pin }}')"
                                         class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                             {{ item['carear_name'] }}
@@ -189,7 +187,6 @@
                                     <td>{{item['account_number']}}</td>
                                     <td>{{item['bank_phone_number']}}</td>
                                     <td>{{item['user_name']}}</td>
-                                    <td>{{item['dispatcher_pin']}}</td>
                                     <td>
 
                                         <a class="dropdown-item" href="#" data-toggle="modal"
@@ -230,7 +227,7 @@
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Appointment Details</h5>
+                        <h5 class="modal-title">Carear Details</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -332,7 +329,7 @@
                         <!-- <div class="logo">
                             <img src="/static/images/public_images/user.png">
                         </div> -->
-                        <h1 class="text-center">Carear Detailes</h1>
+                        <h1 class="text-center">Carear # ${carear_id}</h1>
 
                         <div class="form-group">
 <div class="container">
@@ -566,9 +563,6 @@
         <!-- "Update" and "Delete" buttons on the left side -->
 
 
-        <button type="button" class="btn btn-primary" id="updateButton">Update</button>
-
-
 
 
 <button type="button" class="btn btn-primary">
@@ -594,10 +588,7 @@ $('#myModal').modal('show');
 
 </script>
 
-<script>
-    // Disable the button
-    document.getElementById('updateButton').disabled = true;
-</script>
+
 
 
 {% endblock main_body_contant %}

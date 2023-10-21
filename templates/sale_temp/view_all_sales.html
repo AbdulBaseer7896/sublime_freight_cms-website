@@ -16,231 +16,231 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-        
+
 {% endblock header_sytyle %}
 
 
 
 {% block search_bar_contant %}
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+<!-- Sidebar Toggle (Topbar) -->
+<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+    <i class="fa fa-bars"></i>
+</button>
 
-                    <!-- Topbar Search -->
-                    <form action="{{ url_for('search_carear_for_sales_man') }}" method="post"
-                    enctype="multipart/form-data"
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+<!-- Topbar Search -->
+<form action="{{ url_for('search_carear_for_sales_man') }}" method="post" enctype="multipart/form-data"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+            aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
 
-                    {% endblock search_bar_contant %}
-
+{% endblock search_bar_contant %}
 
 
 
 
-                    {% block main_body_contant %}
-                    <!-- Page Heading -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">All Sales Records</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        
-                                    <thead>
-                                        <tr>
-                                            <th>Carear ID</th>
-                                            <th>Company Name</th>
-                                            <th>Carear Name</th>
-                                            <th>US DOT</th>
-                                            <th>MC</th>
-                                            <th>State</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
-                                            <th>Truck Type & Number</th>
-                                            <th>EIN</th>
-                                            <th>INC Name</th>
-                                            <th>Inc Number</th>
-                                            <th>INC Address</th>
-                                            <th>INC Email</th>
-                                            <th>INC Fax Number</th>
-                                            <th>INC Converges</th>
-                                            <th>Factoring Name</th>
-                                            <th>Factoring phone Number</th>
-                                            <th>Factoring Email</th>
-                                            <th>Factoring Address</th>
-                                            <th>Bank Name</th>
-                                            <th>Routing Number</th>
-                                            <th>Account Name</th>
-                                            <th>Bank Phone Number</th>
-                                            <th>Update</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Carear ID</th>
-                                            <th>Company Name</th>
-                                            <th>Carear Name</th>
-                                            <th>US DOT</th>
-                                            <th>MC</th>
-                                            <th>State</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
-                                            <th>Truck Type & Number</th>
-                                            <th>EIN</th>
-                                            <th>INC Name</th>
-                                            <th>Inc Number</th>
-                                            <th>INC Address</th>
-                                            <th>INC Email</th>
-                                            <th>INC Fax Number</th>
-                                            <th>INC Converges</th>
-                                            <th>Factoring Name</th>
-                                            <th>Factoring phone Number</th>
-                                            <th>Factoring Email</th>
-                                            <th>Factoring Address</th>
-                                            <th>Bank Name</th>
-                                            <th>Routing Number</th>
-                                            <th>Account Name</th>
-                                            <th>Bank Phone Number</th>
-                                            <th>Update</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        {% for item in sales_data %}
-                                         {% if head_light == item['carear_id'] %}
-                                            
-                                         <tr style="background-color: #36b9cc; color: white;">
-        
-        
-                                            {% else %}
-                                                <tr>
-        
-                                            {% endif %}
-        
-                                            {% if item['sale_type'] == 'active_sale'%}                                 
-                                            <td>
-                                                <button style="background-color: green; color: white;"
-                                                onclick="showDetails('{{ item.carear_id }}', '{{ item.carear_name }}' , '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}')"
-                                                class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
-                                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                    {{ item['carear_id'] }}
-                                                </button>
-                                            </td>
-                                            {% endif %}
-        
-                                            {% if item['sale_type'] == 'inactive_sale'%}                                 
-                                            <td>
-                                                <button style="background-color: red;  color: white;"
-                                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
-                                                class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
-                                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                    {{ item['carear_id'] }}
-                                                </button>
-                                            </td>
-                                            {% endif %}
-        
-                                            {% if item['sale_type'] == 'good_appoinment'%}                                 
-                                            <td>
-                                                <button style="background-color: yellow;  color: white;"
-                                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
-                                                class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
-                                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                    {{ item['carear_id'] }}
-                                                </button>
-                                            </td>
-                                            {% endif %}
-        
-                                        
-                                            <td>
-                                                    {{ item['carear_name'] }}
-                                            </td>
-        
-                                            
-                                            
-                                            <td>{{item['company_name']}}</td>                    
-                                            <td>{{item['usdot']}}</td>
-                                            <td>{{item['mc']}}</td>
-                                            <td>{{item['state']}}</td>
-                                            <td>{{item['email']}}</td>
-                                            <td>{{item['phone_number']}}</td>
-                                            <td>{{item['truck_type_and_number']}}</td>
-                                            <td>{{item['ein']}}</td>
-                                            <td>{{item['inc_name']}}</td>
-                                            <td>{{item['inc_number']}}</td>
-                                            <td>{{item['inc_address']}}</td>
-                                            <td>{{item['inc_email']}}</td>
-                                            <td>{{item['inc_fax_number']}}</td>
-                                            <td>{{item['inc_coverges']}}</td>
-                                            <td>{{item['fac_name']}}</td>
-                                            <td>{{item['fac_phone_number']}}</td>
-                                            <td>{{item['fac_email']}}</td>
-                                            <td>{{item['fac_address']}}</td>
-                                            <td>{{item['bank_name']}}</td>
-                                            <td>{{item['routing_number']}}</td>
-                                            <td>{{item['account_number']}}</td>
-                                            <td>{{item['bank_phone_number']}}</td>
-                                            <td>
-                                        
-                                                <a href="{{ url_for('update_carear_info', carear_id=item['carear_id']) }}" type="submit" class="btn">Update</a>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-        
-                    </div>
-                    <!-- End of Content Wrapper -->
-        
-                </div>
-                <!-- End of Page Wrapper -->
-        
-        
-                <div class="modal fade bd-example-modal-xl" tabindex="-2" role="dialog" id="myModal">
-                    <div class="modal-dialog modal-xl" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">After Update Sales Detailes</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" id="modal-body">
-                                <!-- Row details will be displayed here -->
-                            </div>
-                
-                        </div>
-                    </div>
-                </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <script>
-            function showDetails(carear_id, company_name, carear_name, usdot, mc, state, email, phone_number, truck_type_and_number, ein, inc_name, inc_number, inc_address, inc_email, inc_fax_number, inc_coverges, fac_name, fac_phone_number, fac_email, fac_address, bank_name, routing_number, account_number, bank_phone_number) {
-                // Set the modal body content
-                var modalBody = document.getElementById("modal-body");
-        
-                modalBody.innerHTML = `
+
+{% block main_body_contant %}
+<!-- Page Heading -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Sales Records</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                <thead>
+                    <tr>
+                        <th>Carear ID</th>
+                        <th>Company Name</th>
+                        <th>Carear Name</th>
+                        <th>US DOT</th>
+                        <th>MC</th>
+                        <th>State</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Truck Type & Number</th>
+                        <th>EIN</th>
+                        <th>INC Name</th>
+                        <th>Inc Number</th>
+                        <th>INC Address</th>
+                        <th>INC Email</th>
+                        <th>INC Fax Number</th>
+                        <th>INC Converges</th>
+                        <th>Factoring Name</th>
+                        <th>Factoring phone Number</th>
+                        <th>Factoring Email</th>
+                        <th>Factoring Address</th>
+                        <th>Bank Name</th>
+                        <th>Routing Number</th>
+                        <th>Account Name</th>
+                        <th>Bank Phone Number</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Carear ID</th>
+                        <th>Company Name</th>
+                        <th>Carear Name</th>
+                        <th>US DOT</th>
+                        <th>MC</th>
+                        <th>State</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Truck Type & Number</th>
+                        <th>EIN</th>
+                        <th>INC Name</th>
+                        <th>Inc Number</th>
+                        <th>INC Address</th>
+                        <th>INC Email</th>
+                        <th>INC Fax Number</th>
+                        <th>INC Converges</th>
+                        <th>Factoring Name</th>
+                        <th>Factoring phone Number</th>
+                        <th>Factoring Email</th>
+                        <th>Factoring Address</th>
+                        <th>Bank Name</th>
+                        <th>Routing Number</th>
+                        <th>Account Name</th>
+                        <th>Bank Phone Number</th>
+                        <th>Update</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for item in sales_data %}
+                    {% if head_light == item['carear_id'] %}
+
+                    <tr style="background-color: #36b9cc; color: white;">
+
+
+                        {% else %}
+                    <tr>
+
+                        {% endif %}
+
+                        {% if item['sale_type'] == 'active_sale'%}
+                        <td>
+                            <button style="background-color: green; color: white;"
+                                onclick="showDetails('{{ item.carear_id }}', '{{ item.carear_name }}' , '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}')"
+                                class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ item['carear_id'] }}
+                            </button>
+                        </td>
+                        {% endif %}
+
+                        {% if item['sale_type'] == 'inactive_sale'%}
+                        <td>
+                            <button style="background-color: red;  color: white;"
+                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
+                                class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ item['carear_id'] }}
+                            </button>
+                        </td>
+                        {% endif %}
+
+                        {% if item['sale_type'] == 'good_appoinment'%}
+                        <td>
+                            <button style="background-color: yellow;  color: white;"
+                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
+                                class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ item['carear_id'] }}
+                            </button>
+                        </td>
+                        {% endif %}
+
+
+                        <td>
+                            {{ item['carear_name'] }}
+                        </td>
+
+
+
+                        <td>{{item['company_name']}}</td>
+                        <td>{{item['usdot']}}</td>
+                        <td>{{item['mc']}}</td>
+                        <td>{{item['state']}}</td>
+                        <td>{{item['email']}}</td>
+                        <td>{{item['phone_number']}}</td>
+                        <td>{{item['truck_type_and_number']}}</td>
+                        <td>{{item['ein']}}</td>
+                        <td>{{item['inc_name']}}</td>
+                        <td>{{item['inc_number']}}</td>
+                        <td>{{item['inc_address']}}</td>
+                        <td>{{item['inc_email']}}</td>
+                        <td>{{item['inc_fax_number']}}</td>
+                        <td>{{item['inc_coverges']}}</td>
+                        <td>{{item['fac_name']}}</td>
+                        <td>{{item['fac_phone_number']}}</td>
+                        <td>{{item['fac_email']}}</td>
+                        <td>{{item['fac_address']}}</td>
+                        <td>{{item['bank_name']}}</td>
+                        <td>{{item['routing_number']}}</td>
+                        <td>{{item['account_number']}}</td>
+                        <td>{{item['bank_phone_number']}}</td>
+                        <td>
+
+                            <a href="{{ url_for('update_carear_info', carear_id=item['carear_id']) }}" type="submit"
+                                class="btn">Update</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+<div class="modal fade bd-example-modal-xl" tabindex="-2" role="dialog" id="myModal">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">After Update Sales Detailes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Row details will be displayed here -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+    function showDetails(carear_id, company_name, carear_name, usdot, mc, state, email, phone_number, truck_type_and_number, ein, inc_name, inc_number, inc_address, inc_email, inc_fax_number, inc_coverges, fac_name, fac_phone_number, fac_email, fac_address, bank_name, routing_number, account_number, bank_phone_number) {
+        // Set the modal body content
+        var modalBody = document.getElementById("modal-body");
+
+        modalBody.innerHTML = `
         
                         <section class="form-02-main student-page">
             <div class="container">
@@ -481,30 +481,38 @@
         </section>
         
                         <div class="modal-footer">
-        
+                            <div class="mr-auto">
+        <button type="button" class="btn btn-primary" onclick="update_sales('${carear_id}')">Update</button>
+    </div>
             <div class="ml-auto">
                 <!-- "Close" button on the right side -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
         `;
-        
+
         // Show the modal
         $('#myModal').modal('show');
-        }
-        
+    }
 
-        $(document).ready(function () {
-    $('#myModal').modal({
-        show: false
+
+    $(document).ready(function () {
+        $('#myModal').modal({
+            show: false
+        });
     });
-});
 
 
-        </script>
+</script>
+
+<script>
+    function update_sales(carear_id) {
+        // Redirect to the update_carear_info route with the carear_id parameter
+        window.location.href = "{{ url_for('update_carear_info', carear_id='') }}" + carear_id;
+    }
+</script>
 
 
 
 
-        
-        {% endblock main_body_contant %}
+{% endblock main_body_contant %}

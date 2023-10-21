@@ -66,13 +66,14 @@ class Admin_Modle():
             
 
         
-
+#  user user_pin when you have to used user_Id
+#   User_ID = user_pin
+#  ANd user_pin = User_ID
     def get_all_sales_for_db(self):
         with self.engine.connect() as conn:
             # query = text(f"SELECT * from new_sales_first_time;")
-            query = text(f"SELECT new_sales_first_time.*, users.user_name FROM new_sales_first_time LEFT JOIN users ON new_sales_first_time.sale_man_pin = users.user_id;")
+            query = text(f"SELECT new_sales_first_time.*, users.user_name FROM new_sales_first_time LEFT JOIN users ON new_sales_first_time.sale_man_pin = users.user_pin;")
             result = conn.execute(query).fetchall()
-            print("This is result = " , result)
             return result
     
     def get_sales_man_name(self):
@@ -103,7 +104,7 @@ class Admin_Modle():
         
     def get_untransfer_sales_data(self):
         with self.engine.connect() as conn:
-            query = text(f"SELECT * from untransfer_sales;")
+            query = text(f"SELECT untransfer_sales.*, users.user_name FROM untransfer_sales LEFT JOIN users ON untransfer_sales.sale_man_pin = users.user_pin;")
             result = conn.execute(query).fetchall()
             return result
         
@@ -133,17 +134,13 @@ class Admin_Modle():
         
     def get_load_info_from_db_for_admin(self):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT load_number from disptcher_give_load_to_carear;")
-            result = conn.execute(query1).fetchall()
-            result = [item[0] for item in result]
-            if result != []:
-                query2 = text(f"SELECT * from transfer_load_to_carears where load_number in {tuple(result)};")
-                result = conn.execute(query2)
-                column_names = result.keys()
-                result_dict = [dict(zip(column_names, row)) for row in result]
-                return result_dict
-            result_dict = ''
+            query1 = text(f"SELECT load_details.*, users.user_name, new_sales_first_time.carear_name FROM load_details LEFT JOIN users ON load_details.dispatcher_pin = users.user_pin LEFT JOIN new_sales_first_time ON load_details.carear_id = new_sales_first_time.carear_id;")
+            result = conn.execute(query1)
+            column_names = result.keys()
+            result_list = list(result)
+            result_dict = [dict(zip(column_names, row)) for row in reversed(result_list)]
             return result_dict
+
         
 
     def get_carear_info_from_db_for_admin(self):
@@ -161,6 +158,7 @@ class Admin_Modle():
             return ""
         
         
+    
         
     def stored_card_info_in_db(self , card_info):
         with self.engine.connect() as conn:
@@ -206,11 +204,13 @@ class Admin_Modle():
         
     def get_first_form_sales_for_db_for_admin_search(self , search_text):
         with self.engine.connect() as conn:
-            query = text(f"SELECT * from new_sales_first_time;")
-            
-            
-            query = text(f"SELECT * FROM new_sales_first_time WHERE ('{search_text}' IN (carear_id, company_name, usdot, mc,  email , phone_number , carear_name , state ,sale_man_pin , dispatcher_pin));")
-            
+            query = text(f"SELECT new_sales_first_time.*, users.user_name FROM new_sales_first_time LEFT JOIN users ON new_sales_first_time.sale_man_pin = users.user_pin WHERE ('{search_text}' IN (carear_id, company_name, usdot, mc,  email , phone_number , carear_name , state , user_name));")
+            result = conn.execute(query).fetchall()
+            return result
+        
+    def get_appoiments_for_db_for_admin_search(self , search_text):
+        with self.engine.connect() as conn:
+            query = text(f"SELECT new_appointment.*, users.user_name FROM new_appointment LEFT JOIN users ON new_appointment.sales_man_pin = users.user_pin WHERE ('{search_text}' IN (appointment_id, company_name, usdot, mc,  email , phone_number , truck_or_traler, carear_name , state , user_name));")
             result = conn.execute(query).fetchall()
             return result
         
@@ -309,7 +309,7 @@ class Admin_Modle():
             # Using last index to get the file extension
             ext = split_filename[ext_pos]
             img_db_path = str(f"images/{folder_name}/{new_filename}.{ext}")
-            file.save(f"static/images/img/{folder_name}/{new_filename}.{ext}")
+            file.save(f"static/images/{folder_name}/{new_filename}.{ext}")
             return img_db_path
         
         

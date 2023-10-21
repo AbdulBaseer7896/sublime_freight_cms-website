@@ -15,12 +15,12 @@
 
 {% block search_bar_contant %}
                         
-<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+<!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
     <i class="fa fa-bars"></i>
-</button>
+</button> -->
 
 <!-- Topbar Search -->
-<form
+<!-- <form
     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -31,7 +31,7 @@
             </button>
         </div>
     </div>
-</form>
+</form> -->
 
 {% endblock search_bar_contant %}
 
@@ -49,59 +49,48 @@
 
                             <thead>
                                 <tr>
-
+                                    <th>Load ID</th>
                                     <th>Carear ID</th>
-
-                        
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
+                                    <th>Carear Name</th>
+                                    <th>Dispatcher Name</th>
                                     <th>Load Number</th>
-                                    <th>Load Date</th>
                                     <th>Load Rate</th>
-                                    <th>Load Location</th>
-                                    <th>Distance</th>
-                                    <th>Weight</th>
-                                    <th>Pick Up Time</th>
-                                    <th>Delivery Time</th>
-
-                                    <!-- <th>Sale Man</th> -->
-                                    <!-- <th>Dispatcher</th> -->
-                                    <!-- <th>Update (changes)</th> -->
+                                    <th>Load Date</th>
+                                    <th>Miles</th>
+                                    <th>Pick Up Location</th>
+                                    <th>Drop Location</th>
+                                    <th>Load Description</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <th>Load ID</th>
                                     <th>Carear ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
+                                    <th>Carear Name</th>
+                                    <th>Dispatcher Name</th>
                                     <th>Load Number</th>
-                                    <th>Load Date</th>
                                     <th>Load Rate</th>
-                                    <th>Load Location</th>
-                                    <th>Distance</th>
-                                    <th>Weight</th>
-                                    <th>Pick Up Time</th>
-                                    <th>Delivery Time</th>
+                                    <th>Load Date</th>
+                                    <th>Miles</th>
+                                    <th>Pick Up Location</th>
+                                    <th>Drop Location</th>
+                                    <th>Load Description</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {% for carear, load in zipped_data %}
+                                {% for load in load_info %}
                                     <tr>
-                                        <td>{{ carear['carear_id'] }}</td>                                        
-                                        <td>{{ carear['carear_name'] }}</td>
-                                        <td>{{ carear['email'] }}</td>
-                                        <td>{{ carear['phone_number'] }}</td>
-                            
+                                        <td>{{ load['load_id'] }}</td>          
+                                        <td>{{ load['carear_id']}}</td>                              
+                                        <td>{{ load['carear_name'] }}</td>
+                                        <td>{{load['user_name']}}</td>                            
                                         <td>{{ load['load_number'] }}</td>
-                                        <td>{{ load['load_date'] }}</td>
                                         <td>{{ load['load_rate'] }} $</td>
-                                        <td>{{ load['load_location'] }}</td>
-                                        <td>{{ load['distance'] }}</td>
-                                        <td>{{ load['weight'] }}</td>
-                                        <td>{{ load['pick_up_time'] }}</td>
-                                        <td>{{ load['delivery_time'] }}</td>
+                                        <td>{{ load['load_date'] }}</td>
+                                        <td>{{ load['miles'] }}</td>
+                                        <td>{{ load['pick_up_location'] }}</td>
+                                        <td>{{ load['drop_location'] }}</td>
+                                        <td>{{ load['load_description'] }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -116,16 +105,6 @@
         <!-- /.container-fluid -->
 
     </div>
-    <!-- End of Main Content -->
-         <!-- Footer -->
-         <!-- <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
-                </div>
-            </div>
-        </footer> -->
-        <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->

@@ -95,7 +95,7 @@ class Dispatcher():
         
     def store_load_and_carear_info_in_db(self , load_number , carear_id , dispatcher_pin):
         with self.engine.connect() as conn:
-            query1 = text(f"INSERT INTO disptcher_give_load_to_carear VALUES ( {int(dispatcher_pin)} , '{load_number}' , '{carear_id}');")
+            query1 = text(f"INSERT INTO disptcher_give_load_to_carear VALUES ( '{dispatcher_pin}' , '{load_number}' , '{carear_id}');")
             conn.execute(query1)
 
             query2 = text(f"SELECT * from load_details where load_number = {load_number};")

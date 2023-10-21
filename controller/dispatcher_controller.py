@@ -117,3 +117,6 @@ def update_the_load_info():
         return render_template('//dispatcher_temp//save_load_info.html' , dispatch_info = dispatch_info , carear_info_for_display = carear_info_for_display[0],  carear_info = "",  load_info = load_info)
 
         
+        
+        
+        
