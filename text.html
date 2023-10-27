@@ -11,6 +11,16 @@
     <p>Click the button below to open an external website in a pop-up:</p>
     <button id="openExternalWebsite">Open External Website</button>
     
+    <!-- JavaScript to open the external website in a pop-up window -->
+    <script>
+        document.getElementById('openExternalWebsite').addEventListener('click', function() {
+            // Replace 'https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=1218018'
+            // with the actual URL you want to open
+            var externalWebsiteUrl = 'https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=1218018';
 
+            // Open the URL in a pop-up window
+            window.open(externalWebsiteUrl, '_blank', 'width=800,height=600');
+        });
+    </script>
 </body>
 </html>

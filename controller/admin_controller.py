@@ -289,6 +289,7 @@ def delete_the_sales_by_admin():
 @login_required('admin')     
 def search_mc_number_for_admin():
     print("This is fun")
+
     if request.method == "POST":
         admin_info = session.get('data')
         notification_data = obj.get_notification_data_from_db()

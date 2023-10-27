@@ -10,6 +10,24 @@
         overflow: auto;
         white-space: nowrap;
     }
+    
+    .externalWebsiteButton {
+        background: none;
+        border: none;
+        color: blue; /* Change the color as needed */
+        cursor: pointer;
+        text-decoration: underline; /* Add underline to make it look like a link */
+        text-decoration: none;
+    }
+
+    .openExternalWebsite_for_pop {
+        background: none;
+        border: none;
+        color: blue; /* Change the color as needed */
+        cursor: pointer;
+        text-decoration: underline; /* Add underline to make it look like a link */
+        text-decoration: none;
+    }
 </style>
 {% endblock header_sytyle %}
 
@@ -76,7 +94,25 @@
                             <td>{{item['company_name']}}</td>
                             <td>{{item['carear_name']}}</td>
                             <td>{{item['usdot']}}</td>
-                            <td>{{item['mc']}}</td>
+                            <td>
+                                <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
+                            </td>
+                            
+                            <!-- Add a script to handle button clicks -->
+                            <script>
+                                // Use a class to select all buttons and add event listeners dynamically
+                                var buttons = document.querySelectorAll('.externalWebsiteButton');
+                            
+                                buttons.forEach(function(button) {
+                                    button.addEventListener('click', function() {
+                                        var mc = button.getAttribute('data-mc');
+                                        var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
+                            
+                                        // Open the URL in a pop-up window
+                                        window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+                                    });
+                                });
+                            </script>
                             <td>{{item['email']}}</td>
                             <td>{{item['phone_number']}}</td>
                             <td>{{item['truck_type_and_number']}}</td>
