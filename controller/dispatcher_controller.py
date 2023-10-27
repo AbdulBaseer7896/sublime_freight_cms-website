@@ -118,5 +118,14 @@ def update_the_load_info():
 
         
         
-        
+@app.route('/search_mc_number_for_dispatcher' , methods=["GET", "POST"])
+@login_required('dispatcher')     
+def search_mc_number_for_dispatcher():
+    print("This is fun")
+    if request.method == "POST":
+        dispatch_info = session.get('data')
+        ms_number = request.form.to_dict()
+        ms_number = ms_number['mc_for_search']
+        print("This is mc = " , ms_number)
+        return render_template('//dispatcher_temp//dispatcher_dashboard.html' , dispatch_info = dispatch_info,  ms_number = ms_number)
         

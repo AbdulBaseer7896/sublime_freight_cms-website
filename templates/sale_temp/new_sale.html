@@ -149,6 +149,16 @@
             border-radius: 0.25rem;
             transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
+
+
+        input.form-control {
+            font-size: 16px; /* Adjust the font size as needed */
+            color: #0062CC; /* Default color for the input text */
+        }
+
+        input.form-control:not(:placeholder-shown) {
+            color: #0062CC; /* Color for the input text when it has a value */
+        }
     </style>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>

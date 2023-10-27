@@ -282,3 +282,17 @@ def delete_the_sales_by_admin():
         carear_id = request.args.get("carear_id")
         obj.delete_the_sales_from_db(carear_id)
         return redirect(url_for("view_all_sales_of_all_sales_man"))
+    
+    
+    
+@app.route('/search_mc_number_for_admin' , methods=["GET", "POST"])
+@login_required('admin')     
+def search_mc_number_for_admin():
+    print("This is fun")
+    if request.method == "POST":
+        admin_info = session.get('data')
+        notification_data = obj.get_notification_data_from_db()
+
+        ms_number = request.form.to_dict()
+        ms_number = ms_number['mc_for_search']
+        return render_template('//admin_temp//admin_dashboard.html' , notification_data = notification_data , admin_info = admin_info , ms_number = ms_number)

@@ -2,8 +2,30 @@
 
 
 
+{% block search_bar_contant %}
+                                            <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form action="{{ url_for('search_mc_number_for_admin') }}" method="post"
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input name="mc_for_search" type="text" class="form-control bg-light border-0 small" placeholder="Search for MC"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+{% endblock search_bar_contant %}
+
 {% block for_notifications %}
                             
+
 
 
 <li class="nav-item dropdown no-arrow mx-1">
@@ -64,6 +86,15 @@
 {% block main_body_contant %}
 
 
+{% if ms_number %}
+
+    <script>
+        var externalWebsiteUrl = 'https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string={{ ms_number }}';
+
+        // Open the URL in a pop-up window
+        window.open(externalWebsiteUrl, '_blank', 'width=1000,height=700');
+    </script>
+{% endif %}
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

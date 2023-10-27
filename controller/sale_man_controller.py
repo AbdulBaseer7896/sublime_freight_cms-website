@@ -156,4 +156,13 @@ def update_the_appoinment():
         flash(("you Successfully Update The Appointment!!!" , 'appointment_update_success'))
         return redirect(url_for("sale_dashboard"))
     
-    
+@app.route('/search_mc_number' , methods=["GET", "POST"])
+@login_required('sale_man')     
+def search_mc_number():
+    print("This is fun")
+    if request.method == "POST":
+        sale_man_info = session.get('data')
+        ms_number = request.form.to_dict()
+        ms_number = ms_number['mc_for_search']
+        print("This is mc = " , ms_number)
+        return render_template('//sale_temp//sale_dashboard.html' ,sale_man_info = sale_man_info , ms_number = ms_number)

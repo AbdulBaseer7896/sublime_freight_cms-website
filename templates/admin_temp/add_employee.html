@@ -123,6 +123,17 @@
         margin-bottom: -15%;
         color: #495057;
     }
+
+        /* Custom styles for inputs within the tab-content class */
+        .tab-content input.form-control {
+            font-size: 16px; /* Adjust the font size as needed */
+            color: #0062CC; /* Default color for the input text */
+        }
+
+        .tab-content input.form-control:not(:placeholder-shown) {
+            color: #0062CC; /* Color for the input text when it has a value */
+        }
+    
 </style>
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
@@ -162,15 +173,15 @@
                                                 <!-- Sale Man form inputs -->
                                                 <div class="form-group">
                                                     <input name="f_name" type="text" class="form-control"
-                                                        placeholder="Full Name *" value="" />
+                                                        placeholder="Full Name" value="" />
                                                 </div>
                                                 <div class="form-group">
                                                     <input name="cnic" type="number" class="form-control"
-                                                        placeholder="CNIC Number *" value="" />
+                                                        placeholder="CNIC Number" value="" />
                                                 </div>
                                                 <div class="form-group">
                                                     <input name="password" type="password" class="form-control"
-                                                        placeholder="Pin Code *" value="" disabled />
+                                                        placeholder="Pin Code " value="" disabled />
                                                 </div>
                                                 <div class="form-group">
                                                     <input name="employee_photo" type="file" class="form-control"
@@ -196,24 +207,24 @@
                                                 <!-- Sale Man form inputs -->
                                                 <div class="form-group">
                                                     <input name="email" type="email" class="form-control"
-                                                        placeholder="Enter Email *" value="" />
+                                                        placeholder="Enter Email " value="" />
                                                 </div>
                                                 <div class="form-group">
                                                     <input name="phone_number" type="text" minlength="10" maxlength="10"
-                                                        class="form-control" placeholder="Enter Phone *" value="" />
+                                                        class="form-control" placeholder="Enter Phone " value="" />
                                                 </div>
                                                 <div class="form-group d-none">
                                                     <input name="user_type" type="text" class="form-control"
-                                                        placeholder="User Type *" value="sale_man" />
+                                                        placeholder="User Type " value="sale_man" />
                                                 </div>
 
                                                 <div class="form-group">
                                                     <input name="user" type="text" class="form-control"
-                                                        placeholder="User Type *" value="Sale Man" disabled />
+                                                        placeholder="User Type " value="Sale Man" disabled />
                                                 </div>
                                                 <div class="form-group d-none">
                                                     <input name="salary" type="number" class="form-control"
-                                                        placeholder="Salary *" value="" />
+                                                        placeholder="Salary " value="" />
                                                 </div>
                                                 <input type="submit" class="btnRegister" value="Register" />
                                     </form>
@@ -229,15 +240,15 @@
                                         <!-- Dispatcher form inputs -->
                                         <div class="form-group">
                                             <input name="f_name" type="text" class="form-control"
-                                                placeholder="Full Name *" value="" />
+                                                placeholder="Full Name " value="" />
                                         </div>
                                         <div class="form-group">
                                             <input name="cnic" type="text" class="form-control"
-                                                placeholder="CNIC Number *" value="" />
+                                                placeholder="CNIC Number " value="" />
                                         </div>
                                         <div class="form-group">
                                             <input name="password" type="password" class="form-control"
-                                                placeholder="Pin Code *" value="" disabled />
+                                                placeholder="Pin Code " value="" disabled />
                                         </div>
                                         <div class="form-group">
                                             <input name="employee_photo" type="file" class="form-control"
@@ -262,24 +273,24 @@
                                         <!-- Dispatcher form inputs -->
                                         <div class="form-group">
                                             <input name="email" type="email" class="form-control"
-                                                placeholder="Enter Email *" value="" />
+                                                placeholder="Enter Email " value="" />
                                         </div>
                                         <div class="form-group">
                                             <input name="phone_number" type="text" minlength="10" maxlength="10"
-                                                name="txtEmpPhone" class="form-control" placeholder="Enter Phone *"
+                                                name="txtEmpPhone" class="form-control" placeholder="Enter Phone "
                                                 value="" />
                                         </div>
                                         <div class="form-group d-none">
                                             <input name="user_type" type="text" class="form-control"
-                                                placeholder="User Type *" value="dispatcher" />
+                                                placeholder="User Type " value="dispatcher" />
                                         </div>
                                         <div class="form-group">
                                             <input name="user" type="text" class="form-control"
-                                                placeholder="User Type *" value="Dispatcher" disabled />
+                                                placeholder="User Type " value="Dispatcher" disabled />
                                         </div>
                                         <div class="form-group d-none">
                                             <input name="salary" type="number" class="form-control"
-                                                placeholder="Salary *" value="" />
+                                                placeholder="Salary " value="" />
                                         </div>
                                         <input type="submit" class="btnRegister" value="Register" />
                             </form>
