@@ -224,9 +224,9 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <select name="appointment_type" class="form-select"
+                                                    <select name="appointment_type" id="typeSelect" class="form-select"
                                                         aria-label="Default select example" required>
-                                                        <option value="{{appointment_info['appointment_type']}}" disabled selected
+                                                        <option disabled selected
                                                             hidden>Select Appoinment type</option>
                                                         <option value="good_appointment" name="appointment_type"
                                                             style="background-color: green;">Good Appointment</option>
@@ -242,14 +242,31 @@
                                                             style="background-color: black;" disabled>XYZ Appointment</option>
                                                     </select>
 
-                                                    
-                                                    {% if appointment_info != '' %}
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <input  type="text" class="form-control" disabled value="{{appointment_info['appointment_type']}}" required />
-                                                        </div>
-                                                    </div>
-                                                    {% endif %}
+                                                    <script>
+                                                        // Function to auto-select the option based on a given value
+                                                        function autoSelecttype(value) {
+                                                            // Convert the value to lowercase for case-insensitive comparison
+                                                            var lowercasedValue = value.toLowerCase();
+                
+                                                            // Find the select element by ID
+                                                            var selectElement = document.getElementById("typeSelect");
+                
+                                                            // Loop through each option in the select element
+                                                            for (var i = 0; i < selectElement.options.length; i++) {
+                                                                var optionValue = selectElement.options[i].value.toLowerCase();
+                
+                                                                // Check if the option value contains the given value
+                                                                if (optionValue.indexOf(lowercasedValue) !== -1) {
+                                                                    // Set the selected attribute to true for the matching option
+                                                                    selectElement.options[i].selected = true;
+                                                                    break; // Exit the loop once a match is found
+                                                                }
+                                                            }
+                                                        }
+                
+                                                        // Call the function with the desired value (e.g., "wv" or "VA")
+                                                        autoSelecttype("{{appointment_info['appointment_type']}}");
+                                                    </script>
                                                 </div>
                                             </div>
 
@@ -337,14 +354,31 @@
                                                         <option value="WI">Wisconsin (WI)</option>
                                                         <option value="WY">Wyoming (WY)</option>
                                                     </select>
-                                                    {% if appointment_info != '' %}
-                                                        <!-- Display the selected state if appointment_info is not empty -->
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" disabled value="{{ appointment_info['state'] }}" />
-                                                            </div>
-                                                        </div>
-                                                    {% endif %}
+                                                    <script>
+                                                        // Function to auto-select the option based on a given value
+                                                        function autoSelectstate(value) {
+                                                            // Convert the value to lowercase for case-insensitive comparison
+                                                            var lowercasedValue = value.toLowerCase();
+                
+                                                            // Find the select element by ID
+                                                            var selectElement = document.getElementById("stateSelect");
+                
+                                                            // Loop through each option in the select element
+                                                            for (var i = 0; i < selectElement.options.length; i++) {
+                                                                var optionValue = selectElement.options[i].value.toLowerCase();
+                
+                                                                // Check if the option value contains the given value
+                                                                if (optionValue.indexOf(lowercasedValue) !== -1) {
+                                                                    // Set the selected attribute to true for the matching option
+                                                                    selectElement.options[i].selected = true;
+                                                                    break; // Exit the loop once a match is found
+                                                                }
+                                                            }
+                                                        }
+                
+                                                        // Call the function with the desired value (e.g., "wv" or "VA")
+                                                        autoSelectstate("{{appointment_info['state']}}");
+                                                    </script>
                                                 </div>
                                                 
                                                 <div class="form-group">

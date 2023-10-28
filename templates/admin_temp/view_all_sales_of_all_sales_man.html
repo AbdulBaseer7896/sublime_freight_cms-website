@@ -75,8 +75,9 @@
                             <thead>
                                 <tr>
                                     <th>Carear ID</th>
-                                    <th>Company Name</th>
                                     <th>Carear Name</th>
+                                    <th>Sale Man</th>
+                                    <th>Company Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
                                     <th>State</th>
@@ -98,15 +99,15 @@
                                     <th>Routing Number</th>
                                     <th>Account Name</th>
                                     <th>Bank Phone Number</th>
-                                    <th>Sale Man</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Carear ID</th>
-                                    <th>Company Name</th>
                                     <th>Carear Name</th>
+                                    <th>Sale Man</th>
+                                    <th>Company Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
                                     <th>State</th>
@@ -128,7 +129,6 @@
                                     <th>Routing Number</th>
                                     <th>Account Name</th>
                                     <th>Bank Phone Number</th>
-                                    <th>Sale Man</th>
                                     <th>Delete</th>
                                 </tr>
                             </tfoot>
@@ -185,7 +185,7 @@
                                     </td>
 
                                     
-                                    
+                                    <td>{{item['user_name']}}</td>
                                     <td>{{item['company_name']}}</td>                    
                                     <td>{{item['usdot']}}</td>
 
@@ -193,22 +193,7 @@
                                         <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
                                     </td>
                                     
-                                    <!-- Add a script to handle button clicks -->
-                                    <script>
-                                        // Use a class to select all buttons and add event listeners dynamically
-                                        var buttons = document.querySelectorAll('.externalWebsiteButton');
-                                    
-                                        buttons.forEach(function(button) {
-                                            button.addEventListener('click', function() {
-                                                var mc = button.getAttribute('data-mc');
-                                                var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
-                                    
-                                                // Open the URL in a pop-up window
-                                                window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
-                                            });
-                                        });
-                                    </script>
-    
+
                                     <!-- JavaScript to open the external website in a pop-up window -->
                        
 
@@ -232,7 +217,6 @@
                                     <td>{{item['routing_number']}}</td>
                                     <td>{{item['account_number']}}</td>
                                     <td>{{item['bank_phone_number']}}</td>
-                                    <td>{{item['user_name']}}</td>
                                     <td>
 
                                         <a class="dropdown-item" href="#" data-toggle="modal"
@@ -655,5 +639,22 @@ $('#myModal').modal('show');
                                     </script>
 
 
+
+                                    <!-- Add a script to handle button clicks -->
+                                    <script>
+                                        // Use a class to select all buttons and add event listeners dynamically
+                                        var buttons = document.querySelectorAll('.externalWebsiteButton');
+                                
+                                        buttons.forEach(function (button) {
+                                            button.addEventListener('click', function () {
+                                                var mc = button.getAttribute('data-mc');
+                                                var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
+                                
+                                                // Open the URL in a pop-up window
+                                                window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+                                            });
+                                        });
+                                    </script>
+    
 
 {% endblock main_body_contant %}

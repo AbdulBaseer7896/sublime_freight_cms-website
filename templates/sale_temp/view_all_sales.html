@@ -149,7 +149,7 @@
                         {% if item['sale_type'] == 'active_sale'%}
                         <td>
                             <button style="background-color: green; color: white;"
-                                onclick="showDetails('{{ item.carear_id }}', '{{ item.carear_name }}' , '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}')"
+                                onclick="showDetails('{{ item.carear_id }}' ,  '{{ item.company_name }}',  '{{ item.carear_name }}' ,'{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}')"
                                 class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ item['carear_id'] }}
@@ -160,7 +160,7 @@
                         {% if item['sale_type'] == 'inactive_sale'%}
                         <td>
                             <button style="background-color: red;  color: white;"
-                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
+                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}'  ,  '{{item.carear_name}}' , '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
                                 class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ item['carear_id'] }}
@@ -171,7 +171,7 @@
                         {% if item['sale_type'] == 'good_appoinment'%}
                         <td>
                             <button style="background-color: yellow;  color: white;"
-                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
+                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}' ,  '{{item.carear_name}}' ,'{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' )"
                                 class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ item['carear_id'] }}
@@ -180,34 +180,16 @@
                         {% endif %}
 
 
-                        <td>
-                            {{ item['carear_name'] }}
-                        </td>
-
-
-
                         <td>{{item['company_name']}}</td>
+                        <td>{{ item['carear_name'] }}</td>
+
                         <td>{{item['usdot']}}</td>
 
                         <td>
                             <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
                         </td>
                         
-                        <!-- Add a script to handle button clicks -->
-                        <script>
-                            // Use a class to select all buttons and add event listeners dynamically
-                            var buttons = document.querySelectorAll('.externalWebsiteButton');
-                        
-                            buttons.forEach(function(button) {
-                                button.addEventListener('click', function() {
-                                    var mc = button.getAttribute('data-mc');
-                                    var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
-                        
-                                    // Open the URL in a pop-up window
-                                    window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
-                                });
-                            });
-                        </script>
+
 
                         <td>{{item['state']}}</td>
                         <td>{{item['email']}}</td>
@@ -571,6 +553,23 @@
         window.location.href = "{{ url_for('update_carear_info', carear_id='') }}" + carear_id;
     }
 </script>
+
+
+                        <!-- Add a script to handle button clicks -->
+                        <script>
+                            // Use a class to select all buttons and add event listeners dynamically
+                            var buttons = document.querySelectorAll('.externalWebsiteButton');
+                        
+                            buttons.forEach(function(button) {
+                                button.addEventListener('click', function() {
+                                    var mc = button.getAttribute('data-mc');
+                                    var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
+                        
+                                    // Open the URL in a pop-up window
+                                    window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+                                });
+                            });
+                        </script>
 
 
 

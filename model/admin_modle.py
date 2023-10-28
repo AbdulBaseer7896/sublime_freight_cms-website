@@ -26,10 +26,10 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             user_id = self.get_user_id_from_db()
             six_digit_pin = self.gernate_password_for_users()
-            query1 = text(f"INSERT INTO sale_man_table VALUES ('{data['f_name']}' , '{data['cnic']}' ,'{user_id}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'sale_man'  , 0 , '{six_digit_pin}' , '{image_path}');")
+            query1 = text(f"""INSERT INTO sale_man_table VALUES ("{data['f_name']}" , "{data['cnic']}" ,"{user_id}" , "{data['gender']}" , "{data['email']}"  , "{data['phone_number']}"  , "sale_man"  , "0" , "{six_digit_pin}" , "{image_path}");""")
             conn.execute(query1)
             
-            query2 = text(f"INSERT INTO users VALUES ('{user_id}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}' , 'active' , '{six_digit_pin}' , '{image_path}');")
+            query2 = text(f"""INSERT INTO users VALUES ("{user_id}" , "{data['f_name']}" , "{data['phone_number']}" , "{data['email']}" , "{data['user_type']}" , "active" , "{six_digit_pin}" , "{image_path}");""")
             conn.execute(query2)
             return True
     
@@ -37,10 +37,10 @@ class Admin_Modle():
         with self.engine.connect() as conn:
             user_id = self.get_user_id_from_db()
             six_digit_pin = self.gernate_password_for_users()
-            query1 = text(f"INSERT INTO dispatcher_table VALUES ('{data['f_name']}' , '{data['cnic']}' , '{user_id}' , '{data['gender']}' , '{data['email']}'  , '{data['phone_number']}'  , 'dispatcher'  , 0 , '{six_digit_pin}' , '{image_path}');")
+            query1 = text(f"""INSERT INTO dispatcher_table VALUES ("{data['f_name']}" , "{data['cnic']}" , "{user_id}" , "{data['gender']}" , "{data['email']}"  , "{data['phone_number']}" , "dispatcher"  , "0" , "{six_digit_pin}" , "{image_path}");""")
             conn.execute(query1)
             
-            query2 = text(f"INSERT INTO users VALUES ('{user_id}' , '{data['f_name']}' , '{data['phone_number']}' , '{data['email']}' , '{data['user_type']}' , 'active' , '{six_digit_pin}' , '{image_path}');")
+            query2 = text(f"""INSERT INTO users VALUES ("{user_id}" , "{data['f_name']}" , "{data['phone_number']}" , "{data['email']}" , "{data['user_type']}" , 'active' , "{six_digit_pin}" , "{image_path}");""")
             conn.execute(query2)
             return True 
         
@@ -71,7 +71,7 @@ class Admin_Modle():
 #  ANd user_pin = User_ID
     def get_all_sales_for_db(self):
         with self.engine.connect() as conn:
-            # query = text(f"SELECT * from new_sales_first_time;")
+            # query = text(f"""SELECT * from new_sales_first_time;")
             query = text(f"SELECT new_sales_first_time.*, users.user_name FROM new_sales_first_time LEFT JOIN users ON new_sales_first_time.sale_man_pin = users.user_pin;")
             result = conn.execute(query).fetchall()
             return result
@@ -124,7 +124,7 @@ class Admin_Modle():
         
     def insert_carear_id_and_dispatcher_pin_in_db(self , info):
         with self.engine.connect() as conn:
-            query1 = text(f"INSERT INTO carear_id_and_dispatcher_pin_table VALUES ('{info['dispatcher_id']}' , '{info['carears_id']}' );")
+            query1 = text(f"""INSERT INTO carear_id_and_dispatcher_pin_table VALUES ("{info['dispatcher_id']}" , "{info['carears_id']}" );""")
             
             querry_to_delete_unfransfer_sales_from_db = text(f"DELETE FROM untransfer_sales WHERE carear_id = {info['carears_id']};")
 
@@ -168,7 +168,7 @@ class Admin_Modle():
             result_dict = [dict(zip(column_names, row)) for row in result]
             result_dict = result_dict[0]
             
-            query1 = text(f"INSERT INTO atm_card_info VALUES ('{card_info['carear_id']}' , '{result_dict['carear_name']}', '{result_dict['email']}',  '{result_dict['phone_number']}',  '{card_info['care_number']}', '{card_info['card_expiry']}' , '{card_info['card_cvc']}' , '{card_info['card_type']}' , '{card_info['card_holder_name']}' );")
+            query1 = text(f"""INSERT INTO atm_card_info VALUES ("{card_info['carear_id']}" , "{result_dict['carear_name']}", "{result_dict['email']}",  "{result_dict['phone_number']}",  "{card_info['care_number']}", "{card_info['card_expiry']}" , "{card_info['card_cvc']}" , "{card_info['card_type']}" , "{card_info['card_holder_name']}" );""")
             conn.execute(query1)
             
         
@@ -204,13 +204,13 @@ class Admin_Modle():
         
     def get_first_form_sales_for_db_for_admin_search(self , search_text):
         with self.engine.connect() as conn:
-            query = text(f"SELECT new_sales_first_time.*, users.user_name FROM new_sales_first_time LEFT JOIN users ON new_sales_first_time.sale_man_pin = users.user_pin WHERE ('{search_text}' IN (carear_id, company_name, usdot, mc,  email , phone_number , carear_name , state , user_name));")
+            query = text(f"""SELECT new_sales_first_time.*, users.user_name FROM new_sales_first_time LEFT JOIN users ON new_sales_first_time.sale_man_pin = users.user_pin WHERE ("{search_text}" IN (carear_id, company_name, usdot, mc,  email , phone_number , carear_name , state , user_name));""")
             result = conn.execute(query).fetchall()
             return result
         
     def get_appoiments_for_db_for_admin_search(self , search_text):
         with self.engine.connect() as conn:
-            query = text(f"SELECT new_appointment.*, users.user_name FROM new_appointment LEFT JOIN users ON new_appointment.sales_man_pin = users.user_pin WHERE ('{search_text}' IN (appointment_id, company_name, usdot, mc,  email , phone_number , truck_or_traler, carear_name , state , user_name));")
+            query = text(f"""SELECT new_appointment.*, users.user_name FROM new_appointment LEFT JOIN users ON new_appointment.sales_man_pin = users.user_pin WHERE ("{search_text}" IN (appointment_id, company_name, usdot, mc,  email , phone_number , truck_or_traler, carear_name , state , user_name));""")
             result = conn.execute(query).fetchall()
             return result
         
@@ -232,7 +232,8 @@ class Admin_Modle():
         
     def get_appointment_data_from_db(self):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT * from new_appointment;")
+            # query1 = text(f"SELECT * from new_appointment;")
+            query1 = text(f"SELECT new_appointment.*, users.user_name FROM new_appointment LEFT JOIN users ON new_appointment.sales_man_pin = users.user_pin;")
             result = conn.execute(query1)
             
             column_names = result.keys()
@@ -252,21 +253,21 @@ class Admin_Modle():
         
     def update_the_appoinments_from_db(self , update_data):
         with self.engine.connect() as conn:
-            query1 = text(f"UPDATE new_appointment SET company_name = '{update_data['company_name']}', usdot = '{update_data['usdot']}', email = '{update_data['email']}', truck_or_traler = '{update_data['truck_or_traler']}', comments = '{update_data['comments']}', carear_name = '{update_data['carear_name']}', mc = '{update_data['mc']}', phone_number = '{update_data['phone_number']}', conversations = '{update_data['conversations']}', appointment_type = '{update_data['appointment_type']}', sales_man_pin = '{update_data['company_name']}', state = '{update_data['state']}', date = '{update_data['date']}'  WHERE appointment_id = '{update_data['appointment_id']}';")
+            query1 = text(f"""UPDATE new_appointment SET company_name = "{update_data['company_name']}", usdot = "{update_data['usdot']}", email = "{update_data['email']}", truck_or_traler = "{update_data['truck_or_traler']}", comments = "{update_data['comments']}", carear_name = "{update_data['carear_name']}", mc = "{update_data['mc']}", phone_number = "{update_data['phone_number']}", conversations = "{update_data['conversations']}", appointment_type = "{update_data['appointment_type']}", state = "{update_data['state']}", date = "{update_data['date']}"  WHERE appointment_id = "{update_data['appointment_id']}";""")
             conn.execute(query1)
             return True
             
     def delete_the_appointment_from_db(self , appointment_id):
         with self.engine.connect() as conn:
-            query = text(f"DELETE FROM new_appointment WHERE appointment_id = '{appointment_id}';")
+            query = text(f"""DELETE FROM new_appointment WHERE appointment_id = "{appointment_id}";""")
             conn.execute(query)
             return True
         
     def delete_the_sales_from_db(self , carear_id):
         with self.engine.connect() as conn:
-            query1 = text(f"DELETE FROM new_sales_first_time WHERE carear_id = '{carear_id}';")
-            query2 = text(f"DELETE FROM sales_second_time WHERE carear_id = '{carear_id}';")
-            query3 = text(f"DELETE FROM untransfer_sales WHERE carear_id = '{carear_id}';")
+            query1 = text(f"""DELETE FROM new_sales_first_time WHERE carear_id = "{carear_id}";""")
+            query2 = text(f"""DELETE FROM sales_second_time WHERE carear_id = "{carear_id}";""")
+            query3 = text(f"""DELETE FROM untransfer_sales WHERE carear_id = "{carear_id}";""")
             conn.execute(query1)
             conn.execute(query2)
             conn.execute(query3)
@@ -275,7 +276,7 @@ class Admin_Modle():
         
     def get_notification_data_from_db(self):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT * from notifications_table where nofi_states = 'unseen' ;")
+            query1 = text(f"""SELECT * from notifications_table where nofi_states = "unseen" ;""")
             result = conn.execute(query1)
             
             column_names = result.keys()
@@ -287,13 +288,13 @@ class Admin_Modle():
     def remore_the_nofiticatin_form_db_for_appointment(self , head_light_id ):
         with self.engine.connect() as conn:
             
-            querry1  = text(f"UPDATE notifications_table SET nofi_states = 'seen' WHERE (appointment_id = '{head_light_id}') ;")
+            querry1  = text(f"""UPDATE notifications_table SET nofi_states = 'seen' WHERE (appointment_id = "{head_light_id}") ;""")
             conn.execute(querry1)
             
 
     def remore_the_nofiticatin_form_db_for_sales(self , head_light_id ):
         with self.engine.connect() as conn:
-            querry2  = text(f"UPDATE notifications_table SET nofi_states = 'seen' WHERE (sale_carear_id = '{head_light_id}');")
+            querry2  = text(f"""UPDATE notifications_table SET nofi_states = 'seen' WHERE (sale_carear_id = "{head_light_id}");""")
             conn.execute(querry2)
             return True
         

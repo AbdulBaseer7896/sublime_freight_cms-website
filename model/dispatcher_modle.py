@@ -68,7 +68,7 @@ class Dispatcher():
             else:
                 load_id = int(result1[0][0]) + 1
                 
-            query = text(f"INSERT INTO load_details VALUES ( '{load_id}' , '{load_info['carear_id']}' , '{load_info['pick_up_location']}' , '{load_info['miles']}' , '{load_info['load_number']}' , '{load_info['load_date']}'  , '{load_info['drop_location']}'   , '{load_info['load_rate']}' , '{load_info['load_description']}' , '{pin}' );")
+            query = text(f"""INSERT INTO load_details VALUES ( "{load_id}" , "{load_info['carear_id']}" , "{load_info['pick_up_location']}" , "{load_info['miles']}" , "{load_info['load_number']}" , "{load_info['load_date']}"  , "{load_info['drop_location']}"   , "{load_info['load_rate']}" , "{load_info['load_description']}" , "{pin}" );""")
             conn.execute(query)
             return True
 
@@ -95,7 +95,7 @@ class Dispatcher():
         
     def store_load_and_carear_info_in_db(self , load_number , carear_id , dispatcher_pin):
         with self.engine.connect() as conn:
-            query1 = text(f"INSERT INTO disptcher_give_load_to_carear VALUES ( '{dispatcher_pin}' , '{load_number}' , '{carear_id}');")
+            query1 = text(f"""INSERT INTO disptcher_give_load_to_carear VALUES ( "{dispatcher_pin}" , "{load_number}" , "{carear_id}");""")
             conn.execute(query1)
 
             query2 = text(f"SELECT * from load_details where load_number = {load_number};")
@@ -107,7 +107,7 @@ class Dispatcher():
             
             local_time_ampm = self.get_local_time_ampm()
             
-            query3= text(f"INSERT INTO transfer_load_to_carears VALUES ( '{load_info['load_number']}' , '{local_time_ampm}' , '{load_info['load_date']}' , '{load_info['load_rate']}' , '{load_info['load_location']}' , '{load_info['distance']}' , '{load_info['weight']}'  , '{load_info['pick_up_time']}'   , '{load_info['delivery_time']}' , '{load_info['carrier_name']}' , '{load_info['agent_name']}' , '{load_info['agent_email_number']}' , '{load_info['carrier_email_number']}' , '{load_info['load_description']}' , {dispatcher_pin});")
+            query3= text(f"""INSERT INTO transfer_load_to_carears VALUES ( "{load_info['load_number']}" , "{local_time_ampm}" , "{load_info['load_date']}" , "{load_info['load_rate']}" , "{load_info['load_location']}" , "{load_info['distance']}" , "{load_info['weight']}"  , "{load_info['pick_up_time']}"   , "{load_info['delivery_time']}" , "{load_info['carrier_name']}" , "{load_info['agent_name']}" , "{load_info['agent_email_number']}" , "{load_info['carrier_email_number']}" , "{load_info['load_description']}" , "{dispatcher_pin}");""")
             conn.execute(query3)
             
             query4 =  text(f"DELETE FROM load_details WHERE load_number = {load_number};")

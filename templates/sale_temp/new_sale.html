@@ -1,7 +1,3 @@
-
-
-
-
 {% extends 'sale_temp/sales_man_temp.html' %}
 
 
@@ -13,463 +9,492 @@
 
 
 {% block header_sytyle %}
-        
 
 
-    <style>
-        .register {
-            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-            margin-top: 3%;
-            padding: 3%;
+
+<style>
+    .register {
+        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        margin-top: 3%;
+        padding: 3%;
+    }
+
+    .register-left {
+        text-align: center;
+        color: #fff;
+        margin-top: 4%;
+    }
+
+    .register-left input {
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        width: 60%;
+        background: #f8f9fa;
+        font-weight: bold;
+        color: #383d41;
+        margin-top: 30%;
+        margin-bottom: 3%;
+        cursor: pointer;
+    }
+
+    .register-right {
+        background: #f8f9fa;
+        border-top-left-radius: 10% 50%;
+        border-bottom-left-radius: 10% 50%;
+    }
+
+    .register-left img {
+        margin-top: 15%;
+        margin-bottom: 5%;
+        width: 25%;
+        -webkit-animation: mover 2s infinite alternate;
+        animation: mover 1s infinite alternate;
+    }
+
+    @-webkit-keyframes mover {
+        0% {
+            transform: translateY(0);
         }
 
-        .register-left {
-            text-align: center;
-            color: #fff;
-            margin-top: 4%;
+        100% {
+            transform: translateY(-20px);
+        }
+    }
+
+    @keyframes mover {
+        0% {
+            transform: translateY(0);
         }
 
-        .register-left input {
-            border: none;
-            border-radius: 1.5rem;
-            padding: 2%;
-            width: 60%;
-            background: #f8f9fa;
-            font-weight: bold;
-            color: #383d41;
-            margin-top: 30%;
-            margin-bottom: 3%;
-            cursor: pointer;
+        100% {
+            transform: translateY(-20px);
         }
-
-        .register-right {
-            background: #f8f9fa;
-            border-top-left-radius: 10% 50%;
-            border-bottom-left-radius: 10% 50%;
-        }
-
-        .register-left img {
-            margin-top: 15%;
-            margin-bottom: 5%;
-            width: 25%;
-            -webkit-animation: mover 2s infinite alternate;
-            animation: mover 1s infinite alternate;
-        }
-
-        @-webkit-keyframes mover {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes mover {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .register-left p {
-            font-weight: lighter;
-            padding: 12%;
-            margin-top: -9%;
-        }
-
-        .register .register-form {
-            padding: 10%;
-            margin-top: 10%;
-        }
-
-        .btnRegister {
-            float: right;
-            margin-top: 10%;
-            border: none;
-            border-radius: 1.5rem;
-            padding: 2%;
-            background: #0062cc;
-            color: #fff;
-            font-weight: 600;
-            width: 50%;
-            cursor: pointer;
-        }
-
-        .register .nav-tabs {
-            margin-top: 3%;
-            border: none;
-            background: #0062cc;
-            border-radius: 1.5rem;
-            width: 28%;
-            float: right;
-        }
-
-        .register .nav-tabs .nav-link {
-            padding: 2%;
-            height: 34px;
-            font-weight: 600;
-            color: #fff;
-            border-top-right-radius: 1.5rem;
-            border-bottom-right-radius: 1.5rem;
-        }
-
-        .register .nav-tabs .nav-link:hover {
-            border: none;
-        }
-
-        .register .nav-tabs .nav-link.active {
-            width: 100px;
-            color: #0062cc;
-            border: 2px solid #0062cc;
-            border-top-left-radius: 1.5rem;
-            border-bottom-left-radius: 1.5rem;
-        }
-
-        .register-heading {
-            text-align: center;
-            margin-top: 8%;
-            margin-bottom: -15%;
-            color: #495057;
-        }
-
-        .form-select {
-            width: 100%;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: 0.25rem;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-
-
-        input.form-control {
-            font-size: 16px; /* Adjust the font size as needed */
-            color: #0062CC; /* Default color for the input text */
-        }
-
-        input.form-control:not(:placeholder-shown) {
-            color: #0062CC; /* Color for the input text when it has a value */
-        }
-    </style>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
-    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
-
-    {% endblock header_sytyle %}
-
-
-    {% block main_body_contant %}
-
-
-                <div class="container register">
-                    <div class="row">
-                        <div class="col-md-3 register-left">
-                            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="">
-                            <h3>Welcome</h3>
-                            <p>To Sublime Freight Sales Form</p>
-                        </div>
-                        <div class="col-md-9 register-right">
-
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                    aria-labelledby="home-tab">
-                                    <h3 class="register-heading">Add New Sale</h3>
-
-                                    <form action="{{ url_for('new_sale') }}" method="post"
-                                        enctype="multipart/form-data">
-                                        <div class="row register-form">
-                                            <div class="col-md-6">
-
-
-                                                <!-- This is important . Its go for carear Id But its not -->
-
-                                                <div class="form-group d-none">
-                                                    <input name="carear_id" type="text" class="form-control"
-                                                        placeholder="Carear ID"
-                                                        value="{{carear_info['carear_id']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="company_name" type="text" class="form-control"
-                                                        placeholder="Company Name"
-                                                        value="{{carear_info['company_name']}}" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="usdot" type="text" class="form-control"
-                                                        placeholder="US DOT" value="{{carear_info['usdot']}}" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="email" type="text" class="form-control"
-                                                        placeholder="Carear Email" value="{{carear_info['email']}}" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="truck_type_and_number" type="text" class="form-control"
-                                                        placeholder="Truck type & Truck Number"
-                                                        value="{{carear_info['truck_type_and_number']}}" />
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input name="carear_name" type="text" class="form-control"
-                                                        placeholder="Carear Name" value="{{carear_info['carear_name']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="mc" type="text" class="form-control" placeholder="MC"
-                                                        value="{{carear_info['mc']}}" />
-                                                </div>
-
-
-                                                <div class="form-group">
-                                                    <input name="phone_number" type="text" class="form-control"
-                                                        placeholder="Carear Phone"
-                                                        value="{{carear_info['phone_number']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="ein" type="text" class="form-control" placeholder="EIN"
-                                                        value="{{carear_info['ein']}}" />
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <!-- Sale Man form inputs -->
-                                                <div class="form-group">
-                                                    <input name="inc_name" type="text" class="form-control"
-                                                        placeholder="Inc Name" value="{{carear_info['inc_name']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="inc_address" type="text" class="form-control"
-                                                        placeholder="Inc Address" value="{{carear_info['inc_address']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="inc_fax_number" type="text" class="form-control"
-                                                        placeholder="Inc Fax Number" value="{{carear_info['inc_fax_number']}}" />
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="col-md-6">
-                                                <!-- Sale Man form inputs -->
-
-                                                <div class="form-group">
-                                                    <input name="inc_number" type="text" class="form-control"
-                                                        placeholder="Inc Number" value="{{carear_info['inc_number']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="inc_email" type="text" class="form-control"
-                                                        placeholder="Inc Email" value="{{carear_info['inc_email']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="inc_coverges" type="text" class="form-control"
-                                                        placeholder="Inc Coverages" value="{{carear_info['inc_coverges']}}" />
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input name="fac_name" type="text" class="form-control"
-                                                        placeholder="Fac Company Name"
-                                                        value="{{carear_info['fac_name']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="fac_email" type="text" class="form-control"
-                                                        placeholder="Fac Email" value="{{carear_info['fac_email']}}" />
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <input name="fac_phone_number" type="text" class="form-control"
-                                                        placeholder="Fac Phone Number"
-                                                        value="{{carear_info['fac_phone_number']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="fac_address" type="text" class="form-control"
-                                                        placeholder="Fac Address"
-                                                        value="{{carear_info['fac_address']}}" />
-                                                </div>
-
-
-                                            </div>
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input name="bank_name" type="text" class="form-control"
-                                                        placeholder="Bank Name" value="{{carear_info['bank_name']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="account_number" type="text" class="form-control"
-                                                        placeholder="Account Number"
-                                                        value="{{carear_info['account_number']}}" />
-                                                </div>
-
-
-                                                <div class="form-group">
-                                                    <select name="sale_type" class="form-select"
-                                                        aria-label="Default select example" required>
-                                                        <option value="{{carear_info['sale_type']}}" disabled selected
-                                                            hidden>Select Sale type</option>
-                                                        <option value="active_sale" name="sale_type"
-                                                            style="background-color: green;">Active Sale</option>
-                                                        <option value="inactive_sale" name="sale_type"
-                                                            style="background-color: red;">Inactive Sale</option>
-                                                        <option value="good_appoinment" name="sale_type"
-                                                            style="background-color: yellow;">Good Appoinment</option>
-                                                        <option value="" name="sale_type"
-                                                            style="background-color: pink;" disabled>ABC Sale</option>
-                                                        <option value="" name="sale_type"
-                                                            style="background-color: black;" disabled>XYZ Sale</option>
-                                                    </select>
-
-                                                    {% if carear_info != '' %}
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <input  type="text" class="form-control" disabled value="{{carear_info['sale_type']}}" />
-                                                        </div>
-                                                    </div>
-                                                       
-                                                    {% endif %}
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <select  name="state" class="form-select"
-                                                        aria-label="Default select example" required>
-                                                        <option  disabled selected
-                                                            hidden>Select state</option>
-                                                            <option value="AL" name="sale_type">Alabama (AL)</option>
-                                                            <option value="AK" name="sale_type">Alaska (AK)</option>
-                                                            <option value="AZ" name="sale_type">Arizona (AZ)</option>
-                                                            <option value="AR" name="sale_type">Arkansas (AR)</option>
-                                                            <option value="CA" name="sale_type">California (CA)</option>
-                                                            <option value="CO" name="sale_type">Colorado (CO)</option>
-                                                            <option value="CT" name="sale_type">Connecticut (CT)</option>
-                                                            <option value="DE" name="sale_type">Delaware (DE)</option>
-                                                            <option value="FL" name="sale_type">Florida (FL)</option>
-                                                            <option value="GA" name="sale_type">Georgia (GA)</option>
-                                                            <option value="HI" name="sale_type">Hawaii (HI)</option>
-                                                            <option value="ID" name="sale_type">Idaho (ID)</option>
-                                                            <option value="IL" name="sale_type">Illinois (IL)</option>
-                                                            <option value="IN" name="sale_type">Indiana (IN)</option>
-                                                            <option value="IA" name="sale_type">Iowa (IA)</option>
-                                                            <option value="KS" name="sale_type">Kansas (KS)</option>
-                                                            <option value="KY" name="sale_type">Kentucky (KY)</option>
-                                                            <option value="LA" name="sale_type">Louisiana (LA)</option>
-                                                            <option value="ME" name="sale_type">Maine (ME)</option>
-                                                            <option value="MD" name="sale_type">Maryland (MD)</option>
-                                                            <option value="MA" name="sale_type">Massachusetts (MA)</option>
-                                                            <option value="MI" name="sale_type">Michigan (MI)</option>
-                                                            <option value="MN" name="sale_type">Minnesota (MN)</option>
-                                                            <option value="MS" name="sale_type">Mississippi (MS)</option>
-                                                            <option value="MO" name="sale_type">Missouri (MO)</option>
-                                                            <option value="MT" name="sale_type">Montana (MT)</option>
-                                                            <option value="NE" name="sale_type">Nebraska (NE)</option>
-                                                            <option value="NV" name="sale_type">Nevada (NV)</option>
-                                                            <option value="NH" name="sale_type">New Hampshire (NH)</option>
-                                                            <option value="NJ" name="sale_type">New Jersey (NJ)</option>
-                                                            <option value="NM" name="sale_type">New Mexico (NM)</option>
-                                                            <option value="NY" name="sale_type">New York (NY)</option>
-                                                            <option value="NC" name="sale_type">North Carolina (NC)</option>
-                                                            <option value="ND" name="sale_type">North Dakota (ND)</option>
-                                                            <option value="OH" name="sale_type">Ohio (OH)</option>
-                                                            <option value="OK" name="sale_type">Oklahoma (OK)</option>
-                                                            <option value="OR" name="sale_type">Oregon (OR)</option>
-                                                            <option value="PA" name="sale_type">Pennsylvania (PA)</option>
-                                                            <option value="RI" name="sale_type">Rhode Island (RI)</option>
-                                                            <option value="SC" name="sale_type">South Carolina (SC)</option>
-                                                            <option value="SD" name="sale_type">South Dakota (SD)</option>
-                                                            <option value="TN" name="sale_type">Tennessee (TN)</option>
-                                                            <option value="TX" name="sale_type">Texas (TX)</option>
-                                                            <option value="UT" name="sale_type">Utah (UT)</option>
-                                                            <option value="VT" name="sale_type">Vermont (VT)</option>
-                                                            <option value="VA" name="sale_type">Virginia (VA)</option>
-                                                            <option value="WA" name="sale_type">Washington (WA)</option>
-                                                            <option value="WV" name="sale_type">West Virginia (WV)</option>
-                                                            <option value="WI" name="sale_type">Wisconsin (WI)</option>
-                                                            <option value="WY" name="sale_type">Wyoming (WY)</option>
-                                                    </select>
-                                                    {% if carear_info != '' %}
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <input  type="text" class="form-control" disabled value="{{carear_info['state']}}" />
-                                                        </div>
-                                                    </div>
-                                                       
-                                                    {% endif %}
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <input name="routing_number" type="text" class="form-control"
-                                                        placeholder="Routing Number"
-                                                        value="{{carear_info['routing_number']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input name="bank_phone_number" type="text" class="form-control"
-                                                        placeholder="Bank Phone Number"
-                                                        value="{{carear_info['bank_phone_number']}}" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input required name="date" type="date" class="form-control"
-                                                        placeholder="Date"
-                                                        value="{{carear_info['date']}}" />
-                                                </div>
-                                                <input type="submit" class="btnRegister" value="Submit" />
-
-                                            </div>
-
-                                    </form>
+    }
+
+    .register-left p {
+        font-weight: lighter;
+        padding: 12%;
+        margin-top: -9%;
+    }
+
+    .register .register-form {
+        padding: 10%;
+        margin-top: 10%;
+    }
+
+    .btnRegister {
+        float: right;
+        margin-top: 10%;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        background: #0062cc;
+        color: #fff;
+        font-weight: 600;
+        width: 50%;
+        cursor: pointer;
+    }
+
+    .register .nav-tabs {
+        margin-top: 3%;
+        border: none;
+        background: #0062cc;
+        border-radius: 1.5rem;
+        width: 28%;
+        float: right;
+    }
+
+    .register .nav-tabs .nav-link {
+        padding: 2%;
+        height: 34px;
+        font-weight: 600;
+        color: #fff;
+        border-top-right-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+    }
+
+    .register .nav-tabs .nav-link:hover {
+        border: none;
+    }
+
+    .register .nav-tabs .nav-link.active {
+        width: 100px;
+        color: #0062cc;
+        border: 2px solid #0062cc;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+    }
+
+    .register-heading {
+        text-align: center;
+        margin-top: 8%;
+        margin-bottom: -15%;
+        color: #495057;
+    }
+
+    .form-select {
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+
+    input.form-control {
+        font-size: 16px;
+        /* Adjust the font size as needed */
+        color: #0062CC;
+        /* Default color for the input text */
+    }
+
+    input.form-control:not(:placeholder-shown) {
+        color: #0062CC;
+        /* Color for the input text when it has a value */
+    }
+</style>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+
+{% endblock header_sytyle %}
+
+
+{% block main_body_contant %}
+
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="">
+            <h3>Welcome</h3>
+            <p>To Sublime Freight Sales Form</p>
+        </div>
+        <div class="col-md-9 register-right">
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Add New Sale</h3>
+
+                    <form action="{{ url_for('new_sale') }}" method="post" enctype="multipart/form-data">
+                        <div class="row register-form">
+                            <div class="col-md-6">
+
+
+                                <!-- This is important . Its go for carear Id But its not -->
+
+                                <div class="form-group d-none">
+                                    <input name="carear_id" type="text" class="form-control" placeholder="Carear ID"
+                                        value="{{carear_info['carear_id']}}" />
                                 </div>
+
+                                <div class="form-group">
+                                    <input name="company_name" type="text" class="form-control"
+                                        placeholder="Company Name" value="{{carear_info['company_name']}}" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="usdot" type="text" class="form-control" placeholder="US DOT"
+                                        value="{{carear_info['usdot']}}" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="email" type="text" class="form-control" placeholder="Carear Email"
+                                        value="{{carear_info['email']}}" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="truck_type_and_number" type="text" class="form-control"
+                                        placeholder="Truck type & Truck Number"
+                                        value="{{carear_info['truck_type_and_number']}}" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="carear_name" type="text" class="form-control" placeholder="Carear Name"
+                                        value="{{carear_info['carear_name']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="mc" type="text" class="form-control" placeholder="MC"
+                                        value="{{carear_info['mc']}}" />
+                                </div>
+
+
+                                <div class="form-group">
+                                    <input name="phone_number" type="text" class="form-control"
+                                        placeholder="Carear Phone" value="{{carear_info['phone_number']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="ein" type="text" class="form-control" placeholder="EIN"
+                                        value="{{carear_info['ein']}}" />
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Sale Man form inputs -->
+                                <div class="form-group">
+                                    <input name="inc_name" type="text" class="form-control" placeholder="Inc Name"
+                                        value="{{carear_info['inc_name']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="inc_address" type="text" class="form-control" placeholder="Inc Address"
+                                        value="{{carear_info['inc_address']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="inc_fax_number" type="text" class="form-control"
+                                        placeholder="Inc Fax Number" value="{{carear_info['inc_fax_number']}}" />
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <!-- Sale Man form inputs -->
+
+                                <div class="form-group">
+                                    <input name="inc_number" type="text" class="form-control" placeholder="Inc Number"
+                                        value="{{carear_info['inc_number']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="inc_email" type="text" class="form-control" placeholder="Inc Email"
+                                        value="{{carear_info['inc_email']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="inc_coverges" type="text" class="form-control"
+                                        placeholder="Inc Coverages" value="{{carear_info['inc_coverges']}}" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="fac_name" type="text" class="form-control"
+                                        placeholder="Fac Company Name" value="{{carear_info['fac_name']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="fac_email" type="text" class="form-control" placeholder="Fac Email"
+                                        value="{{carear_info['fac_email']}}" />
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <input name="fac_phone_number" type="text" class="form-control"
+                                        placeholder="Fac Phone Number" value="{{carear_info['fac_phone_number']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="fac_address" type="text" class="form-control" placeholder="Fac Address"
+                                        value="{{carear_info['fac_address']}}" />
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="bank_name" type="text" class="form-control" placeholder="Bank Name"
+                                        value="{{carear_info['bank_name']}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="account_number" type="text" class="form-control"
+                                        placeholder="Account Number" value="{{carear_info['account_number']}}" />
+                                </div>
+
+
+                                <div class="form-group">
+                                    <select name="sale_type" id="typeSelect" class="form-select"
+                                        aria-label="Default select example" required>
+                                        <option disabled selected hidden>Select Sale type</option>
+                                        <option value="active_sale" name="sale_type" style="background-color: green;">
+                                            Active Sale</option>
+                                        <option value="inactive_sale" name="sale_type" style="background-color: red;">
+                                            Inactive Sale</option>
+                                        <option value="good_appoinment" name="sale_type"
+                                            style="background-color: yellow;">Good Appoinment</option>
+                                        <option value="" name="sale_type" style="background-color: pink;" disabled>ABC
+                                            Sale</option>
+                                        <option value="" name="sale_type" style="background-color: black;" disabled>XYZ
+                                            Sale</option>
+                                    </select>
+                                    <script>
+                                        // Function to auto-select the option based on a given value
+                                        function autoSelecttype(value) {
+                                            // Convert the value to lowercase for case-insensitive comparison
+                                            var lowercasedValue = value.toLowerCase();
+
+                                            // Find the select element by ID
+                                            var selectElement = document.getElementById("typeSelect");
+
+                                            // Loop through each option in the select element
+                                            for (var i = 0; i < selectElement.options.length; i++) {
+                                                var optionValue = selectElement.options[i].value.toLowerCase();
+
+                                                // Check if the option value contains the given value
+                                                if (optionValue.indexOf(lowercasedValue) !== -1) {
+                                                    // Set the selected attribute to true for the matching option
+                                                    selectElement.options[i].selected = true;
+                                                    break; // Exit the loop once a match is found
+                                                }
+                                            }
+                                        }
+
+                                        // Call the function with the desired value (e.g., "wv" or "VA")
+                                        autoSelecttype("{{carear_info['sale_type']}}");
+                                    </script>
+                                </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <select name="state" id="stateSelect" class="form-select"
+                                        aria-label="Default select example" required>
+                                        <option disabled selected hidden>Select state</option>
+                                        <option value="AL" name="sale_type">Alabama (AL)</option>
+                                        <option value="AK" name="sale_type">Alaska (AK)</option>
+                                        <option value="AZ" name="sale_type">Arizona (AZ)</option>
+                                        <option value="AR" name="sale_type">Arkansas (AR)</option>
+                                        <option value="CA" name="sale_type">California (CA)</option>
+                                        <option value="CO" name="sale_type">Colorado (CO)</option>
+                                        <option value="CT" name="sale_type">Connecticut (CT)</option>
+                                        <option value="DE" name="sale_type">Delaware (DE)</option>
+                                        <option value="FL" name="sale_type">Florida (FL)</option>
+                                        <option value="GA" name="sale_type">Georgia (GA)</option>
+                                        <option value="HI" name="sale_type">Hawaii (HI)</option>
+                                        <option value="ID" name="sale_type">Idaho (ID)</option>
+                                        <option value="IL" name="sale_type">Illinois (IL)</option>
+                                        <option value="IN" name="sale_type">Indiana (IN)</option>
+                                        <option value="IA" name="sale_type">Iowa (IA)</option>
+                                        <option value="KS" name="sale_type">Kansas (KS)</option>
+                                        <option value="KY" name="sale_type">Kentucky (KY)</option>
+                                        <option value="LA" name="sale_type">Louisiana (LA)</option>
+                                        <option value="ME" name="sale_type">Maine (ME)</option>
+                                        <option value="MD" name="sale_type">Maryland (MD)</option>
+                                        <option value="MA" name="sale_type">Massachusetts (MA)</option>
+                                        <option value="MI" name="sale_type">Michigan (MI)</option>
+                                        <option value="MN" name="sale_type">Minnesota (MN)</option>
+                                        <option value="MS" name="sale_type">Mississippi (MS)</option>
+                                        <option value="MO" name="sale_type">Missouri (MO)</option>
+                                        <option value="MT" name="sale_type">Montana (MT)</option>
+                                        <option value="NE" name="sale_type">Nebraska (NE)</option>
+                                        <option value="NV" name="sale_type">Nevada (NV)</option>
+                                        <option value="NH" name="sale_type">New Hampshire (NH)</option>
+                                        <option value="NJ" name="sale_type">New Jersey (NJ)</option>
+                                        <option value="NM" name="sale_type">New Mexico (NM)</option>
+                                        <option value="NY" name="sale_type">New York (NY)</option>
+                                        <option value="NC" name="sale_type">North Carolina (NC)</option>
+                                        <option value="ND" name="sale_type">North Dakota (ND)</option>
+                                        <option value="OH" name="sale_type">Ohio (OH)</option>
+                                        <option value="OK" name="sale_type">Oklahoma (OK)</option>
+                                        <option value="OR" name="sale_type">Oregon (OR)</option>
+                                        <option value="PA" name="sale_type">Pennsylvania (PA)</option>
+                                        <option value="RI" name="sale_type">Rhode Island (RI)</option>
+                                        <option value="SC" name="sale_type">South Carolina (SC)</option>
+                                        <option value="SD" name="sale_type">South Dakota (SD)</option>
+                                        <option value="TN" name="sale_type">Tennessee (TN)</option>
+                                        <option value="TX" name="sale_type">Texas (TX)</option>
+                                        <option value="UT" name="sale_type">Utah (UT)</option>
+                                        <option value="VT" name="sale_type">Vermont (VT)</option>
+                                        <option value="VA" name="sale_type">Virginia (VA)</option>
+                                        <option value="WA" name="sale_type">Washington (WA)</option>
+                                        <option value="WV" name="sale_type">West Virginia (WV)</option>
+                                        <option value="WI" name="sale_type">Wisconsin (WI)</option>
+                                        <option value="WY" name="sale_type">Wyoming (WY)</option>
+                                    </select>
+                                    <script>
+                                        // Function to auto-select the option based on a given value
+                                        function autoSelectstate(value) {
+                                            // Convert the value to lowercase for case-insensitive comparison
+                                            var lowercasedValue = value.toLowerCase();
+
+                                            // Find the select element by ID
+                                            var selectElement = document.getElementById("stateSelect");
+
+                                            // Loop through each option in the select element
+                                            for (var i = 0; i < selectElement.options.length; i++) {
+                                                var optionValue = selectElement.options[i].value.toLowerCase();
+
+                                                // Check if the option value contains the given value
+                                                if (optionValue.indexOf(lowercasedValue) !== -1) {
+                                                    // Set the selected attribute to true for the matching option
+                                                    selectElement.options[i].selected = true;
+                                                    break; // Exit the loop once a match is found
+                                                }
+                                            }
+                                        }
+
+                                        // Call the function with the desired value (e.g., "wv" or "VA")
+                                        autoSelectstate("{{carear_info['state']}}");
+                                    </script>
+                                </div>
+
+                            </div>
+
+
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <input name="routing_number" type="text" class="form-control"
+                                            placeholder="Routing Number" value="{{carear_info['routing_number']}}" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input name="bank_phone_number" type="text" class="form-control"
+                                            placeholder="Bank Phone Number"
+                                            value="{{carear_info['bank_phone_number']}}" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input required name="date" type="date" class="form-control" placeholder="Date"
+                                            value="{{carear_info['date']}}" />
+                                    </div>
+                                    <input type="submit" class="btnRegister" value="Submit" />
+
+                                </div>
+
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                <!-- Footer -->
-                <!-- <footer class="sticky-footer bg-white">
+            <!-- Footer -->
+            <!-- <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
                             <span>Copyright &copy; Your Website 2021</span>
                         </div>
                     </div>
                 </footer> -->
-                <!-- End of Footer -->
-
-            </div>
-            <!-- End of Content Wrapper -->
+            <!-- End of Footer -->
 
         </div>
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
 
-    {% endblock main_body_contant %}
+    </div>
+</div>
+<!-- End of Page Wrapper -->
+
+{% endblock main_body_contant %}
