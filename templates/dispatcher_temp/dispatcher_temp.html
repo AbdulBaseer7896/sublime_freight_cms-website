@@ -25,11 +25,24 @@
         
     {% endblock header_sytyle %}
 
+    <style>
+        #preloader{
+            background: url('/static/images/img/preloader_image.gif') no-repeat center center;
+			background-color: rgba(255, 255, 255, 0.774);
+			background-size: 20%;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            z-index: 100;
+        }
+	</style>
 
 
 </head>
 
 <body id="page-top">
+
+    <div id="preloader"></div>
 
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -190,6 +203,25 @@
             </div>
         </div>
     </div>
+
+
+
+    <script>
+        function showPreloader() {
+            var loader = document.getElementById("preloader");
+            loader.style.display = "flex";
+        }
+    
+        function hidePreloader() {
+            var loader = document.getElementById("preloader");
+            loader.style.display = "none";
+        }
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initially hide the preloader when the DOM is ready
+            hidePreloader();
+        });
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="static\vendor\jquery\jquery.min.js"></script>

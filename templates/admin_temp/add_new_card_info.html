@@ -30,8 +30,22 @@
             color: #0062CC; /* Color for the input text when it has a value */
         }
     </style>
+
+<style>
+    #preloader{
+        background: url('/static/images/img/preloader_image.gif') no-repeat center center;
+        background-color: rgba(255, 255, 255, 0.774);
+        background-size: 20%;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        z-index: 100;
+    }
+</style>
 </head>
 <body>  
+
+    <div id="preloader"></div>
     <div class="padding">
         <div class="row">
             <div class="container-fluid d-flex justify-content-center">
@@ -138,5 +152,23 @@
             $('#cc-cvc').payment('restrictNumeric').formatCardCVC();
         });
     </script>
+
+
+<script>
+    function showPreloader() {
+        var loader = document.getElementById("preloader");
+        loader.style.display = "flex";
+    }
+
+    function hidePreloader() {
+        var loader = document.getElementById("preloader");
+        loader.style.display = "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initially hide the preloader when the DOM is ready
+        hidePreloader();
+    });
+</script>
 </body>
 </html>

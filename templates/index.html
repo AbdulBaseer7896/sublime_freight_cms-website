@@ -5,8 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Home Page</title>
+
+
+    <style>
+      #preloader{
+          background: url('/static/images/img/preloader_image.gif') no-repeat center center;
+    background-color: rgba(255, 255, 255, 0.774);
+    background-size: 20%;
+          height: 100vh;
+          width: 100%;
+          position: fixed;
+          z-index: 100;
+      }
+</style>
 </head>
 <body>
+
+  <div id="preloader"></div>
     <br><br><br><br>
     <h1 class="text-center">This is home page as you see</h1>
 
@@ -66,5 +81,26 @@
         </div>
       </form>
     </div>
+
+
+    <script>
+      function showPreloader() {
+          var loader = document.getElementById("preloader");
+          loader.style.display = "flex";
+      }
+  
+      function hidePreloader() {
+          var loader = document.getElementById("preloader");
+          loader.style.display = "none";
+      }
+  
+      document.addEventListener("DOMContentLoaded", function () {
+          // Initially hide the preloader when the DOM is ready
+          hidePreloader();
+      });
+  </script>
+
+
+
 </body>
 </html>
