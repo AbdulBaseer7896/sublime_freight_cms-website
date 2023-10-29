@@ -4,35 +4,6 @@
 
 {% block search_bar_contant %}
 
-                    <!-- Topbar Search -->
-                    <form action="{{ url_for('search_mc_number_for_admin') }}" method="post"
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input name="mc_for_search" type="text" class="form-control bg-light border-0 small" placeholder="Search for MC"
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-
-                    
-                    <!-- Topbar Search -->
-                    <form action="{{ url_for('search_carear_for_admin_for_seach') }}" method="post"
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for Carear"
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
 {% endblock search_bar_contant %}
 
 {% block for_notifications %}
@@ -88,7 +59,7 @@
             <div>
                 <div class="small text-gray-500">{{item['date']}}</div>
                     <span><b>{{item['sales_man_pin']}}</b></span>
-                    Has been add new Appoinment. Carear Name({{item['carear_name']}})
+                    Has been add new Appoinment. Carrier Name({{item['carear_name']}})
                 </div>
 
 
@@ -102,7 +73,7 @@
             <div>
             <div class="small text-gray-500">{{item['date']}}</div>
                 <span><b>{{item['sales_man_pin']}}</b></span>
-                Has been add new Sales. Carear Name({{item['carear_name']}})
+                Has been add new Sales. Carrier Name({{item['carear_name']}})
             </div>
                 {% endif %}
         </div>

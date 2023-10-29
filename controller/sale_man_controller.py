@@ -123,6 +123,8 @@ def search_carear_for_sales_man():
     if request.method == 'POST':
         sale_man_info = session.get('data')
         search_text = request.form.get("search_text")
+        if search_text == "":
+            return redirect(url_for('view_all_sales'))
         sales_data = obj.get_sale_man_sales_for_search_text(sale_man_info[0]['user_pin'] , search_text)
         return render_template("//sale_temp//view_all_sales.html" , sales_data = sales_data , sale_man_info = sale_man_info)
     
@@ -135,6 +137,8 @@ def view_all_appointments_for_search():
     if request.method == "POST":
         sale_man_info = session.get('data')
         search_text = request.form.get("search_text")
+        if search_text == "":
+            return redirect(url_for('view_all_appointments'))
         appointment_data = obj.get_sales_man_appointment_from_db_for_search(sale_man_info[0]['user_pin'] , search_text)
         return render_template("//sale_temp//view_all_appointment.html" , appointment_data = appointment_data , sale_man_info = sale_man_info)
     

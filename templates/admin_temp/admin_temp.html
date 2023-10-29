@@ -104,7 +104,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('transfer_carears_to_dispatcher', filename='') }}">
-                    <span>Transfer carears</span>
+                    <span>Transfer Carrier</span>
                 </a>
             </li>
 
@@ -153,6 +153,37 @@
                         
                     {% endblock search_bar_contant %}
 
+                    
+                    <!-- Topbar Search -->
+                    <form action="{{ url_for('search_load_for_admin_seach') }}" method="post"
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input name="mc_for_search" type="text" class="form-control bg-light border-0 small" placeholder="Search Load"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                    
+                    <!-- Topbar Search -->
+                    <form action="{{ url_for('search_carear_for_admin_for_seach') }}" method="post"
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search Carrier"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

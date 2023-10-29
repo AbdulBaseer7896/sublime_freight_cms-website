@@ -131,21 +131,38 @@
                     {% block search_bar_contant %}
                         
                     {% endblock search_bar_contant %}
+
+<!-- Topbar Search -->
+<form action="{{ url_for('search_carear_for_sales_man') }}" method="post" enctype="multipart/form-data"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search Carrier"
+            aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+                    
                     <!-- Topbar Search -->
-                    <!-- <form
+                    <form action="{{ url_for('search_mc_number') }}" method="post"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input name="mc_for_search" type="text" class="form-control bg-light border-0 small" placeholder="Search MC"
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
                         </div>
-                    </form> -->
+                    </form>
 
-                    <!-- Topbar Navbar -->
+
+
                     <ul class="no-loading navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->

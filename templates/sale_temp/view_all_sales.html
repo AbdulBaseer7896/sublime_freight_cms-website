@@ -42,19 +42,6 @@
 {% block search_bar_contant %}
 
 
-<!-- Topbar Search -->
-<form action="{{ url_for('search_carear_for_sales_man') }}" method="post" enctype="multipart/form-data"
-    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-    <div class="input-group">
-        <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-            aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>
-    </div>
-</form>
 
 {% endblock search_bar_contant %}
 
@@ -74,8 +61,8 @@
 
                 <thead>
                     <tr>
-                        <th>Carear ID</th>
-                        <th>Carear Name</th>
+                        <th>Carrier ID</th>
+                        <th>Carrier Name</th>
                         <th>MC</th>
                         <th>US DOT</th>
                         <th>Email</th>
@@ -85,8 +72,8 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Carear ID</th>
-                        <th>Carear Name</th>
+                        <th>Carrier ID</th>
+                        <th>Carrier Name</th>
                         <th>MC</th>
                         <th>US DOT</th>
                         <th>Email</th>
@@ -248,7 +235,7 @@
                                     <hr>
                                     <div class="row"> -->
                                     <div class="col-sm-2 text-secondary">
-                                        <h6 class="mb-0">Carear Name</h6>
+                                        <h6 class="mb-0">Carrier Name</h6>
                                     </div>
                                     <h5 class="col-sm-4 ">
                                         ${carear_name}
@@ -298,7 +285,7 @@
                         <div class="row">
 
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Carear Phone</h6>
+                                <h6 class="mb-0">Carrier Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${phone_number}                                    

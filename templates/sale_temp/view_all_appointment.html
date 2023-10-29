@@ -38,7 +38,7 @@
                     <form action="{{ url_for('view_all_appointments_for_search') }}" method="post"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search Appoinment"
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
@@ -65,7 +65,7 @@
                             <thead>
                                 <tr>
                                     <th>Appointment ID</th>
-                                    <th>Carear Name</th>
+                                    <th>Carrier Name</th>
                                     <th>MC</th>
                                     <th>US DOT</th>
                                     <th>Date</th>
@@ -77,7 +77,7 @@
                             <tfoot>
                                 <tr>
                                     <th>Appointment ID</th>
-                                    <th>Carear Name</th>
+                                    <th>Carrier Name</th>
                                     <th>MC</th>
                                     <th>US DOT</th>
                                     <th>Date</th>
@@ -266,7 +266,7 @@ function set_delete_appointment(appointment_id) {
                             <hr>
                             <div class="row"> -->
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Carear Name</h6>
+                                <h6 class="mb-0">Carrier Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${carear_name}
@@ -320,7 +320,7 @@ function set_delete_appointment(appointment_id) {
                                 ${email}                                             
                             </h5>
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Carear Phone</h6>
+                                <h6 class="mb-0">Carrier Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${phone_number}                                    

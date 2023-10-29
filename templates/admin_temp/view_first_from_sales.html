@@ -55,60 +55,22 @@
 
                             <thead>
                                 <tr>
-                                    <th>Carear ID</th>
-                                    <th>Company Name</th>
-                                    <th>Carear Name</th>
+                                    <th>Carrier ID</th>
+                                    <th>Carrier Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
-                                    <th>State</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Truck Type & Number</th>
-                                    <th>EIN</th>
-                                    <th>INC Name</th>
-                                    <th>Inc Number</th>
-                                    <th>INC Address</th>
-                                    <th>INC Email</th>
-                                    <th>INC Fax Number</th>
-                                    <th>INC Converges</th>
-                                    <th>Factoring Name</th>
-                                    <th>Factoring phone Number</th>
-                                    <th>Factoring Email</th>
-                                    <th>Factoring Address</th>
-                                    <th>Bank Name</th>
-                                    <th>Routing Number</th>
-                                    <th>Account Name</th>
-                                    <th>Bank Phone Number</th>
-                                    <th>Sale Man</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Carear ID</th>
-                                    <th>Company Name</th>
-                                    <th>Carear Name</th>
+                                    <th>Carrier ID</th>
+                                    <th>Carrier Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
-                                    <th>State</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Truck Type & Number</th>
-                                    <th>EIN</th>
-                                    <th>INC Name</th>
-                                    <th>Inc Number</th>
-                                    <th>INC Address</th>
-                                    <th>INC Email</th>
-                                    <th>INC Fax Number</th>
-                                    <th>INC Converges</th>
-                                    <th>Factoring Name</th>
-                                    <th>Factoring phone Number</th>
-                                    <th>Factoring Email</th>
-                                    <th>Factoring Address</th>
-                                    <th>Bank Name</th>
-                                    <th>Routing Number</th>
-                                    <th>Account Name</th>
-                                    <th>Bank Phone Number</th>
-                                    <th>Sale Man</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -161,33 +123,13 @@
                                             {{ item['carear_name'] }}
                                     </td>
 
-                                    
-                                    
-                                    <td>{{item['company_name']}}</td>                    
-                                    <td>{{item['usdot']}}</td>
-                                    
+
                                     <td>
                                         <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
                                     </td>
-                                    <td>{{item['state']}}</td>
+                                    <td>{{item['usdot']}}</td>
                                     <td>{{item['email']}}</td>
                                     <td>{{item['phone_number']}}</td>
-                                    <td>{{item['truck_type_and_number']}}</td>
-                                    <td>{{item['ein']}}</td>
-                                    <td>{{item['inc_name']}}</td>
-                                    <td>{{item['inc_number']}}</td>
-                                    <td>{{item['inc_address']}}</td>
-                                    <td>{{item['inc_email']}}</td>
-                                    <td>{{item['inc_fax_number']}}</td>
-                                    <td>{{item['inc_coverges']}}</td>
-                                    <td>{{item['fac_name']}}</td>
-                                    <td>{{item['fac_phone_number']}}</td>
-                                    <td>{{item['fac_email']}}</td>
-                                    <td>{{item['fac_address']}}</td>
-                                    <td>{{item['bank_name']}}</td>
-                                    <td>{{item['routing_number']}}</td>
-                                    <td>{{item['account_number']}}</td>
-                                    <td>{{item['bank_phone_number']}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -278,7 +220,7 @@
                             <hr>
                             <div class="row"> -->
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Carear Name</h6>
+                                <h6 class="mb-0">Carrier Name</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${carear_name}
@@ -327,7 +269,7 @@
                         <div class="row">
 
                             <div class="col-sm-2 text-secondary">
-                                <h6 class="mb-0">Carear Phone</h6>
+                                <h6 class="mb-0">Carrier Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${phone_number}                                    
