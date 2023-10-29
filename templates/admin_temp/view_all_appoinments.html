@@ -65,18 +65,13 @@
                             <thead>
                                 <tr>
                                     <th>Appointment ID</th>
-                                    <th>Sale Man</th>
-                                    <th>Company Name</th>
                                     <th>Carear Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
-                                    <th>State</th>
                                     <th>Date</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Truck / Traler</th>
-                                    <th>Conversations</th>
-                                    <th>Comments</th>
+                                    <th>Sale Man</th>
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -84,18 +79,13 @@
                             <tfoot>
                                 <tr>
                                     <th>Appointment ID</th>
-                                    <th>Sale Man</th>
-                                    <th>Company Name</th>
                                     <th>Carear Name</th>
                                     <th>US DOT</th>
                                     <th>MC</th>
-                                    <th>State</th>
                                     <th>Date</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Truck / Traler</th>
-                                    <th>Conversations</th>
-                                    <th>Comments</th>
+                                    <th>Sale Man</th>
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -145,25 +135,17 @@
                                             {{ item['appointment_id'] }}
                                         </button>
                                     </td>
-                                    {% endif %}
-
-                                    <td>{{item['user_name']}}</td>
-                                    <td>{{item['company_name']}}</td>                    
+                                    {% endif %}               
                                     <td>{{item['carear_name']}}</td>
                                     <td>{{item['usdot']}}</td>
-
+                                    
                                     <td>
                                         <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
                                     </td>
-                                    
-
-                                    <td>{{item['state']}}</td>
                                     <td>{{item['date']}}</td>
                                     <td>{{item['email']}}</td>
                                     <td>{{item['phone_number']}}</td>
-                                    <td>{{item['truck_or_traler']}}</td>
-                                    <td>{{item['conversations']}}</td>
-                                    <td>{{item['comments']}}</td>
+                                    <td>{{item['user_name']}}</td>
                                     <td>
                                         <a href="{{ url_for('update_the_appoinments_by_admin', appointment_id = item['appointment_id']) }}" type="submit" class="btn">
                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Update</a>
@@ -260,6 +242,11 @@ function set_delete_appointment(appointment_id) {
     {
         color: #4D72DE;
     }
+
+    
+    .modal-body h5 {
+    word-wrap: break-word;
+}
 </style>
 
                 <section class="form-02-main student-page">
@@ -269,10 +256,7 @@ function set_delete_appointment(appointment_id) {
                 <div class="_lk_de">
 
                     <div class="form-04-main">
-                        <!-- <div class="logo">
-                            <img src="/static/images/public_images/user.png">
-                        </div> -->
-                        <h1 class="text-center">Appointment # ${appointment_id}</h1>
+                        <h1 class="text-center">${company_name}</h1>
 
                         <div class="form-group">
 <div class="container">
@@ -402,7 +386,7 @@ function set_delete_appointment(appointment_id) {
         <!-- "Update" and "Delete" buttons on the left side -->
 
 
-<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="update_Appointment('${appointment_id}')">Update</button>
+<button type="button" id="update_Appointment" class="btn btn-primary" data-dismiss="modal" onclick="update_Appointment('${appointment_id}')">Update</button>
 
 
 <button type="button" class="btn btn-primary">

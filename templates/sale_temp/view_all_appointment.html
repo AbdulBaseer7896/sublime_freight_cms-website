@@ -65,34 +65,24 @@
                             <thead>
                                 <tr>
                                     <th>Appointment ID</th>
-                                    <th>Company Name</th>
                                     <th>Carear Name</th>
-                                    <th>US DOT</th>
                                     <th>MC</th>
-                                    <th>State</th>
+                                    <th>US DOT</th>
                                     <th>Date</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Truck / Traler</th>
-                                    <th>Conversations</th>
-                                    <th>Comments</th>
                                     <th>Update</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Appointment ID</th>
-                                    <th>Company Name</th>
                                     <th>Carear Name</th>
-                                    <th>US DOT</th>
                                     <th>MC</th>
-                                    <th>State</th>
+                                    <th>US DOT</th>
                                     <th>Date</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Truck / Traler</th>
-                                    <th>Conversations</th>
-                                    <th>Comments</th>
                                     <th>Update</th>
                                 </tr>
                             </tfoot>
@@ -142,23 +132,18 @@
                                         </button>
                                     </td>
                                     {% endif %}
-
-                                    <td>{{item['company_name']}}</td>                    
+                
                                     <td>{{item['carear_name']}}</td>
-                                    <td>{{item['usdot']}}</td>
-
+                                    
                                     <td>
                                         <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
                                     </td>
+                                    <td>{{item['usdot']}}</td>
                                     
 
-                                    <td>{{item['state']}}</td>
                                     <td>{{item['date']}}</td>
                                     <td>{{item['email']}}</td>
                                     <td>{{item['phone_number']}}</td>
-                                    <td>{{item['truck_or_traler']}}</td>
-                                    <td>{{item['conversations']}}</td>
-                                    <td>{{item['comments']}}</td>
                                     <td>
                                         <a href="{{ url_for('update_the_appoinment', appointment_id = item['appointment_id']) }}" type="submit" class="btn">Update</a>
                                     </td>
@@ -243,6 +228,10 @@ function set_delete_appointment(appointment_id) {
     {
         color: #4D72DE;
     }
+    
+    .modal-body h5 {
+    word-wrap: break-word;
+}
 </style>
 
                 <section class="form-02-main student-page">

@@ -307,3 +307,19 @@ def admin_view_all_notifications():
         else:
             return redirect(url_for('admin_dashboard'))
             
+            
+
+
+    
+@app.route('/search_load_for_admin_seach' , methods=["GET", "POST"])
+@login_required('admin')
+def search_load_for_admin_seach():
+    if request.method == 'POST':
+        admin_info = session.get('data')
+        search_text = request.form.get("search_text")
+        if search_text == '':
+            return redirect(url_for('view_load_and_carear'))
+        load_info = obj.get_load_from_search_data_for_admin(search_text)
+        return render_template("//admin_temp//view_load_and_carear_to_admin.html" , load_info = load_info , admin_info = admin_info)
+    
+    

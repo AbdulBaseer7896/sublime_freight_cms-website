@@ -320,5 +320,21 @@ class Admin_Modle():
             return True
         
         
+    def get_load_from_search_data_for_admin(self, search_text):
+        with self.engine.connect() as conn:
+            query1 = text(f"""
+                SELECT load_details.*, users.user_name, new_sales_first_time.carear_name
+                FROM load_details
+                LEFT JOIN users ON load_details.dispatcher_pin = users.user_pin
+                LEFT JOIN new_sales_first_time ON load_details.carear_id = new_sales_first_time.carear_id
+                WHERE ("{search_text}" IN (load_id, load_details.carear_id, load_number, load_date,  load_rate, pick_up_location, miles, drop_location, user_name, carear_name));
+            """)
+
+            result = conn.execute(query1)
+
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            return result_dict
+
 # obj = Admin_Modle()
-# obj.get_user_id_from_db()
+# obj.get_load_from_search_data_for_admin('1')

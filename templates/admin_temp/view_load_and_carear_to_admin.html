@@ -15,6 +15,20 @@
 
 {% block search_bar_contant %}
 
+<!-- Topbar Search -->
+<form action="{{ url_for('search_load_for_admin_seach') }}" method="post"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for load..."
+            aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
 {% endblock search_bar_contant %}
 
 {% block main_body_contant %}
@@ -31,11 +45,9 @@
 
                             <thead>
                                 <tr>
-                                    <th>Load ID</th>
-                                    <th>Carear ID</th>
+                                    <th>Load Number</th>
                                     <th>Carear Name</th>
                                     <th>Dispatcher Name</th>
-                                    <th>Load Number</th>
                                     <th>Load Rate</th>
                                     <th>Load Date</th>
                                     <th>Miles</th>
@@ -46,11 +58,9 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Load ID</th>
-                                    <th>Carear ID</th>
+                                    <th>Load Number</th>
                                     <th>Carear Name</th>
                                     <th>Dispatcher Name</th>
-                                    <th>Load Number</th>
                                     <th>Load Rate</th>
                                     <th>Load Date</th>
                                     <th>Miles</th>
@@ -61,13 +71,11 @@
                             </tfoot>
                             <tbody>
                                 {% for load in load_info %}
-                                    <tr>
-                                        <td>{{ load['load_id'] }}</td>          
-                                        <td>{{ load['carear_id']}}</td>                              
+                                    <tr>                             
+                                        <td>{{ load['load_number'] }}</td>
                                         <td>{{ load['carear_name'] }}</td>
                                         <td>{{load['user_name']}}</td>                            
-                                        <td>{{ load['load_number'] }}</td>
-                                        <td>{{ load['load_rate'] }} $</td>
+                                        <td>${{ load['load_rate'] }}</td>
                                         <td>{{ load['load_date'] }}</td>
                                         <td>{{ load['miles'] }}</td>
                                         <td>{{ load['pick_up_location'] }}</td>

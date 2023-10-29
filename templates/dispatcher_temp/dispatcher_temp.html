@@ -139,7 +139,7 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                        <li class="no-loading nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{dispatch_info[0]['user_name']}}</span>
@@ -206,22 +206,44 @@
     </div>
 
 
+
 <!-- jQuery CDN (add this to your HTML) -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- Script to show/hide loading div -->
 <script>
+    function showLoading() {
+        $('#loadingDiv').show();
+    }
+
+    function hideLoading() {
+        $('#loadingDiv').hide();
+    }
+
+    // Add a script to handle button clicks
     $(document).ready(function () {
-        // Show loading div when a link is clicked
-        $('a.nav-link').on('click', function () {
-            $('#loadingDiv').show();
+        // Function to hide loading div
+        hideLoading();
+
+        // Show loading div when a link or submit button is clicked
+        $('a.nav-link:not(.no-loading), input.btnRegister').on('click', function () {
+            showLoading();
         });
 
         // Hide loading div when the page is fully loaded
-        $(window).on('load', function () {
-            $('#loadingDiv').hide();
+        $(window).on('load', hideLoading);
+
+        // Hide loading div when userDropdown is clicked
+        $('#userDropdown').on('click', function () {
+            hideLoading();
         });
+
+        // Additional custom scripts
+        $('a.nav-link').on('click', function () {
+            // Add your additional logic here
+        });
+
     });
+
 </script>
 
     <!-- Bootstrap core JavaScript-->

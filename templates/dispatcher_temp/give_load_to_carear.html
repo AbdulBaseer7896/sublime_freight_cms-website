@@ -51,28 +51,12 @@
                     <thead>
                         <tr>
                             <th>Carear ID</th>
-                            <th>Company Name</th>
                             <th>Carear Name</th>
-                            <th>US DOT</th>
                             <th>MC</th>
+                            <th>US DOT</th>
+                            <th>State</th>
                             <th>Email</th>
                             <th>Phone Number</th>
-                            <th>Truck Type & Number</th>
-                            <th>EIN</th>
-                            <th>INC Name</th>
-                            <th>Inc Number</th>
-                            <th>INC Address</th>
-                            <th>INC Email</th>
-                            <th>INC Fax Number</th>
-                            <th>INC Converges</th>
-                            <th>Factoring Name</th>
-                            <th>Factoring phone Number</th>
-                            <th>Factoring Email</th>
-                            <th>Factoring Address</th>
-                            <th>Bank Name</th>
-                            <th>Routing Number</th>
-                            <th>Account Name</th>
-                            <th>Bank Phone Number</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,32 +75,15 @@
                                     </button>
                                 </a>
                             </td>
-                            <td>{{item['company_name']}}</td>
                             <td>{{item['carear_name']}}</td>
-                            <td>{{item['usdot']}}</td>
                             <td>
                                 <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
                             </td>
+                            <td>{{item['usdot']}}</td>
                             
-
+                            <td>{{item['state']}}</td>
                             <td>{{item['email']}}</td>
                             <td>{{item['phone_number']}}</td>
-                            <td>{{item['truck_type_and_number']}}</td>
-                            <td>{{item['ein']}}</td>
-                            <td>{{item['inc_name']}}</td>
-                            <td>{{item['inc_number']}}</td>
-                            <td>{{item['inc_address']}}</td>
-                            <td>{{item['inc_email']}}</td>
-                            <td>{{item['inc_fax_number']}}</td>
-                            <td>{{item['inc_coverges']}}</td>
-                            <td>{{item['fac_name']}}</td>
-                            <td>{{item['fac_phone_number']}}</td>
-                            <td>{{item['fac_email']}}</td>
-                            <td>{{item['fac_address']}}</td>
-                            <td>{{item['bank_name']}}</td>
-                            <td>{{item['routing_number']}}</td>
-                            <td>{{item['account_number']}}</td>
-                            <td>{{item['bank_phone_number']}}</td>
                             {% endfor %}
                         </tr>
 
@@ -135,7 +102,7 @@
                     </>
                     <thead>
                         <tr>
-                            <th>Load ID</th>
+                            <!-- <th>Load ID</th> -->
                             <th>Load Number</th>
                             <th>Pick Up Location</th>
                             <th>Drop Location</th>
@@ -148,7 +115,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Load ID</th>
+                            <!-- <th>Load ID</th> -->
                             <th>Load Number</th>
                             <th>Pick Up Location</th>
                             <th>Drop Location</th>
@@ -162,15 +129,12 @@
                     <tbody>
                         {% for load in load_info %}
                         <tr>
-                            <!-- <td>Selected</td> -->
-
-                            <td>{{load['load_id']}}</td>
                             <td>{{load['load_number']}}</td>
                             <td>{{load['pick_up_location']}}</td>
                             <td>{{load['drop_location']}}</td>
                             <td>{{load['miles']}}</td>
                             <td>{{load['load_date']}}</td>
-                            <td>{{load['load_rate']}} $</td>
+                            <td>${{load['load_rate']}}</td>
                             <td>{{load['load_description']}}</td>
                             <td>
                                 <a href="{{ url_for('update_the_load_info', load_id = load['load_id']   , carear_id = load['carear_id']) }}"

@@ -148,23 +148,47 @@
 
 
 
+<!-- jQuery CDN (add this to your HTML) -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
-    function showPreloader() {
-        var loader = document.getElementById("preloader");
-        loader.style.display = "flex";
+    function showLoading() {
+        $('#loadingDiv').show();
     }
 
-    function hidePreloader() {
-        var loader = document.getElementById("preloader");
-        loader.style.display = "none";
+    function hideLoading() {
+        $('#loadingDiv').hide();
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        // Initially hide the preloader when the DOM is ready
-        hidePreloader();
+    // Add a script to handle button clicks
+    $(document).ready(function () {
+        // Function to hide loading div
+        hideLoading();
+
+        // Show loading div when a link or submit button is clicked
+        $('a.nav-link:not(.no-loading), input.btnRegister').on('click', function () {
+            showLoading();
+        });
+
+        // Hide loading div when the page is fully loaded
+        $(window).on('load', hideLoading);
+
+        // Hide loading div when userDropdown is clicked
+        $('#userDropdown').on('click', function () {
+            hideLoading();
+        });
+
+        // Additional custom scripts
+        $('a.nav-link').on('click', function () {
+            // Add your additional logic here
+        });
+
     });
+
 </script>
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     

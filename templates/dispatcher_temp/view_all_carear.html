@@ -54,56 +54,22 @@
                     <tr>
                         <th>Carear ID</th>
                         <th>Carear Name</th>
-                        <th>Company Name</th>
-                        <th>US DOT</th>
                         <th>MC</th>
+                        <th>US DOT</th>
                         <th>State</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Truck Type & Number</th>
-                        <th>EIN</th>
-                        <th>INC Name</th>
-                        <th>Inc Number</th>
-                        <th>INC Address</th>
-                        <th>INC Email</th>
-                        <th>INC Fax Number</th>
-                        <th>INC Converges</th>
-                        <th>Factoring Name</th>
-                        <th>Factoring phone Number</th>
-                        <th>Factoring Email</th>
-                        <th>Factoring Address</th>
-                        <th>Bank Name</th>
-                        <th>Routing Number</th>
-                        <th>Account Name</th>
-                        <th>Bank Phone Number</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>Carear ID</th>
                         <th>Carear Name</th>
-                        <th>Company Name</th>
-                        <th>US DOT</th>
                         <th>MC</th>
+                        <th>US DOT</th>
                         <th>State</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Truck Type & Number</th>
-                        <th>EIN</th>
-                        <th>INC Name</th>
-                        <th>Inc Number</th>
-                        <th>INC Address</th>
-                        <th>INC Email</th>
-                        <th>INC Fax Number</th>
-                        <th>INC Converges</th>
-                        <th>Factoring Name</th>
-                        <th>Factoring phone Number</th>
-                        <th>Factoring Email</th>
-                        <th>Factoring Address</th>
-                        <th>Bank Name</th>
-                        <th>Routing Number</th>
-                        <th>Account Name</th>
-                        <th>Bank Phone Number</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -136,36 +102,15 @@
                             </button>
                         </td>
 
-
-
-
-                        <td>{{item['company_name']}}</td>
-                        <td>{{item['usdot']}}</td>
-
                         <td>
                             <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
                         </td>
+                        <td>{{item['usdot']}}</td>
                         
 
                         <td>{{item['state']}}</td>
                         <td>{{item['email']}}</td>
                         <td>{{item['phone_number']}}</td>
-                        <td>{{item['truck_type_and_number']}}</td>
-                        <td>{{item['ein']}}</td>
-                        <td>{{item['inc_name']}}</td>
-                        <td>{{item['inc_number']}}</td>
-                        <td>{{item['inc_address']}}</td>
-                        <td>{{item['inc_email']}}</td>
-                        <td>{{item['inc_fax_number']}}</td>
-                        <td>{{item['inc_coverges']}}</td>
-                        <td>{{item['fac_name']}}</td>
-                        <td>{{item['fac_phone_number']}}</td>
-                        <td>{{item['fac_email']}}</td>
-                        <td>{{item['fac_address']}}</td>
-                        <td>{{item['bank_name']}}</td>
-                        <td>{{item['routing_number']}}</td>
-                        <td>{{item['account_number']}}</td>
-                        <td>{{item['bank_phone_number']}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -220,6 +165,12 @@
     {
         color: #4D72DE;
     }
+
+    .modal-body h5 {
+    word-wrap: break-word;
+}
+
+    
 </style>
                             
                                             <section class="form-02-main student-page">
@@ -232,7 +183,7 @@
                                                     <!-- <div class="logo">
                                                         <img src="/static/images/public_images/user.png">
                                                     </div> -->
-                                                    <h1 class="text-center">Sales # ${carear_id}</h1>
+                                                    <h1 class="text-center">${company_name}</h1>
                             
                                                     <div class="form-group">
                             <div class="container">

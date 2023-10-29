@@ -80,29 +80,11 @@
                     <tr>
                         <th>Carear ID</th>
                         <th>Carear Name</th>
-                        <th>Sale Man</th>
-                        <th>Company Name</th>
-                        <th>US DOT</th>
                         <th>MC</th>
-                        <th>State</th>
+                        <th>US DOT</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Truck Type & Number</th>
-                        <th>EIN</th>
-                        <th>INC Name</th>
-                        <th>Inc Number</th>
-                        <th>INC Address</th>
-                        <th>INC Email</th>
-                        <th>INC Fax Number</th>
-                        <th>INC Converges</th>
-                        <th>Factoring Name</th>
-                        <th>Factoring phone Number</th>
-                        <th>Factoring Email</th>
-                        <th>Factoring Address</th>
-                        <th>Bank Name</th>
-                        <th>Routing Number</th>
-                        <th>Account Name</th>
-                        <th>Bank Phone Number</th>
+                        <th>Sale Man</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -110,29 +92,11 @@
                     <tr>
                         <th>Carear ID</th>
                         <th>Carear Name</th>
-                        <th>Sale Man</th>
-                        <th>Company Name</th>
-                        <th>US DOT</th>
                         <th>MC</th>
-                        <th>State</th>
+                        <th>US DOT</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Truck Type & Number</th>
-                        <th>EIN</th>
-                        <th>INC Name</th>
-                        <th>Inc Number</th>
-                        <th>INC Address</th>
-                        <th>INC Email</th>
-                        <th>INC Fax Number</th>
-                        <th>INC Converges</th>
-                        <th>Factoring Name</th>
-                        <th>Factoring phone Number</th>
-                        <th>Factoring Email</th>
-                        <th>Factoring Address</th>
-                        <th>Bank Name</th>
-                        <th>Routing Number</th>
-                        <th>Account Name</th>
-                        <th>Bank Phone Number</th>
+                        <th>Sale Man</th>
                         <th>Delete</th>
                     </tr>
                 </tfoot>
@@ -189,38 +153,15 @@
                         </td>
 
 
-                        <td>{{item['user_name']}}</td>
-                        <td>{{item['company_name']}}</td>
-                        <td>{{item['usdot']}}</td>
-
+                        
                         <td>
                             <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
                         </td>
-
-
-                        <!-- JavaScript to open the external website in a pop-up window -->
-
-
-
-                        <td>{{item['state']}}</td>
+                        <td>{{item['usdot']}}</td>
+                        
                         <td>{{item['email']}}</td>
                         <td>{{item['phone_number']}}</td>
-                        <td>{{item['truck_type_and_number']}}</td>
-                        <td>{{item['ein']}}</td>
-                        <td>{{item['inc_name']}}</td>
-                        <td>{{item['inc_number']}}</td>
-                        <td>{{item['inc_address']}}</td>
-                        <td>{{item['inc_email']}}</td>
-                        <td>{{item['inc_fax_number']}}</td>
-                        <td>{{item['inc_coverges']}}</td>
-                        <td>{{item['fac_name']}}</td>
-                        <td>{{item['fac_phone_number']}}</td>
-                        <td>{{item['fac_email']}}</td>
-                        <td>{{item['fac_address']}}</td>
-                        <td>{{item['bank_name']}}</td>
-                        <td>{{item['routing_number']}}</td>
-                        <td>{{item['account_number']}}</td>
-                        <td>{{item['bank_phone_number']}}</td>
+                        <td>{{item['user_name']}}</td>
                         <td>
 
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_appoinments"
@@ -307,6 +248,8 @@
 </script>
 
 
+
+
 <!-- Your modal content -->
 <div class="modal fade" id="card_url_info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -319,17 +262,66 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Career ID: <a
-                        href="">https://sublime-freight-llc.onrender.com////gernater_url_to_store_card_info//<span
+                <p>Career ID: <a href="https://sublime-freight-llc.onrender.com////gernater_url_to_store_card_info//"
+                        id="careerUrl" target="_blank">https://sublime-freight-llc.onrender.com////gernater_url_to_store_card_info//<span
                             id="careerIdPlaceholder"></span></a></p>
             </div>
             <div class="modal-footer">
+                <!-- Add a Copy button -->
+                <button type="button" class="btn btn-primary"  onclick="copyCareerUrl()">Copy</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <!-- Add other modal buttons here -->
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function copyTextToClipboard(text) {
+        var tempInput = document.createElement('input');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+    }
+
+    // Use jQuery to ensure the DOM is ready
+    $(document).ready(function () {
+        // Handle the click event on the Copy button in the "Card Information" modal
+        $('#card_url_info .btn-primary').on('click', function () {
+            var careerUrl = $('#careerUrl').attr('href');
+            // Call the function to copy the career URL
+            copyTextToClipboard(careerUrl);
+            // Optionally provide feedback to the user, e.g., show an alert
+            alert('Copied to clipboard: ' + careerUrl);
+        });
+    });
+</script>
+
+
+<!-- Add jQuery and Bootstrap scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Add a script to handle button clicks -->
+<script>
+    // Use a class to select all buttons and add event listeners dynamically
+    var buttons = document.querySelectorAll('.externalWebsiteButton');
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var mc = button.getAttribute('data-mc');
+            var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
+
+            // Open the URL in a pop-up window
+            window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+        });
+    });
+</script>
+
+
 
 <script>
     $(document).ready(function () {
@@ -361,6 +353,10 @@
     {
         color: #4D72DE;
     }
+
+    .modal-body h5 {
+    word-wrap: break-word;
+}
 </style>
                 <section class="form-02-main student-page">
     <div class="container">
@@ -369,10 +365,7 @@
                 <div class="_lk_de">
 
                     <div class="form-04-main">
-                        <!-- <div class="logo">
-                            <img src="/static/images/public_images/user.png">
-                        </div> -->
-                        <h1 class="text-center">Carear # ${carear_id}</h1>
+                        <h1 class="text-center">${company_name}</h1>
 
                         <div class="form-group">
 <div class="container">
@@ -433,7 +426,8 @@
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Crear Email</h6>
                             </div>
-                            <h5 class="col-sm-4 ">
+                            
+                            <h5 class="col-sm-4"  >
                                 ${email}                                             
                             </h5>
 
@@ -681,6 +675,8 @@
         });
     });
 </script>
+
+
 
 
 

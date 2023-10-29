@@ -175,19 +175,19 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                        <li class="nav-item dropdown no-arrow no-loading">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{admin_info[0]['user_name']}}</span>
-                                <img class="img-profile rounded-circle" src="static/{{admin_info[0]['user_pic']}}"  alt="Profile Image" onerror="this.src='static/images/img/undraw_profile.svg'">
+                                <img class="img-profile rounded-circle no-loading" src="static/{{admin_info[0]['user_pic']}}"  alt="Profile Image" onerror="this.src='static/images/img/undraw_profile.svg'">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item no-loading" href="#">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
@@ -242,25 +242,51 @@
 <!-- jQuery CDN (add this to your HTML) -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- Script to show/hide loading div -->
 <script>
+    function showLoading() {
+        $('#loadingDiv').show();
+    }
+
+    function hideLoading() {
+        $('#loadingDiv').hide();
+    }
+
+    // Add a script to handle button clicks
     $(document).ready(function () {
-        // Show loading div when a link is clicked
-        $('a.nav-link').on('click', function () {
-            $('#loadingDiv').show();
+        // Function to hide loading div
+        hideLoading();
+
+        // Show loading div when a link or submit button is clicked
+        $('a.nav-link:not(.no-loading), input.btnRegister').on('click', function () {
+            showLoading();
         });
 
         // Hide loading div when the page is fully loaded
-        $(window).on('load', function () {
-            $('#loadingDiv').hide();
+        $(window).on('load', hideLoading);
+
+        // Hide loading div when userDropdown is clicked
+        $('#userDropdown').on('click', function () {
+            hideLoading();
         });
+
+        // Additional custom scripts
+        $('a.nav-link').on('click', function () {
+            // Add your additional logic here
+        });
+
     });
+
 </script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Z2hTNEXtMWHJSIvL3lA7Xm1o9aUU5xLtSwI+71rUybCzZ+ZV6oU5Ht8FSXjmT5D" crossorigin="anonymous"></script>
+
+<script src="static\vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="static\vendor\jquery\jquery.min.js"></script>
-<script src="static\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
+
 
 
 <!-- Bootstrap core JavaScript-->
@@ -268,7 +294,7 @@
 <script src="static\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="static\vendor/jquery-easing/jquery.easing.min.js"></script>
+
 
 <!-- Custom scripts for all pages-->
 <script src="static\JS\js/sb-admin-2.min.js"></script>
