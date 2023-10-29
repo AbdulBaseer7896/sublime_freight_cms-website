@@ -411,7 +411,7 @@ function set_delete_appointment(appointment_id) {
    function openExternalWebsite(mc) {
         var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
         // Open the URL in a pop-up window
-        window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+        window.open(externalWebsiteUrl, '_blank');
     }
 
     // Use jQuery to ensure the DOM is ready
@@ -451,7 +451,7 @@ function set_delete_appointment(appointment_id) {
                                                 var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
                                     
                                                 // Open the URL in a pop-up window
-                                                window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+                                                window.open(externalWebsiteUrl, '_blank');
                                             });
                                         });
                                     </script>

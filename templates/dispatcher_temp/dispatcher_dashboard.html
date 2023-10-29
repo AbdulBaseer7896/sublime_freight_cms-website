@@ -18,6 +18,7 @@
                             </div>
                         </div>
                     </form>
+
 {% endblock search_bar_contant %}
 
 
@@ -29,7 +30,7 @@
         var externalWebsiteUrl = 'https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string={{ ms_number }}';
 
         // Open the URL in a pop-up window
-        window.open(externalWebsiteUrl, '_blank', 'width=1000,height=700');
+        window.open(externalWebsiteUrl, '_blank');
     </script>
 {% endif %}
 
