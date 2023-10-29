@@ -300,28 +300,6 @@
 </script>
 
 
-<!-- Add jQuery and Bootstrap scripts -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<!-- Add a script to handle button clicks -->
-<script>
-    // Use a class to select all buttons and add event listeners dynamically
-    var buttons = document.querySelectorAll('.externalWebsiteButton');
-
-    buttons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            var mc = button.getAttribute('data-mc');
-            var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
-
-            // Open the URL in a pop-up window
-            window.open(externalWebsiteUrl, '_blank');
-        });
-    });
-</script>
-
-
 
 <script>
     $(document).ready(function () {
@@ -662,12 +640,10 @@
 
 <!-- Add a script to handle button clicks -->
 <script>
-    // Use a class to select all buttons and add event listeners dynamically
-    var buttons = document.querySelectorAll('.externalWebsiteButton');
-
-    buttons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            var mc = button.getAttribute('data-mc');
+    $(document).ready(function () {
+        // Use jQuery to select buttons with the class and attach the event listener
+        $('.externalWebsiteButton').on('click', function () {
+            var mc = $(this).data('mc');
             var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
 
             // Open the URL in a pop-up window
