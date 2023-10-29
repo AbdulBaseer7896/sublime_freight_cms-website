@@ -317,6 +317,7 @@ def search_load_for_admin_seach():
     if request.method == 'POST':
         admin_info = session.get('data')
         search_text = request.form.get("search_text")
+        print("This is test = " , search_text)
         if search_text == '':
             return redirect(url_for('view_load_and_carear'))
         load_info = obj.get_load_from_search_data_for_admin(search_text)
