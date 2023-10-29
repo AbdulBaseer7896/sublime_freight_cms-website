@@ -26,9 +26,9 @@
     {% endblock header_sytyle %}
 
     <style>
-        #preloader{
-            background: url('/static/images/img/preloader_image.gif') no-repeat center center;
-			background-color: rgba(255, 255, 255, 0.774);
+        .loading{
+            background: url('/static/images/img/preloader_1.gif') no-repeat center center;
+			background-color: rgba(255, 255, 255, 0.77);
 			background-size: 20%;
             height: 100vh;
             width: 100%;
@@ -42,7 +42,8 @@
 
 <body id="page-top">
 
-    <div id="preloader"></div>
+    <div id="loadingDiv" class="loading"></div>
+
 
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -205,23 +206,23 @@
     </div>
 
 
+<!-- jQuery CDN (add this to your HTML) -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <script>
-        function showPreloader() {
-            var loader = document.getElementById("preloader");
-            loader.style.display = "flex";
-        }
-    
-        function hidePreloader() {
-            var loader = document.getElementById("preloader");
-            loader.style.display = "none";
-        }
-    
-        document.addEventListener("DOMContentLoaded", function () {
-            // Initially hide the preloader when the DOM is ready
-            hidePreloader();
+<!-- Script to show/hide loading div -->
+<script>
+    $(document).ready(function () {
+        // Show loading div when a link is clicked
+        $('a.nav-link').on('click', function () {
+            $('#loadingDiv').show();
         });
-    </script>
+
+        // Hide loading div when the page is fully loaded
+        $(window).on('load', function () {
+            $('#loadingDiv').hide();
+        });
+    });
+</script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="static\vendor\jquery\jquery.min.js"></script>

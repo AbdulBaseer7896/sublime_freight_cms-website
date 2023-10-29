@@ -28,12 +28,10 @@
     {% block header_sytyle %}
         
     {% endblock header_sytyle %}
-
-
     <style>
-        #preloader{
-            background: url('/static/images/img/preloader_image.gif') no-repeat center center;
-			background-color: rgba(255, 255, 255, 0.774);
+        .loading{
+            background: url('/static/images/img/preloader_1.gif') no-repeat center center;
+			background-color: rgba(255, 255, 255, 0.77);
 			background-size: 20%;
             height: 100vh;
             width: 100%;
@@ -41,22 +39,11 @@
             z-index: 100;
         }
 	</style>
-
-</style>
-
-
 </head>
 
 <body id="page-top">
 
-
-    <!-- Sidebar -->
-
-
-
-
-    <div id="preloader"></div>
-
+    <div id="loadingDiv" class="loading"></div>
 
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -165,21 +152,7 @@
                     {% block search_bar_contant %}
                         
                     {% endblock search_bar_contant %}
-                    <!-- <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <h4 style="color: #4E73DF;"><b> SUBLIME FREIGHT LLC</b></h4>
-                </form> -->
 
-                <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary text-center" type="button">
-                                <h4><b>SUBLIME FREIGHT LLC</b></h4>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                 -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -266,15 +239,23 @@
     </div>
 </div>
 
+<!-- jQuery CDN (add this to your HTML) -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
+<!-- Script to show/hide loading div -->
 <script>
-    var loader = document.getElementById("preloader");
-    window.addEventListener("load"  , function(){
-        loader.style.display = "none";
-    })
-</script>
+    $(document).ready(function () {
+        // Show loading div when a link is clicked
+        $('a.nav-link').on('click', function () {
+            $('#loadingDiv').show();
+        });
 
+        // Hide loading div when the page is fully loaded
+        $(window).on('load', function () {
+            $('#loadingDiv').hide();
+        });
+    });
+</script>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

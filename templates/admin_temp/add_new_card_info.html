@@ -32,9 +32,9 @@
     </style>
 
 <style>
-    #preloader{
-        background: url('/static/images/img/preloader_image.gif') no-repeat center center;
-        background-color: rgba(255, 255, 255, 0.774);
+    .loading{
+        background: url('/static/images/img/preloader_1.gif') no-repeat center center;
+        background-color: rgba(255, 255, 255, 0.77);
         background-size: 20%;
         height: 100vh;
         width: 100%;
@@ -44,8 +44,8 @@
 </style>
 </head>
 <body>  
+    <div id="loadingDiv" class="loading"></div>
 
-    <div id="preloader"></div>
     <div class="padding">
         <div class="row">
             <div class="container-fluid d-flex justify-content-center">
@@ -153,21 +153,21 @@
         });
     </script>
 
+<!-- jQuery CDN (add this to your HTML) -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+<!-- Script to show/hide loading div -->
 <script>
-    function showPreloader() {
-        var loader = document.getElementById("preloader");
-        loader.style.display = "flex";
-    }
+    $(document).ready(function () {
+        // Show loading div when a link is clicked
+        $('a.nav-link').on('click', function () {
+            $('#loadingDiv').show();
+        });
 
-    function hidePreloader() {
-        var loader = document.getElementById("preloader");
-        loader.style.display = "none";
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        // Initially hide the preloader when the DOM is ready
-        hidePreloader();
+        // Hide loading div when the page is fully loaded
+        $(window).on('load', function () {
+            $('#loadingDiv').hide();
+        });
     });
 </script>
 </body>
