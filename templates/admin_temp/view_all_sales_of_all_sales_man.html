@@ -4,31 +4,34 @@
 
 {% block header_sytyle %}
 <style>
-        .table tr {
-            overflow: auto;
-            white-space: nowrap;
-        }
+    .table tr {
+        overflow: auto;
+        white-space: nowrap;
+    }
 
-        
+
     /* Add a style to remove the default button appearance */
     .externalWebsiteButton {
         background: none;
         border: none;
-        color: blue; /* Change the color as needed */
+        color: blue;
+        /* Change the color as needed */
         cursor: pointer;
-        text-decoration: underline; /* Add underline to make it look like a link */
+        text-decoration: underline;
+        /* Add underline to make it look like a link */
         text-decoration: none;
     }
 
     .openExternalWebsite_for_pop {
         background: none;
         border: none;
-        color: blue; /* Change the color as needed */
+        color: blue;
+        /* Change the color as needed */
         cursor: pointer;
-        text-decoration: underline; /* Add underline to make it look like a link */
+        text-decoration: underline;
+        /* Add underline to make it look like a link */
         text-decoration: none;
     }
-
 </style>
 
 
@@ -39,273 +42,273 @@
 
 
 {% block search_bar_contant %}
-                              <!-- Sidebar Toggle (Topbar) -->
-                              <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                                <i class="fa fa-bars"></i>
-                            </button>
-        
-                            <!-- Topbar Search -->
-                            <form action="{{ url_for('search_carear_for_admin_for_seach') }}" method="post"
-                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class="input-group">
-                                    <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                        aria-label="Search" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>     
-                             </form>        
+<!-- Sidebar Toggle (Topbar) -->
+<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+    <i class="fa fa-bars"></i>
+</button>
+
+<!-- Topbar Search -->
+<form action="{{ url_for('search_carear_for_admin_for_seach') }}" method="post"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input name="search_text" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+            aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
 {% endblock search_bar_contant %}
 
 
 {% block main_body_contant %}
 
 
-            <!-- Page Heading -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">All Sales Records</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<!-- Page Heading -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Sales Records</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                            <thead>
-                                <tr>
-                                    <th>Carear ID</th>
-                                    <th>Carear Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Company Name</th>
-                                    <th>US DOT</th>
-                                    <th>MC</th>
-                                    <th>State</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Truck Type & Number</th>
-                                    <th>EIN</th>
-                                    <th>INC Name</th>
-                                    <th>Inc Number</th>
-                                    <th>INC Address</th>
-                                    <th>INC Email</th>
-                                    <th>INC Fax Number</th>
-                                    <th>INC Converges</th>
-                                    <th>Factoring Name</th>
-                                    <th>Factoring phone Number</th>
-                                    <th>Factoring Email</th>
-                                    <th>Factoring Address</th>
-                                    <th>Bank Name</th>
-                                    <th>Routing Number</th>
-                                    <th>Account Name</th>
-                                    <th>Bank Phone Number</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Carear ID</th>
-                                    <th>Carear Name</th>
-                                    <th>Sale Man</th>
-                                    <th>Company Name</th>
-                                    <th>US DOT</th>
-                                    <th>MC</th>
-                                    <th>State</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Truck Type & Number</th>
-                                    <th>EIN</th>
-                                    <th>INC Name</th>
-                                    <th>Inc Number</th>
-                                    <th>INC Address</th>
-                                    <th>INC Email</th>
-                                    <th>INC Fax Number</th>
-                                    <th>INC Converges</th>
-                                    <th>Factoring Name</th>
-                                    <th>Factoring phone Number</th>
-                                    <th>Factoring Email</th>
-                                    <th>Factoring Address</th>
-                                    <th>Bank Name</th>
-                                    <th>Routing Number</th>
-                                    <th>Account Name</th>
-                                    <th>Bank Phone Number</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                {% for item in all_sales_data %}
-                                 {% if head_light == item['carear_id'] %}
-                                    
-                                 <tr style="background-color: #36b9cc; color: white;">
+                <thead>
+                    <tr>
+                        <th>Carear ID</th>
+                        <th>Carear Name</th>
+                        <th>Sale Man</th>
+                        <th>Company Name</th>
+                        <th>US DOT</th>
+                        <th>MC</th>
+                        <th>State</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Truck Type & Number</th>
+                        <th>EIN</th>
+                        <th>INC Name</th>
+                        <th>Inc Number</th>
+                        <th>INC Address</th>
+                        <th>INC Email</th>
+                        <th>INC Fax Number</th>
+                        <th>INC Converges</th>
+                        <th>Factoring Name</th>
+                        <th>Factoring phone Number</th>
+                        <th>Factoring Email</th>
+                        <th>Factoring Address</th>
+                        <th>Bank Name</th>
+                        <th>Routing Number</th>
+                        <th>Account Name</th>
+                        <th>Bank Phone Number</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Carear ID</th>
+                        <th>Carear Name</th>
+                        <th>Sale Man</th>
+                        <th>Company Name</th>
+                        <th>US DOT</th>
+                        <th>MC</th>
+                        <th>State</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Truck Type & Number</th>
+                        <th>EIN</th>
+                        <th>INC Name</th>
+                        <th>Inc Number</th>
+                        <th>INC Address</th>
+                        <th>INC Email</th>
+                        <th>INC Fax Number</th>
+                        <th>INC Converges</th>
+                        <th>Factoring Name</th>
+                        <th>Factoring phone Number</th>
+                        <th>Factoring Email</th>
+                        <th>Factoring Address</th>
+                        <th>Bank Name</th>
+                        <th>Routing Number</th>
+                        <th>Account Name</th>
+                        <th>Bank Phone Number</th>
+                        <th>Delete</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for item in all_sales_data %}
+                    {% if head_light == item['carear_id'] %}
 
-
-                                    {% else %}
-                                        <tr>
-
-                                    {% endif %}
-
-                                    {% if item['sale_type'] == 'active_sale'%}                                 
-                                    <td>
-                                        <a 
-                                        style="background-color: green;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_id'] }}
-                                        </a>
-                                    </td>
-                                    {% endif %}
-
-                                    {% if item['sale_type'] == 'inactive_sale'%}                                 
-                                    <td>
-                                        <a 
-                                       style="background-color: red;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_id'] }}
-                                        </a>
-                                    </td>
-                                    {% endif %}
-
-                                    {% if item['sale_type'] == 'good_appoinment'%}                                 
-                                    <td>
-                                        <a 
-                                        style="background-color: yellow;" class="dropdown-item" href="#" data-toggle="modal" data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_id'] }}
-                                        </a>
-                                    </td>
-                                    {% endif %}
-
-                                
-                                    <td>
-                                        <button 
-                                        onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.carear_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' , '{{ item.sale_man_pin }}', '{{ item.dispatcher_pin }}')"
-                                        class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            {{ item['carear_name'] }}
-                                        </button>
-                                    </td>
-
-                                    
-                                    <td>{{item['user_name']}}</td>
-                                    <td>{{item['company_name']}}</td>                    
-                                    <td>{{item['usdot']}}</td>
-
-                                    <td>
-                                        <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
-                                    </td>
-                                    
-
-                                    <!-- JavaScript to open the external website in a pop-up window -->
-                       
+                    <tr style="background-color: #36b9cc; color: white;">
 
 
-                                    <td>{{item['state']}}</td>
-                                    <td>{{item['email']}}</td>
-                                    <td>{{item['phone_number']}}</td>
-                                    <td>{{item['truck_type_and_number']}}</td>
-                                    <td>{{item['ein']}}</td>
-                                    <td>{{item['inc_name']}}</td>
-                                    <td>{{item['inc_number']}}</td>
-                                    <td>{{item['inc_address']}}</td>
-                                    <td>{{item['inc_email']}}</td>
-                                    <td>{{item['inc_fax_number']}}</td>
-                                    <td>{{item['inc_coverges']}}</td>
-                                    <td>{{item['fac_name']}}</td>
-                                    <td>{{item['fac_phone_number']}}</td>
-                                    <td>{{item['fac_email']}}</td>
-                                    <td>{{item['fac_address']}}</td>
-                                    <td>{{item['bank_name']}}</td>
-                                    <td>{{item['routing_number']}}</td>
-                                    <td>{{item['account_number']}}</td>
-                                    <td>{{item['bank_phone_number']}}</td>
-                                    <td>
+                        {% else %}
+                    <tr>
 
-                                        <a class="dropdown-item" href="#" data-toggle="modal"
-                                            data-target="#delete_appoinments"
-                                            onclick="set_delete_sales('{{ item['carear_id'] }}')">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Delete
-                                        </a>
+                        {% endif %}
 
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
- <!-- End of Main Content -->
+                        {% if item['sale_type'] == 'active_sale'%}
+                        <td>
+                            <a style="background-color: green;" class="dropdown-item" href="#" data-toggle="modal"
+                                data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ item['carear_id'] }}
+                            </a>
+                        </td>
+                        {% endif %}
 
-                <!-- Footer -->
-                <!-- <footer class="sticky-footer bg-white">
+                        {% if item['sale_type'] == 'inactive_sale'%}
+                        <td>
+                            <a style="background-color: red;" class="dropdown-item" href="#" data-toggle="modal"
+                                data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ item['carear_id'] }}
+                            </a>
+                        </td>
+                        {% endif %}
+
+                        {% if item['sale_type'] == 'good_appoinment'%}
+                        <td>
+                            <a style="background-color: yellow;" class="dropdown-item" href="#" data-toggle="modal"
+                                data-target="#card_url_info" data-career-id="{{ item['carear_id'] }}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ item['carear_id'] }}
+                            </a>
+                        </td>
+                        {% endif %}
+
+
+                        <td>
+                            <button
+                                onclick="showDetails('{{ item.carear_id }}', '{{ item.company_name }}', '{{ item.carear_name }}', '{{ item.usdot }}' , '{{ item.mc }}', '{{ item.state }}', '{{ item.email }}',  '{{ item.phone_number }}', '{{ item.truck_type_and_number }}' , '{{ item.ein }}', '{{ item.inc_name }}' , '{{ item.inc_number }}', '{{ item.inc_address }}', '{{ item.inc_email }}' , '{{ item.inc_fax_number }}', '{{ item.inc_coverges }}', '{{ item.fac_name }}',  '{{ item.fac_phone_number }}', '{{ item.fac_email }}' , '{{ item.fac_address }}', '{{ item.bank_name }}' , '{{ item.routing_number }}', '{{ item.account_number }}', '{{ item.bank_phone_number }}' , '{{ item.sale_man_pin }}', '{{ item.dispatcher_pin }}')"
+                                class="dropdown-item openPopupBtn" data-career-id="{{ item['carear_id'] }}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ item['carear_name'] }}
+                            </button>
+                        </td>
+
+
+                        <td>{{item['user_name']}}</td>
+                        <td>{{item['company_name']}}</td>
+                        <td>{{item['usdot']}}</td>
+
+                        <td>
+                            <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
+                        </td>
+
+
+                        <!-- JavaScript to open the external website in a pop-up window -->
+
+
+
+                        <td>{{item['state']}}</td>
+                        <td>{{item['email']}}</td>
+                        <td>{{item['phone_number']}}</td>
+                        <td>{{item['truck_type_and_number']}}</td>
+                        <td>{{item['ein']}}</td>
+                        <td>{{item['inc_name']}}</td>
+                        <td>{{item['inc_number']}}</td>
+                        <td>{{item['inc_address']}}</td>
+                        <td>{{item['inc_email']}}</td>
+                        <td>{{item['inc_fax_number']}}</td>
+                        <td>{{item['inc_coverges']}}</td>
+                        <td>{{item['fac_name']}}</td>
+                        <td>{{item['fac_phone_number']}}</td>
+                        <td>{{item['fac_email']}}</td>
+                        <td>{{item['fac_address']}}</td>
+                        <td>{{item['bank_name']}}</td>
+                        <td>{{item['routing_number']}}</td>
+                        <td>{{item['account_number']}}</td>
+                        <td>{{item['bank_phone_number']}}</td>
+                        <td>
+
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_appoinments"
+                                onclick="set_delete_sales('{{ item['carear_id'] }}')">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Delete
+                            </a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<!-- <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
                             <span>Copyright &copy; Your Website 2021</span>
                         </div>
                     </div>
                 </footer> -->
-                <!-- End of Footer -->
+<!-- End of Footer -->
 
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+<div class="modal fade bd-example-modal-xl" tabindex="-2" role="dialog" id="myModal">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Carear Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <!-- End of Content Wrapper -->
+            <div class="modal-body" id="modal-body">
+                <!-- Row details will be displayed here -->
+            </div>
 
         </div>
-        <!-- End of Page Wrapper -->
+    </div>
+</div>
 
 
-        <div class="modal fade bd-example-modal-xl" tabindex="-2" role="dialog" id="myModal">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Carear Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="modal-body">
-                        <!-- Row details will be displayed here -->
-                    </div>
-        
-                </div>
+
+
+
+<div class="modal fade" id="delete_appoinments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Disable?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-        </div>
-
-
-
-
-
-        <div class="modal fade" id="delete_appoinments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Disable?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Delete" below if you are ready to Delete current Appoinment.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" id="delete_sales_button" href="#">Delete</a>
-                </div>
+            <div class="modal-body">Select "Delete" below if you are ready to Delete current Appoinment.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" id="delete_sales_button" href="#">Delete</a>
             </div>
         </div>
     </div>
+</div>
 
 
 
 
-    <script>
-        function set_delete_sales(carear_id) {
-            var disableButton = document.getElementById('delete_sales_button');
-            disableButton.href = "{{ url_for('delete_the_sales_by_admin', carear_id='') }}" + carear_id;
-        }
-    </script>
+<script>
+    function set_delete_sales(carear_id) {
+        var disableButton = document.getElementById('delete_sales_button');
+        disableButton.href = "{{ url_for('delete_the_sales_by_admin', carear_id='') }}" + carear_id;
+    }
+</script>
 
 
 <!-- Your modal content -->
-<div class="modal fade" id="card_url_info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="card_url_info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -315,7 +318,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                     <p>Career ID: <a href="">https://sublime-freight-llc.onrender.com////gernater_url_to_store_card_info//<span id="careerIdPlaceholder"></span></a></p>
+                <p>Career ID: <a
+                        href="">https://sublime-freight-llc.onrender.com////gernater_url_to_store_card_info//<span
+                            id="careerIdPlaceholder"></span></a></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -326,12 +331,12 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Handle the click event on the link
-        $('.dropdown-item').on('click', function() {
+        $('.dropdown-item').on('click', function () {
             // Get the career ID from the data attribute
             var careerId = $(this).data('career-id');
-            
+
             // Set the career ID in the modal
             $('#careerIdPlaceholder').text(careerId);
         });
@@ -349,6 +354,13 @@
 
         modalBody.innerHTML = `
 
+
+        <style>
+    .card-body h5
+    {
+        color: #4D72DE;
+    }
+</style>
                 <section class="form-02-main student-page">
     <div class="container">
         <div class="row">
@@ -392,42 +404,55 @@
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">US DOT
                             </div>
-                            <h5 class="col-sm-3 ">
+                            <h5 class="col-sm-4 ">
                                 ${usdot}    
                             </h5>
                             <!-- </div>
                             <hr>
                             <div class="row"> -->
-                            <div class="col-sm-1 text-secondary">
+                            <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">MC</h6>
                             </div>
-                            <h5 class="col-sm-3 ">
-                                    <button class="openExternalWebsite_for_pop" data-mc="${mc}">${mc}</button>                                    
+                            <h5 class="col-sm-4 ">
+                                    <button class="openExternalWebsite_for_pop btn-primary" data-mc="${mc}">${mc}</button>                                    
                             </h5>
 
-                            <div class="col-sm-1 text-secondary">
-                                <h6 class="mb-0">State</h6>
-                            </div>
-                            <h5 class="col-sm-2 ">
-                                ${state}
-                            </h5>
+
                         </div>
                         <hr>
                         <div class="row">
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">State</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${state}
+                            </h5>
+
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Crear Email</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${email}                                             
                             </h5>
+
+                        </div>
+                        <hr>
+
+
+                        <div class="row">
+
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Carear Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${phone_number}                                    
                             </h5>
-                        </div>
-                        <hr>
+
+                            </div>
+                            <hr>
+
+
                         <div class="row">
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Truck type & Number</h6>
@@ -612,49 +637,49 @@
 
 `
 
-   // Function to open the external website in a pop-up window
-   function openExternalWebsite(mc) {
-        var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
-        // Open the URL in a pop-up window
-        window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+        // Function to open the external website in a pop-up window
+        function openExternalWebsite(mc) {
+            var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
+            // Open the URL in a pop-up window
+            window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+        }
+
+        // Use jQuery to ensure the DOM is ready
+        $(document).ready(function () {
+            // Use jQuery to select buttons with the class and attach the event listener
+            $('.openExternalWebsite_for_pop').on('click', function () {
+                // Get the MC from the data attribute
+                var mc = $(this).data('mc');
+                // Call the function to open the external website
+                openExternalWebsite(mc);
+            });
+        });;
+
+        // Show the modal
+        $('#myModal').modal('show');
     }
-
-    // Use jQuery to ensure the DOM is ready
-    $(document).ready(function() {
-        // Use jQuery to select buttons with the class and attach the event listener
-        $('.openExternalWebsite_for_pop').on('click', function() {
-            // Get the MC from the data attribute
-            var mc = $(this).data('mc');
-            // Call the function to open the external website
-            openExternalWebsite(mc);
-        });
-    });;
-
-// Show the modal
-$('#myModal').modal('show');
-}
-
-
-
-                                    </script>
-
-
-
-                                    <!-- Add a script to handle button clicks -->
-                                    <script>
-                                        // Use a class to select all buttons and add event listeners dynamically
-                                        var buttons = document.querySelectorAll('.externalWebsiteButton');
-                                
-                                        buttons.forEach(function (button) {
-                                            button.addEventListener('click', function () {
-                                                var mc = button.getAttribute('data-mc');
-                                                var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
-                                
-                                                // Open the URL in a pop-up window
-                                                window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
-                                            });
-                                        });
-                                    </script>
     
+
+
+</script>
+
+
+
+<!-- Add a script to handle button clicks -->
+<script>
+    // Use a class to select all buttons and add event listeners dynamically
+    var buttons = document.querySelectorAll('.externalWebsiteButton');
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var mc = button.getAttribute('data-mc');
+            var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
+
+            // Open the URL in a pop-up window
+            window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+        });
+    });
+</script>
+
 
 {% endblock main_body_contant %}

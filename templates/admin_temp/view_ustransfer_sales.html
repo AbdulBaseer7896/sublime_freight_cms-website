@@ -22,6 +22,30 @@
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
+
+        
+            /* Add a style to remove the default button appearance */
+    .externalWebsiteButton {
+        background: none;
+        border: none;
+        color: blue;
+        /* Change the color as needed */
+        cursor: pointer;
+        text-decoration: underline;
+        /* Add underline to make it look like a link */
+        text-decoration: none;
+    }
+
+    .openExternalWebsite_for_pop {
+        background: none;
+        border: none;
+        color: blue;
+        /* Change the color as needed */
+        cursor: pointer;
+        text-decoration: underline;
+        /* Add underline to make it look like a link */
+        text-decoration: none;
+    }
 </style>
 
 
@@ -194,7 +218,10 @@
                                     
                                     <td>{{item['company_name']}}</td>                    
                                     <td>{{item['usdot']}}</td>
-                                    <td>{{item['mc']}}</td>
+                                    
+                                    <td>
+                                        <button class="externalWebsiteButton" data-mc="{{ item['mc'] }}">{{ item['mc'] }}</button>
+                                    </td>
                                     <td>{{item['state']}}</td>
                                     <td>{{item['email']}}</td>
                                     <td>{{item['phone_number']}}</td>
@@ -299,6 +326,12 @@
 
         modalBody.innerHTML = `
 
+        <style>
+    .card-body h5
+    {
+        color: #4D72DE;
+    }
+</style>
                 <section class="form-02-main student-page">
     <div class="container">
         <div class="row">
@@ -342,41 +375,53 @@
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">US DOT
                             </div>
-                            <h5 class="col-sm-3 ">
+                            <h5 class="col-sm-4 ">
                                 ${usdot}    
                             </h5>
                             <!-- </div>
                             <hr>
                             <div class="row"> -->
-                            <div class="col-sm-1 text-secondary">
+                                <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">MC</h6>
                             </div>
-                            <h5 class="col-sm-3 ">
-                                ${mc}
+                            <h5 class="col-sm-4 ">
+                                    <button class="openExternalWebsite_for_pop btn-primary" data-mc="${mc}">${mc}</button>                                    
                             </h5>
 
-                            <div class="col-sm-1 text-secondary">
-                                <h6 class="mb-0">State</h6>
-                            </div>
-                            <h5 class="col-sm-2 ">
-                                ${state}
-                            </h5>
+
                         </div>
                         <hr>
                         <div class="row">
+
+                            <div class="col-sm-2 text-secondary">
+                                <h6 class="mb-0">State</h6>
+                            </div>
+                            <h5 class="col-sm-4 ">
+                                ${state}
+                            </h5>
+
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Crear Email</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${email}                                             
                             </h5>
+
+                        </div>
+                        <hr>
+
+
+                        <div class="row">
+
                             <div class="col-sm-2 text-secondary">
                                 <h6 class="mb-0">Carear Phone</h6>
                             </div>
                             <h5 class="col-sm-4 ">
                                 ${phone_number}                                    
                             </h5>
-                        </div>
+
+                            </div>
+                            <hr>
                         <hr>
                         <div class="row">
                             <div class="col-sm-2 text-secondary">
@@ -546,6 +591,25 @@
 </div>
 `;
 
+
+// Function to open the external website in a pop-up window
+function openExternalWebsite(mc) {
+    var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
+    // Open the URL in a pop-up window
+    window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+}
+
+// Use jQuery to ensure the DOM is ready
+$(document).ready(function () {
+    // Use jQuery to select buttons with the class and attach the event listener
+    $('.openExternalWebsite_for_pop').on('click', function () {
+        // Get the MC from the data attribute
+        var mc = $(this).data('mc');
+        // Call the function to open the external website
+        openExternalWebsite(mc);
+    });
+});;
+
 // Show the modal
 $('#myModal').modal('show');
 }
@@ -553,6 +617,22 @@ $('#myModal').modal('show');
 
 </script>
 
+
+<!-- Add a script to handle button clicks -->
+<script>
+    // Use a class to select all buttons and add event listeners dynamically
+    var buttons = document.querySelectorAll('.externalWebsiteButton');
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var mc = button.getAttribute('data-mc');
+            var externalWebsiteUrl = "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=" + mc;
+
+            // Open the URL in a pop-up window
+            window.open(externalWebsiteUrl, '_blank', 'width=1100,height=700');
+        });
+    });
+</script>
 
 
 

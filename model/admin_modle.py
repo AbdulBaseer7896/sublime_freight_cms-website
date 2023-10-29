@@ -313,6 +313,11 @@ class Admin_Modle():
             file.save(f"static/images/{folder_name}/{new_filename}.{ext}")
             return img_db_path
         
+    def mark_all_notification_readed(self):
+        with self.engine.connect() as conn:
+            querry2  = text(f"""UPDATE notifications_table SET nofi_states = 'seen'; """)
+            conn.execute(querry2)
+            return True
         
         
 # obj = Admin_Modle()

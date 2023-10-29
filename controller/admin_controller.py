@@ -295,3 +295,15 @@ def search_mc_number_for_admin():
         ms_number = request.form.to_dict()
         ms_number = ms_number['mc_for_search']
         return render_template('//admin_temp//admin_dashboard.html' , notification_data = notification_data , admin_info = admin_info , ms_number = ms_number)
+
+
+@app.route('/admin_view_all_notifications' , methods=["GET", "POST"])
+@login_required('admin')     
+def admin_view_all_notifications():
+    if request.method == "GET":
+        mark_all_notification = obj.mark_all_notification_readed()
+        if mark_all_notification:
+            return redirect(url_for('admin_dashboard'))
+        else:
+            return redirect(url_for('admin_dashboard'))
+            

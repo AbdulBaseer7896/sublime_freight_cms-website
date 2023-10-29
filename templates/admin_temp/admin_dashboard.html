@@ -25,7 +25,18 @@
 
 {% block for_notifications %}
                             
+<style>
+    .custom-button {
+        background-color: white;
+        color: #4E73DF;
+        border: 1px solid #4E73DF;
+    }
 
+    .custom-button:hover {
+        background-color: #4E73DF;
+        color: white;
+    }
+</style>
 
 
 <li class="nav-item dropdown no-arrow mx-1">
@@ -38,9 +49,19 @@
     <!-- Dropdown - Alerts -->
     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
         aria-labelledby="alertsDropdown" style="max-height: 300px; overflow-y: auto;">
-        <h6 class="dropdown-header">
-            Alerts Center
-        </h6>
+        
+        <div class="container dropdown-header">
+            <div class="row justify-content-between">
+                <div class="col-auto">
+                    <h6 class="mb-0">
+                        Alerts Center
+                    </h6>
+                </div>
+                <div class="col-auto">
+                    <a href="{{ url_for('admin_view_all_notifications') }}" class="btn btn-sm custom-button">View All</a>
+                </div>
+            </div>
+        </div>
 
         {% for item in notification_data %}
             
