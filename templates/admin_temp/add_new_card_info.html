@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,30 +21,34 @@
         }
 
 
-                /* Custom styles for inputs within the tab-content class */
-                 input.form-control {
-            font-size: 16px; /* Adjust the font size as needed */
-            color: #0062CC; /* Default color for the input text */
+        /* Custom styles for inputs within the tab-content class */
+        input.form-control {
+            font-size: 16px;
+            /* Adjust the font size as needed */
+            color: #0062CC;
+            /* Default color for the input text */
         }
 
         input.form-control:not(:placeholder-shown) {
-            color: #0062CC; /* Color for the input text when it has a value */
+            color: #0062CC;
+            /* Color for the input text when it has a value */
         }
     </style>
 
-<style>
-    .loading{
-        background: url('/static/images/img/preloader_1.gif') no-repeat center center;
-        background-color: rgba(255, 255, 255, 0.77);
-        background-size: 20%;
-        height: 100vh;
-        width: 100%;
-        position: fixed;
-        z-index: 100;
-    }
-</style>
+    <style>
+        .loading {
+            background: url('/static/images/img/preloader_1.gif') no-repeat center center;
+            background-color: rgba(255, 255, 255, 0.77);
+            background-size: 20%;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            z-index: 100;
+        }
+    </style>
 </head>
-<body>  
+
+<body>
     <div id="loadingDiv" class="loading"></div>
 
     <div class="padding">
@@ -83,66 +88,77 @@
                                     <img src="https://img.icons8.com/color/36/000000/visa.png">
                                     <img src="https://img.icons8.com/color/36/000000/mastercard.png">
                                     <img src="https://img.icons8.com/color/36/000000/amex.png">
-                                </div>      
-                            </div>    
+                                </div>
+                            </div>
                         </div>
-                        <form action="{{ url_for('stored_card_info_in_db') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url_for('stored_card_info_in_db') }}" method="post"
+                            enctype="multipart/form-data">
                             <div class="card-body" style="height: 350px">
 
                                 <input type="text" class="d-none" name="carear_id" value="{{carear_id}}">
 
-                            <div class="form-group">
-                                <label for="cc-number" class="control-label">CARD NUMBER</label>
-                                <input id="cc-number" name="care_number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder="&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull;" required>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="cc-exp" class="control-label">CARD EXPIRY</label>
-                                        <input id="cc-exp" name="card_expiry" type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp" placeholder="MM / YYYY" required>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="cc-number" class="control-label">CARD NUMBER</label>
+                                    <input id="cc-number" name="care_number" type="tel"
+                                        class="input-lg form-control cc-number" autocomplete="cc-number"
+                                        placeholder="&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull;"
+                                        required>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="cc-cvc" class="control-label">CARD CVC</label>
-                                        <input id="cc-cvc" name="card_cvc" type="tel" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="&bull;&bull;&bull;&bull;" required>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="cc-exp" class="control-label">CARD EXPIRY</label>
+                                            <input id="cc-exp" name="card_expiry" type="tel"
+                                                class="input-lg form-control cc-exp" autocomplete="cc-exp"
+                                                placeholder="MM / YYYY" required>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="cc-cvc" class="control-label">CARD Type</label>
-                                                <select name="card_type" class="form-select input-lg form-control" aria-label="Default select example" required>
-                                                    <option value="" disabled selected hidden>Select Type</option>
-                                                    <option value="Visa">Visa</option>
-                                                    <option value="Mastercard">Mastercard</option>
-                                                    <option value="American Express">American Express</option>
-                                                    <option value="UnionPay">UnionPay</option>
-                                                    <option value="PayPal">PayPal</option>
-                                                </select>
-                                                
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="cc-cvc" class="control-label">CARD CVC</label>
+                                            <input id="cc-cvc" name="card_cvc" type="tel"
+                                                class="input-lg form-control cc-cvc" autocomplete="off"
+                                                placeholder="&bull;&bull;&bull;&bull;" required>
+                                        </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="cc-cvc" class="control-label">CARD Type</label>
+                                            <select name="card_type" class="form-select input-lg form-control"
+                                                aria-label="Default select example" required>
+                                                <option value="" disabled selected hidden>Select Type</option>
+                                                <option value="Visa">Visa</option>
+                                                <option value="Mastercard">Mastercard</option>
+                                                <option value="American Express">American Express</option>
+                                                <option value="UnionPay">UnionPay</option>
+                                                <option value="PayPal">PayPal</option>
+                                            </select>
 
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-holder" class="control-label">CARD HOLDER NAME</label>
+                                    <input id="card-holder" name="card_holder_name" type="text"
+                                        class="input-lg form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input value="MAKE PAYMENT" type="submit"
+                                        class="btn btn-success btn-lg form-control" style="font-size: .8rem;">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="card-holder" class="control-label">CARD HOLDER NAME</label>
-                                <input id="card-holder" name="card_holder_name" type="text" class="input-lg form-control">
-                            </div>
-                            <div class="form-group">
-                                <input value="MAKE PAYMENT" type="submit" class="btn btn-success btn-lg form-control" style="font-size: .8rem;">
-                            </div>
-                        </div>
-                    </form>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script>
-        $(function($) {
+        $(function ($) {
             $('[data-numeric]').payment('restrictNumeric');
             $('.cc-number').payment('formatCardNumber');
             $('.cc-exp').payment('formatCardExpiry');
@@ -153,22 +169,23 @@
         });
     </script>
 
-<!-- jQuery CDN (add this to your HTML) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery CDN (add this to your HTML) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- Script to show/hide loading div -->
-<script>
-    $(document).ready(function () {
-        // Show loading div when a link is clicked
-        $('a.nav-link').on('click', function () {
-            $('#loadingDiv').show();
-        });
+    <!-- Script to show/hide loading div -->
+    <script>
+        $(document).ready(function () {
+            // Show loading div when a link is clicked
+            $('a.nav-link').on('click', function () {
+                $('#loadingDiv').show();
+            });
 
-        // Hide loading div when the page is fully loaded
-        $(window).on('load', function () {
-            $('#loadingDiv').hide();
+            // Hide loading div when the page is fully loaded
+            $(window).on('load', function () {
+                $('#loadingDiv').hide();
+            });
         });
-    });
-</script>
+    </script>
 </body>
+
 </html>

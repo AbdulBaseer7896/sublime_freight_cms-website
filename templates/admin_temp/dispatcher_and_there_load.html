@@ -1,0 +1,156 @@
+{% extends 'admin_temp/admin_temp.html' %}
+
+{% block header_sytyle %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .table tr {
+        overflow: auto;
+        white-space: nowrap;
+    }
+</style>
+{% endblock header_sytyle %}
+
+{% block main_body_contant %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <select name="state" id="userSelect" class="form-select" aria-label="User Name" required>
+                    <option disabled selected hidden>Select Dispatcher</option>
+                    {% set unique_users = [] %}
+                    {% for item in dispatcher_info %}
+                    {% if item['user_name'] not in unique_users %}
+                    <option value="{{ item['user_name'] }}">{{ item['user_name'] }}</option>
+                    {% set _ = unique_users.append(item['user_name']) %}
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <select name="state" id="careerSelect" class="form-select" aria-label="Career Name" required>
+                    <option disabled selected hidden>Select career</option>
+                    {% set unique_careers = [] %}
+                    {% for item in dispatcher_info %}
+                    {% if item['carear_name'] not in unique_careers %}
+                    <option value="{{ item['carear_name'] }}">{{ item['carear_name'] }}</option>
+                    {% set _ = unique_careers.append(item['carear_name']) %}
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="text" class="form-control" id="loadNumber" placeholder="Load Number">
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="date" class="form-control" id="datepicker">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+
+    <div class="card-header py-3">
+        <!-- <h6 class="m-0 font-weight-bold text-primary">All Employees PIN Records</h6> -->
+        <span id="resetFilters" class="btn btn-primary" style="cursor: pointer; text-decoration: none ">
+            All Load Records
+        </span>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Dispatcher Name</th>
+                        <th>Career name</th>
+                        <th>Load Number</th>
+                        <th>Load Date</th>
+                        <th>Load Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in dispatcher_info %}
+                    <tr data-username="{{ item['user_name'] }}" data-career="{{ item['carear_name'] }}"
+                    data-date="{{ item['load_date'] }}" data-load-number="{{ item['load_number'] }}">
+                        <td>{{ item['user_name'] }}</td>
+                        <td>{{ item['carear_name'] }}</td>
+                        <td>{{ item['load_number'] }}</td>
+                        <td>{{ item['load_date'] }}</td>
+                        <td>{{ item['load_rate'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Cache the table rows for better performance
+        var tableRows = $('#dataTable tbody tr');
+
+        // Event listener for user, career, load number, and date selection
+        $('#userSelect, #careerSelect, #loadNumber, #datepicker').on('input', function () {
+            applyFilters();
+        });
+
+        // Click event listener for resetting filters
+        $('#resetFilters').click(function () {
+            // Clear the selected values
+            $('#userSelect, #careerSelect, #loadNumber, #datepicker').val('');
+
+            // Show all rows
+            tableRows.show();
+
+            // Clear the selected date display
+            $('#formattedDateDisplay').text('');
+        });
+
+        function applyFilters() {
+            var selectedUser = $('#userSelect').val();
+            var selectedCareer = $('#careerSelect').val();
+            var enteredLoadNumber = $('#loadNumber').val();
+            var selectedDate = $('#datepicker').val();
+
+            // Show only rows that match the selected user, career, load number, or date
+            tableRows.hide();
+
+            if (selectedUser) {
+                tableRows.filter('[data-username="' + selectedUser + '"]').show();
+            }
+
+            if (selectedCareer) {
+                tableRows.filter('[data-career="' + selectedCareer + '"]').show();
+            }
+
+            if (enteredLoadNumber) {
+                // Filter rows based on the entered load number
+                tableRows.filter('[data-load-number="' + enteredLoadNumber + '"]').show();
+            }
+
+            if (selectedDate) {
+                tableRows.filter('[data-date="' + selectedDate + '"]').show();
+                // Display the selected date in the HTML element with id "formattedDateDisplay"
+                $('#formattedDateDisplay').text(selectedDate);
+            }
+
+            // If nothing is selected, show all rows
+            if (!selectedUser && !selectedCareer && !enteredLoadNumber && !selectedDate) {
+                tableRows.show();
+                $('#formattedDateDisplay').text(''); // Clear the selected date display
+            }
+        }
+    });
+</script>
+
+{% endblock main_body_contant %}

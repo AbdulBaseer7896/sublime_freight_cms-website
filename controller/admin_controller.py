@@ -317,10 +317,20 @@ def search_load_for_admin_seach():
     if request.method == 'POST':
         admin_info = session.get('data')
         search_text = request.form.get("search_text")
-        print("This is test = " , search_text)
         if search_text == '':
             return redirect(url_for('view_load_and_carear'))
         load_info = obj.get_load_from_search_data_for_admin(search_text)
         return render_template("//admin_temp//view_load_and_carear_to_admin.html" , load_info = load_info , admin_info = admin_info)
-    
-    
+
+
+
+@app.route('/show_dispatcher_and_there_load' , methods=["GET", "POST"])
+@login_required('admin')
+def show_dispatcher_and_there_load():
+    if request.method == 'GET':
+        admin_info = session.get('data')
+        dispatcher_info = obj.get_load_info_from_db_for_admin()
+        return render_template("/admin_temp/dispatcher_and_there_load.html" , dispatcher_info = dispatcher_info ,  admin_info = admin_info)
+
+
+

@@ -336,5 +336,3 @@ class Admin_Modle():
             result_dict = [dict(zip(column_names, row)) for row in result]
             return result_dict
 
-# obj = Admin_Modle()
-# obj.get_load_from_search_data_for_admin('1')
