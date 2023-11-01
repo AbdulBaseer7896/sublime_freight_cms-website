@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>HTML-to-PDF Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- html2pdf CDN link -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #invoice {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .total-row {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .modal input {
+            margin-bottom: 10px;
+        }
+
+        .modal button {
+            background-color: #4caf50;
+            color: white;
+            padding: 8px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <button id="download-button">Download as PDF</button>
+
+    <!-- Modal for user input -->
+    <div id="myModal" class="modal">
+        <label for="inputValue">Enter a value:</label>
+        <input type="text" id="inputValue" placeholder="Enter a value">
+        <label>Select column:</label>
+        <select id="columnSelect">
+            <option value="Custom Value 1">Custom Value 1</option>
+            <option value="Custom Value 2">Custom Value 2</option>
+        </select>
+        <label for="inputInvoiceDate">Enter Invoice Date:</label>
+        <input type="date" id="inputInvoiceDate" placeholder="Enter Invoice Date">
+        <label for="inputDueDate">Enter Due Date:</label>
+        <input type="date" id="inputDueDate" placeholder="Enter Due Date">
+        
+        <button id="applyValue">Apply</button>
+    </div>
+
+    <div id="invoice">
+        <h1>Customized Invoice</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptate provident et laudantium ratione officia a. Officiis commodi sed sapiente quas dolor repellat ea suscipit aliquam, voluptatum ipsa! Doloremque, nihil!</p>
+        <h2>Details:</h2>
+        <h1 class="hidden">This is for admin</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>Custom Value 1</th>
+                    <th>Custom Value 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" name="selectRow" value="John Doe"></td>
+                    <td>John Doe</td>
+                    <td>2</td>
+                    <td>New York</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="selectRow" value="Jane Smith"></td>
+                    <td>Jane Smith</td>
+                    <td>3</td>
+                    <td>Los Angeles</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="selectRow" value="Bob Johnson"></td>
+                    <td>Bob Johnson</td>
+                    <td>4</td>
+                    <td>Chicago</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- Total rows for Custom Value 1 and Custom Value 2 -->
+                <tr class="total-row">
+                    <td colspan="4">Total:</td>
+                    <td id="totalValue1">0.00</td>
+                    <td id="totalValue2">0.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const button = document.getElementById('download-button');
+        const modal = document.getElementById('myModal');
+        const applyButton = document.getElementById('applyValue');
+        let totalValue1 = 0;
+        let totalValue2 = 0;
+    
+        function generatePDF() {
+            // Display the modal
+            modal.style.display = 'block';
+        }
+    
+        function applyValue() {
+    // Get the value entered by the user
+    const inputValue = parseFloat(document.getElementById('inputValue').value);
+    // Get the selected column
+    const selectedColumn = document.getElementById('columnSelect').value;
+
+    // Update the table with the entered value
+    const checkboxes = document.querySelectorAll('input[name="selectRow"]');
+    let isSelectedRow = false;
+
+    checkboxes.forEach(checkbox => {
+        const row = checkbox.closest('tr');
+        const customValue1Cell = row.cells[4];
+        const customValue2Cell = row.cells[5];
+
+        // Check if the checkbox is checked
+        if (checkbox.checked) {
+            // Set the value in the selected column and null in the other column
+            if (selectedColumn === 'Custom Value 1') {
+                const age = parseFloat(row.cells[2].textContent);
+                const value1 = inputValue * age;
+                customValue1Cell.textContent = value1.toFixed(2);
+                customValue2Cell.textContent = '';
+                totalValue1 += value1;
+            } else if (selectedColumn === 'Custom Value 2') {
+                const value2 = inputValue;
+                customValue1Cell.textContent = '';
+                customValue2Cell.textContent = value2.toFixed(2);
+                totalValue2 = value2;
+            }
+
+            // At least one row is selected
+            isSelectedRow = true;
+        } else {
+            // If the checkbox is not checked, hide the row
+            row.style.display = 'none';
+        }
+    });
+
+    // Update the total rows
+    document.getElementById('totalValue1').textContent = totalValue1.toFixed(2);
+    document.getElementById('totalValue2').textContent = totalValue2.toFixed(2);
+
+    // Close the modal
+    modal.style.display = 'none';
+
+    // Regenerate the PDF after modifying the content
+    if (isSelectedRow) {
+        generatePDFDocument();
+    }
+}
+
+    
+        function generatePDFDocument() {
+            // Choose the element that your content will be rendered to.
+            const element = document.getElementById('invoice');
+            // Choose the element and save the PDF for your user.
+            html2pdf().from(element).save();
+        }
+    
+        button.addEventListener('click', generatePDF);
+        applyButton.addEventListener('click', applyValue);
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #invoinc_style{
+        padding: 30px;
+    }
+    
+    .invoinc_style {
+        position: relative;
+        background-color: #FFF;
+        min-height: 680px;
+        padding: 15px
+    }
+    
+    .invoinc_style header {
+        padding: 10px 0;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #3989c6
+    }
+    
+    .invoinc_style .company-details {
+        text-align: right
+    }
+    
+    .invoinc_style .company-details .name {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+    
+    .invoinc_style .contacts {
+        margin-bottom: 20px
+    }
+    
+    .invoinc_style .invoinc_style-to {
+        text-align: left
+    }
+    
+    .invoinc_style .invoinc_style-to .to {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+    
+    .invoinc_style .invoinc_style-details {
+        text-align: right
+    }
+    
+    .invoinc_style .invoinc_style-details .invoinc_style-id {
+        margin-top: 0;
+        color: #3989c6
+    }
+    
+    .invoinc_style main {
+        padding-bottom: 50px
+    }
+    
+    .invoinc_style main .thanks {
+        margin-top: -100px;
+        font-size: 2em;
+        margin-bottom: 50px
+    }
+    
+    .invoinc_style main .notices {
+        padding-left: 6px;
+        border-left: 6px solid #3989c6
+    }
+    
+    .invoinc_style main .notices .notice {
+        font-size: 1.2em
+    }
+    
+    .invoinc_style table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 20px
+    }
+    
+    .invoinc_style table td,.invoinc_style table th {
+        padding: 15px;
+        background: #eee;
+        border-bottom: 1px solid #fff
+    }
+    
+    .invoinc_style table th {
+        white-space: nowrap;
+        font-weight: 400;
+        font-size: 16px
+    }
+    
+    .invoinc_style table td h3 {
+        margin: 0;
+        font-weight: 400;
+        color: #3989c6;
+        font-size: 1.2em
+    }
+    
+    .invoinc_style table .qty,.invoinc_style table .total,.invoinc_style table .unit {
+        text-align: right;
+        font-size: 1.2em
+    }
+    
+    .invoinc_style table .no {
+        color: #fff;
+        font-size: 1.6em;
+        background: #3989c6
+    }
+    
+    .invoinc_style table .unit {
+        background: #ddd
+    }
+    
+    .invoinc_style table .total {
+        background: #3989c6;
+        color: #fff
+    }
+    
+    .invoinc_style table tbody tr:last-child td {
+        border: none
+    }
+    
+    .invoinc_style table tfoot td {
+        background: 0 0;
+        border-bottom: none;
+        white-space: nowrap;
+        text-align: right;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        border-top: 1px solid #aaa
+    }
+    
+    .invoinc_style table tfoot tr:first-child td {
+        border-top: none
+    }
+    
+    .invoinc_style table tfoot tr:last-child td {
+        color: #3989c6;
+        font-size: 1.4em;
+        border-top: 1px solid #3989c6
+    }
+    
+    .invoinc_style table tfoot tr td:first-child {
+        border: none
+    }
+    
+    .invoinc_style footer {
+        width: 100%;
+        text-align: center;
+        color: #777;
+        border-top: 1px solid #aaa;
+        padding: 8px 0
+    }
+    
+    @media print {
+        .invoinc_style {
+            font-size: 11px!important;
+            overflow: hidden!important
+        }
+    
+        .invoinc_style footer {
+            position: absolute;
+            bottom: 10px;
+            page-break-after: always
+        }
+    
+        .invoinc_style>div:last-child {
+            page-break-before: always
+        }
+    }
+</style>
+</head>
+
+
+<body>
+    
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!--Author      : @arboshiki-->
+<div id="invoinc_style">
+
+    <div class="invoinc_style overflow-auto">
+        <div style="min-width: 600px">
+            <header>
+                <div class="row">
+                    <div class="col">
+                        <a target="_blank" href="https://lobianijs.com">
+                            <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" />
+                            </a>
+                    </div>
+                    <div class="col company-details">
+                        <h2 class="name">
+                            <a target="_blank" href="https://lobianijs.com">
+                            Arboshiki
+                            </a>
+                        </h2>
+                        <div>455 Foggy Heights, AZ 85004, US</div>
+                        <div>(123) 456-789</div>
+                        <div>company@example.com</div>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="row contacts">
+                    <div class="col invoinc_style-to">
+                        <div class="text-gray-light">invoinc_style TO:</div>
+                        <h2 class="to">John Doe</h2>
+                        <div class="address">796 Silver Harbour, TX 79273, US</div>
+                        <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                    </div>
+                    <div class="col invoinc_style-details">
+                        <h1 class="invoinc_style-id">invoinc_style 3-2-1</h1>
+                        <div class="date">Date of invoinc_style: 01/10/2018</div>
+                        <div class="date">Due Date: 30/10/2018</div>
+                    </div>
+                </div>
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="text-left">DESCRIPTION</th>
+                            <th class="text-right">HOUR PRICE</th>
+                            <th class="text-right">HOURS</th>
+                            <th class="text-right">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="no">04</td>
+                            <td class="text-left"><h3>
+                                <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
+                                Youtube channel
+                                </a>
+                                </h3>
+                               <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
+                                   Useful videos
+                               </a> 
+                               to improve your Javascript skills. Subscribe and stay tuned :)
+                            </td>
+                            <td class="unit">$0.00</td>
+                            <td class="qty">100</td>
+                            <td class="total">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="no">01</td>
+                            <td class="text-left"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
+                            <td class="unit">$40.00</td>
+                            <td class="qty">30</td>
+                            <td class="total">$1,200.00</td>
+                        </tr>
+                        <tr>
+                            <td class="no">02</td>
+                            <td class="text-left"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
+                            <td class="unit">$40.00</td>
+                            <td class="qty">80</td>
+                            <td class="total">$3,200.00</td>
+                        </tr>
+                        <tr>
+                            <td class="no">03</td>
+                            <td class="text-left"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
+                            <td class="unit">$40.00</td>
+                            <td class="qty">20</td>
+                            <td class="total">$800.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">SUBTOTAL</td>
+                            <td>$5,200.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">TAX 25%</td>
+                            <td>$1,300.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">GRAND TOTAL</td>
+                            <td>$6,500.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="thanks">Thank you!</div>
+                <div class="notices">
+                    <div>NOTICE:</div>
+                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                </div>
+            </main>
+            <footer>
+                invoinc_style was created on a computer and is valid without the signature and seal.
+            </footer>
+        </div>
+        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+        <div></div>
+    </div>
+</div>
+
+
+</body>
+</html>

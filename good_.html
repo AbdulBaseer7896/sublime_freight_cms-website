@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>HTML-to-PDF Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- html2pdf CDN link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
+    </script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #invoice {
+            border: #333;
+            /* background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 600px; */
+        }
+
+        h1 {
+            border: #333;
+            /* color: #333;
+            text-align: center; */
+        }
+
+        p {
+            border: #333;
+            /* color: #666;
+            line-height: 1.5; */
+        }
+
+        table {
+            border: #333;
+            /* width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse; */
+        }
+
+        th, td {
+            border: #333;
+            /* border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left; */
+        }
+
+        th {
+            /* background-color: #f2f2f2; */
+            border: #333;
+        }
+
+        .total-row {
+            /* font-weight: bold; */
+            border: #333;
+        }
+
+        button {
+            border: #333;
+            /* background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; */
+        }
+
+        /* Styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .modal input {
+            margin-bottom: 10px;
+        }
+
+        .modal button {
+            background-color: #4caf50;
+            color: white;
+            padding: 8px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+
+
+        .visible-text {
+            display: block;
+        }
+
+        .hidden-text {
+            display: none;
+        }
+
+    </style>
+
+    <style>
+        #invoice-style {
+            padding: 30px;
+        }
+
+        .invoice-style {
+            position: relative;
+            background-color: #FFF;
+            min-height: 680px;
+            padding: 15px
+        }
+
+        .invoice-style header {
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #3989c6
+        }
+
+        .invoice-style .company-details {
+            text-align: right
+        }
+
+        .invoice-style .company-details .name {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .invoice-style .contacts {
+            margin-bottom: 20px
+        }
+
+        .invoice-style .invoice-to {
+            text-align: left
+        }
+
+        .invoice-style .invoice-to .to {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .invoice-style .invoice-details {
+            text-align: right
+        }
+
+        .invoice-style .invoice-details .invoice-id {
+            margin-top: 0;
+            color: #3989c6
+        }
+
+        .invoice-style main {
+            padding-bottom: 50px
+        }
+
+        .invoice-style main .thanks {
+            margin-top: -100px;
+            font-size: 2em;
+            margin-bottom: 50px
+        }
+
+        .invoice-style main .notices {
+            padding-left: 6px;
+            border-left: 6px solid #3989c6
+        }
+
+        .invoice-style main .notices .notice {
+            font-size: 1.2em
+        }
+
+        .invoice-style table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 20px
+        }
+
+        .invoice-style table td, .invoice-style table th {
+            padding: 15px;
+            background: #eee;
+            border-bottom: 1px solid #fff
+        }
+
+        .invoice-style table th {
+            white-space: nowrap;
+            font-weight: 400;
+            font-size: 16px
+        }
+
+        .invoice-style table td h3 {
+            margin: 0;
+            font-weight: 400;
+            color: #3989c6;
+            font-size: 1.2em
+        }
+
+        .invoice-style table .qty, .invoice-style table .total, .invoice-style table .unit {
+            text-align: right;
+            font-size: 1.2em
+        }
+
+        .invoice-style table .no {
+            color: #fff;
+            font-size: 1.6em;
+            background: #3989c6
+        }
+
+        .invoice-style table .unit {
+            background: #ddd
+        }
+
+        .invoice-style table .total {
+            background: #3989c6;
+            color: #fff
+        }
+
+        .invoice-style table tbody tr:last-child td {
+            border: none
+        }
+
+        .invoice-style table tfoot td {
+            background: 0 0;
+            border-bottom: none;
+            white-space: nowrap;
+            text-align: right;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-top: 1px solid #aaa
+        }
+
+        .invoice-style table tfoot tr:first-child td {
+            border-top: none
+        }
+
+        .invoice-style table tfoot tr:last-child td {
+            color: #3989c6;
+            font-size: 1.4em;
+            border-top: 1px solid #3989c6
+        }
+
+        .invoice-style table tfoot tr td:first-child {
+            border: none
+        }
+
+        .invoice-style footer {
+            width: 100%;
+            text-align: center;
+            color: #777;
+            border-top: 1px solid #aaa;
+            padding: 8px 0
+        }
+
+        @media print {
+            .invoice-style {
+                font-size: 11px!important;
+                overflow: hidden!important
+            }
+
+            .invoice-style footer {
+                position: absolute;
+                bottom: 10px;
+                page-break-after: always
+            }
+
+            .invoice-style>div:last-child {
+                page-break-before: always
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Modal for user input -->
+<div id="myModal" class="modal">
+    <label for="inputValue">Enter a value:</label>
+    <input type="text" id="inputValue" placeholder="Enter a value">
+    <label>Select column:</label>
+    <select id="columnSelect">
+        <option value="Custom Value 1">Custom Value 1</option>
+        <option value="Custom Value 2">Custom Value 2</option>
+    </select>
+    <button id="applyValue">Apply</button>
+</div>
+
+<div id="invoice">
+    <button id="download-button">Download as PDF</button>
+    <!-- <div class="hidden-text"> -->
+        <!-- Include the above in your HEAD tag -->
+        <!--Author: @arboshiki-->
+        <div id="invoice-style">
+            <div class="invoice-style overflow-auto">
+                <div style="min-width: 600px">
+                    <header>
+                        <div class="row">
+                            <div class="col">
+                                <a target="_blank" href="https://lobianijs.com">
+                                    <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" />
+                                </a>
+                            </div>
+                            <div class="col company-details">
+                                <h2 class="name hidden-text">
+                                    <a target="_blank" href="https://lobianijs.com">
+                                        Arboshiki
+                                    </a>
+                                </h2>
+                                <div class="hidden-text">455 Foggy Heights, AZ 85004, US</div>
+                                <div class="hidden-text">(123) 456-789</div>
+                                <div class="hidden-text">company@example.com</div>
+                            </div>
+                        </div>
+                    </header>
+                    <main>
+                        <div class="row contacts">
+                            <div class="col invoice-to  hidden-text">
+                                <div class="text-gray-light">Invoice TO:</div>
+                                <!-- <h2 class="to">John Doe</h2> -->
+                                <div class="address">796 Silver Harbour, TX 79273, US</div>
+                                <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                            </div>
+                            <div class="col invoice-details hidden-text">
+                                <h1 class="invoice-id">Invoice 3-2-1</h1>
+                                <div class="date">Date of Invoice: 01/10/2018</div>
+                                <div class="date">Due Date: 30/10/2018</div>
+                            </div>
+                        </div>
+
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>City</th>
+                                    <th>Custom Value 1</th>
+                                    <th>Custom Value 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name="selectRow" value="John Doe"></td>
+                                    <td>John Doe</td>
+                                    <td>2</td>
+                                    <td>New York</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectRow" value="Jane Smith"></td>
+                                    <td>Jane Smith</td>
+                                    <td>3</td>
+                                    <td>Los Angeles</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectRow" value="Bob Johnson"></td>
+                                    <td>Bob Johnson</td>
+                                    <td>4</td>
+                                    <td>Chicago</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="hidden-text">
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td colspan="2">SUBTOTAL</td>
+                                    <td>$5,200.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td colspan="2">TAX 25%</td>
+                                    <td>$1,300.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td colspan="2">GRAND TOTAL</td>
+                                    <td>$6,500.00</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        
+
+
+                        <div class="thanks hidden-text">Thank you!</div>
+                        <div class="notices hidden-text">
+                            <div>NOTICE:</div>
+                            <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                        </div>
+                    </main>
+                    <footer class="hidden-text">
+                        Invoice was created on a computer and is valid without the signature and seal.
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+
+<script>
+    const button = document.getElementById('download-button');
+    const modal = document.getElementById('myModal');
+    const applyButton = document.getElementById('applyValue');
+    const hiddenText = document.querySelector('.hidden-text'); // Select the element with the hidden text
+    let totalValue1 = 0;
+    let totalValue2 = 0;
+
+    function generatePDF() {
+        // Display the modal
+        modal.style.display = 'block';
+
+        // Show the hidden text
+        hiddenText.classList.remove('hidden-text');
+    }
+
+    function applyValue() {
+        // Get the value entered by the user
+        const inputValue = parseFloat(document.getElementById('inputValue').value);
+        // Get the selected column
+        const selectedColumn = document.getElementById('columnSelect').value;
+
+        // Update the table with the entered value
+        const checkboxes = document.querySelectorAll('input[name="selectRow"]');
+        let isSelectedRow = false;
+
+        checkboxes.forEach(checkbox => {
+            const row = checkbox.closest('tr');
+            const customValue1Cell = row.cells[4];
+            const customValue2Cell = row.cells[5];
+
+            // Check if the checkbox is checked
+            if (checkbox.checked) {
+                // Set the value in the selected column and null in the other column
+                if (selectedColumn === 'Custom Value 1') {
+                    const age = parseFloat(row.cells[2].textContent);
+                    const value1 = inputValue * age;
+                    customValue1Cell.textContent = value1.toFixed(2);
+                    customValue2Cell.textContent = '';
+                    totalValue1 += value1;
+                } else if (selectedColumn === 'Custom Value 2') {
+                    const value2 = inputValue;
+                    customValue1Cell.textContent = '';
+                    customValue2Cell.textContent = value2.toFixed(2);
+                    totalValue2 += value2;
+                }
+
+                // At least one row is selected
+                isSelectedRow = true;
+            } else {
+                // If the checkbox is not checked, hide the row
+                row.style.display = 'none';
+            }
+        });
+
+        // Update the total rows
+        document.getElementById('totalValue1').textContent = totalValue1.toFixed(2);
+        document.getElementById('totalValue2').textContent = totalValue2.toFixed(2);
+
+        // Close the modal
+        modal.style.display = 'none';
+
+        // Regenerate the PDF after modifying the content
+        if (isSelectedRow) {
+            generatePDFDocument();
+        }
+    }
+
+    function generatePDFDocument() {
+        // Choose the element that your content will be rendered to.
+        const element = document.getElementById('invoice');
+        // Choose the element and save the PDF for your user.
+        html2pdf().from(element).save();
+    }
+
+    button.addEventListener('click', generatePDF);
+    applyButton.addEventListener('click', applyValue);
+</script>
+
+<!-- Additional scripts and styles if needed -->
+
+</body>
+</html>
