@@ -80,7 +80,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <span id="resetFilters" class="btn btn-primary" style="cursor: pointer; text-decoration: none">
+        <span id="resetFilters_after_invoic" class="btn btn-primary" style="cursor: pointer; text-decoration: none">
             All Load Records
         </span>
         <span id="resetFilters" style="cursor: pointer; text-decoration: none">
@@ -93,6 +93,7 @@
 
     <!-- Modal for user input -->
     <div id="myModal" class="modal">
+        
         <div class="form-group">
             <div class="row register-form">
                 <div class="col-md-6">
@@ -143,7 +144,7 @@
                             <div class="col-md-6 hidden-text">
                                 <a target="_blank" href="https://sublimefreight.com/">
                                     <img src="/static/images/img/Truck_img_1_small.jpeg" class="img-fluid"
-                                        style="object-fit: cover; width: 40%; height: 30%;"
+                                        style="object-fit: cover; width: 60%; height: 30%;"
                                         data-holder-rendered="true" />
                                 </a>
                             </div>
@@ -152,6 +153,7 @@
                             <!-- Company details -->
                             <div class="col-md-6 company-details hidden-text">
                                 <h2 class="name">
+                                    <br><br>
                                     <a target="_blank" href="#">
                                         SUBLIME FREIGHT LLC
                                     </a>
@@ -176,7 +178,9 @@
                             </div>
 
                             <div class="col invoice-details">
-                                <h1 class="invoice-id">Invoice 3-2-1</h1>
+                                <!-- <h1 class="invoice-id">Invoice 3-2-1</h1> -->
+                                <hr>
+                                <div id="invoiceNumber"></div>
                                 <div class="date" id="invoiceDate">Date of Invoice: [Dynamic Date]</div>
                                 <div class="date" id="dueDate">Due Date: [Dynamic Due Date]</div>
                             </div>
@@ -199,19 +203,20 @@
                                             <th class="hidden-text-coloum">Selction</th>
                                             <th class="hidden-text-coloum">Dispatcher Name</th>
                                             <th class="hidden-text-coloum">Career name</th>
-                                            <th>Load Number</th>
+                                            <th>Load No</th>
                                             <th>Load Rate</th>
                                             <th>Pick Up</th>
                                             <th>Drop</th>
                                             <th class="hidden-text-coloum">Load Date</th>
-                                            <!-- <th>Load %</th> -->
-                                            <th id="customLoadPercentageColumn">Load %</th>
-                                            <!-- <span id="displayInputValue"></span> -->
                                             <th>Flat Rate</th>
+                                            <th id="customLoadPercentageColumn">{loadPercentage}</th>
                                             <th style="display: none;">Email</th>
                                             <th style="display: none;">Phone Number</th>
                                             <th style="display: none;">Company Name</th>
                                             <th style="display: none;">Mc</th>
+                                            <th style="display: none;">Load ID</th>
+                                            <th style="display: none;">Carier Id</th>
+                                            <!-- <th style="display: none;">Dispatcher ID</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -234,7 +239,11 @@
                                             <td style="display: none;">{{ item['phone_number']}}</td>
                                             <td style="display: none;">{{ item['company_name']}}</td>
                                             <td style="display: none;">{{ item['mc']}}</td>
+                                            <td style="display: none;">{{ item['load_id']}}</td>
+                                            <td style="display: none;">{{ item['carear_id']}}</td>
+                                            <td style="display: none;">{{ item['user_pin']}}</td>
                                         </tr>
+
 
                                         {% endfor %}
                                     </tbody>
@@ -350,97 +359,172 @@
             // Set up an event listener for the Apply button inside the modal
             applyButton.addEventListener('click', applyValue);
         }
-
         function applyValue() {
-            // Get the value entered by the user
-            const inputValue = parseFloat(document.getElementById('inputValue').value);
-            const selectedColumn = document.getElementById('columnSelect').value;
+    // Get the value entered by the user
+    const inputValue = parseFloat(document.getElementById('inputValue').value);
+    const selectedColumn = document.getElementById('columnSelect').value;
 
-            // Get the user-entered dates
-            const invoiceDate = document.getElementById('inputInvoiceDate').value;
-            const dueDate = document.getElementById('inputDueDate').value;
+    // Get the user-entered dates
+    const invoiceDate = document.getElementById('inputInvoiceDate').value;
+    const dueDate = document.getElementById('inputDueDate').value;
 
-            // Update the date sections in the invoice
-            document.getElementById('invoiceDate').textContent = `Date of Invoice: ${invoiceDate}`;
-            document.getElementById('dueDate').textContent = `Due Date: ${dueDate}`;
+    // Update the date sections in the invoice
+    document.getElementById('invoiceDate').textContent = `Date of Invoice: ${invoiceDate}`;
+    document.getElementById('dueDate').textContent = `Due Date: ${dueDate}`;
 
+    // Update the table with the entered value
+    const checkboxes = document.querySelectorAll('input[name="selectRow"]');
+    let isSelectedRow = false;
+    let firstSelectedCareerName = null;
+    let firstSelectedEmail = null;
+    let firstSelectedPhoneNumber = null;
+    let firstSelectedCompanyName = null;
 
+    checkboxes.forEach(checkbox => {
+        const row = checkbox.closest('tr');
+        const customValue1Cell = row.cells[8];
+        const customValue2Cell = row.cells[9];
+        const loadPercentageCell = row.cells[8]; // Load % cell
 
-            // Update the table with the entered value
-            const checkboxes = document.querySelectorAll('input[name="selectRow"]');
-            let isSelectedRow = false;
-            let firstSelectedCareerName = null;
-            let firstSelectedEmail = null;
-            let firstSelectedPhoneNumber = null;
-            let firstSelectedCompanyName = null;
-
-            checkboxes.forEach(checkbox => {
-                const row = checkbox.closest('tr');
-                const customValue1Cell = row.cells[8];
-                const customValue2Cell = row.cells[9];
-                const loadPercentageCell = row.cells[8]; // Load % cell
-
-                // Check if the checkbox is checked
-                if (checkbox.checked) {
-                    if (!firstSelectedCareerName) {
-                        firstSelectedCareerName = row.cells[2].textContent;
-                        firstSelectedEmail = row.cells[11].textContent; // Email cell index is 11
-                        firstSelectedPhoneNumber = row.cells[12].textContent; // Phone number cell index is 12
-                        firstSelectedCompanyName = row.cells[13].textContent; // Company name cell index is 13
-                    }
-
-                    if (selectedColumn === 'Custom Value 1') {
-                        const age = parseFloat(row.cells[3].textContent);
-                        const value1 = (inputValue / 100) * age;
-                        customValue1Cell.textContent = '$' + value1.toFixed(2);
-                        customValue2Cell.textContent = '';
-                        loadPercentageCell.textContent = value1.toFixed(2) + '%';
-                        totalValue1 += value1;
-                    } else if (selectedColumn === 'Custom Value 2') {
-                        const value2 = inputValue;
-                        customValue1Cell.textContent = '';
-                        customValue2Cell.textContent = '$' + value2.toFixed(2);
-                        loadPercentageCell.textContent = '';
-                        totalValue2 = value2;
-                    }
-
-                    // Set the value in the selected column and null in the other column
-                    if (selectedColumn === 'Custom Value 1') {
-                        // ...
-                    } else if (selectedColumn === 'Custom Value 2') {
-                        // ...
-                    }
-
-                    // Display the dollar sign for load rate
-                    const loadRateCell = row.cells[4];
-                    loadRateCell.textContent = '$' + loadRateCell.textContent;
-
-                    // At least one row is selected
-                    isSelectedRow = true;
-                } else {
-                    // If the checkbox is not checked, hide the row
-                    row.style.display = 'none';
-                }
-            });
-
-            // Update the total rows
-            document.getElementById('totalValue1').textContent = '$' + totalValue1.toFixed(2);
-            document.getElementById('totalValue2').textContent = '$' + totalValue2.toFixed(2);
-
-            // Display the first selected career name, email, phone number, and company name
-            document.getElementById('selectedCareerName').textContent = firstSelectedCareerName;
-            document.getElementById('selectedEmail').textContent = firstSelectedEmail;
-            document.getElementById('selectedPhoneNumber').textContent = firstSelectedPhoneNumber;
-            document.getElementById('selectedCompanyName').textContent = firstSelectedCompanyName;
-
-            // Close the modal
-            modal.style.display = 'none';
-
-            // Regenerate the PDF after modifying the content
-            if (isSelectedRow) {
-                generatePDFDocument();
+        // Check if the checkbox is checked
+        if (checkbox.checked) {
+            if (!firstSelectedCareerName) {
+                firstSelectedCareerName = row.cells[2].textContent;
+                firstSelectedEmail = row.cells[11].textContent; // Email cell index is 11
+                firstSelectedPhoneNumber = row.cells[12].textContent; // Phone number cell index is 12
+                firstSelectedCompanyName = row.cells[13].textContent; // Company name cell index is 13
             }
+
+            if (selectedColumn === 'Custom Value 1') {
+                const age = parseFloat(row.cells[3].textContent);
+                const value1 = (inputValue / 100) * age;
+                customValue1Cell.textContent = '$' + value1.toFixed(2);
+                customValue2Cell.textContent = '';
+                loadPercentageCell.textContent = '$' +value1.toFixed(2);
+                totalValue1 += value1;
+            } else if (selectedColumn === 'Custom Value 2') {
+                const value2 = inputValue;
+                customValue1Cell.textContent = '';
+                customValue2Cell.textContent = '$' + value2.toFixed(2);
+                loadPercentageCell.textContent = '';
+                totalValue2 = value2;
+            }
+
+
+                        
+            // Assuming you have an input element with the id 'inputValue'
+            const inputValueElement = document.getElementById('inputValue');
+
+            // Assuming you have a th element with the id 'customLoadPercentageColumn'
+            const customLoadPercentageColumn = document.getElementById('customLoadPercentageColumn');
+
+            // Assuming you have a button or an event that triggers this function
+            function updateColumnName() {
+                // Get the value entered by the user
+                const inputValue = inputValueElement.value;
+
+                // Replace the placeholder in the column name with the entered value
+                customLoadPercentageColumn.textContent = `${inputValue}%`;
+            }
+
+            // Call the function when needed, for example, when the user interacts with the input field or when the page loads.
+            updateColumnName();
+
+            // Set the value in the selected column and null in the other column
+            if (selectedColumn === 'Custom Value 1') {
+                // ...
+            } else if (selectedColumn === 'Custom Value 2') {
+                // ...
+            }
+
+            // Display the dollar sign for load rate
+            const loadRateCell = row.cells[4];
+            loadRateCell.textContent = '$' + loadRateCell.textContent;
+
+            // At least one row is selected
+            isSelectedRow = true;
+        } else {
+            // If the checkbox is not checked, hide the row
+            row.style.display = 'none';
         }
+    });
+
+    // Update the total rows
+    document.getElementById('totalValue1').textContent = '$' + totalValue1.toFixed(2);
+    document.getElementById('totalValue2').textContent = '$' + totalValue2.toFixed(2);
+
+    // Display the first selected career name, email, phone number, and company name
+    document.getElementById('selectedCareerName').textContent = firstSelectedCareerName;
+    document.getElementById('selectedEmail').textContent = firstSelectedEmail;
+    document.getElementById('selectedPhoneNumber').textContent = firstSelectedPhoneNumber;
+    document.getElementById('selectedCompanyName').textContent = firstSelectedCompanyName;
+
+    // Close the modal
+    modal.style.display = 'none';
+
+    // Capture the data
+    const selectedRowsData = [];
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            const row = checkbox.closest('tr');
+            selectedRowsData.push({
+                user_name: row.cells[1].textContent,
+                carear_name: row.cells[2].textContent,
+                load_number: row.cells[3].textContent,
+                load_rate: row.cells[4].textContent,
+            pick_up_location: row.cells[5].textContent,
+            drop_location: row.cells[6].textContent,
+            load_date: row.cells[7].textContent,
+            load_id: row.cells[14].textContent,
+            carear_id: row.cells[15].textContent,
+            user_pin: row.cells[16].textContent,
+                // Add other relevant fields as needed
+            });
+        }
+    });
+
+    // Capture additional input values and dates
+    const invoiceValue = parseFloat(document.getElementById('inputValue').value);
+    const selectedColumnValue = document.getElementById('columnSelect').value;
+
+    // Create a data object to send in the POST request
+    const postData = {
+        selectedRowsData: selectedRowsData,
+        inputValue: inputValue,
+        selectedColumn: selectedColumn,
+        invoiceDate: invoiceDate,
+        dueDate: dueDate,
+        invoic_number :generateInvoiceNumber()
+    };
+
+    // Make a POST request to your Flask route
+    fetch('/your-flask-route', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response if needed
+        console.log('Response from Flask:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+    // Regenerate the PDF after modifying the content
+    if (isSelectedRow) {
+        generatePDFDocument();
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -449,6 +533,11 @@
             // Unhide all elements with the hidden text class
             hiddenTextElements.forEach(element => {
                 element.classList.remove('hidden-text');
+
+                $('#resetFilters_after_invoic').click(function () {
+            // Reload the page to reset filters
+            location.reload();
+        });
             });
 
             // Choose the element that your content will be rendered to.
@@ -475,6 +564,9 @@
                 column.style.display = 'none';
             });
         }
+
+
+        
     </script>
 
     <script>
@@ -496,6 +588,35 @@
         // Call the function when needed, for example, when the user selects the custom value 1
         // updateColumnName();
     </script>
+
+<!-- Update your existing script section with this code -->
+
+<script>
+    // Function to generate a unique invoice number
+    function generateInvoiceNumber() {
+        // Get current timestamp
+        const timestamp = new Date().getTime();
+
+        // Create a unique invoice number by combining a prefix and timestamp
+        const invoiceNumber = 'INV' + timestamp;
+
+        // Display the generated invoice number where you want it to appear
+        document.getElementById('invoiceNumber').innerText = 'Invoice ' + invoiceNumber;
+
+        // Return the invoice number if you need to use it elsewhere
+        return invoiceNumber;
+    }
+
+// Call the function to generate the invoice number
+const generatedInvoiceNumber = generateInvoiceNumber();
+
+
+</script>
+
+
+<!-- Add this where you want to display the invoice number -->
+
+
 
     <script>
         $('#printInvoice').click(function () {

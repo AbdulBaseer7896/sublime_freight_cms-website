@@ -134,7 +134,8 @@ class Admin_Modle():
         
     def get_load_info_from_db_for_admin(self):
         with self.engine.connect() as conn:
-            query1 = text(f"SELECT load_details.*, users.user_name, new_sales_first_time.carear_name , company_name , email , phone_number , mc  FROM load_details LEFT JOIN users ON load_details.dispatcher_pin = users.user_pin LEFT JOIN new_sales_first_time ON load_details.carear_id = new_sales_first_time.carear_id;")
+            # query1 = text(f"SELECT load_details.*, users.user_name,  user_pin new_sales_first_time.carear_name , company_name , email , phone_number , mc  FROM load_details LEFT JOIN users ON load_details.dispatcher_pin = users.user_pin LEFT JOIN new_sales_first_time ON load_details.carear_id = new_sales_first_time.carear_id;")
+            query1 = text(""" SELECT load_details.*, users.user_name, user_pin , new_sales_first_time.carear_name, company_name, email, phone_number, mc FROM load_details LEFT JOIN users ON load_details.dispatcher_pin = users.user_pin LEFT JOIN new_sales_first_time ON load_details.carear_id = new_sales_first_time.carear_id; """)
             result = conn.execute(query1)
             column_names = result.keys()
             result_list = list(result)

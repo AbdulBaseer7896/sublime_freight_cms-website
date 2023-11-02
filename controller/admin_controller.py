@@ -3,7 +3,7 @@ from functools import wraps
 from flask import session
 from flask import redirect , url_for , render_template , request , flash ,jsonify
 from model.admin_modle import Admin_Modle
-
+import json
 import ast
 from datetime import datetime, date
 from collections import defaultdict
@@ -334,3 +334,14 @@ def show_dispatcher_and_there_load():
 
 
 
+
+
+@app.route('/your-flask-route', methods=['POST'])
+def handle_post_request():
+    # Retrieve data from the POST request
+    data = request.json
+    invoice_number = data.get('invoiceNumber')
+    print("This is invoice number  " , invoice_number)
+    print("This is daata = " , data)
+    
+    return redirect(url_for('admin_dashboard'))
