@@ -1,0 +1,101 @@
+{% extends 'admin_temp/admin_temp.html' %}
+
+
+
+{% block header_sytyle %}
+<style>
+        .table tr {
+            overflow: auto;
+            white-space: nowrap;
+        }
+
+        .externalWebsiteButton {
+        background: none;
+        border: none;
+        color: blue; /* Change the color as needed */
+        cursor: pointer;
+        text-decoration: underline; /* Add underline to make it look like a link */
+        text-decoration: none;
+    }
+
+    .openExternalWebsite_for_pop {
+        background: none;
+        border: none;
+        color: blue; /* Change the color as needed */
+        cursor: pointer;
+        text-decoration: underline; /* Add underline to make it look like a link */
+        text-decoration: none;
+    }
+
+</style>
+
+{% endblock header_sytyle %}
+
+
+{% block search_bar_contant %}
+
+{% endblock search_bar_contant %}
+
+
+{% block main_body_contant %}
+
+
+            <!-- Page Heading -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">All Appoinments Record</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                            <thead>
+                                <tr>
+                                    <th>Invoice NO</th>
+                                    <th>Carrier Name</th>
+                                    <th>Load Number</th>
+                                    <th>Load Rate</th>
+                                    <th>Total</th>
+                                    <th>Invoice Date</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Invoice NO</th>
+                                    <th>Carrier Name</th>
+                                    <th>Load Number</th>
+                                    <th>Load Rate</th>
+                                    <th>Total</th>
+                                    <th>Invoice Date</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                {% for item in invoic_info: %}
+                                    <td>{{ item['invoic_number'] }}</td>
+                                    <td>{{ item['carear_name']}}</td>
+                                    <td>{{item['load_number']}}</td>
+                                    <td>{{item['load_rate']}}</td>
+                                    <td>$5000</td>
+                                    <td>{{item['invoic_input_date']}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+
+
+
+
+
+{% endblock main_body_contant %}

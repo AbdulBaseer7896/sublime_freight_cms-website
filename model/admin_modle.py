@@ -377,11 +377,17 @@ class Admin_Modle():
         # Format the date and time in AM/PM format
         datetime_ampm = current_datetime.strftime("%Y-%m-%d %I:%M %p")
         return datetime_ampm
+    
 
 
-# obj = Admin_Modle()
-# obj.get_current_datetime()
-
+    def get_all_invoice_data_from_db(self):
+        with self.engine.connect() as conn:
+            query1 = text(f"""SELECT * from invoices;""")
+            result = conn.execute(query1)
+            
+            column_names = result.keys()
+            result_dict = [dict(zip(column_names, row)) for row in result]
+            return result_dict
 
 
         

@@ -5,7 +5,7 @@ from flask import redirect , url_for , render_template , request , flash ,jsonif
 from model.admin_modle import Admin_Modle
 import json
 import ast
-from datetime import datetime, date
+from datetime import datetime, date ,  timedelta
 from collections import defaultdict
 
 obj = Admin_Modle()
@@ -27,8 +27,47 @@ def login_required(role):
 def admin_dashboard():
     if request.method == 'GET':
         notification_data = obj.get_notification_data_from_db()
+        data = obj.get_all_invoice_data_from_db()
         admin_info = session.get('data')
-        return render_template('//admin_temp//admin_dashboard.html' , notification_data = notification_data , admin_info = admin_info)
+        income_data = calculate_data_for_dashboard()
+        return render_template('//admin_temp//admin_dashboard.html' , notification_data = notification_data , income_data= income_data , invoice_info = data,  admin_info = admin_info)
+    
+    
+    
+from datetime import date, datetime, timedelta
+
+def calculate_data_for_dashboard():
+    data = obj.get_all_invoice_data_from_db()
+    result = {}
+
+    # Calculate today's income
+    today = date.today()
+    today_data = [entry for entry in data if 'load_rate' in entry and 'invoic_input_date' in entry and entry['invoic_input_date'].date() == today]
+    today_income = sum(int(entry['load_rate'].replace('$', '')) for entry in today_data)
+    result['today_income'] = today_income
+
+    # Calculate this week's income
+    start_of_week = today - timedelta(days=today.weekday())
+    end_of_week = start_of_week + timedelta(days=6)
+    this_week_data = [entry for entry in data if 'load_rate' in entry and 'invoic_input_date' in entry and start_of_week <= entry['invoic_input_date'].date() <= end_of_week]
+    total_income_this_week = sum(int(entry['load_rate'].replace('$', '')) for entry in this_week_data)
+    result['this_week_income'] = total_income_this_week
+
+    # Calculate this month's income
+    start_of_month = today.replace(day=1)
+    end_of_month = (today.replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
+    this_month_data = [entry for entry in data if 'load_rate' in entry and 'invoic_input_date' in entry and start_of_month <= entry['invoic_input_date'].date() <= end_of_month]
+    total_income_this_month = sum(int(entry['load_rate'].replace('$', '')) for entry in this_month_data)
+    result['this_month_income'] = total_income_this_month
+
+    # Calculate this year's income
+    start_of_year = today.replace(month=1, day=1)
+    end_of_year = today.replace(month=12, day=31)
+    this_year_data = [entry for entry in data if 'load_rate' in entry and 'invoic_input_date' in entry and start_of_year <= entry['invoic_input_date'].date() <= end_of_year]
+    total_income_this_year = sum(int(entry['load_rate'].replace('$', '')) for entry in this_year_data)
+    result['this_year_income'] = total_income_this_year
+
+    return result
 
     
 @app.route('/add_employee' , methods=["GET", "POST"])
@@ -331,6 +370,19 @@ def show_dispatcher_and_there_load():
         admin_info = session.get('data')
         dispatcher_info = obj.get_load_info_from_db_for_admin()
         return render_template("/admin_temp/dispatcher_and_there_load.html" , dispatcher_info = dispatcher_info ,  admin_info = admin_info)
+
+
+
+
+
+
+@app.route('/show_all_invoicess' , methods=["GET", "POST"])
+@login_required('admin')
+def show_all_invoicess():
+    if request.method == 'GET':
+        admin_info = session.get('data')
+        invoic_info = obj.get_all_invoice_data_from_db()
+        return render_template("/admin_temp/view_invoice_record.html" , invoic_info = invoic_info ,  admin_info = admin_info)
 
 
 
