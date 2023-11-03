@@ -337,11 +337,9 @@ def show_dispatcher_and_there_load():
 
 
 @app.route('/your-flask-route', methods=['POST'])
+@login_required('admin')
 def handle_post_request():
     # Retrieve data from the POST request
-    data = request.json
-    invoice_number = data.get('invoiceNumber')
-    print("This is invoice number  " , invoice_number)
-    print("This is daata = " , data)
-    
+    invoice_data = request.json
+    obj.stored_invoic_data_in_db(invoice_data)
     return redirect(url_for('admin_dashboard'))

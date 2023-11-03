@@ -83,6 +83,9 @@
         <span id="resetFilters_after_invoic" class="btn btn-primary" style="cursor: pointer; text-decoration: none">
             All Load Records
         </span>
+        <span id="resetFilters" class="btn btn-primary" style="cursor: pointer; text-decoration: none">
+            Clean Filter
+        </span>
         <span id="resetFilters" style="cursor: pointer; text-decoration: none">
             <button onclick="hideColumns()" id="download-button">Invoice</button>
         </span>
@@ -123,6 +126,7 @@
                 </div>
             </div>
         </div>
+        
 
         <button id="applyValue">Apply</button>
     </div>
@@ -208,8 +212,8 @@
                                             <th>Pick Up</th>
                                             <th>Drop</th>
                                             <th class="hidden-text-coloum">Load Date</th>
+                                            <th id="customLoadPercentageColumn"> 0%</th>
                                             <th>Flat Rate</th>
-                                            <th id="customLoadPercentageColumn">{loadPercentage}</th>
                                             <th style="display: none;">Email</th>
                                             <th style="display: none;">Phone Number</th>
                                             <th style="display: none;">Company Name</th>
@@ -424,7 +428,9 @@
                 const inputValue = inputValueElement.value;
 
                 // Replace the placeholder in the column name with the entered value
+                if (selectedColumn === 'Custom Value 1') {
                 customLoadPercentageColumn.textContent = `${inputValue}%`;
+                }
             }
 
             // Call the function when needed, for example, when the user interacts with the input field or when the page loads.
@@ -522,13 +528,6 @@
 
 
 
-
-
-
-
-
-
-
         function generatePDFDocument() {
             // Unhide all elements with the hidden text class
             hiddenTextElements.forEach(element => {
@@ -538,6 +537,7 @@
             // Reload the page to reset filters
             location.reload();
         });
+
             });
 
             // Choose the element that your content will be rendered to.
@@ -548,6 +548,13 @@
             // Hide the modal after generating the PDF
             modal.style.display = 'none';
         }
+
+
+
+
+
+
+
         button.addEventListener('click', generatePDF);
         applyButton.addEventListener('click', applyValue);
     </script>

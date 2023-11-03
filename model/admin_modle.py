@@ -337,3 +337,51 @@ class Admin_Modle():
             result_dict = [dict(zip(column_names, row)) for row in result]
             return result_dict
 
+
+    def stored_invoic_data_in_db(self, invoic_data):
+        print("This is also work")
+        with self.engine.connect() as conn:
+            invoic_input_date = self.get_current_datetime()
+            for row in invoic_data['selectedRowsData']:
+                query = text(f"""
+                    INSERT INTO invoices 
+                    VALUES (
+                        "{row['user_name']}",
+                        "{row['carear_name']}",
+                        "{row['load_number']}",
+                        "{row['load_rate']}",
+                        "{row['pick_up_location']}",
+                        "{row['drop_location']}",
+                        "{row['load_date']}",
+                        "{row['load_id']}",
+                        "{row['carear_id']}",
+                        "{row['user_pin']}",
+                        "{invoic_data['inputValue']}",
+                        "{invoic_data['selectedColumn']}",
+                        "{invoic_data['invoiceDate']}",
+                        "{invoic_data['dueDate']}",
+                        "{invoic_data['invoic_number']}",
+                        STR_TO_DATE("{invoic_input_date}", "%Y-%m-%d %h:%i %p")
+                    );
+                """)
+                
+                conn.execute(query)
+        return True
+                
+                
+                
+    def get_current_datetime(self):
+        # Get the current date and time
+        current_datetime = datetime.now()
+
+        # Format the date and time in AM/PM format
+        datetime_ampm = current_datetime.strftime("%Y-%m-%d %I:%M %p")
+        return datetime_ampm
+
+
+# obj = Admin_Modle()
+# obj.get_current_datetime()
+
+
+
+        
