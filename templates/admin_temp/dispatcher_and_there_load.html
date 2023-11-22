@@ -400,7 +400,10 @@
             }
 
             if (selectedColumn === 'Custom Value 1') {
-                const age = parseFloat(row.cells[3].textContent);
+                // const age = parseFloat(row.cells[4].textContent);
+                const age = parseFloat(row.cells[4].textContent.replace('$', '').replace(',', '').replace(' ', ''));
+
+                console.log(age)
                 const value1 = (inputValue / 100) * age;
                 customValue1Cell.textContent = '$' + value1.toFixed(2);
                 customValue2Cell.textContent = '';

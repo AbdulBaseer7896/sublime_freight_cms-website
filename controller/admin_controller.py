@@ -43,28 +43,29 @@ def calculate_data_for_dashboard():
     # Calculate today's income
     today = date.today()
     today_data = [entry for entry in data if 'load_rate' in entry and 'invoic_input_date' in entry and entry['invoic_input_date'].date() == today]
-    today_income = sum(int(entry['load_rate'].replace('$', '')) for entry in today_data)
+    today_income = sum(int(entry['load_rate'].replace('$', '').replace(',', '')) for entry in today_data)
+
     result['today_income'] = today_income
 
     # Calculate this week's income
     start_of_week = today - timedelta(days=today.weekday())
     end_of_week = start_of_week + timedelta(days=6)
     this_week_data = [entry for entry in data if 'load_rate' in entry and 'invoic_input_date' in entry and start_of_week <= entry['invoic_input_date'].date() <= end_of_week]
-    total_income_this_week = sum(int(entry['load_rate'].replace('$', '')) for entry in this_week_data)
+    total_income_this_week = sum(int(entry['load_rate'].replace('$', '').replace(',', '')) for entry in this_week_data)
     result['this_week_income'] = total_income_this_week
 
     # Calculate this month's income
     start_of_month = today.replace(day=1)
     end_of_month = (today.replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
     this_month_data = [entry for entry in data if 'load_rate' in entry and 'invoic_input_date' in entry and start_of_month <= entry['invoic_input_date'].date() <= end_of_month]
-    total_income_this_month = sum(int(entry['load_rate'].replace('$', '')) for entry in this_month_data)
+    total_income_this_month = sum(int(entry['load_rate'].replace('$', '').replace(',', '')) for entry in this_month_data)
     result['this_month_income'] = total_income_this_month
 
     # Calculate this year's income
     start_of_year = today.replace(month=1, day=1)
     end_of_year = today.replace(month=12, day=31)
     this_year_data = [entry for entry in data if 'load_rate' in entry and 'invoic_input_date' in entry and start_of_year <= entry['invoic_input_date'].date() <= end_of_year]
-    total_income_this_year = sum(int(entry['load_rate'].replace('$', '')) for entry in this_year_data)
+    total_income_this_year = sum(int(entry['load_rate'].replace('$', '').replace(',', '')) for entry in this_year_data)
     result['this_year_income'] = total_income_this_year
 
     return result
